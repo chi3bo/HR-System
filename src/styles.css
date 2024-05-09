@@ -1,0 +1,236 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.453) 100%, black 0%),
+        /* تدرج لوني */
+        url(assets/images/pexels-startup-stock-photos-7070.jpg);
+    background-size: cover;
+    min-height: 100vh;
+    font-family: "Almarai", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+
+    /* background-position: center; */
+}
+
+.myItem {
+    min-height: 350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    transition: scale .7s, box-shadow .3s;
+
+    &:hover {
+        scale: 1.05;
+    }
+}
+
+.arabicList{
+    direction: rtl;
+}
+
+.vh-80{
+    min-height: 80vh;
+}
+
+.loanDetails{
+min-height: 700px;
+}
+
+
+
+
+/* token============== */
+#loginPage {
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    min-width: 100%;
+    min-height: 80vh;
+}
+
+.welcome {
+    color: #d95654;
+}
+
+#theVid1 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+
+}
+
+.loginSquare {
+    height: 400px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.408);
+}
+
+.loginBtn {
+    transition: all .5s;
+
+    &:hover {
+        scale: 1.05;
+    }
+
+}
+
+.signupSquare {
+    height: 485px;
+    border-radius: 10px;
+    background-color: #88B1A3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.302);
+    color: #ffffff;
+
+}
+
+.signupSquare h2 {
+    font-family: 'Ubuntu', sans-serif;
+    padding-inline: 20px;
+    font-weight: 600;
+}
+
+.inputs {
+    width: 80%;
+}
+
+.textBtn {
+    color: rgb(236, 0, 0);
+    font-size: 1.2rem;
+    font-weight: 400;
+    /* font-family: 'Josefin Sans', sans-serif; */
+    padding: 5px 2px 2px;
+    transition: all .3s;
+    display: inline-block;
+}
+
+
+.textBtn:hover {
+    color: rgb(167, 0, 0);
+    border-radius: 5px;
+    padding: 5px 2px 2px;
+    transform: scale(1.05);
+}
+
+.textBtn1 {
+    color: rgba(0, 128, 128, 0.821);
+    font-size: 1.2rem;
+    font-weight: 900;
+    background-color: rgb(240, 248, 255);
+    border-radius: 5px;
+    padding: 5px 2px 2px;
+    transition: all .3s;
+
+}
+
+.textBtn1:hover {
+    color: inherit;
+    background-color: rgb(30, 181, 131);
+    filter: drop-shadow(0 0 10px rgb(132, 255, 251));
+}
+
+.fa-check{
+position: absolute;
+left: -30px ;
+top: 30%;
+opacity: 0;
+    transition: left 1s , opacity .3s;
+}
+
+.custombutn{
+    position: relative;
+    overflow: hidden;
+    background-color: #1B2E35;
+    color: white;
+    transition: scale .4s;
+    &:hover{
+        scale: 1.06;
+        .fa-check{
+            opacity: 1;
+            color: white;
+            display: inline;
+            left: 20px ;
+        }
+    }
+}
+
+::placeholder{
+    padding-block: 5px;
+}
+
+.form-control{
+    border:  #1b2e3537 1px solid;
+}
+
+@media screen and (max-width:576px) {
+
+    body {
+        background-size: cover;
+        min-height: 100vh;
+        background-attachment: fixed;
+        /* background-position: center; */
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .signupSquare {
+        width: 90%;
+    }
+
+    #theVid1 {
+        transform: rotatey(180deg);
+    }
+
+    .loginSquare p,
+    .loginSquare a {
+        font-size: large;
+    }
+
+    .signupSquare h2 {
+        padding-inline: 20px;
+        font-size: large
+    }
+
+    .signupSquare a {
+        font-size: large;
+    }
+
+    .alreadyUsed {
+        font-size: 16px;
+    }
+
+    .probertyName{
+        width: 40%;
+        margin-block: 3px;
+    }
+
+    .probertyValue{
+        width: 50%;
+        margin-block: 3px;
+        padding: 1px !important;
+
+    }
+
+    label{
+        font-size: 13px;
+    }
+
+    .vectorForm{
+        height: auto !important;
+    }
+
+}
+
+
+
+/* ==== token ========= */
