@@ -18,14 +18,14 @@ export class VacationService {
 
 
   basicvacationData(): Observable<any> {
-    return this._HttpClient.post('http://hrapp.runasp.net/Api/Employee/GetBasicVacationInfo', '', this.setHeadrs())
+    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/GetBasicVacationInfo', '', this.setHeadrs())
   }
 
   getAllvacations(): Observable<any> {
-    return this._HttpClient.post('http://hrapp.runasp.net/Api/Employee/GetEmployeeVacations', '', this.setHeadrs())
+    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/GetEmployeeVacations', '', this.setHeadrs())
   }
 
   requestvacation(body:any): Observable<any> {
-    return this._HttpClient.post('http://hrapp.runasp.net/Api/Employee/RequestVacation', body, this.setHeadrs())
+    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/RequestVacation', body, this.setHeadrs())
   }
 }
