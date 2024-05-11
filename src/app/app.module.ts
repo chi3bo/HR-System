@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
@@ -13,6 +13,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LoanComponent } from './components/loan/loan.component';
 import { VacationComponent } from './components/vacation/vacation.component';
 import { TerminationComponent } from './components/termination/termination.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HelpComponent } from './components/help/help.component';
+
 
 
 @NgModule({
@@ -27,13 +31,17 @@ import { TerminationComponent } from './components/termination/termination.compo
     HomeComponent,
     LoanComponent,
     VacationComponent,
-    TerminationComponent
+    TerminationComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

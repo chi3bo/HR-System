@@ -13,6 +13,18 @@ body {
     /* background-position: center; */
 }
 
+.text-darkly {
+    color: #1B2E35;
+}
+
+.bg-darkly {
+    background-color: #1B2E35;
+}
+
+.btn-dark {
+    background-color: #1B2E35;
+}
+
 .myItem {
     min-height: 350px;
     display: flex;
@@ -26,16 +38,16 @@ body {
     }
 }
 
-.arabicList{
+.arabicList {
     direction: rtl;
 }
 
-.vh-80{
+.vh-80 {
     min-height: 80vh;
 }
 
-.loanDetails{
-min-height: 700px;
+.loanDetails {
+    min-height: 700px;
 }
 
 
@@ -43,18 +55,10 @@ min-height: 700px;
 
 /* token============== */
 #loginPage {
-    /* position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0; */
     min-width: 100%;
     min-height: 80vh;
 }
 
-.welcome {
-    color: #d95654;
-}
 
 #theVid1 {
     position: fixed;
@@ -78,7 +82,8 @@ min-height: 700px;
     transition: all .5s;
 
     &:hover {
-        scale: 1.05;
+        background-color: #101c20;
+        scale: 1.04;
     }
 
 }
@@ -137,37 +142,42 @@ min-height: 700px;
     filter: drop-shadow(0 0 10px rgb(132, 255, 251));
 }
 
-.fa-check{
-position: absolute;
-left: -30px ;
-top: 30%;
-opacity: 0;
-    transition: left 1s , opacity .3s;
+.fa-check {
+    position: absolute;
+    left: -30px;
+    top: 30%;
+    opacity: 0;
+    transition: left 1s, opacity .3s;
 }
 
-.custombutn{
+.custombutn {
     position: relative;
     overflow: hidden;
     background-color: #1B2E35;
     color: white;
     transition: scale .4s;
-    &:hover{
+
+    &:hover {
         scale: 1.06;
-        .fa-check{
+
+        .fa-check {
             opacity: 1;
             color: white;
             display: inline;
-            left: 20px ;
+            left: 20px;
         }
     }
 }
 
-::placeholder{
+::placeholder {
     padding-block: 5px;
 }
 
-.form-control{
-    border:  #1b2e3537 1px solid;
+.form-control {
+    border: #1b2e3537 1px solid;
+}
+.errorInput{
+    font-size: 14px !important;
 }
 
 @media screen and (max-width:576px) {
@@ -209,24 +219,47 @@ opacity: 0;
         font-size: 16px;
     }
 
-    .probertyName{
+    .probertyName {
         width: 40%;
         margin-block: 3px;
     }
 
-    .probertyValue{
+    .probertyValue {
         width: 50%;
         margin-block: 3px;
         padding: 1px !important;
 
     }
 
-    label{
+    label {
         font-size: 13px;
     }
 
-    .vectorForm{
+    .vectorForm {
         height: auto !important;
+    }
+
+    .dontHave{
+        font-size: 13px !important;
+    }
+    .errorInput{
+        font-size: 11px !important;
+    }
+
+    .requestDetails{
+        padding-inline: 15px !important;
+    }
+
+    ::placeholder{
+        font-size: 10px;
+    }
+
+    .hide-on-mobile{
+        display: none ;
+    }
+
+    .w-100-mobile{
+        width: 100% !important;
     }
 
 }

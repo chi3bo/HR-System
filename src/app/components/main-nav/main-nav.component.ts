@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent {
+  isNavBarCollapsed:boolean = true
+
 
 }

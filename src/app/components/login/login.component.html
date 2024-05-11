@@ -1,16 +1,33 @@
-<div id="loginPage" class="d-flex justify-content-center align-items-center ">
-    <div
-        class="loginSquare rounded-3 d-flex justify-content-center align-items-center row col-lg-6 col-md-7 col-sm-10 text-center">
-        <h1 class="welcome text-primary">تسجيل الدخول  </h1>
-        <div class="inputs p-1">
-            <input type="email" name="userEmail" placeholder="enter your E-mail here"
-                class=" userEmail my-md-2 py-3 my-2 form-control py-3">
+<form [formGroup]="loginForm" (ngSubmit)="setLoging()">
+    <div id="loginPage" class="d-flex justify-content-center align-items-center ">
 
-            <input type="password" name="userPass" placeholder="enter your password here"
-                class=" userPass my-md-2 py-3 my-2 form-control py-3">
+        <div
+            class="loginSquare rounded-3 d-flex justify-content-center align-items-center row col-lg-6 col-md-7 col-sm-10 text-center">
+            <h1 class="welcome text-darkly">تسجيل الدخول </h1>
+
+            <!-- my inputs -->
+            <div class="inputs p-1">
+                <!-- user name input -->
+                <input (click)="hideErrMsg()" formControlName="Username" type="email" name="Username"
+                    placeholder="enter your E-mail here" class=" userEmail my-md-2 py-3 my-2 form-control py-3">
+                <!-- password input -->
+                <input (click)="hideErrMsg()" formControlName="Password" type="password" name="Password"
+                    placeholder="enter your password here" class=" userPass my-md-2 py-3 my-2 form-control py-3">
+            </div>
+
+            <!-- رسالة الخطأ في اسم المستخدم او كلمة المرور -->
+            <p *ngIf="wrongMsg" class="dontHave text-danger ">اسم المستخدم او كلمة المرور غير صحيحة</p>
+
+
+            <button type="submit" routerLinkActive="router-link-active" class="loginBtn btn btn-dark col-6 ">
+                <p *ngIf="isloading" class="d-inline-block my-0 px-1"> <i class="fa-solid fa-spinner fa-spin"></i>
+                </p>
+                دخول
+            </button>
+            
+            <p class="lead"><a routerLink="/register" class=" text-decoration-none textBtn text-primary">سجل الان</a>
+                ليس
+                لديك حساب ؟ </p>
         </div>
-        <p class="dontHave text-danger d-none">ops ! ... wrong email or password</p>
-        <button routerLinkActive="router-link-active" routerLink="/home" class="loginBtn btn btn-primary col-6 ">دخول</button>
-        <p class="lead"><a routerLink="/register" class=" text-decoration-none textBtn text-primary">سجل الان</a> ليس لديك حساب ؟ </p>
     </div>
-</div>
+</form>
