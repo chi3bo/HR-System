@@ -5,6 +5,7 @@ import { LoanService } from 'src/app/shared/services/loan.service';
 import { Response } from './../../shared/interfaces/response';
 import { FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { VacationService } from 'src/app/shared/services/vacation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vacation',
@@ -12,7 +13,7 @@ import { VacationService } from 'src/app/shared/services/vacation.service';
   styleUrls: ['./vacation.component.css']
 })
 export class VacationComponent implements OnInit{
-  constructor(private _VacationService: VacationService, private _FormBuilder: FormBuilder) { }
+  constructor(private _VacationService: VacationService, private _FormBuilder: FormBuilder , private _router:Router) { }
 
   vacationForm: FormGroup = this._FormBuilder.group({
     startDate: [null, Validators.required], //  بداية الاجازة
@@ -48,6 +49,10 @@ ngOnInit(): void {
 
     error: (err) => {
       console.log(err);
+      if (err.error.message == 'Unauthorized') {
+        localStorage.clear()
+        this._router.navigate(['login'])
+      }
     }
   })
 }

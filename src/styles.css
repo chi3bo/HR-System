@@ -51,8 +51,6 @@ body {
 }
 
 
-
-
 /* token============== */
 #loginPage {
     min-width: 100%;
@@ -260,6 +258,13 @@ body {
 
     .w-100-mobile{
         width: 100% !important;
+    }
+
+    .doneMsgMain{
+        font-size: 18px !important;
+    }
+    .doneMsgSub{
+        font-size: 14px !important;
     }
 
 }

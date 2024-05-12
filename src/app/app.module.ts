@@ -16,6 +16,7 @@ import { TerminationComponent } from './components/termination/termination.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HelpComponent } from './components/help/help.component';
+import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 
 
 
@@ -32,7 +33,8 @@ import { HelpComponent } from './components/help/help.component';
     LoanComponent,
     VacationComponent,
     TerminationComponent,
-    HelpComponent
+    HelpComponent,
+    AllOrdersComponent
   ],
   imports: [
     BrowserModule,

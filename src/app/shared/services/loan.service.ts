@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class LoanService {
 
-  constructor(private _HttpClient: HttpClient) { }
+  constructor(private _HttpClient: HttpClient , private _Router:Router) { }
 
 
 
@@ -19,6 +20,9 @@ export class LoanService {
 
 
   basicLoanData(): Observable<any> {
+    if (localStorage.getItem('userToken') == null ){
+      this._Router.navigate(['login'])
+    }
     return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/GetBasicAdvancePaymentInfo', '', this.setHeadrs())
   }
 

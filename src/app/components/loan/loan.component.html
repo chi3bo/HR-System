@@ -1,4 +1,4 @@
-<section class="my-5 ">
+<section *ngIf="requestSent==false" class="my-5 ">
 
     <form [formGroup]="loanForm" (ngSubmit)="sendRequest()">
         <div class="loanDetails arabicList bg-white rounded-4 w-100 overflow-hidden">
@@ -35,6 +35,8 @@
                                 <label for="empName"> قيمة السلفة : </label>
                                 <input #loan formControlName="advancePaymentValue" type="text" id="empName"
                                     class="form-control " placeholder="ادخل مبلغ السلفة . . ">
+                                <p *ngIf="loanForm.get('advancePaymentValue')?.getError('required') && loanForm.get('advancePaymentValue')?.touched"
+                                    class="text-danger small errorInput px-3">يجب ادخال مبلغ السلفة</p>
                             </div>
 
 
@@ -42,25 +44,25 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-50 p-2">
                                     <label for="empId"> قيمة القسط : </label>
-                                    <input #install (input)="calcNumberOfInstalls()" formControlName="installmentValue" type="number" id="empId"
-                                        class="form-control w-100 " placeholder="ادخل مبلغ القسط الواحد" >
+                                    <input #install (input)="calcNumberOfInstalls()" formControlName="installmentValue"
+                                        type="number" id="empId" class="form-control w-100 "
+                                        placeholder="ادخل مبلغ القسط الواحد">
                                 </div>
-
-
-
-
 
                                 <div class="w-50 p-2">
                                     <label for="empCredit"> القسط الاخير : </label>
                                     <input formControlName="lastInstallmentValue" type="number" id="empCredit"
-                                        class="form-control w-100" placeholder="ادخل مبلغ القسط الاخير" >
+                                        class="form-control w-100" placeholder="ادخل مبلغ القسط الاخير">
                                 </div>
                             </div>
+
                             <p *ngIf="loanForm.get('installmentValue')?.getError('minAmount') && install.value.length > 0 "
                                 class="text-danger small errorInput px-3">الحد الادني للقسط الواحد 100</p>
                             <p *ngIf="loanForm.get('installmentValue')?.getError('moreThan') "
                                 class="text-danger small errorInput px-3"> يجب ان تكون قيمة القسط اقل من او تساوي قيمة
                                 السلفة </p>
+
+
 
 
 
@@ -74,11 +76,13 @@
                                 </div>
                                 <div class="w-50 p-2">
                                     <label for="empCredit"> عدد الاقساط: </label>
-                                    <input  formControlName="numberOfInstallment" type="number" id="empCredit"
+                                    <input formControlName="numberOfInstallment" type="number" id="empCredit"
                                         class="form-control w-100 " placeholder=" عدد الاقساط">
                                 </div>
 
                             </div>
+                            <p *ngIf="loanForm.get('startDate')?.getError('required') && loanForm.get('startDate')?.touched"
+                            class="text-danger small errorInput px-3">يجب ادخال تاريخ البدء</p>
 
 
                         </div>
@@ -119,3 +123,19 @@
 
 </section>
 
+
+<section *ngIf="requestSent" class="SuccessModal vh-80 d-flex justify-content-center align-items-center">
+    <div class=" bg-white w-50 w-100-mobile mx-auto rounded-3 text-center ">
+
+        <div class="p-5">
+            <p class="doneMsgMain fs-3 "> <i class="fa-solid fa-circle-check fa-lg pe-2" style="color: #11645f;"></i>تم
+                ارسال الطلب بنجاح </p>
+            <p class="doneMsgSub fs-5 fw-light ">تفقد حالة الطلب من قسم <span class="fw-bolder"> الطلبات </span> </p>
+
+            <button routerLink="/allOrders" class="btn btn-dark p-3 px-4 mx-1"> الطلبات </button>
+            <button routerLink="/home" class="btn btn-outline-dark p-3 px-4 mx-1"> الرئيسية </button>
+        </div>
+
+
+    </div>
+</section>

@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { myGuardGuard } from './shared/my-guard.guard';
 import { HelpComponent } from './components/help/help.component';
+import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path:'vacations' , component:VacationComponent , title:'vacations'},
     { path:'terminate' , component:TerminationComponent , title:'terminations'},
     { path:'help' , component:HelpComponent , title:'help'},
+    { path:'allOrders' , component:AllOrdersComponent , title:'my orders'},
   ]},
 
   { path:'' , component:AuthComponent , title:'auth' ,children:[

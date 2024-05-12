@@ -4,6 +4,7 @@ import { DateTimeAdapter } from 'ng-pick-datetime';
 import { LoanService } from 'src/app/shared/services/loan.service';
 import { Response } from './../../shared/interfaces/response';
 import { FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loan',
@@ -11,13 +12,13 @@ import { FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular
   styleUrls: ['./loan.component.css']
 })
 export class LoanComponent implements OnInit {
-  constructor(private _LoanService: LoanService, private _FormBuilder: FormBuilder) { }
+  constructor(private _LoanService: LoanService, private _FormBuilder: FormBuilder, private _router: Router) { }
 
   loanForm: FormGroup = this._FormBuilder.group({
     advancePaymentValue: [null, Validators.required], // قيمة السلفة
     installmentValue: [null, Validators.required], // قيمة القسط
-    lastInstallmentValue: [null, Validators.required], // القسط الاخير
-    numberOfInstallment: [null, Validators.required],// عدد الاقساط
+    lastInstallmentValue: [{ value: null, disabled: true }, Validators.required], // القسط الاخير
+    numberOfInstallment: [{ value: null, disabled: true }, Validators.required],// عدد الاقساط
     startDate: [null, Validators.required]// تاريخ البدء
   }, { validators: [this.Install], } as FormControlOptions)
 
@@ -27,7 +28,7 @@ export class LoanComponent implements OnInit {
   empId: any = ''
   raseed: number = 0
   todayDate: any = new Date().toISOString().split('T')[0]
-
+  requestSent:boolean = false
 
 
   // استنتاج عدد الاقساط من المبلغ
@@ -83,16 +84,44 @@ export class LoanComponent implements OnInit {
   }
 
   sendRequest() {
-    this._LoanService.requestLoan(this.loanForm.value).subscribe({
-      next: (Response) => {
-        console.log(Response);
-      },
+// data dosent come auto because the  disabled
+    this.loanForm.value.lastInstallmentValue = this.loanForm.get('lastInstallmentValue')?.value
+    this.loanForm.value.numberOfInstallment = this.loanForm.get('numberOfInstallment')?.value
+    console.log(this.loanForm.value);
+    console.log(this.loanForm.valid);
 
-      error: (err) => {
-        console.log(err);
+
+if (this.loanForm.valid) {
+  
+  this._LoanService.requestLoan(this.loanForm.value).subscribe({
+    next: (Response) => {
+      console.log(Response);
+      this.requestSent = true
+    },
+
+    error: (err) => {
+      console.log(err);
+      if (err.error.message == 'Unauthorized') {
+        localStorage.clear()
+        this._router.navigate(['login'])
       }
-    })
-  }
+      this.requestSent = false
+
+    }
+  })
+}
+else{
+  this.loanForm.markAllAsTouched()
+}
+}
+
+
+
+
+
+
+
+
 
   ngOnInit(): void {
     this._LoanService.basicLoanData().subscribe({
@@ -105,6 +134,10 @@ export class LoanComponent implements OnInit {
 
       error: (err) => {
         console.log(err);
+        if (err.error.message == 'Unauthorized') {
+          localStorage.clear()
+          this._router.navigate(['login'])
+        }
       }
     })
   }
