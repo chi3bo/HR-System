@@ -81,6 +81,7 @@ export class LoanComponent implements OnInit {
     else if (Number(install?.value) > Number(loan?.value)) {
       install?.setErrors({ moreThan: true })
     }
+
   }
 
   sendRequest() {
@@ -95,8 +96,11 @@ if (this.loanForm.valid) {
   
   this._LoanService.requestLoan(this.loanForm.value).subscribe({
     next: (Response) => {
-      console.log(Response);
-      this.requestSent = true
+      if (Response == true) {
+        console.log(Response);
+        this.requestSent = true
+      }
+
     },
 
     error: (err) => {
@@ -114,13 +118,6 @@ else{
   this.loanForm.markAllAsTouched()
 }
 }
-
-
-
-
-
-
-
 
 
   ngOnInit(): void {

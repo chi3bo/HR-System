@@ -61,6 +61,9 @@
                             <p *ngIf="loanForm.get('installmentValue')?.getError('moreThan') "
                                 class="text-danger small errorInput px-3"> يجب ان تكون قيمة القسط اقل من او تساوي قيمة
                                 السلفة </p>
+                            <p *ngIf="loanForm.get('installmentValue')?.value==null && loanForm.get('installmentValue')?.touched "
+                                class="text-danger small errorInput px-3"> يجب ادخل قيمة القسط الواحد
+                                السلفة </p>
 
 
 

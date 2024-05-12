@@ -1,7 +1,7 @@
-<section class="my-5 ">
+<section *ngIf="requestSent==false" class="my-5 ">
 
-    <form [formGroup]="vacationForm">
-        <div class="loanDetails arabicList bg-white rounded-4 w-100 overflow-hidden">
+    <form [formGroup]="vacationForm" (ngSubmit)="sendRequest()">
+        <div class="vacationDetails arabicList bg-white rounded-4 w-100 overflow-hidden">
             <div class=" row ">
 
 
@@ -38,21 +38,29 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-50 p-2 ">
                                     <label for="empName"> نوع الاجازة : </label>
-                                    <input #loan formControlName="vacationType" type="text" id="empName"
-                                        class="form-control " placeholder=" اختر نوع الاجازة  . . ">
+                                    <select formControlName="vacationType" name="" id="" class=" form-select ">
+                                        <option disabled selected value="null">اختر نوع الاجازة</option>
+                                        <option value="1">اجازة مرضية </option>
+                                        <option value="2">اجازة عامة </option>
+                                        <option value="3">اجازة شخصية </option>
+                                    </select>
                                 </div>
                                 <div class="w-50 p-2">
                                     <label for="empId"> مدة الاجازة : </label>
-                                    <input #install formControlName="numberOfDays" type="number" id="empId"
+                                    <input formControlName="numberOfDays" type="number" id="empId"
                                         class="form-control w-100 " placeholder="ادخل مدة الاجازة . .">
                                 </div>
                             </div>
+                            <p class="text-danger small errorInput px-3"
+                                [ngClass]="{'d-none' : this.vacationForm.get('numberOfDays')?.value <= this.availableDays}">
+                                مدة الاجازة اكبر من الرصيد المتاح لديك</p>
+                            <p class="text-danger small errorInput px-3"
+                                *ngIf=" this.vacationForm.get('numberOfDays')?.getError('required')&&  this.vacationForm.get('numberOfDays')?.touched ">
+                                ادخل مدة الاجازة</p>
+                            <p class="text-danger small errorInput px-3"
+                                *ngIf="  this.vacationForm.get('vacationType')?.value == null && (this.vacationForm.get('startDate')?.touched)">
+                                اختر نوع الاجازة </p>
 
-                            <!-- <p *ngIf="vacationForm.get('installmentValue')?.getError('minAmount') && install.value.length > 0 "
-                                class="text-danger small errorInput px-3">الحد الادني للقسط الواحد 100</p>
-                            <p *ngIf="vacationForm.get('installmentValue')?.getError('moreThan') "
-                                class="text-danger small errorInput px-3"> يجب ان تكون قيمة القسط اقل من او تساوي قيمة
-                                السلفة </p> -->
 
 
 
@@ -65,11 +73,16 @@
                                         class="form-control w-100" [min]="todayDate" placeholder="تاريخ البدء">
                                 </div>
                             </div>
+                            <p class="text-danger small errorInput px-3"
+                                *ngIf=" this.vacationForm.get('startDate')?.getError('required')&&  this.vacationForm.get('startDate')?.touched ">
+                                ادخل تاريخ بدء الاجازة </p>
 
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-100 p-2">
-                                    <label for="details">تفاصيل اخري  : </label>
-                                    <textarea formControlName="details" name="" id="details" rows="3" placeholder="هل ترغب في اطلاعنا بأي تفاصيل اخري ؟" class="form-control"></textarea>
+                                    <label for="details">تفاصيل اخري : </label>
+                                    <textarea formControlName="details" name="" id="details" rows="3"
+                                        placeholder="هل ترغب في اطلاعنا بأي تفاصيل اخري ؟"
+                                        class="form-control"></textarea>
                                 </div>
                             </div>
 
@@ -110,4 +123,21 @@
         </div>
     </form>
 
+</section>
+
+<!-- succses  modal -->
+<section *ngIf="requestSent" class="SuccessModal vh-80 d-flex justify-content-center align-items-center">
+    <div class=" bg-white w-50 w-100-mobile mx-auto rounded-3 text-center ">
+
+        <div class="p-5">
+            <p class="doneMsgMain fs-3 "> <i class="fa-solid fa-circle-check fa-lg pe-2" style="color: #11645f;"></i>تم
+                ارسال الطلب بنجاح </p>
+            <p class="doneMsgSub fs-5 fw-light ">تفقد حالة الطلب من قسم <span class="fw-bolder"> الطلبات </span> </p>
+
+            <button routerLink="/allOrders" class="btn btn-dark p-3 px-4 mx-1"> الطلبات </button>
+            <button routerLink="/home" class="btn btn-outline-dark p-3 px-4 mx-1"> الرئيسية </button>
+        </div>
+
+
+    </div>
 </section>
