@@ -7,7 +7,7 @@
         <div *ngFor="let order of ordersList">
             <p class=" orderNumber my-0 d-inline-block bg-white px-2 rounded "> رقم الطلب : {{order.id}} </p>
             <div
-                class="parentOfOrders w-100 bg-white rounded border row py-1 d-flex justify-content-center align-items-center overflow-hidden ">
+                class="parentOfOrders w-100 bg-white rounded border row d-flex justify-content-center align-items-center overflow-hidden ">
 
 
                 <div class="col-md-3">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class=" w-100 border-start noBorder-mobile">
+                    <div class=" w-100 noBorder-mobile">
                         <p class="my-0"> عدد الاقساط : {{order.numberOfInstallment}} </p>
                         <p *ngIf="order.approveStatus == 'Approved' " class="my-0"> حالة الطلب : <span
                                 class="status-Msg-confirmed"> تمت الموافقة عليه </span></p>
