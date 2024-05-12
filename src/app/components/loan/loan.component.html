@@ -1,7 +1,7 @@
 <section *ngIf="requestSent==false" class="my-5 ">
 
     <form [formGroup]="loanForm" (ngSubmit)="sendRequest()">
-        <div class="loanDetails arabicList bg-white rounded-4 w-100 overflow-hidden">
+        <div class="loanDetails arabicList bg-white rounded-4 w-100 overflow-hidden shadow-lg">
             <div class=" row ">
 
 
@@ -128,14 +128,14 @@
 
 
 <section *ngIf="requestSent" class="SuccessModal vh-80 d-flex justify-content-center align-items-center">
-    <div class=" bg-white w-50 w-100-mobile mx-auto rounded-3 text-center ">
+    <div class=" bg-white w-50 w-100-mobile mx-auto rounded-3 text-center shadow-lg ">
 
         <div class="p-5">
             <p class="doneMsgMain fs-3 "> <i class="fa-solid fa-circle-check fa-lg pe-2" style="color: #11645f;"></i>تم
                 ارسال الطلب بنجاح </p>
             <p class="doneMsgSub fs-5 fw-light ">تفقد حالة الطلب من قسم <span class="fw-bolder"> الطلبات </span> </p>
 
-            <button routerLink="/allOrders" class="btn btn-dark p-3 px-4 mx-1"> الطلبات </button>
+            <button routerLink="/allOrders/loan" class="btn btn-dark p-3 px-4 mx-1"> الطلبات </button>
             <button routerLink="/home" class="btn btn-outline-dark p-3 px-4 mx-1"> الرئيسية </button>
         </div>
 

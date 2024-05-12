@@ -17,6 +17,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HelpComponent } from './components/help/help.component';
 import { AllOrdersComponent } from './components/all-orders/all-orders.component';
+import { OrderVacComponent } from './components/order-vac/order-vac.component';
+import { OrderloanComponent } from './components/orderloan/orderloan.component';
+import { OrderotherComponent } from './components/orderother/orderother.component';
+import { BlankComponent } from './components/blank/blank.component';
 
 
 
@@ -34,7 +38,11 @@ import { AllOrdersComponent } from './components/all-orders/all-orders.component
     VacationComponent,
     TerminationComponent,
     HelpComponent,
-    AllOrdersComponent
+    AllOrdersComponent,
+    OrderVacComponent,
+    OrderloanComponent,
+    OrderotherComponent,
+    BlankComponent
   ],
   imports: [
     BrowserModule,

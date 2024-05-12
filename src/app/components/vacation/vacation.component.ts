@@ -29,7 +29,7 @@ export class VacationComponent implements OnInit {
   vacationForm: FormGroup = this._FormBuilder.group({
     startDate: [null, Validators.required], //  بداية الاجازة
     numberOfDays: [null, Validators.required], // مدة الاجازة 
-    details: [null, Validators.required], // تفاصيل اخري
+    details: [null], // تفاصيل اخري
     vacationType: [null, Validators.required],// نوع الاجازة 
   },)
 
@@ -44,8 +44,8 @@ export class VacationComponent implements OnInit {
         this._VacationService.requestvacation(this.vacationForm.value).subscribe({
           next: (Response) => {
             if(Response == true){
-              console.log(Response );
-              this.requestSent = true
+            console.log(Response );
+            this.requestSent = true
             }
 
           },

@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.453) 100%, black 0%),
+    background: rgb(153, 217, 243) ;
+    background: 
+        /* linear-gradient(rgba(0, 0, 0, 0.783) 100%, rgb(255, 255, 255) 0%), */
         /* تدرج لوني */
-        url(assets/images/pexels-startup-stock-photos-7070.jpg);
+        url(assets/images/scott-webb-BB0mMC8y0Pc-unsplash.jpg);
     background-size: cover;
+    background-attachment: fixed;
+    background-position: center ;
     min-height: 100vh;
     font-family: "Almarai", sans-serif;
     font-weight: 800;
@@ -21,9 +24,9 @@ body {
     background-color: #1B2E35;
 }
 
-.btn-dark {
+/* .btn-dark {
     background-color: #1B2E35;
-}
+} */
 
 .myItem {
     min-height: 350px;
@@ -50,7 +53,7 @@ body {
     min-height: 700px;
 }
 
-.vacationDetails{
+.vacationDetails {
     min-height: 700px;
 
 }
@@ -179,9 +182,76 @@ body {
 .form-control {
     border: #1b2e3537 1px solid;
 }
-.errorInput{
+
+.errorInput {
     font-size: 14px !important;
 }
+
+.orderNumber {
+    position: relative;
+    top: 12px;
+    z-index: 2;
+}
+
+.bg-confirmed {
+    background-color: rgba(10, 245, 10, 0.213);
+}
+.bg-rejected {
+    background-color: #ff000072;
+}
+.bg-pendding {
+    background-color: #fff71158;
+}
+.status-Msg-confirmed{
+    color:rgb(0, 197, 0);
+}
+.status-Msg-rejected{
+    color:rgb(197, 0, 0);
+}
+.status-Msg-pendding{
+    color:rgb(255, 187, 0);
+}
+
+
+@media screen and (max-width:992px) {
+    .parentOfOrders {
+        font-size: 13px;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        position: relative;
+    }
+
+    .ordersButton {
+        font-size: 14px !important;
+        padding: 15px !important;
+    }
+
+    .bg-confirmed {
+        background-color: #fff;
+    }
+    .bg-rejected {
+        background-color: #fff;
+    }
+    .bg-pendding {
+        background-color: #fff;
+    }
+
+    .w-100-mobile {
+        width: 100% !important;
+    }
+
+    .noBorder-mobile{
+        border-left: none !important;
+    }
+    .statusImg{
+        width: 110px !important;
+        position: absolute;
+        top: 0;
+        left: -13px;
+        background-color: transparent;
+    }
+}
+
 
 @media screen and (max-width:576px) {
 
@@ -242,38 +312,50 @@ body {
         height: auto !important;
     }
 
-    .dontHave{
+    .dontHave {
         font-size: 13px !important;
     }
-    .errorInput{
+
+    .errorInput {
         font-size: 11px !important;
     }
 
-    .requestDetails{
+    .requestDetails {
         padding-inline: 15px !important;
     }
 
-    ::placeholder{
+    ::placeholder {
         font-size: 10px;
     }
 
-    .hide-on-mobile{
-        display: none ;
+    .hide-on-mobile {
+        display: none;
     }
 
-    .w-100-mobile{
+    .w-100-mobile {
         width: 100% !important;
     }
 
-    .doneMsgMain{
+    .doneMsgMain {
         font-size: 18px !important;
     }
-    .doneMsgSub{
+
+    .doneMsgSub {
         font-size: 14px !important;
     }
-
+    .noBorder-mobile{
+        border-left: none !important;
+    }
+    .statusImg{
+        width: 80px !important;
+        position: absolute;
+        top: 0;
+        left: -13px;
+        background-color: transparent;
+    }
 }
 
 
 
 /* ==== token ========= */
+/*  */

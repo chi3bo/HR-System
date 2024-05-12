@@ -1,0 +1,60 @@
+<section class="w-100 arabicList">
+
+    <div class="w-100 p-5 ">
+
+
+        <!-- ده اللي هيتكرر -->
+        <div *ngFor="let order of ordersList">
+            <p class=" orderNumber my-0 d-inline-block bg-white px-2 rounded "> رقم الطلب : {{order.id}} </p>
+            <div
+                class="parentOfOrders w-100 bg-white rounded border row py-1 d-flex justify-content-center align-items-center overflow-hidden ">
+
+
+                <div class="col-md-3">
+                    <div class=" w-100 border-start noBorder-mobile">
+                        <p *ngIf="order.vacationType=='Personal'" class="my-0 "> نوع الاجازة : اجازة شخصية </p>
+                        <p *ngIf="order.vacationType=='Annual'" class="my-0 "> نوع الاجازة : اجازة عامة </p>
+                        <p *ngIf="order.vacationType=='SickLeave'" class="my-0 "> نوع الاجازة : اجازة مرضية </p>
+                        
+                        <p class="my-0"> تاريخ البدء : {{order.startDate.split('T')[0]}} </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class=" w-100 border-start noBorder-mobile">
+                        <p class="my-0"> عدد الايام: {{order.numberOfDays}} </p>
+                        <p class="my-0"> تفاصيل الطلب: {{order.details}} </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class=" w-100 border-start noBorder-mobile">
+                        <p class="my-0"> تفاصيل الرد : {{order.approveDetails}} </p>
+                        <p *ngIf="order.approveStatus == 'Approved' " class="my-0"> حالة الطلب : <span
+                                class="status-Msg-confirmed"> تمت الموافقة عليه </span></p>
+                        <p *ngIf="order.approveStatus == 'NotApproved' " class="my-0"> حالة الطلب : <span
+                                class="status-Msg-rejected"> تمت رفض الطلب </span></p>
+                        <p *ngIf="order.approveStatus == 'Pinding' " class="my-0"> حالة الطلب : <span
+                                class="status-Msg-pendding"> جاري مراجعة الطلب </span></p>
+                    </div>
+                </div>
+                <div class="col-md-2 bg-confirmed statusImg" [ngClass]="{
+                 'bg-confirmed' : order.approveStatus == 'Approved' ,
+                 'bg-pendding' : order.approveStatus == 'Pinding' ,
+                 'bg-rejected' : order.approveStatus == 'NotApproved' 
+                 }">
+                    <div class=" w-100 mx-auto p-2 text-center ">
+                        <img *ngIf="order.approveStatus == 'Approved' " src="./assets/images/confirmed11.png" alt=""
+                            class=" w-50 w-100-mobile">
+                        <img *ngIf="order.approveStatus == 'Pinding' " src="./assets/images/pendeing33.png" alt=""
+                            class="w-50 w-100-mobile">
+                        <img *ngIf="order.approveStatus == 'NotApproved' " src="./assets/images/rejected1.png" alt=""
+                            class=" w-50 w-100-mobile">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</section>

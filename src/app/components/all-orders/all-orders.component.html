@@ -1,1 +1,23 @@
-<p>all-orders works!</p>
+
+
+
+<section  class=" w-100 bg-white my-5 rounded-3 vh-80 shadow-lg">
+    <h1 class="text-center pt-5 fw-bolder"> قائمة الطلبات </h1>
+    <!--   head of orders chooseList    -->
+    <div class=" text-center p-5 arabicList row g-3 d-flex justify-content-center align-items-center">
+        <div class="col-md-3">
+            <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/loan" class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 px-5 ordersButton"> طلبات السلفة</button>
+        </div>
+        <div class="col-md-3">
+            <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/vacation" class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 px-5 ordersButton"> طلبات الاجــازة</button>
+        </div>
+        <div class="col-md-3">
+            <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/other" class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 px-5 ordersButton"> الطلبات الاخري</button>
+        </div>
+    </div>
+
+
+
+    <router-outlet></router-outlet>
+
+</section>
