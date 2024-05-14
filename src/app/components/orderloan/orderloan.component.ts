@@ -18,10 +18,13 @@ export class OrderloanComponent implements OnInit {
       next: (data) => {
         this.ordersList = data.advancePayments
         console.log(this.ordersList);
-
       },
       error: (err) => {
         console.log(err);
+        if (err.error.message == 'Unauthorized') {
+          localStorage.clear()
+          this._router.navigate(['login'])
+        }
       },
     })
   }

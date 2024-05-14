@@ -14,6 +14,10 @@ import { Router } from '@angular/router';
 export class LoanComponent implements OnInit {
   constructor(private _LoanService: LoanService, private _FormBuilder: FormBuilder, private _router: Router) { }
 
+  
+  todayDate: any = new Date().toISOString().split('T')[0]
+
+
   loanForm: FormGroup = this._FormBuilder.group({
     advancePaymentValue: [null, Validators.required], // قيمة السلفة
     installmentValue: [null, Validators.required], // قيمة القسط
@@ -27,7 +31,6 @@ export class LoanComponent implements OnInit {
   empName: any = ''
   empId: any = ''
   raseed: number = 0
-  todayDate: any = new Date().toISOString().split('T')[0]
   requestSent:boolean = false
 
 
@@ -67,6 +70,11 @@ export class LoanComponent implements OnInit {
   //   }
   // }
 
+  cleanInstall():void{
+    this.loanForm.get('installmentValue')?.setValue('')
+    this.loanForm.get('lastInstallmentValue')?.setValue(null)
+    this.loanForm.get('numberOfInstallment')?.setValue(null)    
+  }
 
   Install(myForm: FormGroup) {
     let install = myForm.get('installmentValue')
@@ -127,6 +135,7 @@ else{
         this.empId = Response.empId
         this.raseed = Response.loansbal
         console.log(Response);
+        console.log(this.todayDate);
       },
 
       error: (err) => {

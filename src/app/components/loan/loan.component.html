@@ -33,7 +33,7 @@
 
                             <div class="w-100 p-2 ">
                                 <label for="empName"> قيمة السلفة : </label>
-                                <input #loan formControlName="advancePaymentValue" type="text" id="empName"
+                                <input (keyup)="cleanInstall()" #loan formControlName="advancePaymentValue" type="text" id="empName"
                                     class="form-control " placeholder="ادخل مبلغ السلفة . . ">
                                 <p *ngIf="loanForm.get('advancePaymentValue')?.getError('required') && loanForm.get('advancePaymentValue')?.touched"
                                     class="text-danger small errorInput px-3">يجب ادخال مبلغ السلفة</p>

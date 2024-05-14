@@ -23,6 +23,10 @@ export class OrderVacComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        if (err.error.message == 'Unauthorized') {
+          localStorage.clear()
+          this._router.navigate(['login'])
+        }
       },
     })
   }

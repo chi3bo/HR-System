@@ -15,8 +15,8 @@
                         <p *ngIf="order.vacationType=='Personal'" class="my-0 "> نوع الاجازة : اجازة شخصية </p>
                         <p *ngIf="order.vacationType=='Annual'" class="my-0 "> نوع الاجازة : اجازة عامة </p>
                         <p *ngIf="order.vacationType=='SickLeave'" class="my-0 "> نوع الاجازة : اجازة مرضية </p>
-                        
-                        <p class="my-0"> تاريخ البدء : {{order.startDate.split('T')[0]}} </p>
+
+                        <p class="my-0"> تاريخ البدء : {{order.startDate.split('T')[0] | date :'yyyy/MM/dd'}} </p>
                     </div>
                 </div>
                 <div class="col-md-3">
