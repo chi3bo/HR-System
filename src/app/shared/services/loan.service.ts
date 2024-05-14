@@ -15,7 +15,6 @@ export class LoanService {
 
   setHeadrs(): any {
     return { headers: { 'Authorization': localStorage.getItem('userToken') } }
-
   }
 
 

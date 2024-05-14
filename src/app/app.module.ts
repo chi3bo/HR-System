@@ -21,6 +21,7 @@ import { OrderVacComponent } from './components/order-vac/order-vac.component';
 import { OrderloanComponent } from './components/orderloan/orderloan.component';
 import { OrderotherComponent } from './components/orderother/orderother.component';
 import { BlankComponent } from './components/blank/blank.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 
@@ -42,7 +43,8 @@ import { BlankComponent } from './components/blank/blank.component';
     OrderVacComponent,
     OrderloanComponent,
     OrderotherComponent,
-    BlankComponent
+    BlankComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

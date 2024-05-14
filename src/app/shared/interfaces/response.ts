@@ -29,3 +29,14 @@ export interface vacationInterface {
     approveStatus: string
     approveDetails: string
 }
+
+export interface adminOrderLoan {
+    id: number
+    advancePaymentValue: number
+    installmentValue: number
+    numberOfInstallment: number
+    lastInstallmentValue: number
+    startDate: string
+    employeeId: string
+    employeeName: string
+}

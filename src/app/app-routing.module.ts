@@ -15,6 +15,7 @@ import { OrderloanComponent } from './components/orderloan/orderloan.component';
 import { OrderVacComponent } from './components/order-vac/order-vac.component';
 import { OrderotherComponent } from './components/orderother/orderother.component';
 import { BlankComponent } from './components/blank/blank.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
 
@@ -23,7 +24,7 @@ const routes: Routes = [
     { path:'loan' , component:LoanComponent , title:'loan'},
     { path:'vacations' , component:VacationComponent , title:'vacations'},
     { path:'terminate' , component:TerminationComponent , title:'terminations'},
-    { path:'help' , component:HelpComponent , title:'help'},
+    { path:'help' , component:AdminComponent , title:'help'},
     { path:'allOrders' , component:AllOrdersComponent , title:'my orders' , children :[
       { path:'loan' , component:OrderloanComponent , title:'loan orders'},
       { path:'vacation' , component:OrderVacComponent , title:'vacation orders'},
