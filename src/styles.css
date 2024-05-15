@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background: rgb(153, 217, 243) ;
-    background: 
+    background: rgb(153, 217, 243);
+    background:
         /* linear-gradient(rgba(0, 0, 0, 0.783) 100%, rgb(255, 255, 255) 0%), */
         /* تدرج لوني */
         url(assets/images/scott-webb-BB0mMC8y0Pc-unsplash.jpg);
     background-size: cover;
     background-attachment: fixed;
-    background-position: center ;
+    background-position: center;
     min-height: 100vh;
     font-family: "Almarai", sans-serif;
     font-weight: 800;
@@ -47,6 +47,11 @@ body {
 
 .vh-80 {
     min-height: 80vh;
+}
+
+.vh-90{
+    min-height: 92vh;
+
 }
 
 .loanDetails {
@@ -196,24 +201,66 @@ body {
 .bg-confirmed {
     background-color: rgba(10, 245, 10, 0.213);
 }
+
 .bg-rejected {
     background-color: #ff000072;
 }
+
 .bg-pendding {
     background-color: #fff71158;
 }
-.status-Msg-confirmed{
-    color:rgb(0, 197, 0);
-}
-.status-Msg-rejected{
-    color:rgb(197, 0, 0);
-}
-.status-Msg-pendding{
-    color:rgb(255, 187, 0);
+
+.status-Msg-confirmed {
+    color: rgb(0, 197, 0);
 }
 
+.status-Msg-rejected {
+    color: rgb(197, 0, 0);
+}
+
+.status-Msg-pendding {
+    color: rgb(255, 187, 0);
+}
+
+/* ==============  animate order   ===================== */
+.accordion {
+    transition: height 1s !important;
+}
+
+#oneItem {
+    position: relative;
+    top: 0;
+    left: 0px;
+    right:  0px;
+    transition: all 1s;
+}
+
+.beSmallAndHideR {
+    opacity: 0 ;
+    right:  unset !important;
+    left: 120% !important;
+    scale: .5;
+}
+.beSmallAndHideL {
+    opacity: 0 ;
+    left:  unset !important;
+    right: 120% !important;
+    scale: .5;
+}
+
+.hero-text{
+    font-size: 55px;
+}
+
+
+
+/* ==============  animate order   ===================== */
 
 @media screen and (max-width:992px) {
+    .hero-text{
+        font-size: 45px;
+    }
+
     .parentOfOrders {
         font-size: 13px;
         padding-top: 15px !important;
@@ -229,9 +276,11 @@ body {
     .bg-confirmed {
         background-color: #fff;
     }
+
     .bg-rejected {
         background-color: #fff;
     }
+
     .bg-pendding {
         background-color: #fff;
     }
@@ -240,10 +289,11 @@ body {
         width: 100% !important;
     }
 
-    .noBorder-mobile{
+    .noBorder-mobile {
         border-left: none !important;
     }
-    .statusImg{
+
+    .statusImg {
         width: 110px !important;
         position: absolute;
         top: 0;
@@ -255,6 +305,10 @@ body {
 
 @media screen and (max-width:576px) {
 
+
+    .hero-text{
+        font-size: 35px;
+    }
     body {
         background-size: cover;
         min-height: 100vh;
@@ -343,10 +397,12 @@ body {
     .doneMsgSub {
         font-size: 14px !important;
     }
-    .noBorder-mobile{
+
+    .noBorder-mobile {
         border-left: none !important;
     }
-    .statusImg{
+
+    .statusImg {
         width: 80px !important;
         position: absolute;
         top: 0;

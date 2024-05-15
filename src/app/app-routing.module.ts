@@ -16,27 +16,47 @@ import { OrderVacComponent } from './components/order-vac/order-vac.component';
 import { OrderotherComponent } from './components/orderother/orderother.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AdminVacationComponent } from './components/admin-vacation/admin-vacation.component';
+import { AdminLoanComponent } from './components/admin-loan/admin-loan.component';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 
 const routes: Routes = [
 
-  { path:'' , component:MainComponent , title:'main' , canActivate:[myGuardGuard], children:[
-    { path:'home' , component:HomeComponent , title:'home'},
-    { path:'loan' , component:LoanComponent , title:'loan'},
-    { path:'vacations' , component:VacationComponent , title:'vacations'},
-    { path:'terminate' , component:TerminationComponent , title:'terminations'},
-    { path:'help' , component:AdminComponent , title:'help'},
-    { path:'allOrders' , component:AllOrdersComponent , title:'my orders' , children :[
-      { path:'loan' , component:OrderloanComponent , title:'loan orders'},
-      { path:'vacation' , component:OrderVacComponent , title:'vacation orders'},
-      { path:'other' , component:OrderotherComponent , title:'other orders'},
-      { path:'' , component:BlankComponent , title:'my orders'},
-    ] },
-  ]},
+  {
+    path: '', component: MainComponent, title: 'main', canActivate: [myGuardGuard], children: [
+      { path: 'home', component: HomeComponent, title: 'home' },
+      { path: 'loan', component: LoanComponent, title: 'loan' },
+      { path: 'vacations', component: VacationComponent, title: 'vacations' },
+      { path: 'terminate', component: TerminationComponent, title: 'terminations' },
+      { path: 'help', component: AdminComponent, title: 'help' },
+      {
+        path: 'allOrders', component: AllOrdersComponent, title: 'my orders', children: [
+          { path: 'loan', component: OrderloanComponent, title: 'loan orders' },
+          { path: 'vacation', component: OrderVacComponent, title: 'vacation orders' },
+          { path: 'other', component: OrderotherComponent, title: 'other orders' },
+          { path: '', component: BlankComponent, title: 'my orders' },
+        ]
+      },
 
-  { path:'' , component:AuthComponent , title:'auth' ,children:[
-    { path:'login', component:LoginComponent , title:'home'},
-    { path:'register', component:SignupComponent , title:'Signup'},
-  ]},
+    ]
+  },
+
+  {
+    path: '', component: AuthComponent, title: 'auth', children: [
+      { path: 'login', component: LoginComponent, title: 'home' },
+      { path: 'register', component: SignupComponent, title: 'Signup' },
+    ]
+  },
+
+  {
+    path: '', component: AdminComponent, title: 'Admin', children: [
+      { path: 'admin-home', component: AdminHomeComponent, title: 'admin home' },
+      { path: 'admin-loan', component: AdminLoanComponent, title: 'loan orders' },
+      { path: 'admin-vacation', component: AdminVacationComponent, title: 'vacation orders' },
+      { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
+    ]
+  },
+
 
 ];
 

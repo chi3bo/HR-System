@@ -26,7 +26,7 @@
                     <div class=" w-100 noBorder-mobile">
                         <p class="my-0"> عدد الاقساط : {{order.numberOfInstallment}} </p>
                         <p *ngIf="order.approveStatus == 'Approved' " class="my-0"> حالة الطلب : <span
-                                class="status-Msg-confirmed"> تمت الموافقة عليه </span></p>
+                                class="status-Msg-confirmed"> تمت الموافقة  </span></p>
                         <p *ngIf="order.approveStatus == 'NotApproved' " class="my-0"> حالة الطلب : <span
                                 class="status-Msg-rejected"> تمت رفض الطلب </span></p>
                         <p *ngIf="order.approveStatus == 'Pinding' " class="my-0"> حالة الطلب : <span

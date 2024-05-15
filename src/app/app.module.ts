@@ -22,6 +22,12 @@ import { OrderloanComponent } from './components/orderloan/orderloan.component';
 import { OrderotherComponent } from './components/orderother/orderother.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AdminLoanComponent } from './components/admin-loan/admin-loan.component';
+import { AdminVacationComponent } from './components/admin-vacation/admin-vacation.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
+
 
 
 
@@ -44,7 +50,11 @@ import { AdminComponent } from './components/admin/admin.component';
     OrderloanComponent,
     OrderotherComponent,
     BlankComponent,
-    AdminComponent
+    AdminComponent,
+    AdminLoanComponent,
+    AdminVacationComponent,
+    AdminHomeComponent,
+    AdminNavComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +63,8 @@ import { AdminComponent } from './components/admin/admin.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
+    
 
   ],
   providers: [],

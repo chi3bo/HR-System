@@ -4,7 +4,7 @@
 
 
         <!-- ده اللي هيتكرر -->
-        <div *ngFor="let order of ordersList">
+        <div *ngFor="let order of ordersList ">
             <p class=" orderNumber my-0 d-inline-block bg-white px-2 rounded "> رقم الطلب : {{order.id}} </p>
             <div
                 class="parentOfOrders w-100 bg-white rounded border row  d-flex justify-content-center align-items-center overflow-hidden ">
@@ -29,7 +29,7 @@
                     <div class=" w-100  noBorder-mobile">
                         <p class="my-0"> تفاصيل الرد : {{order.approveDetails}} </p>
                         <p *ngIf="order.approveStatus == 'Approved' " class="my-0"> حالة الطلب : <span
-                                class="status-Msg-confirmed"> تمت الموافقة عليه </span></p>
+                                class="status-Msg-confirmed"> تمت الموافقة  </span></p>
                         <p *ngIf="order.approveStatus == 'NotApproved' " class="my-0"> حالة الطلب : <span
                                 class="status-Msg-rejected"> تمت رفض الطلب </span></p>
                         <p *ngIf="order.approveStatus == 'Pinding' " class="my-0"> حالة الطلب : <span

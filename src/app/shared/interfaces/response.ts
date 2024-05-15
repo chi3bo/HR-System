@@ -40,3 +40,14 @@ export interface adminOrderLoan {
     employeeId: string
     employeeName: string
 }
+
+export interface adminOrderVacation {
+    id: number
+    startDate: string
+    numberOfDays: number
+    details: string
+    vacationType: string
+    employeeId: string
+    employeeName: string
+}
+
