@@ -14,6 +14,9 @@ export class OrderloanComponent implements OnInit {
   ordersList: loanInterface[] = []
 
   ngOnInit(): void {
+    if(localStorage.getItem('userToken') == (null || undefined)){
+      this._router.navigate(['login'])
+    }
     this._LoanService.getAllLoan().subscribe({
       next: (data) => {
         this.ordersList = data.advancePayments

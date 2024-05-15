@@ -12,6 +12,9 @@ export class MainNavComponent implements OnInit {
   constructor(private _LoanService: LoanService, private _Router: Router) { }
   employeeName: any = ''
   ngOnInit(): void {
+    if(localStorage.getItem('userToken') == (null || undefined)){
+      this._Router.navigate(['login'])
+    }
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {
         this.employeeName = Response.name.split(' ',1)

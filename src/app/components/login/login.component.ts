@@ -36,18 +36,19 @@ export class LoginComponent {
     this.isloading = true
     this._AuthService.login(this.setFormData()).subscribe({
       next: (response) => {
-        if (response.accessToken) {
-          this.isloading = false
-          this.myresponse = response
-          localStorage.setItem('userToken', this.myresponse.accessToken )
-          localStorage.setItem('employeeName', this.myresponse.employeeInfo.name )
-          localStorage.setItem('employeeId', this.myresponse.employeeInfo.empId )
-          console.log(this.myresponse);
-          
+        this.isloading = false
+        this.myresponse = response
+        localStorage.setItem('userToken', this.myresponse.accessToken )
+        localStorage.setItem('employeeName', this.myresponse.employeeInfo.name )
+        if (response.employeeInfo.isAdmin == false) {
           this._Router.navigate(['home'])
         }
+        else if (response.employeeInfo.isAdmin == true){
+          localStorage.setItem('userRole', 'an_tripple_of_h3b5y5tyb2FX' )
+          this._Router.navigate(['admin-home'])
+        }
       },
-
+      
       error: (err) => {
         console.log(err);
         this.wrongMsg = true

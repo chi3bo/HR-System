@@ -1,127 +1,127 @@
-<section *ngIf="requestSent==false" class="my-5 ">
+<section *ngIf="requestSent==false" class="my-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}" >
 
-    <form [formGroup]="loanForm" (ngSubmit)="sendRequest()">
-        <div class="loanDetails arabicList bg-white rounded-4 w-100 overflow-hidden shadow-lg">
-            <div class=" row ">
+    <form [formGroup]=" loanForm" (ngSubmit)="sendRequest()">
+    <div class="loanDetails arabicList bg-white rounded-4 w-100 overflow-hidden shadow-lg">
+        <div class=" row ">
 
 
 
-                <div class="col-md-7 col-lg-6  ">
-                    <div class="d-flex justify-content-center align-items-center flex-column p-5 requestDetails">
+            <div class="col-md-7 col-lg-6  ">
+                <div class="d-flex justify-content-center align-items-center flex-column p-5 requestDetails">
 
-                        <h2 class="fw-bold my-3 ">ادخل بيانات الطلب</h2>
+                    <h2 class="fw-bold my-3 ">ادخل بيانات الطلب</h2>
 
-                        <div class="w-100 mt-5">
+                    <div class="w-100 mt-5">
 
-                            <div class="w-100 p-2 ">
-                                <label for="empName"> اسم الموظف : </label>
-                                <input type="text" id="empName" class="form-control " [value]="empName" disabled>
+                        <div class="w-100 p-2 ">
+                            <label for="empName"> اسم الموظف : </label>
+                            <input type="text" id="empName" class="form-control " [value]="empName" disabled>
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="w-50 p-2">
+                                <label for="empId"> رقم الموظف : </label>
+                                <input type="text" id="empId" class="form-control w-100" [value]=" empId " disabled>
+                            </div>
+                            <div class="w-50 p-2">
+                                <label for="empCredit"> الرصيد المتبقي : </label>
+                                <input type="text" id="empCredit" class="form-control w-100 " [value]=" raseed "
+                                    disabled>
                             </div>
 
-                            <div class="d-flex justify-content-center align-items-center">
-                                <div class="w-50 p-2">
-                                    <label for="empId"> رقم الموظف : </label>
-                                    <input type="text" id="empId" class="form-control w-100" [value]=" empId " disabled>
-                                </div>
-                                <div class="w-50 p-2">
-                                    <label for="empCredit"> الرصيد المتبقي : </label>
-                                    <input type="text" id="empCredit" class="form-control w-100 " [value]=" raseed "
-                                        disabled>
-                                </div>
+                        </div>
 
+                        <div class="w-100 p-2 ">
+                            <label for="empName"> قيمة السلفة : </label>
+                            <input (keyup)="cleanInstall()" #loan formControlName="advancePaymentValue" type="text"
+                                id="empName" class="form-control " placeholder="ادخل مبلغ السلفة . . ">
+                            <p *ngIf="loanForm.get('advancePaymentValue')?.getError('required') && loanForm.get('advancePaymentValue')?.touched"
+                                class="text-danger small errorInput px-3">يجب ادخال مبلغ السلفة</p>
+                        </div>
+
+
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="w-50 p-2">
+                                <label for="empId"> قيمة القسط : </label>
+                                <input #install (input)="calcNumberOfInstalls()" formControlName="installmentValue"
+                                    type="number" id="empId" class="form-control w-100 "
+                                    placeholder="ادخل مبلغ القسط الواحد">
                             </div>
 
-                            <div class="w-100 p-2 ">
-                                <label for="empName"> قيمة السلفة : </label>
-                                <input (keyup)="cleanInstall()" #loan formControlName="advancePaymentValue" type="text" id="empName"
-                                    class="form-control " placeholder="ادخل مبلغ السلفة . . ">
-                                <p *ngIf="loanForm.get('advancePaymentValue')?.getError('required') && loanForm.get('advancePaymentValue')?.touched"
-                                    class="text-danger small errorInput px-3">يجب ادخال مبلغ السلفة</p>
+                            <div class="w-50 p-2">
+                                <label for="empCredit"> القسط الاخير : </label>
+                                <input formControlName="lastInstallmentValue" type="number" id="empCredit"
+                                    class="form-control w-100" placeholder="ادخل مبلغ القسط الاخير">
+                            </div>
+                        </div>
+
+                        <p *ngIf="loanForm.get('installmentValue')?.getError('minAmount') && install.value.length > 0 "
+                            class="text-danger small errorInput px-3">الحد الادني للقسط الواحد 100</p>
+                        <p *ngIf="loanForm.get('installmentValue')?.getError('moreThan') "
+                            class="text-danger small errorInput px-3"> يجب ان تكون قيمة القسط اقل من او تساوي قيمة
+                            السلفة </p>
+                        <p *ngIf="loanForm.get('installmentValue')?.value==null && loanForm.get('installmentValue')?.touched "
+                            class="text-danger small errorInput px-3"> يجب ادخل قيمة القسط الواحد
+                            السلفة </p>
+
+
+
+
+
+
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="w-50 p-2">
+                                <label for="startingDate"> تاريخ البدء : </label>
+                                <input formControlName="startDate" type="date" id="startingDate"
+                                    class="form-control w-100" [min]="todayDate" placeholder="تاريخ البدء">
+                            </div>
+                            <div class="w-50 p-2">
+                                <label for="empCredit"> عدد الاقساط: </label>
+                                <input formControlName="numberOfInstallment" type="number" id="empCredit"
+                                    class="form-control w-100 " placeholder=" عدد الاقساط">
                             </div>
 
-
-
-                            <div class="d-flex justify-content-center align-items-center">
-                                <div class="w-50 p-2">
-                                    <label for="empId"> قيمة القسط : </label>
-                                    <input #install (input)="calcNumberOfInstalls()" formControlName="installmentValue"
-                                        type="number" id="empId" class="form-control w-100 "
-                                        placeholder="ادخل مبلغ القسط الواحد">
-                                </div>
-
-                                <div class="w-50 p-2">
-                                    <label for="empCredit"> القسط الاخير : </label>
-                                    <input formControlName="lastInstallmentValue" type="number" id="empCredit"
-                                        class="form-control w-100" placeholder="ادخل مبلغ القسط الاخير">
-                                </div>
-                            </div>
-
-                            <p *ngIf="loanForm.get('installmentValue')?.getError('minAmount') && install.value.length > 0 "
-                                class="text-danger small errorInput px-3">الحد الادني للقسط الواحد 100</p>
-                            <p *ngIf="loanForm.get('installmentValue')?.getError('moreThan') "
-                                class="text-danger small errorInput px-3"> يجب ان تكون قيمة القسط اقل من او تساوي قيمة
-                                السلفة </p>
-                            <p *ngIf="loanForm.get('installmentValue')?.value==null && loanForm.get('installmentValue')?.touched "
-                                class="text-danger small errorInput px-3"> يجب ادخل قيمة القسط الواحد
-                                السلفة </p>
-
-
-
-
-
-
-
-                            <div class="d-flex justify-content-center align-items-center">
-                                <div class="w-50 p-2">
-                                    <label for="startingDate"> تاريخ البدء : </label>
-                                    <input formControlName="startDate" type="date" id="startingDate"
-                                        class="form-control w-100" [min]="todayDate" placeholder="تاريخ البدء">
-                                </div>
-                                <div class="w-50 p-2">
-                                    <label for="empCredit"> عدد الاقساط: </label>
-                                    <input formControlName="numberOfInstallment" type="number" id="empCredit"
-                                        class="form-control w-100 " placeholder=" عدد الاقساط">
-                                </div>
-
-                            </div>
-                            <p *ngIf="loanForm.get('startDate')?.getError('required') && loanForm.get('startDate')?.touched"
+                        </div>
+                        <p *ngIf="loanForm.get('startDate')?.getError('required') && loanForm.get('startDate')?.touched"
                             class="text-danger small errorInput px-3">يجب ادخال تاريخ البدء</p>
 
 
-                        </div>
-
-                        <div class="mt-5">
-                            <button class="btn btn-outline-dark custombutn px-5 py-2 rounded-5"> ارسال الطلب <i
-                                    class=" fa-solid fa-check px-1 "></i></button>
-                        </div>
-
                     </div>
-                </div>
 
-
-
-
-
-                <div class="col-md-5 col-lg-6 hide-on-mobile ">
-                    <div class="d-flex justify-content-center align-items-center vectorForm h-100  ">
-                        <img src="./assets/images/solfa.jpg" alt="" class="w-75 vectorImg">
+                    <div class="mt-5">
+                        <button class="btn btn-outline-dark custombutn px-5 py-2 rounded-5"> ارسال الطلب <i
+                                class=" fa-solid fa-check px-1 "></i></button>
                     </div>
+
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
+
+
+
+
+
+            <div class="col-md-5 col-lg-6 hide-on-mobile ">
+                <div class="d-flex justify-content-center align-items-center vectorForm h-100  ">
+                    <img src="./assets/images/solfa.jpg" alt="" class="w-75 vectorImg">
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
+    </div>
     </form>
 
 </section>

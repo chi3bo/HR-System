@@ -17,6 +17,9 @@ export class AdminLoanComponent {
   LoanordersList: adminOrderLoan[] = []
 
   ngOnInit(): void {
+    if(localStorage.getItem('userToken') == (null || undefined)){
+      this._router.navigate(['login'])
+    }
     this._AdminService.getAllRequestLoan().subscribe({
       next: (data) => {
         this.ordersCount = data.count
@@ -35,8 +38,9 @@ export class AdminLoanComponent {
 
   }
   actionRequest(orderId: number, action: boolean, oneItem: HTMLElement) {
-
-
+    if(localStorage.getItem('userToken') == (null || undefined)){
+      this._router.navigate(['login'])
+    }
     this._AdminService.LoanAction(orderId, action).subscribe({
 
       next: (Response) => {

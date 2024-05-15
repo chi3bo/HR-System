@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoanComponent implements OnInit {
   constructor(private _LoanService: LoanService, private _FormBuilder: FormBuilder, private _router: Router) { }
 
-  
+
   todayDate: any = new Date().toISOString().split('T')[0]
 
 
@@ -27,11 +27,11 @@ export class LoanComponent implements OnInit {
   }, { validators: [this.Install], } as FormControlOptions)
 
 
-
+  pageOpenOne: boolean = false
   empName: any = ''
   empId: any = ''
   raseed: number = 0
-  requestSent:boolean = false
+  requestSent: boolean = false
 
 
   // استنتاج عدد الاقساط من المبلغ
@@ -70,10 +70,10 @@ export class LoanComponent implements OnInit {
   //   }
   // }
 
-  cleanInstall():void{
+  cleanInstall(): void {
     this.loanForm.get('installmentValue')?.setValue('')
     this.loanForm.get('lastInstallmentValue')?.setValue(null)
-    this.loanForm.get('numberOfInstallment')?.setValue(null)    
+    this.loanForm.get('numberOfInstallment')?.setValue(null)
   }
 
   Install(myForm: FormGroup) {
@@ -93,42 +93,49 @@ export class LoanComponent implements OnInit {
   }
 
   sendRequest() {
-// data dosent come auto because the  disabled
+    // data dosent come auto because the  disabled
+    if (localStorage.getItem('userToken') == (null || undefined)) {
+      this._router.navigate(['login'])
+    }
     this.loanForm.value.lastInstallmentValue = this.loanForm.get('lastInstallmentValue')?.value
     this.loanForm.value.numberOfInstallment = this.loanForm.get('numberOfInstallment')?.value
     console.log(this.loanForm.value);
     console.log(this.loanForm.valid);
 
 
-if (this.loanForm.valid) {
-  
-  this._LoanService.requestLoan(this.loanForm.value).subscribe({
-    next: (Response) => {
-      if (Response == true) {
-        console.log(Response);
-        this.requestSent = true
-      }
+    if (this.loanForm.valid) {
 
-    },
+      this._LoanService.requestLoan(this.loanForm.value).subscribe({
+        next: (Response) => {
+          if (Response == true) {
+            console.log(Response);
+            this.requestSent = true
+          }
 
-    error: (err) => {
-      console.log(err);
-      if (err.error.message == 'Unauthorized') {
-        localStorage.clear()
-        this._router.navigate(['login'])
-      }
-      this.requestSent = false
+        },
 
+        error: (err) => {
+          console.log(err);
+          if (err.error.message == 'Unauthorized') {
+            localStorage.clear()
+            this._router.navigate(['login'])
+          }
+          this.requestSent = false
+
+        }
+      })
     }
-  })
-}
-else{
-  this.loanForm.markAllAsTouched()
-}
-}
+    else {
+      this.loanForm.markAllAsTouched()
+    }
+  }
 
 
   ngOnInit(): void {
+    setTimeout(() => {this.pageOpenOne = true}, 100);
+    if (localStorage.getItem('userToken') == (null || undefined)) {
+      this._router.navigate(['login'])
+    }
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {
         this.empName = Response.name

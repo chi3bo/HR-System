@@ -28,6 +28,7 @@ export interface vacationInterface {
     vacationType: string
     approveStatus: string
     approveDetails: string
+    availableDays : string
 }
 
 export interface adminOrderLoan {
@@ -49,5 +50,6 @@ export interface adminOrderVacation {
     vacationType: string
     employeeId: string
     employeeName: string
+    availableDays:string
 }
 

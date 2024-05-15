@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class=" w-100 noBorder-mobile">
-                                <p class="my-0"> ايام مستحقة : 21 </p>
+                                <p class="my-0"> ايام مستحقة : {{order.availableDays}} </p>
                                 <p *ngIf="order.vacationType=='Personal'" class="my-0 fw-lighter"> نوع الاجازة : اجازة
                                     شخصية </p>
                                 <p *ngIf="order.vacationType=='Annual'" class="my-0 fw-lighter"> نوع الاجازة : اجازة

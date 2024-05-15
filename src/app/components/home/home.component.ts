@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  pageOpenOne: boolean = false
+  pageOpenTwo: boolean = false
+  pageOpenThree: boolean = false
 
+  ngOnInit(): void {
+    setTimeout(() => {this.pageOpenOne = true}, 100);
+    setTimeout(() => {this.pageOpenTwo = true}, 300);
+    setTimeout(() => {this.pageOpenThree = true}, 500);
+  }
+
+
+  ngOnDestroy(): void {
+    setTimeout(() => {this.pageOpenOne = false}, 100);
+    setTimeout(() => {this.pageOpenTwo = false}, 300);
+    setTimeout(() => {this.pageOpenThree = false}, 500);
+  }
 }

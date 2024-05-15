@@ -19,6 +19,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminVacationComponent } from './components/admin-vacation/admin-vacation.component';
 import { AdminLoanComponent } from './components/admin-loan/admin-loan.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { roleGuardGuard } from './shared/role-guard.guard';
 
 const routes: Routes = [
 
@@ -28,7 +29,7 @@ const routes: Routes = [
       { path: 'loan', component: LoanComponent, title: 'loan' },
       { path: 'vacations', component: VacationComponent, title: 'vacations' },
       { path: 'terminate', component: TerminationComponent, title: 'terminations' },
-      { path: 'help', component: AdminComponent, title: 'help' },
+      { path: 'help', component: HelpComponent, title: 'help' },
       {
         path: 'allOrders', component: AllOrdersComponent, title: 'my orders', children: [
           { path: 'loan', component: OrderloanComponent, title: 'loan orders' },
@@ -49,7 +50,7 @@ const routes: Routes = [
   },
 
   {
-    path: '', component: AdminComponent, title: 'Admin', children: [
+    path: '', component: AdminComponent, title: 'Admin' , canActivate:[roleGuardGuard], children: [
       { path: 'admin-home', component: AdminHomeComponent, title: 'admin home' },
       { path: 'admin-loan', component: AdminLoanComponent, title: 'loan orders' },
       { path: 'admin-vacation', component: AdminVacationComponent, title: 'vacation orders' },

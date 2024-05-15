@@ -1,1 +1,23 @@
+.CardOne {
+    position: relative;
+    left: 150px;
+    transition: left 1s, opacity 1s;
+    opacity: 0;
+}
+
+.CardTwo {
+    position: relative;
+    right: 150px;
+    transition: right 1s, opacity 1s;
+    opacity: 0;
+}
+
+.slideInleft {
+    right: 0px !important;
+    opacity: 1;
+}
+.slideIntop {
+    left: 0px !important;
+    opacity: 1;
+}
 

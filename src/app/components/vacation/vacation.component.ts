@@ -16,7 +16,7 @@ export class VacationComponent implements OnInit {
   constructor(private _VacationService: VacationService, private _FormBuilder: FormBuilder, private _router: Router) { }
 
 
-
+  pageOpenOne:boolean = false
   empName: any = ''
   empId: any = ''
   availableDays: number = 0
@@ -69,6 +69,7 @@ export class VacationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    setTimeout(() => {this.pageOpenOne = true}, 100);
     this._VacationService.basicvacationData().subscribe({
       next: (Response) => {
         this.empName = Response.name

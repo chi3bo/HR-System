@@ -1,4 +1,4 @@
-<section *ngIf="requestSent==false" class="my-5 ">
+<section *ngIf="requestSent==false" class="my-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}" >
 
     <form [formGroup]="vacationForm" (ngSubmit)="sendRequest()">
         <div class="vacationDetails arabicList bg-white rounded-4 w-100 overflow-hidden shadow-lg">
