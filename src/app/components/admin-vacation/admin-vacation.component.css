@@ -75,3 +75,18 @@ body {
     border-bottom-right-radius: 10px;
     background-color: #ffffff;
 }
+
+.show-on-mobile-only{
+    display: none;
+}
+
+@media screen and (max-width:576px) {
+.show-on-mobile-only{
+    display: initial;
+}
+    .ordersHead {
+        padding-inline: 20px;
+        padding-left: 20px;
+    }
+
+}

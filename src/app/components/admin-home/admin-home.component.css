@@ -16,8 +16,20 @@
     right: 0px !important;
     opacity: 1;
 }
+
 .slideIntop {
     left: 0px !important;
     opacity: 1;
 }
 
+
+@media screen and (max-width:576px) {
+    .adminButton1 {
+        padding: 10px !important;
+    }
+
+    .vh-30-mobile {
+        min-height: 35vh;
+    }
+
+}

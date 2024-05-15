@@ -382,13 +382,6 @@ body {
         font-size: 10px;
     }
 
-    .hide-on-mobile {
-        display: none;
-    }
-
-    .w-100-mobile {
-        width: 100% !important;
-    }
 
     .doneMsgMain {
         font-size: 18px !important;
@@ -409,6 +402,25 @@ body {
         left: -13px;
         background-color: transparent;
     }
+/* ============= strat   useful mobile media query classes   */
+    .show-on-mobile-only{
+        display: initial;
+    }
+
+    .w-50-mobile{
+        width: 50% !important;
+        /* font-size: 14px; */
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .w-100-mobile {
+        width: 100% !important;
+    }
+/* ============= end   useful mobile media query classes   */
+
 }
 
 

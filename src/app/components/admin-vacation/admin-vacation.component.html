@@ -9,18 +9,21 @@
 <div class=" arabicList">
     <div class="ordersHead rounded-top-1  w-100 py-3">
         <div class="row">
-            <div class="col-md-3  text-center">
+            <div class="col-md-3  text-center hide-on-mobile">
                 <p class="p-0 my-0 ">اسم الموظف </p>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 text-center hide-on-mobile">
                 <p class="p-0 my-0"> رقم الطلب </p>
             </div>
-            <div class="col-md-3 text-center ">
-                <p class="p-0 my-0 px-5 ">نوع الاجازة
+            <div class="col-md-3 text-center hide-on-mobile">
+                <p class="p-0 my-0 px-5 ">مبلغ السلفة
                 </p>
             </div>
-            <div class="col-md-3 text-center">
-                <p class="p-0 my-0">تاريخ البدء </p>
+            <div class="col-md-3 text-center hide-on-mobile">
+                <p class="p-0 my-0">التاريخ </p>
+            </div>
+            <div class="col-md-3 text-center miniHeader show-on-mobile-only">
+                <p class="p-0 my-0">قائمة طلبات الاجازة  </p>
             </div>
         </div>
     </div>
@@ -34,15 +37,15 @@
         <h2 class="accordion-header ">
             <div class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
                 [attr.data-bs-target]="'#'+order.id" aria-expanded="false" [attr.aria-controls]="order.id">
-                <div class=" py-2 px-0 d-flex w-100 row ">
-                    <p class=" my-0 col-md-3 fw-bolder text-center"> {{order.employeeName}} </p>
-                    <p class=" my-0 col-md-3 fw-bolder  text-center">#{{order.id}} </p>
-                    <p *ngIf="order.vacationType=='UnpaidLeave'" class=" my-0 col-md-3 fw-bolder text-center">اجازة شخصية
+                <div class=" py-2 px-0 d-flex w-100 row justify-content-center align-items-center ">
+                    <p class=" my-0 col-md-3 fw-bolder w-50-mobile text-center "> {{order.employeeName}} </p>
+                    <p class=" my-0 col-md-3 fw-bolder w-50-mobile text-center">#{{order.id}} </p>
+                    <p *ngIf="order.vacationType=='UnpaidLeave'" class=" my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">اجازة شخصية
                     </p>
-                    <p *ngIf="order.vacationType=='SickLeave'" class=" my-0 col-md-3 fw-bolder text-center">اجازة مرضية
+                    <p *ngIf="order.vacationType=='SickLeave'" class=" my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">اجازة مرضية
                     </p>
-                    <p *ngIf="order.vacationType=='Annual'" class=" my-0 col-md-3 fw-bolder text-center">اجازة عامة</p>
-                    <p class=" my-0 col-md-3 fw-bolder  text-center">{{order.startDate | date : 'yyyy/MM/dd'}}</p>
+                    <p *ngIf="order.vacationType=='Annual'" class=" my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">اجازة عامة</p>
+                    <p class=" my-0 col-md-3 fw-bolder  text-center w-50-mobile hide-on-mobile">{{order.startDate | date : 'yyyy/MM/dd'}}</p>
                 </div>
             </div>
         </h2>
