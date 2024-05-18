@@ -19,7 +19,7 @@ export class OrderloanComponent implements OnInit {
     }
     this._LoanService.getAllLoan().subscribe({
       next: (data) => {
-        this.ordersList = data.advancePayments
+        this.ordersList = data.advancePayments.reverse()
         console.log(this.ordersList);
       },
       error: (err) => {

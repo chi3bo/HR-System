@@ -15,11 +15,16 @@ export class AdminLoanComponent {
 
   ordersCount: number = 0
   LoanordersList: adminOrderLoan[] = []
+  pageOpenOne:boolean = false
+
+
+
 
   ngOnInit(): void {
     if(localStorage.getItem('userToken') == (null || undefined)){
       this._router.navigate(['login'])
     }
+    setTimeout(() => { this.pageOpenOne = true }, 100);
     this._AdminService.getAllRequestLoan().subscribe({
       next: (data) => {
         this.ordersCount = data.count

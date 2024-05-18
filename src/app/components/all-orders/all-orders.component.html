@@ -1,17 +1,17 @@
 
 
 
-<section  class=" w-100 bg-white my-5 rounded-3 vh-80 shadow-lg">
+<section  class=" w-100 bg-white my-5 rounded-3 vh-80 shadow-lg CardOne" [ngClass]="{'slideIn': pageOpenOne}" >
     <h1 class="text-center pt-5 fw-bolder"> قائمة الطلبات </h1>
     <!--   head of orders chooseList    -->
-    <div class=" text-center p-5 arabicList row g-3 d-flex justify-content-center align-items-center">
-        <div class="col-md-3">
+    <div class=" text-center p-md-5 py-4  mx-0 arabicList row g-3 d-flex justify-content-center align-items-center">
+        <div class="col-md-3 w-40-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/loan" class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 px-5 ordersButton"> طلبات السلفة</button>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 w-40-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/vacation" class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 px-5 ordersButton"> طلبات الاجــازة</button>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 w-40-mobile hide-on-mobile">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/other" class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 px-5 ordersButton"> الطلبات الاخري</button>
         </div>
     </div>

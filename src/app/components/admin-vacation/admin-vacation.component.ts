@@ -16,9 +16,15 @@ export class AdminVacationComponent implements OnInit {
   ordersCount: number = 0
   vacationOrdersList: adminOrderVacation[] = []
   slideAndHide: boolean = false
+  pageOpenOne:boolean = false
+
 
 
   ngOnInit(): void {
+    if(localStorage.getItem('userToken') == (null || undefined)){
+      this._router.navigate(['login'])
+    }
+    setTimeout(() => { this.pageOpenOne = true }, 100);
 
     this._AdminService.getAllRequestVacation().subscribe({
       next: (data) => {

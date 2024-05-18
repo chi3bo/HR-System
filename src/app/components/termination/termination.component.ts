@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: 'app-termination',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./termination.component.css']
 })
 export class TerminationComponent {
+constructor(){}
+ngOnInit(): void {
 
+}
 }

@@ -25,11 +25,13 @@ const routes: Routes = [
 
   {
     path: '', component: MainComponent, title: 'main', canActivate: [myGuardGuard], children: [
+      { path: '', redirectTo: 'home', pathMatch:'full' },
       { path: 'home', component: HomeComponent, title: 'home' },
       { path: 'loan', component: LoanComponent, title: 'loan' },
       { path: 'vacations', component: VacationComponent, title: 'vacations' },
       { path: 'terminate', component: TerminationComponent, title: 'terminations' },
       { path: 'help', component: HelpComponent, title: 'help' },
+
       {
         path: 'allOrders', component: AllOrdersComponent, title: 'my orders', children: [
           { path: 'loan', component: OrderloanComponent, title: 'loan orders' },
@@ -41,6 +43,8 @@ const routes: Routes = [
 
     ]
   },
+  { path: 'help', component: HelpComponent, title: 'help' },
+
 
   {
     path: '', component: AuthComponent, title: 'auth', children: [

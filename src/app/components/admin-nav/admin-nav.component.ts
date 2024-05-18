@@ -10,6 +10,9 @@ import { LoanService } from 'src/app/shared/services/loan.service';
 export class AdminNavComponent {
   constructor(private _LoanService: LoanService, private _Router: Router) { }
   employeeName: any = ''
+  opened: boolean = false
+  closed: boolean = true
+
   ngOnInit(): void {
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {
@@ -26,6 +29,19 @@ export class AdminNavComponent {
       }
     })
   }
+
+
+  openNav() {
+    this.closed = false
+    this.opened = true
+
+  }
+  closeNav() {
+    this.closed = true
+    this.opened = false
+  }
+
+
 
 }
 

@@ -49,7 +49,7 @@ body {
     min-height: 80vh;
 }
 
-.vh-90{
+.vh-90 {
     min-height: 92vh;
 
 }
@@ -195,6 +195,7 @@ body {
 .orderNumber {
     position: relative;
     top: 12px;
+    right: 13px;
     z-index: 2;
 }
 
@@ -222,6 +223,19 @@ body {
     color: rgb(255, 187, 0);
 }
 
+.shreeta {
+    width: 90px;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0px;
+}
+
+.show-on-mobile-only {
+    display: none ;
+}
+
+
 /* ==============  animate order   ===================== */
 .accordion {
     transition: height 1s !important;
@@ -231,33 +245,47 @@ body {
     position: relative;
     top: 0;
     left: 0px;
-    right:  0px;
+    right: 0px;
     transition: all 1s;
 }
 
 .beSmallAndHideR {
-    opacity: 0 ;
-    right:  unset !important;
+    opacity: 0;
+    right: unset !important;
     left: 120% !important;
     scale: .5;
 }
+
 .beSmallAndHideL {
-    opacity: 0 ;
-    left:  unset !important;
+    opacity: 0;
+    left: unset !important;
     right: 120% !important;
     scale: .5;
 }
 
-.hero-text{
+.hero-text {
     font-size: 55px;
 }
-
-
-
 /* ==============  animate order   ===================== */
 
+/* =====================      animation of sections       ===================  */
+
+.CardOne {
+    position: relative;
+    left: 200px;
+    transition: left 1.6s , opacity .5s;
+    opacity: 0;
+    }
+    
+    .slideIn{
+    left: 0px;
+    opacity: 1;
+    }
+
+/* =====================      animation of sections       ===================  */
+
 @media screen and (max-width:992px) {
-    .hero-text{
+    .hero-text {
         font-size: 45px;
     }
 
@@ -306,9 +334,10 @@ body {
 @media screen and (max-width:576px) {
 
 
-    .hero-text{
+    .hero-text {
         font-size: 35px;
     }
+
     body {
         background-size: cover;
         min-height: 100vh;
@@ -324,9 +353,6 @@ body {
         width: 90%;
     }
 
-    #theVid1 {
-        transform: rotatey(180deg);
-    }
 
     .loginSquare p,
     .loginSquare a {
@@ -402,14 +428,22 @@ body {
         left: -13px;
         background-color: transparent;
     }
-/* ============= strat   useful mobile media query classes   */
-    .show-on-mobile-only{
+
+    /* ============= strat   useful mobile media query classes   */
+    .show-on-mobile-only {
         display: initial;
     }
 
-    .w-50-mobile{
+    .w-50-mobile {
         width: 50% !important;
-        /* font-size: 14px; */
+    }
+
+    .w-40-mobile {
+        width: 40% !important;
+    }
+
+    .font-14-mobile {
+        font-size: 14px !important;
     }
 
     .hide-on-mobile {
@@ -419,7 +453,25 @@ body {
     .w-100-mobile {
         width: 100% !important;
     }
-/* ============= end   useful mobile media query classes   */
+
+    .vh-100-on-mobile{
+        min-height: 100vh;
+    }
+
+    /* ============= end   useful mobile media query classes   */
+
+    .ordersButton {
+        font-size: 12px !important;
+        padding: 7px 7px !important;
+    }
+
+    .shreeta {
+        width: 100px;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0px;
+    }
 
 }
 

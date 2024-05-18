@@ -11,14 +11,17 @@ export class MainNavComponent implements OnInit {
 
   constructor(private _LoanService: LoanService, private _Router: Router) { }
   employeeName: any = ''
+  opened: boolean = false
+  closed: boolean = true
+
   ngOnInit(): void {
-    if(localStorage.getItem('userToken') == (null || undefined)){
+    if (localStorage.getItem('userToken') == (null || undefined)) {
       this._Router.navigate(['login'])
     }
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {
-        this.employeeName = Response.name.split(' ',1)
-        
+        this.employeeName = Response.name.split(' ', 1)
+
       },
 
       error: (err) => {
@@ -30,6 +33,19 @@ export class MainNavComponent implements OnInit {
       }
     })
   }
+
+  openNav() {
+    this.closed = false
+    this.opened = true
+
+  }
+  closeNav() {
+
+    this.closed = true
+    this.opened = false
+  }
+
+
 
 }
 

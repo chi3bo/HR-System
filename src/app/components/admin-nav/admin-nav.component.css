@@ -31,7 +31,7 @@
 }
 
 .active-menu {
-    border-bottom:  #000000 solid 3px;
+    border-bottom: #000000 solid 3px;
     text-shadow: white 0 0 10px;
     border-radius: 2px;
     width: 100%;
@@ -39,3 +39,145 @@
     transition: all .5s;
 }
 
+/* =================================================================== */
+/*  staaaaart side nave css */
+.sideNav {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 99;
+    transition: all .2s;
+    background-color: teal;
+}
+
+.sideNav .left {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 20px;
+    color: white;
+}
+
+.sideNav .right {
+    width: 20%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 100%;
+}
+
+.sideFooter {
+    padding: 26px
+}
+
+.sidbarUnits li {
+    color: rgb(0, 105, 105);
+    padding: 5px 70px 5px 30px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.sidbarUnits li:hover {
+    filter: drop-shadow(0 0 7px rgba(0, 229, 255, 0.528));
+    color: #000000;
+}
+
+.fa-xmark {
+    padding: 12px;
+}
+
+.fa-bars {
+    padding: 12px;
+
+}
+
+.fa-xmark:hover,
+.fa-bars:hover {
+    color: #000;
+    cursor: pointer;
+
+}
+
+.sideItem {
+    position: relative;
+    /* top: 200px; */
+    /* opacity: 0; */
+}
+
+.hideNow {
+    transition: all .7s;
+    left: 0 !important;
+}
+
+.shadow-now{
+    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.446));
+}
+
+.openNow {
+    left: 0px;
+}
+
+
+
+
+/* ======    start media query        ======== */
+@media screen and (max-width : 576px) {
+
+    .container {
+        width: 85%;
+    }
+
+    .sideNav {
+        display: flex;
+        width: 260px;
+        left: -260px;
+
+    }
+
+    .sideNav .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 0 15px 15px 0;
+        height: 10%;
+        top: 3%;
+        background-color: #fff;
+        opacity: 1 !important;
+        filter: drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.418));
+    }
+
+
+}
+
+/* @media screen and (max-height : 700px) {
+    .sideNav .right {
+        border-radius: 0 0 0 0;
+        height: 100%;
+        top: 0;
+    }
+} */
+
+@media screen and (max-height : 412px) {
+    .sideFooter {
+        padding: 0 10px 0px;
+        font-size: 10px;
+    }
+
+    .sidbarUnits li {
+        padding: 3px 70px 3px 30px;
+        margin: 4px 0;
+    }
+}
+/*  eeennnnddd side nave css */
