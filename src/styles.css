@@ -4,7 +4,7 @@ body {
     background:
         /* linear-gradient(rgba(0, 0, 0, 0.783) 100%, rgb(255, 255, 255) 0%), */
         /* تدرج لوني */
-        url(assets/images/scott-webb-BB0mMC8y0Pc-unsplash.jpg);
+        url(assets/images/compressed-images/wepb/main_bg.webp);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
