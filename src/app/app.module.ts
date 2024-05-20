@@ -14,7 +14,7 @@ import { LoanComponent } from './components/loan/loan.component';
 import { VacationComponent } from './components/vacation/vacation.component';
 import { TerminationComponent } from './components/termination/termination.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HelpComponent } from './components/help/help.component';
 import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 import { OrderVacComponent } from './components/order-vac/order-vac.component';
@@ -27,10 +27,13 @@ import { AdminVacationComponent } from './components/admin-vacation/admin-vacati
 import { ToastrModule } from 'ngx-toastr';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
-
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
 @NgModule({
@@ -66,8 +69,15 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    
-    
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+
+
 
   ],
   providers: [],

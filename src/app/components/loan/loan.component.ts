@@ -5,6 +5,8 @@ import { LoanService } from 'src/app/shared/services/loan.service';
 import { Response } from './../../shared/interfaces/response';
 import { FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-loan',
@@ -12,12 +14,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./loan.component.css']
 })
 export class LoanComponent implements OnInit {
-  constructor(private _LoanService: LoanService, private _FormBuilder: FormBuilder, private _router: Router) { }
-
-
+  constructor(private _LoanService: LoanService, private _FormBuilder: FormBuilder, private _router: Router ,private _TranslateService:TranslateService) { }
   todayDate: any = new Date().toISOString().split('T')[0]
-
-
+  
+  // الفورم الخاص بملئ بيانات السلفة
   loanForm: FormGroup = this._FormBuilder.group({
     advancePaymentValue: [null, Validators.required], // قيمة السلفة
     installmentValue: [null, Validators.required], // قيمة القسط
@@ -25,7 +25,6 @@ export class LoanComponent implements OnInit {
     numberOfInstallment: [{ value: null, disabled: true }, Validators.required],// عدد الاقساط
     startDate: [null, Validators.required]// تاريخ البدء
   }, { validators: [this.Install], } as FormControlOptions)
-
 
   pageOpenOne: boolean = false
   empName: any = ''
@@ -70,6 +69,7 @@ export class LoanComponent implements OnInit {
   //   }
   // }
 
+  // ازالة اي ارقام من خانة القسط عند التعديل في مبلغ السلفة
   cleanInstall(): void {
     this.loanForm.get('installmentValue')?.setValue('')
     this.loanForm.get('lastInstallmentValue')?.setValue(null)
@@ -130,9 +130,11 @@ export class LoanComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
+
     setTimeout(() => {this.pageOpenOne = true}, 100);
+
+
     if (localStorage.getItem('userToken') == (null || undefined)) {
       this._router.navigate(['login'])
     }
@@ -153,7 +155,10 @@ export class LoanComponent implements OnInit {
         }
       }
     })
+
+
   }
+
 
 
 }

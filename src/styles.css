@@ -266,6 +266,15 @@ body {
 .hero-text {
     font-size: 55px;
 }
+
+.languageIcon{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.039);
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+}
+
 /* ==============  animate order   ===================== */
 
 /* =====================      animation of sections       ===================  */

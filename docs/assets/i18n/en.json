@@ -1,0 +1,10 @@
+{
+    "HOME": {
+        "TITLE": "Welcome to our application",
+        "DESCRIPTION": "This is the description"
+    },
+    "NAV": {
+        "تسجيل الدخول": "Sign in ",
+        "انشاء حساب ": "  Create Account "
+    }
+}
