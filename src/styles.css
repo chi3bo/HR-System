@@ -232,7 +232,7 @@ body {
 }
 
 .show-on-mobile-only {
-    display: none ;
+    display: none;
 }
 
 
@@ -267,7 +267,7 @@ body {
     font-size: 55px;
 }
 
-.languageIcon{
+.languageIcon {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.039);
     border-radius: 10px;
@@ -282,14 +282,14 @@ body {
 .CardOne {
     position: relative;
     left: 200px;
-    transition: left 1.6s , opacity .5s;
+    transition: left 1.6s, opacity .5s;
     opacity: 0;
-    }
-    
-    .slideIn{
+}
+
+.slideIn {
     left: 0px;
     opacity: 1;
-    }
+}
 
 /* =====================      animation of sections       ===================  */
 
@@ -463,8 +463,17 @@ body {
         width: 100% !important;
     }
 
-    .vh-100-on-mobile{
+    .vh-100-on-mobile {
         min-height: 100vh;
+    }
+
+    .btn-on-mobile {
+        padding: 10px !important;
+        
+    }
+
+    .fs-18-mobile-16{
+        font-size: 16px !important;
     }
 
     /* ============= end   useful mobile media query classes   */

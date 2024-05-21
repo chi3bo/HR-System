@@ -20,6 +20,9 @@ import { AdminVacationComponent } from './components/admin-vacation/admin-vacati
 import { AdminLoanComponent } from './components/admin-loan/admin-loan.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { roleGuardGuard } from './shared/role-guard.guard';
+import { LeavePermissionComponent } from './components/leave-permission/leave-permission.component';
+import { LettersComponent } from './components/letters/letters.component';
+import { AssetRequestComponent } from './components/asset-request/asset-request.component';
 
 const routes: Routes = [
 
@@ -31,6 +34,10 @@ const routes: Routes = [
       { path: 'vacations', component: VacationComponent, title: 'vacations' },
       { path: 'terminate', component: TerminationComponent, title: 'terminations' },
       { path: 'help', component: HelpComponent, title: 'help' },
+      { path: 'leave', component: LeavePermissionComponent, title: 'leave' },
+      { path: 'letters', component: LettersComponent, title: 'Letters' },
+      { path: 'asset', component: AssetRequestComponent, title: 'Asset Request' },
+
 
       {
         path: 'allOrders', component: AllOrdersComponent, title: 'my orders', children: [

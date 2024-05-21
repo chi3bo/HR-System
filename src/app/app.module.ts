@@ -29,12 +29,15 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LeavePermissionComponent } from './components/leave-permission/leave-permission.component';
+import { LettersComponent } from './components/letters/letters.component';
+import { AssetRequestComponent } from './components/asset-request/asset-request.component';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminLoanComponent,
     AdminVacationComponent,
     AdminHomeComponent,
-    AdminNavComponent
+    AdminNavComponent,
+    LeavePermissionComponent,
+    LettersComponent,
+    AssetRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -77,9 +83,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
 
-
-
   ],
+
+
   providers: [],
   bootstrap: [AppComponent]
 })

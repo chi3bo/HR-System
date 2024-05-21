@@ -26,22 +26,20 @@
                     <div class=" w-100 noBorder-mobile">
                         <p class="my-0"> عدد الاقساط : {{order.numberOfInstallment}} </p>
                         <p *ngIf="order.approveStatus == 'Approved' " class="my-0   "> حالة الطلب : <span
-                                class="status-Msg-confirmed"> تمت الموافقة  </span></p>
+                                class="status-Msg-confirmed"> تمت الموافقة </span></p>
                         <p *ngIf="order.approveStatus == 'NotApproved' " class="my-0 "> حالة الطلب : <span
                                 class="status-Msg-rejected"> تم رفض الطلب </span></p>
                         <p *ngIf="order.approveStatus == 'Pinding' " class="my-0 "> حالة الطلب : <span
                                 class="status-Msg-pendding"> جاري مراجعة الطلب </span></p>
                     </div>
                 </div>
-                <div class="col-md-2  statusImg"
-
-                 >
+                <div class="col-md-2  statusImg">
                     <div class=" w-100 mx-auto p-2 text-center  ">
-                        <img *ngIf="order.approveStatus == 'Approved' " src="./assets/images/verify_2921147.png" alt=""
+                        <img *ngIf="order.approveStatus == 'Approved' " src="./assets/images/compressed-images/wepb/accepted.png" alt="Approved"
                             class=" w-50 w-100-mobile">
-                        <img *ngIf="order.approveStatus == 'Pinding' " src="./assets/images/pending_3388322.png" alt=""
+                        <img *ngIf="order.approveStatus == 'Pinding' " src="./assets/images/compressed-images/wepb/pending_3388322.png" alt="Pending"
                             class="w-50 w-100-mobile">
-                        <img *ngIf="order.approveStatus == 'NotApproved' " src="./assets/images/delete_2808336.png" alt=""
+                        <img *ngIf="order.approveStatus == 'NotApproved' " src="./assets/images/compressed-images/wepb/delete_2808336.png" alt="NotApproved"
                             class=" w-50 w-100-mobile">
                     </div>
                 </div>

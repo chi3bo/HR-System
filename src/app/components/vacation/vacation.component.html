@@ -1,4 +1,4 @@
-<section *ngIf="requestSent==false" class="my-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}" >
+<section *ngIf="requestSent==false" class="my-5 CardOne vh-90 " [ngClass]="{'slideIn': pageOpenOne}" >
 
     <form [formGroup]="vacationForm" (ngSubmit)="sendRequest()">
         <div class="vacationDetails arabicList bg-white rounded-4 w-100 overflow-hidden shadow-lg">
@@ -41,8 +41,10 @@
                                     <select formControlName="vacationType" name="" id="" class=" form-select ">
                                         <option disabled selected value="null">اختر نوع الاجازة</option>
                                         <option value="1">اجازة مرضية </option>
-                                        <option value="2">اجازة عامة </option>
-                                        <option value="3">اجازة شخصية </option>
+                                        <option value="2">اجازة سنوية </option>
+                                        <option value="3">اجازة طارئة </option>
+                                        <option value="3">اجازة عمرة </option><!--  يجب التعدييل !!!!!!!!!!!!!!!!!!! -->
+                                        <option value="3">اجازة حج </option><!--  يجب التعدييل !!!!!!!!!!!!!!!!!!! -->
                                     </select>
                                 </div>
                                 <div class="w-50 p-2">
@@ -83,6 +85,12 @@
                                     <textarea formControlName="details" name="" id="details" rows="3"
                                         placeholder="هل ترغب في اطلاعنا بأي تفاصيل اخري ؟"
                                         class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="w-100 p-2">
+                                    <label for="myFile"> ارفق مستند : </label>
+                                    <input formControlName="myFile" type="file" id="myFile" class="form-control w-100">
                                 </div>
                             </div>
 
@@ -134,8 +142,12 @@
                 ارسال الطلب بنجاح </p>
             <p class="doneMsgSub fs-5 fw-light ">تفقد حالة الطلب من قسم <span class="fw-bolder"> الطلبات </span> </p>
 
-            <button routerLink="/allOrders/vacation" class="btn btn-dark p-3 px-4 mx-1"> الطلبات </button>
-            <button routerLink="/home" class="btn btn-outline-dark p-3 px-4 mx-1"> الرئيسية </button>
+            <div class="w-50-mobile d-inline-block">
+                <button routerLink="/allOrders/vacation" class="btn btn-dark p-3 px-4 mx-1 btn-on-mobile w-100 rounded-end-0"> الطلبات </button>
+            </div>
+            <div class="w-50-mobile d-inline-block">
+                <button routerLink="/home" class="btn btn-outline-dark p-3 px-4 mx-1 btn-on-mobile w-100 rounded-start-0"> الرئيسية </button>
+            </div>
         </div>
 
 
