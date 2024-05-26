@@ -1,11 +1,19 @@
-.CardOne , .CardTwo , .CardTrhee{
+.CardOne,
+.CardTwo,
+.CardTrhee {
     position: relative;
     left: 200px;
-    transition: left 1.3s , opacity .5s;
+    transition: left 1.3s, opacity .5s;
     opacity: 0;
-    }
-    
-    .slideIn{
+}
+
+.slideIn {
     left: 0px;
     opacity: 1;
+}
+
+@media screen and (max-width:576px) {
+    .vacationBtn-mobile{
+        font-size: 10px !important;
     }
+}

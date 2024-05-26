@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Response } from 'src/app/shared/interfaces/response';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -10,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router) { }
+  constructor(private _FormBuilder: FormBuilder, private _AuthService: AuthService, private _Router: Router , private _TranslateService: TranslateService) { }
 
   loginForm: FormGroup = this._FormBuilder.group({
     Username: [null, Validators.required],

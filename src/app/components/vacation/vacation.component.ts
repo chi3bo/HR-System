@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DateTimeAdapter } from 'ng-pick-datetime';
 import { LoanService } from 'src/app/shared/services/loan.service';
 import { Response } from './../../shared/interfaces/response';
@@ -15,8 +15,9 @@ import { Router } from '@angular/router';
 export class VacationComponent implements OnInit {
   constructor(private _VacationService: VacationService, private _FormBuilder: FormBuilder, private _router: Router) { }
 
+  @ViewChild('fileInput') userFile!: ElementRef;
 
-  pageOpenOne:boolean = false
+  pageOpenOne: boolean = false
   empName: any = ''
   empId: any = ''
   availableDays: number = 0
@@ -29,39 +30,56 @@ export class VacationComponent implements OnInit {
   vacationForm: FormGroup = this._FormBuilder.group({
     startDate: [null, Validators.required], //  بداية الاجازة
     numberOfDays: [null, Validators.required], // مدة الاجازة 
-    details: [null], // تفاصيل اخري
+    Details: [null], // تفاصيل اخري
     vacationType: [null, Validators.required],// نوع الاجازة 
+    myFile: [null],// نوع الاجازة 
   },)
 
-
+  setFormData(): FormData {
+    let myData: FormData = new FormData()
+    myData.append('StartDate', this.vacationForm.get('startDate')?.value)
+    myData.append('NumberOfDays', this.vacationForm.get('numberOfDays')?.value)
+    myData.append('Details', this.vacationForm.get('Details')?.value)
+    myData.append('VacationType', this.vacationForm.get('vacationType')?.value)
+    // التأكد من وجود الملف وإرساله بشكل صحيح
+    const fileInput = this.userFile.nativeElement;
+    if (fileInput.files.length > 0) {
+      myData.append('File', fileInput.files[0]);      
+    } else {
+      console.log('No file selected');
+    }
+    return myData;
+  }
 
 
   sendRequest() {
-
-    console.log(this.vacationForm.value);
     console.log(this.vacationForm.valid, 'valid');
-    if (this.vacationForm.get('numberOfDays')?.value <= this.availableDays && this.vacationForm.valid ) {
-        this._VacationService.requestvacation(this.vacationForm.value).subscribe({
-          next: (Response) => {
-            if(Response == true){
-            console.log(Response );
+    if (this.vacationForm.get('numberOfDays')?.value <= this.availableDays && this.vacationForm.valid) {
+      this._VacationService.requestvacation(this.setFormData()).subscribe({
+        next: (Response) => {
+          console.log(Response);
+          if (Response == true) {
+            console.log(Response);
             this.requestSent = true
-            }
-
-          },
-
-          error: (err) => {
-            console.log(err);
-            if (err.error.message == 'Unauthorized') {
-              localStorage.clear()
-              this._router.navigate(['login'])
-            }
-            this.requestSent = false
           }
-        })
+          else{
+            
+          }
+
+        },
+
+        error: (err) => {
+          console.log(err);
+          if (err.error.message == 'Unauthorized') {
+            localStorage.clear()
+            this._router.navigate(['login'])
+          }
+          this.requestSent = false
+        }
+      })
 
     }
-    else{
+    else {
       this.vacationForm.markAllAsTouched()
     }
   }
@@ -69,7 +87,7 @@ export class VacationComponent implements OnInit {
 
 
   ngOnInit(): void {
-    setTimeout(() => {this.pageOpenOne = true}, 100);
+    setTimeout(() => { this.pageOpenOne = true }, 0);
     this._VacationService.basicvacationData().subscribe({
       next: (Response) => {
         this.empName = Response.name

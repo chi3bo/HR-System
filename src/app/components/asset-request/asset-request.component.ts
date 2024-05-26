@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { jwtDecode } from 'jwt-decode';
 
 @Component({
@@ -20,29 +20,26 @@ export class AssetRequestComponent {
 
   AssetForm: FormGroup = this._FormBuilder.group({
     AssetName: [null, Validators.required], //  بداية الاجازة
-    saveAsset: [null, Validators.required], // مدة الاجازة 
+    saveAsset: [null, Validators.requiredTrue], // مدة الاجازة 
     myFile: [null, Validators.required],
   })
 
 
   ngOnInit(): void {
-    this._Renderer2.addClass(this.mainSection.nativeElement, 'slideIn')
-
+    setTimeout(() => { this._Renderer2.addClass(this.mainSection.nativeElement, 'slideIn') }, 0);
   }
 
 
 
-
-
-  sendRequest() {
-    if (this.AssetForm.valid) {
-      this._Renderer2.removeClass(this.successModal.nativeElement, 'd-none')
-      this._Renderer2.addClass(this.mainSection.nativeElement, 'd-none')
-    }
-    else{
-      this.AssetForm.markAllAsTouched()
-    }
+sendRequest() {
+  if (this.AssetForm.valid) {
+    this._Renderer2.removeClass(this.successModal.nativeElement, 'd-none')
+    this._Renderer2.addClass(this.mainSection.nativeElement, 'd-none')
   }
+  else {
+    this.AssetForm.markAllAsTouched()    
+  }
+}
 
 
 }

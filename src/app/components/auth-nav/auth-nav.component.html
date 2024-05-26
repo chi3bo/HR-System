@@ -23,9 +23,8 @@
                     <li class="nav-item mx-2">
                         <a class="nav-link" routerLink="register" routerLinkActive="active-menu"> {{"NAV.انشاء حساب " | translate }}</a>
                     </li>
-                    <li class="nav-item mx-2 languageIcon" (click)="switchLanguage('en')">
-                        <!-- <a class="nav-link" routerLink="register" routerLinkActive="active-menu">العربية  </a> -->
-                        <a class="nav-link fs-6 fw-light">English </a>
+                    <li class="nav-item mx-2 languageIcon" (click)="switchLanguage()">
+                        <a class="nav-link fs-6 fw-light">{{'NAV.العربية' | translate}} </a>
                     </li>
 
                 </ul>
@@ -34,8 +33,3 @@
     </nav>
 </section>
 
-<!-- <button class="w-100 btn btn-primary py-5 px-5" (click)=" switchLanguage('ar')"> change lang </button>
-
-<div>
-    <h1> {{ 'HOME.TITLE' | translate  }} </h1>
-</div> -->

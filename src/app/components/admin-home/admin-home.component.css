@@ -23,13 +23,28 @@
 }
 
 
+
 @media screen and (max-width:576px) {
     .adminButton1 {
         padding: 10px !important;
+        width: 120px;
+        font-size: 15px;
     }
 
     .vh-40-mobile {
         min-height: 40vh;
     }
+
+    .font-30-mobile {
+        font-size: 30px !important;
+    }
+
+
+    .suphero {
+        font-size: 25px;
+
+    }
+
+
 
 }

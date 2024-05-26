@@ -2,7 +2,8 @@
     <nav class="navbar navbar-expand-lg bg-white shadow py-1">
         <div class="container">
             <a class="navbar-brand" routerLink="">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo" class="w-75">
+                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo"
+                    class="w-75">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -10,108 +11,110 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
-
-            <div class="collapse navbar-collapse " id="navbarSupportedContent" >
-
-
-
-                <ul class="navbar-nav arabicList mx-auto me-0 mb-2 mb-lg-0 text-capitalize text-center">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul
+                    class="navbar-nav {{ 'direction' | translate}} mx-auto me-0 mb-2 mb-lg-0 text-capitalize text-center">
                     <li class="nav-item mx-2">
-                        <a class="nav-link " routerLink="admin-home" routerLinkActive="active-menu">الرئيسية</a>
+                        <a class="nav-link" routerLink="admin-home" routerLinkActive="active-menu">{{
+                            'admin_nav.الرئيسية' | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">طلبات الاجازات</a>
+                        <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">{{
+                            'admin_nav.طلبات_الاجازات' | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">طلبات السلفة</a>
+                        <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{
+                            'admin_nav.طلبات_السلفة' | translate }}</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-capitalize">
                     <li class="nav-item mx-2">
-                        <a class="nav-link " routerLink="home">
-                            <span class="fw-light ps-1"> مرحباً </span>
+                        <a class="nav-link" routerLink="home">
+                            <span class="fw-light px-1">{{ 'admin_nav.مرحباً' | translate }}</span>
                             <span class="fw-bolder">{{employeeName}}</span>
                         </a>
                     </li>
+                    <li class="nav-item mx-2 languageIcon cursor-pointer {{ 'direction' | translate}}" (click)="switchLanguage()">
+                        <a class="nav-link fs-6 fw-light ">{{ 'admin_nav.العربية' | translate }}</a>
+                    </li>
                 </ul>
-
-
             </div>
         </div>
     </nav>
 </section>
 
-
-
 <!--    start  side nave component     -->
 
-<div class="sideNav " [ngClass]="{'hideNow' : opened  }">
-    <div class="left " [ngClass]="{'shadow-now' : opened  }">
-        <div class="w-100 ">
-
+<div class="sideNav" [ngClass]="{'hideNow': opened}">
+    <div class="left" [ngClass]="{'shadow-now': opened}">
+        <div class="w-100">
             <div class="navbar-brand w-75 mx-auto mb-3" routerLink="home">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo" class="w-100">
+                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo"
+                    class="w-100">
             </div>
 
-            <a class="nav-link w-100 text-end px-3" routerLink="home">
-                <span class="fw-light ps-1 "> مرحباً </span>
-                <span class="fw-bolder">{{employeeName}}</span>
-            </a>
+            <div
+                class="nav-link w-100 text-end px-3 bg-body-tertiary d-flex justify-content-between {{ 'direction' | translate}}">
+                <div>
+                    <span class="fw-light px-1">{{ 'admin_nav.مرحباً' | translate }}</span>
+                    <span class="fw-bolder">{{employeeName}}</span>
+                </div>
+                <div class="nav-item mx-2  " (click)="switchLanguage()">
+                    <a class="nav-link fs-6 fw-light cursor-pointer">{{ 'admin_nav.العربية' | translate }}</a>
+                </div>
+            </div>
 
-            <ul class="list-unstyled sidbarUnits overflow-hidden my-5 border-top border-bottom" >
-                <!-- <li class="sideItem sideItem1" id="Search">Search</li>
-                <li class="sideItem sideItem2" id="Categories">Categories</li>
-                <li class="sideItem sideItem3" id="Area">Area</li>
-                <li class="sideItem sideItem4" id="Ingredients">Ingredients</li>
-                <li class="sideItem sideItem5" id="Contact">Contact Us</li> -->
-                <li class="nav-item w-75 px-3 text-center mx-auto " (click)="closeNav()">
-                    <a class="nav-link " routerLink="admin-home" routerLinkActive="active-menu">الرئيسية</a>
+
+
+            <ul class="list-unstyled sidbarUnits overflow-hidden my-5 border-top border-bottom">
+                <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
+                    <a class="nav-link" routerLink="admin-home" routerLinkActive="active-menu">{{ 'admin_nav.الرئيسية' |
+                        translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">طلبات الاجازات</a>
+                    <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">{{
+                        'admin_nav.طلبات_الاجازات' | translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">طلبات السلفة</a>
+                    <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{
+                        'admin_nav.طلبات_السلفة' | translate }}</a>
                 </li>
             </ul>
         </div>
 
 
 
-        <div class=" sideFooter position-absolute bottom-0 text-darkly">
+        <div class="sideFooter position-absolute bottom-0 text-darkly">
             <div>
                 <i class="fa-solid fa-globe px-2"></i>
-                <i class="fa-brands fa-twitter  px-2"></i>
-                <i class="fa-brands fa-facebook  px-2"></i>
+                <i class="fa-brands fa-twitter px-2"></i>
+                <i class="fa-brands fa-facebook px-2"></i>
             </div>
 
             <div>
-                <p>Copyright © 2024 All Rights Reserved.</p>
+                <p>{{ 'admin_nav.حقوق_الطبع' | translate }}</p>
             </div>
+
         </div>
     </div>
 
     <div class="right">
         <div class="d-flex justify-content-between align-items-center flex-column d-none">
-            <img src="../../../assets/images/saudia_formica_logo.png" alt="logo" class="w-75 logo  py-2">
+            <img src="./assets/images/saudia_formica_logo.png" alt="logo" class="w-75 logo py-2">
         </div>
 
         <div>
-            <span (click)="openNav()" *ngIf="closed" class=" w-100 ">
-                <i class=" fa-solid fa-bars fa-2xl "></i>
+            <span (click)="openNav()" *ngIf="closed" class="w-100">
+                <i class="fa-solid fa-bars fa-2xl"></i>
             </span>
-            <span (click)="closeNav()" *ngIf="opened" class=" w-100  ">
-                <i class="fa-solid fa-xmark fa-2xl "></i>
+            <span (click)="closeNav()" *ngIf="opened" class="w-100">
+                <i class="fa-solid fa-xmark fa-2xl"></i>
             </span>
         </div>
 
-        <div class=" d-flex flex-column  d-none">
+        <div class="d-flex flex-column d-none">
             <i class="fa-solid fa-globe py-2"></i>
         </div>
-
     </div>
 </div>
-
-<!--     end   side nave component     -->

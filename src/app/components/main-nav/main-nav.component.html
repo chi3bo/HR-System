@@ -2,7 +2,8 @@
     <nav class="navbar navbar-expand-lg bg-white shadow py-1">
         <div class="container">
             <a class="navbar-brand" routerLink="">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo" class="w-75">
+                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo"
+                    class="w-75">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -10,108 +11,146 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
-
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-
-
-
-                <ul class="navbar-nav arabicList mx-auto me-0 mb-2 mb-lg-0 text-capitalize text-center">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link " routerLink="home" routerLinkActive="active-menu">الرئيسية</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul
+                    class="navbar-nav arabicList mx-auto me-0 mb-2 mb-lg-0 text-capitalize text-center {{ 'direction' | translate }}">
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" routerLink="home" routerLinkActive="active-menu">{{ 'main_nav.الرئيسية' |translate }}</a>
                     </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="allOrders/loan" routerLinkActive="active-menu">الطلبات</a>
+
+
+
+                    <li class="nav-item dropdown mx-3">
+                        <span class="nav-link d-flex justify-content-center align-items-center" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{'main_nav.الطلبات' | translate }}<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
+                        </span>
+                        <ul class="dropdown-menu text-center">
+                            <li><a class="dropdown-item " routerLink="loan">{{ 'home.طلب_سلفة' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="vacations">{{ 'home.طلب_اجازة' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="asset">{{ 'asset_request.طلب_عهدة' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="letters">{{ 'letters.طلب_خطاب' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="leave">{{ 'leave.طلب_إذن' | translate }}</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="help" routerLinkActive="active-menu">مساعدة</a>
+
+
+
+
+
+
+
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" routerLink="allOrders/loan" routerLinkActive="active-menu">{{
+                            'main_nav.طلباتي' | translate }}</a>
+                    </li>
+
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" routerLink="help" routerLinkActive="active-menu">{{ 'main_nav.مساعدة' |
+                            translate }}</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-capitalize">
                     <li class="nav-item mx-2">
-                        <a class="nav-link " routerLink="home">
-                            <span class="fw-light ps-1"> مرحباً </span>
+                        <a class="nav-link" routerLink="home">
+                            <span class="fw-light px-1">{{ 'main_nav.مرحباً' | translate }}</span>
                             <span class="fw-bolder">{{employeeName}}</span>
                         </a>
                     </li>
+                    <li class="nav-item mx-2 languageIcon cursor-pointer {{ 'direction' | translate}}"
+                        (click)="switchLanguage()">
+                        <a class="nav-link fs-6 fw-light ">{{ 'admin_nav.العربية' | translate }}</a>
+                    </li>
                 </ul>
-
-
             </div>
         </div>
     </nav>
 </section>
 
-
-
-<!--    start  side nave component     -->
-
-<div class="sideNav " [ngClass]="{'hideNow' : opened }">
-    <div class="left " [ngClass]="{'shadow-now' : opened  }">
-        <div class="w-100 ">
-
+<!-- Start side nav component -->
+<div class="sideNav" [ngClass]="{'hideNow' : opened}">
+    <div class="left" [ngClass]="{'shadow-now' : opened}">
+        <div class="w-100">
             <div class="navbar-brand w-75 mx-auto mb-3" routerLink="home">
-                <img src="./assets/images/الشركة-السعودية-لألواح-الفورميكا.png" alt="dashboard logo" class="w-100">
+                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo"
+                    class="w-100">
             </div>
+            <div
+                class="nav-link w-100 text-end px-3 bg-body-tertiary d-flex justify-content-between {{ 'direction' | translate}}">
+                <div>
+                    <span class="fw-light px-1">{{ 'admin_nav.مرحباً' | translate }}</span>
+                    <span class="fw-bolder">{{employeeName}}</span>
+                </div>
+                <div class="nav-item mx-2  " (click)="switchLanguage()">
+                    <a class="nav-link fs-6 fw-light cursor-pointer">{{ 'admin_nav.العربية' | translate }}</a>
+                </div>
+            </div>
+            <ul class="list-unstyled sidbarUnits  my-5 border-top border-bottom">
+                <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
+                    <a class="nav-link w-7" routerLink="home" routerLinkActive="active-menu">{{ 'main_nav.الرئيسية' |
+                        translate }}</a>
+                </li>
 
-            <a class="nav-link w-100 text-end px-3" routerLink="home">
-                <span class="fw-light ps-1 "> مرحباً </span>
-                <span class="fw-bolder">{{employeeName}}</span>
-            </a>
 
-            <ul class="list-unstyled sidbarUnits overflow-hidden my-5 border-top border-bottom" >
-                <!-- <li class="sideItem sideItem1" id="Search">Search</li>
-                <li class="sideItem sideItem2" id="Categories">Categories</li>
-                <li class="sideItem sideItem3" id="Area">Area</li>
-                <li class="sideItem sideItem4" id="Ingredients">Ingredients</li>
-                <li class="sideItem sideItem5" id="Contact">Contact Us</li> -->
-                <li class="nav-item w-75 px-3 text-center mx-auto " (click)="closeNav()">
-                    <a class="nav-link w-7 " routerLink="home" routerLinkActive="active-menu">الرئيسية</a>
+                <li class="nav-item dropdown w-75 px-3 text-center mx-auto z-3">
+                    <span class="nav-link d-flex justify-content-center align-items-center {{ 'direction' | translate}}" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{'main_nav.الطلبات' | translate }}<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
+                    </span>
+                    <ul class="dropdown-menu sidedown text-center">
+                        <li><span class="dropdown-item" (click)="closeNav()" routerLink="loan">{{ 'home.طلب_سلفة' | translate }}</span></li>
+                        <li><span class="dropdown-item" (click)="closeNav()" routerLink="vacations">{{ 'home.طلب_اجازة' | translate }}</span></li>
+                        <li><span class="dropdown-item" (click)="closeNav()" routerLink="asset">{{ 'asset_request.طلب_عهدة' | translate }}</span></li>
+                        <li><span class="dropdown-item" (click)="closeNav()" routerLink="letters">{{ 'letters.طلب_خطاب' | translate }}</span></li>
+                        <li><span class="dropdown-item" (click)="closeNav()" routerLink="leave">{{ 'leave.طلب_إذن' | translate }}</span></li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+                <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
+                    <a class="nav-link" routerLink="allOrders" routerLinkActive="active-menu">{{ 'main_nav.طلباتي' |
+                        translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="allOrders" routerLinkActive="active-menu">الطلبات</a>
-                </li>
-                <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="help" routerLinkActive="active-menu">مساعدة</a>
+                    <a class="nav-link" routerLink="help" routerLinkActive="active-menu">{{ 'main_nav.مساعدة' |
+                        translate }}</a>
                 </li>
             </ul>
         </div>
-
-
-
-        <div class=" sideFooter position-absolute bottom-0 text-darkly">
+        <div class="sideFooter position-absolute bottom-0 text-darkly">
             <div>
                 <i class="fa-solid fa-globe px-2"></i>
-                <i class="fa-brands fa-twitter  px-2"></i>
-                <i class="fa-brands fa-facebook  px-2"></i>
+                <i class="fa-brands fa-twitter px-2"></i>
+                <i class="fa-brands fa-facebook px-2"></i>
             </div>
-
             <div>
-                <p>Copyright © 2024 All Rights Reserved.</p>
+                <p>{{ 'main_nav.حقوق_الطبع' | translate }}</p>
             </div>
         </div>
     </div>
-
     <div class="right">
         <div class="d-flex justify-content-between align-items-center flex-column d-none">
-            <img src="../../../assets/images/saudia_formica_logo.png" alt="logo" class="w-75 logo  py-2">
+            <img src="./assets/images/saudia_formica_logo.png" alt="logo" class="w-75 logo py-2">
         </div>
 
         <div>
-            <span (click)="openNav()" *ngIf="closed" class=" w-100 ">
-                <i class=" fa-solid fa-bars fa-2xl "></i>
+            <span (click)="openNav()" *ngIf="closed" class="w-100">
+                <i class="fa-solid fa-bars fa-2xl"></i>
             </span>
-            <span (click)="closeNav()" *ngIf="opened" class=" w-100  ">
-                <i class="fa-solid fa-xmark fa-2xl "></i>
+            <span (click)="closeNav()" *ngIf="opened" class="w-100">
+                <i class="fa-solid fa-xmark fa-2xl"></i>
             </span>
         </div>
-
-        <div class=" d-flex flex-column  d-none">
+        <div class="d-flex flex-column d-none">
             <i class="fa-solid fa-globe py-2"></i>
         </div>
-
     </div>
 </div>
-
-<!--     end   side nave component     -->
+<!-- end side nav component -->

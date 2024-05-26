@@ -16,6 +16,16 @@ body {
     /* background-position: center; */
 }
 
+.englishBody {
+    font-family: "Be Vietnam Pro", sans-serif !important;
+    font-weight: 700 !important;
+    font-style: normal !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .text-darkly {
     color: #1B2E35;
 }
@@ -43,6 +53,10 @@ body {
 
 .arabicList {
     direction: rtl;
+}
+
+.englishList {
+    direction: ltr;
 }
 
 .vh-80 {
@@ -199,6 +213,10 @@ body {
     z-index: 2;
 }
 
+.fixOrderNumber {
+    right: -13px;
+}
+
 .bg-confirmed {
     background-color: rgba(10, 245, 10, 0.213);
 }
@@ -307,7 +325,7 @@ body {
 
     .ordersButton {
         font-size: 14px !important;
-        padding: 15px !important;
+        height: 35px;
     }
 
     .bg-confirmed {
@@ -438,6 +456,11 @@ body {
         background-color: transparent;
     }
 
+    .fixStatusImg {
+        left: unset;
+        right: -13px;
+    }
+
     /* ============= strat   useful mobile media query classes   */
     .show-on-mobile-only {
         display: initial;
@@ -469,10 +492,10 @@ body {
 
     .btn-on-mobile {
         padding: 10px !important;
-        
+
     }
 
-    .fs-18-mobile-16{
+    .fs-18-mobile-16 {
         font-size: 16px !important;
     }
 

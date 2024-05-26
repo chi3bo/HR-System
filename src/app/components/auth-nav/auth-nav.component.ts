@@ -6,16 +6,22 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './auth-nav.component.html',
   styleUrls: ['./auth-nav.component.css']
 })
-export class AuthNavComponent implements OnInit {
-constructor(private _TranslateService:TranslateService){}
+export class AuthNavComponent {
+  constructor(private _TranslateService: TranslateService) { }
 
 
-ngOnInit(): void {
-  this._TranslateService.setDefaultLang('ar')
-}
 
-  switchLanguage(language: string) {
-    this._TranslateService.use(language);
+  switchLanguage() {
+    //     en                                   en           
+    if (this._TranslateService.currentLang == 'en') {
+      this._TranslateService.use('ar');
+      localStorage.setItem('myLanguage', 'ar')
+    }
+    else {
+      this._TranslateService.use('en');
+      localStorage.setItem('myLanguage', 'en')
+
+    }
   }
 
 

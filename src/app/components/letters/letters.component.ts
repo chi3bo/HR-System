@@ -22,14 +22,13 @@ export class LettersComponent {
   lettersForm: FormGroup = this._FormBuilder.group({
     letterType: [null, Validators.required], //   نوع الخطاب
     Recipient: [null, Validators.required], // الجهة المستلمة  
-    certified : [null, Validators.required], // موثق من غرفة التجارة  
+    certified: [null, Validators.required], // موثق من غرفة التجارة  
     details: [null, Validators.required], // تفاصيل اخري
     myFile: [null, Validators.required],
   })
 
   ngOnInit(): void {
-    this._Renderer2.addClass(this.mainSection.nativeElement, 'slideIn')
-
+    setTimeout(() => { this._Renderer2.addClass(this.mainSection.nativeElement, 'slideIn') }, 0);
   }
 
 
@@ -41,7 +40,7 @@ export class LettersComponent {
       this._Renderer2.removeClass(this.successModal.nativeElement, 'd-none')
       this._Renderer2.addClass(this.mainSection.nativeElement, 'd-none')
     }
-    else{
+    else {
       this.lettersForm.markAllAsTouched()
     }
 

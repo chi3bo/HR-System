@@ -30,8 +30,7 @@ export class LeavePermissionComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this._Renderer2.addClass(this.mainSection.nativeElement, 'slideIn')
-
+    setTimeout(() => { this._Renderer2.addClass(this.mainSection.nativeElement, 'slideIn') }, 0);
   }
 
 
@@ -43,7 +42,7 @@ export class LeavePermissionComponent implements OnInit {
       this._Renderer2.removeClass(this.successModal.nativeElement, 'd-none')
       this._Renderer2.addClass(this.mainSection.nativeElement, 'd-none')
     }
-    else{
+    else {
       this.permissionForm.markAllAsTouched()
     }
 
