@@ -70,7 +70,7 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-100 p-2">
                                     <label for="myFile">{{ 'letters.ارفق_مستند' | translate }}:</label>
-                                    <input formControlName="myFile" type="file" id="myFile" class="form-control w-100">
+                                    <input #fileInpu formControlName="myFile" type="file" id="myFile" class="form-control w-100">
                                 </div>
                             </div>
                             <p class="text-danger small errorInput px-3" *ngIf="lettersForm.get('myFile')?.getError('required') && lettersForm.get('myFile')?.touched">
@@ -97,7 +97,7 @@
 </section>
 
 
-<section #successModal class="SuccessModal vh-80 d-flex justify-content-center align-items-center  d-none">
+<section #successModal class="SuccessModal vh-80 d-flex justify-content-center align-items-center d-none ">
     <div class="bg-white w-50 w-100-mobile mx-auto rounded-3 text-center shadow-lg">
         <div class="p-5">
             <div class="d-flex justify-content-center align-items-center {{ 'direction' | translate }}">
@@ -105,8 +105,7 @@
                 <i class="fa-solid fa-circle-check fa-lg px-2" style="color: #11645f;"></i>
             </div>
 
-            <p class="doneMsgSub fs-5 fw-light ">{{ 'leave.تفقد_حالة_الطلب_من_قسم_الطلبات' | translate }} <span
-                    class="fw-bolder"> {{ 'leave.الطلبات' | translate }} </span> </p>
+            <p class="doneMsgSub fs-5 fw-light ">{{ 'leave.تفقد_حالة_الطلب_من_قسم_الطلبات' | translate }}  </p>
             <div class="w-50-mobile d-inline-block w-25">
                 <button routerLink="/allOrders/vacation"
                     class="btn btn-dark p-3 px-4 mx-1 btn-on-mobile w-100 rounded-end-0 ">{{ 'leave.الطلبات' | translate

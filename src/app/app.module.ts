@@ -32,6 +32,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LeavePermissionComponent } from './components/leave-permission/leave-permission.component';
 import { LettersComponent } from './components/letters/letters.component';
 import { AssetRequestComponent } from './components/asset-request/asset-request.component';
+import { EmpAssetsComponent } from './components/emp-assets/emp-assets.component';
+import { EmpLettersComponent } from './components/emp-letters/emp-letters.component';
+import { EmpPermissionsComponent } from './components/emp-permissions/emp-permissions.component';
 
 
 
@@ -65,7 +68,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminNavComponent,
     LeavePermissionComponent,
     LettersComponent,
-    AssetRequestComponent
+    AssetRequestComponent,
+    EmpAssetsComponent,
+    EmpLettersComponent,
+    EmpPermissionsComponent
   ],
   imports: [
     BrowserModule,

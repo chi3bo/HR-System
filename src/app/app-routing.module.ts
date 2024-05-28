@@ -23,6 +23,9 @@ import { roleGuardGuard } from './shared/role-guard.guard';
 import { LeavePermissionComponent } from './components/leave-permission/leave-permission.component';
 import { LettersComponent } from './components/letters/letters.component';
 import { AssetRequestComponent } from './components/asset-request/asset-request.component';
+import { EmpAssetsComponent } from './components/emp-assets/emp-assets.component';
+import { EmpLettersComponent } from './components/emp-letters/emp-letters.component';
+import { EmpPermissionsComponent } from './components/emp-permissions/emp-permissions.component';
 
 const routes: Routes = [
 
@@ -43,6 +46,9 @@ const routes: Routes = [
         path: 'allOrders', component: AllOrdersComponent, title: 'my orders', children: [
           { path: 'loan', component: OrderloanComponent, title: 'loan orders' },
           { path: 'vacation', component: OrderVacComponent, title: 'vacation orders' },
+          { path: 'assets', component: EmpAssetsComponent, title: 'Assets' },
+          { path: 'letters', component: EmpLettersComponent, title: 'Letters' },
+          { path: 'permissions', component: EmpPermissionsComponent, title: 'Permissions' },
           { path: 'other', component: OrderotherComponent, title: 'other orders' },
           { path: '', component: BlankComponent, title: 'my orders' },
         ]

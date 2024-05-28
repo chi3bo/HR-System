@@ -28,7 +28,7 @@ export interface vacationInterface {
     vacationType: string
     approveStatus: string
     approveDetails: string
-    availableDays : string
+    availableDays: string
 }
 
 export interface adminOrderLoan {
@@ -50,6 +50,38 @@ export interface adminOrderVacation {
     vacationType: string
     employeeId: string
     employeeName: string
-    availableDays:string
+    availableDays: string
 }
 
+
+export interface Asset {
+    id: number
+    details: string
+    isEmployeeAgree: boolean
+    approveStatus: string
+    approveDetails: any
+    uploadFileId: any
+}
+
+
+export interface Permission {
+    id: number
+    startDate: string
+    endDate: string
+    details: any
+    approveStatus: string
+    approveDetails: any
+    uploadFileId: any
+}
+
+
+export interface Letter {
+    id: number
+    destinationName: string
+    isRequiredCCC: boolean
+    details: string
+    letterType: string
+    approveStatus: string
+    approveDetails: any
+    uploadFileId: string
+}

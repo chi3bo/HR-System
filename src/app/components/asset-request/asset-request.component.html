@@ -37,13 +37,13 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-100 p-2">
                                     <label for="myFile"> {{ 'asset_request.ارفق_مستند' | translate }} : </label>
-                                    <input formControlName="myFile" type="file" id="myFile" class="form-control w-100">
+                                    <input #fileInpu formControlName="myFile" type="file" id="myFile" class="form-control w-100">
                                 </div>
                             </div>
-                            <p class="text-danger small errorInput px-3"
+                            <!-- <p class="text-danger small errorInput px-3"
                                 *ngIf="this.AssetForm.get('myFile')?.getError('required') && this.AssetForm.get('myFile')?.touched">
                                 {{ 'asset_request.ارفق_المستند_الخاص_بالطلب' | translate }}
-                            </p>
+                            </p> -->
                             <div class="d-flex justify-content-center align-items-center p-2">
                                 <div class="w-100 py-3 text-center">
                                     <input type="checkbox" formControlName="saveAsset" name="saveAsset" id="saveAsset"
