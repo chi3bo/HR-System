@@ -22,7 +22,17 @@ export class AdminService {
     return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestVacations?Search=${userId}`, this.setHeadrs())
   }
 
-  LoanAction(orderId: number , Action:boolean): Observable<any> {
+  getAllAssets(userId: any = ''): Observable<any> {
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestCustodies?Search=${userId}`, this.setHeadrs())
+  }
+  getAllLetters(userId: any = ''): Observable<any> {
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestLetters?Search=${userId}`, this.setHeadrs())
+  }
+  getAllPermissions(userId: any = ''): Observable<any> {
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestPermissions?Search=${userId}`, this.setHeadrs())
+  }
+
+  LoanAction(orderId: number, Action: boolean): Observable<any> {
     return this._HttpClient.post(`https://hrapp.runasp.net/Api/Admin/DecisionOfAdvancePayment`,
       {
         "id": orderId,
@@ -42,6 +52,37 @@ export class AdminService {
     )
   }
 
+  AssetsAction(orderId: number, action: boolean, details: string): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/Admin/DecisionOfCustody`,
+      {
+        id: orderId,
+        accepted: action,
+        note: details
+      },
+      this.setHeadrs()
+    )
+  }
 
+  LettersAction(orderId: number, action: boolean, details: string): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/Admin/DecisionOfLetter`,
+      {
+        id: orderId,
+        accepted: action,
+        note: details
+      },
+      this.setHeadrs()
+    )
+  }
+
+  PermissionsAction(orderId: number, action: boolean, details: string): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/Admin/DecisionOfPermission`,
+      {
+        id: orderId,
+        accepted: action,
+        note: details
+      },
+      this.setHeadrs()
+    )
+  }
 
 }

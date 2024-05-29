@@ -35,6 +35,9 @@ import { AssetRequestComponent } from './components/asset-request/asset-request.
 import { EmpAssetsComponent } from './components/emp-assets/emp-assets.component';
 import { EmpLettersComponent } from './components/emp-letters/emp-letters.component';
 import { EmpPermissionsComponent } from './components/emp-permissions/emp-permissions.component';
+import { AdminAssetsComponent } from './components/admin-assets/admin-assets.component';
+import { AdminLettersComponent } from './components/admin-letters/admin-letters.component';
+import { AdminLeaveComponent } from './components/admin-leave/admin-leave.component';
 
 
 
@@ -71,7 +74,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AssetRequestComponent,
     EmpAssetsComponent,
     EmpLettersComponent,
-    EmpPermissionsComponent
+    EmpPermissionsComponent,
+    AdminAssetsComponent,
+    AdminLettersComponent,
+    AdminLeaveComponent
   ],
   imports: [
     BrowserModule,

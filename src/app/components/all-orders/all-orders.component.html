@@ -2,34 +2,59 @@
     <h1 class="text-center pt-5 fw-bolder">{{ 'all_orders.قائمة_الطلبات' | translate }}</h1>
     <!-- head of requests chooseList -->
     <div class="text-center p-md-5 py-4 mx-0 arabicList row g-3 d-flex justify-content-center align-items-center ">
-        <div class="col-md-2 w-40-mobile ">
+        <div class="col-md-2 w-40-mobile hide-on-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/loan"
                 class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton">{{
                 'all_orders.طلبات_السلفة' | translate }}</button>
         </div>
-        <div class="col-md-2 w-40-mobile ">
+        <div class="col-md-2 w-40-mobile hide-on-mobile">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/vacation"
                 class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton  {{ 'all_orders.حجم_الخط' | translate }}">{{
                 'all_orders.طلبات_الإجازة' | translate }}</button>
         </div>
-        <div class="col-md-2 w-40-mobile  ">
+        <div class="col-md-2 w-40-mobile hide-on-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/permissions"
                 class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton ">
                 طلبات الاسئذان
             </button>
         </div>
-        <div class="col-md-2 w-40-mobile  ">
+        <div class="col-md-2 w-40-mobile hide-on-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/assets"
                 class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton ">
                 طلبات العهدة
             </button>
         </div>
-        <div class="col-md-2 w-40-mobile  ">
+        <div class="col-md-2 w-40-mobile hide-on-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/letters"
                 class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton ">
                 طلبات الخطابات</button>
         </div>
+
+
+
+
+
+
+        <div class="nav-item dropdown w-75 px-3 text-center mx-auto z-3 show-on-mobile-only">
+            <span class="nav-link form-control w-100 p-2 d-flex justify-content-center align-items-center {{ 'direction' | translate}}" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                اختر احد الاقسام لعرضها<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
+            </span>
+            <ul class="dropdown-menu sidedown text-center w-75">
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/loan">طلبات السلفة</span></li>
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/vacation">طلبات الاجازات</span></li>
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/assets">طلبات العهدة</span></li>
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/letters">طلبات الخطابات</span></li>
+                <li><span class="dropdown-item py-2" routerLink="/allOrders/permissions">طلبات الاذن</span></li>
+            </ul>
+        </div>
+
+
+
+
+
     </div>
+
 
 
 

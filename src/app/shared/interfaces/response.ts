@@ -85,3 +85,4 @@ export interface Letter {
     approveDetails: any
     uploadFileId: string
 }
+

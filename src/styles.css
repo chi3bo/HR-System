@@ -22,6 +22,9 @@ body {
     font-style: normal !important;
 }
 
+.download-button{
+    text-decoration: underline ;
+}
 .cursor-pointer {
     cursor: pointer;
 }

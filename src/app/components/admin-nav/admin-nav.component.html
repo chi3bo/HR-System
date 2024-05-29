@@ -1,8 +1,8 @@
 <section class="hide-on-mobile">
-    <nav class="navbar navbar-expand-lg bg-white shadow py-1">
+    <nav class="navbar navbar-expand-lg  shadow z-3 py-1">
         <div class="container">
             <a class="navbar-brand" routerLink="">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo"
+                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png" alt="dashboard logo"
                     class="w-75">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -19,12 +19,19 @@
                             'admin_nav.الرئيسية' | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">{{
-                            'admin_nav.طلبات_الاجازات' | translate }}</a>
+                        <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">الاجازات</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{
-                            'admin_nav.طلبات_السلفة' | translate }}</a>
+                        <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">السلفة</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLink="admin-letters" routerLinkActive="active-menu">الخطابات</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLink="admin-permissions" routerLinkActive="active-menu">الإذن</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" routerLink="admin-assets" routerLinkActive="active-menu">العهدة</a>
                     </li>
                 </ul>
 
@@ -35,7 +42,8 @@
                             <span class="fw-bolder">{{employeeName}}</span>
                         </a>
                     </li>
-                    <li class="nav-item mx-2 languageIcon cursor-pointer {{ 'direction' | translate}}" (click)="switchLanguage()">
+                    <li class="nav-item mx-2 languageIcon cursor-pointer {{ 'direction' | translate}}"
+                        (click)="switchLanguage()">
                         <a class="nav-link fs-6 fw-light ">{{ 'admin_nav.العربية' | translate }}</a>
                     </li>
                 </ul>
@@ -50,12 +58,12 @@
     <div class="left" [ngClass]="{'shadow-now': opened}">
         <div class="w-100">
             <div class="navbar-brand w-75 mx-auto mb-3" routerLink="home">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo.png" alt="dashboard logo"
+                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png" alt="dashboard logo"
                     class="w-100">
             </div>
 
             <div
-                class="nav-link w-100 text-end px-3 bg-body-tertiary d-flex justify-content-between {{ 'direction' | translate}}">
+                class="nav-link w-100 text-end px-3  d-flex justify-content-between {{ 'direction' | translate}}">
                 <div>
                     <span class="fw-light px-1">{{ 'admin_nav.مرحباً' | translate }}</span>
                     <span class="fw-bolder">{{employeeName}}</span>
@@ -67,7 +75,7 @@
 
 
 
-            <ul class="list-unstyled sidbarUnits overflow-hidden my-5 border-top border-bottom">
+            <ul class="list-unstyled sidbarUnits overflow-hidden my-3 border-top border-bottom">
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
                     <a class="nav-link" routerLink="admin-home" routerLinkActive="active-menu">{{ 'admin_nav.الرئيسية' |
                         translate }}</a>
@@ -80,12 +88,23 @@
                     <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{
                         'admin_nav.طلبات_السلفة' | translate }}</a>
                 </li>
+                <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
+                    <a class="nav-link" routerLink="admin-letters" routerLinkActive="active-menu">الخطابات</a>
+                </li>
+                <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
+                    <a class="nav-link" routerLink="admin-permissions" routerLinkActive="active-menu">الإذن</a>
+                </li>
+                <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
+                    <a class="nav-link" routerLink="admin-assets" routerLinkActive="active-menu">العهدة</a>
+                </li>
+
+
             </ul>
         </div>
 
 
 
-        <div class="sideFooter position-absolute bottom-0 text-darkly">
+        <div class="sideFooter position-absolute bottom-0 text-white">
             <div>
                 <i class="fa-solid fa-globe px-2"></i>
                 <i class="fa-brands fa-twitter px-2"></i>

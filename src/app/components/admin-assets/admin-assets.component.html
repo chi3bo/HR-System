@@ -1,7 +1,7 @@
-<div class="bg-white   px-sm-5 ">
+<div class="bg-white   px-sm-5" >
     <section class=" w-100 container-fluid  rounded-3 vh-80  py-5 p-sm-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}">
         <h1 class="text-center py-5 fw-bolder {{ 'admin_vacation.حجم_الخط_إدارة_الطلبات' | translate }}">
-            ادارة طلبات الاجازة
+            ادارة طلبات العهدة
         </h1>
 
         <!-- the table header -->
@@ -15,13 +15,13 @@
                         <p class="p-0 my-0">{{ 'admin_vacation.رقم_الطلب' | translate }}</p>
                     </div>
                     <div class="col-md-3 text-center hide-on-mobile">
-                        <p class="p-0 my-0 px-5">{{ 'admin_vacation.نوع_الإجازة' | translate }}</p>
+                        <p class="p-0 my-0 px-5">نوع الطلب</p>
                     </div>
                     <div class="col-md-3 text-center hide-on-mobile">
                         <p class="p-0 my-0">{{ 'admin_vacation.التاريخ' | translate }}</p>
                     </div>
                     <div class="col-md-3 text-center miniHeader show-on-mobile-only">
-                        <p class="p-0 my-0">{{ 'admin_vacation.قائمة_طلبات_الإجازة' | translate }}</p>
+                        <p class="p-0 my-0">قائمة طلبات العهدة</p>
                     </div>
                 </div>
             </div>
@@ -31,31 +31,18 @@
         <div class="accordion {{  'direction' | translate }} overflow-hidden" id="accordionExample">
 
             <!-- one employee -->
-            <div id="oneItem" #oneItem class="accordion-item rounded-0"
-                *ngFor="let order of vacationOrdersList.reverse()">
+            <div id="oneItem" #oneItem class="accordion-item rounded-0" *ngFor="let order of AssetsList.reverse()">
                 <h2 class="accordion-header">
                     <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#'+order.id" aria-expanded="false" [attr.aria-controls]="order.id">
                         <div class="py-2 px-0 d-flex w-100 row justify-content-center align-items-center">
                             <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">{{ order.employeeName }}</p>
                             <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">#{{ order.id }}</p>
-                            <p *ngIf="order.vacationType=='Emergency'"
-                                class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
-                                {{'admin_vacation.إجازة_طارئة' | translate }} </p>
-                            <p *ngIf="order.vacationType=='Sick'"
-                                class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
-                                {{'admin_vacation.إجازة_مرضية' | translate }}</p>
-                            <p *ngIf="order.vacationType=='Annual'"
-                                class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
-                                {{'admin_vacation.إجازة_سنوية' | translate }}</p>
-                            <p *ngIf="order.vacationType=='Umrah'"
-                                class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
-                                {{'admin_vacation.إجازة_العمرة' | translate }}</p>
-                            <p *ngIf="order.vacationType=='Hajj'"
-                                class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
-                                {{'admin_vacation.إجازة_الحج' | translate }}</p>
-                            <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">{{ order.startDate
-                                | date : 'yyyy/MM/dd' }}</p>
+                            <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
+                                طلب عهدة </p>
+
+                            <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
+                                {{todayDate | date : 'yyyy/MM/dd' }}</p>
                         </div>
                     </div>
                 </h2>
@@ -72,37 +59,33 @@
                                                 class="my-0 small">{{ order.employeeName }}</span></p>
                                         <p class="my-0">{{ 'admin_vacation.كود_الموظف' | translate }}: {{
                                             order.employeeId }}</p>
-                                        <p class="my-0">{{ 'admin_vacation.تفاصيل_أخرى' | translate }}:<span
-                                                class="fw-light">{{ order.details }}</span></p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="w-100 border-start noBorder-mobile">
-                                        <p class="my-0">{{ 'admin_vacation.مدة_الإجازة' | translate }}: {{
-                                            order.numberOfDays }}</p>
-                                        <p class="my-0">{{ 'admin_vacation.تاريخ_البدء' | translate }}: {{
-                                            order.startDate | date : 'yyyy/MM/dd' }}</p>
+                                        <p class="my-0">تفاصيل العهدة :
+                                            <span class="fw-light">{{order.details}}</span>
+                                        </p>
+                                        <p class="my-0">الحفاظ علي العهدة:
+                                            <span *ngIf="order.isEmployeeAgree" class="fw-lighter"> موافق </span>
+                                            <span *ngIf="order.isEmployeeAgree==false" class="fw-lighter"> غير موافق
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="w-100 noBorder-mobile">
-                                        <p class="my-0">{{ 'admin_vacation.أيام_مستحقة' | translate }}: {{
-                                            order.availableDays }}</p>
-                                        <p *ngIf="order.vacationType=='Emergency'" class="my-0 fw-lighter">{{
-                                            'admin_vacation.نوع_الإجازة' | translate }}:
-                                            {{'admin_vacation.إجازة_طارئة' | translate }}</p>
-                                        <p *ngIf="order.vacationType=='Annual'" class="my-0 fw-lighter">{{
-                                            'admin_vacation.نوع_الإجازة' | translate }}:
-                                            {{ 'admin_vacation.إجازة_سنوية'| translate }}</p>
-                                        <p *ngIf="order.vacationType=='Sick'" class="my-0 fw-lighter">{{
-                                            'admin_vacation.نوع_الإجازة' | translate }}:
-                                            {{ 'admin_vacation.إجازة_مرضية'| translate }}</p>
-                                        <p *ngIf="order.vacationType=='Umrah'" class="my-0 fw-lighter">{{
-                                            'admin_vacation.نوع_الإجازة' | translate }}:
-                                            {{'admin_vacation.إجازة_العمرة' | translate }}</p>
-                                        <p *ngIf="order.vacationType=='Hajj'" class="my-0 fw-lighter">{{
-                                            'admin_vacation.نوع_الإجازة' | translate }}:
-                                            {{'admin_vacation.إجازة_الحج' | translate }}</p>
+                                        <p class="my-0">
+                                            مرفقات :
+                                            <span *ngIf="order.uploadFileId"> نعم </span>
+                                            <span *ngIf="order.uploadFileId == null"> لا يوجد </span>
+                                        </p>
+                                        <p class="my-0" *ngIf="order.uploadFileId">
+                                            <span (click)="fileDownload(order.uploadFileId)"
+                                                class="download-button text-primary cursor-pointer">
+                                                تحميل المرفق
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -117,7 +100,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="w-100 mx-auto pb-1 text-center">
-                                        <input #detailsInput type="text" class="form-control"
+                                        <input #detailsInput type="text" class="form-control border-dark"
                                             placeholder="{{ 'admin_vacation.أضف_ملاحظاتك_هنا' | translate }}">
                                     </div>
                                 </div>

@@ -10,7 +10,13 @@ import { LoanService } from 'src/app/shared/services/loan.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
- 
+  constructor(private _router: Router) { }
 
 
+  ngOnInit(): void {
+    if (localStorage.getItem('userToken') == (null || undefined)) {
+      this._router.navigate(['login'])
+    }
+
+  }
 }

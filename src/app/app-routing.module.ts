@@ -26,12 +26,15 @@ import { AssetRequestComponent } from './components/asset-request/asset-request.
 import { EmpAssetsComponent } from './components/emp-assets/emp-assets.component';
 import { EmpLettersComponent } from './components/emp-letters/emp-letters.component';
 import { EmpPermissionsComponent } from './components/emp-permissions/emp-permissions.component';
+import { AdminAssetsComponent } from './components/admin-assets/admin-assets.component';
+import { AdminLettersComponent } from './components/admin-letters/admin-letters.component';
+import { AdminLeaveComponent } from './components/admin-leave/admin-leave.component';
 
 const routes: Routes = [
 
   {
     path: '', component: MainComponent, title: 'main', canActivate: [myGuardGuard], children: [
-      { path: '', redirectTo: 'home', pathMatch:'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, title: 'home' },
       { path: 'loan', component: LoanComponent, title: 'loan' },
       { path: 'vacations', component: VacationComponent, title: 'vacations' },
@@ -67,10 +70,13 @@ const routes: Routes = [
   },
 
   {
-    path: '', component: AdminComponent, title: 'Admin' , canActivate:[roleGuardGuard], children: [
+    path: '', component: AdminComponent, title: 'Admin', canActivate: [roleGuardGuard], children: [
       { path: 'admin-home', component: AdminHomeComponent, title: 'admin home' },
       { path: 'admin-loan', component: AdminLoanComponent, title: 'loan orders' },
       { path: 'admin-vacation', component: AdminVacationComponent, title: 'vacation orders' },
+      { path: 'admin-assets', component: AdminAssetsComponent, title: 'assets orders' },
+      { path: 'admin-letters', component: AdminLettersComponent, title: 'letters orders' },
+      { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
     ]
   },

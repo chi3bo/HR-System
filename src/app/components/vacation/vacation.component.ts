@@ -51,7 +51,6 @@ export class VacationComponent implements OnInit {
     return myData;
   }
 
-
   sendRequest() {
     console.log(this.vacationForm.valid, 'valid');
     if (this.vacationForm.get('numberOfDays')?.value <= this.availableDays && this.vacationForm.valid) {
@@ -59,11 +58,7 @@ export class VacationComponent implements OnInit {
         next: (Response) => {
           console.log(Response);
           if (Response == true) {
-            console.log(Response);
             this.requestSent = true
-          }
-          else{
-            
           }
 
         },
@@ -83,8 +78,6 @@ export class VacationComponent implements OnInit {
       this.vacationForm.markAllAsTouched()
     }
   }
-
-
 
   ngOnInit(): void {
     setTimeout(() => { this.pageOpenOne = true }, 0);
@@ -107,9 +100,4 @@ export class VacationComponent implements OnInit {
     })
   }
 
-
 }
-// "startDate": "2024-05-11T12:31:15.972Z",
-// "numberOfDays": 0,
-// "details": "string",
-// "vacationType": "1 = SickLeave"

@@ -21,10 +21,8 @@ export class AdminLoanComponent {
 
 
   ngOnInit(): void {
-    if(localStorage.getItem('userToken') == (null || undefined)){
-      this._router.navigate(['login'])
-    }
-    setTimeout(() => { this.pageOpenOne = true }, 100);
+
+    setTimeout(() => { this.pageOpenOne = true }, 0);
     this._AdminService.getAllRequestLoan().subscribe({
       next: (data) => {
         this.ordersCount = data.count
