@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private _TranslateService: TranslateService) { }
+  constructor(private _TranslateService: TranslateService, private _AuthService: AuthService, private _Router: Router) { }
 
   title = 'saudiaFormica';
 
@@ -28,9 +30,5 @@ export class AppComponent implements OnInit {
     }
 
   }
-
-
-
-
 
 }

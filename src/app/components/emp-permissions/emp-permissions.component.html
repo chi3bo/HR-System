@@ -11,13 +11,13 @@
             <div
                 class="parentOfOrders {{ 'direction' | translate }} mx-0 w-100 bg-white rounded border row d-flex justify-content-center align-items-center overflow-hidden ">
                 <div class="col-md-4">
-                    <div class="w-100 border-start noBorder-mobile">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                         <p class="my-0">
-                            سبب الاذن : {{order.details}}
+                            {{ 'emp_permission.سبب_الاذن' | translate }} : {{order.details}}
                         </p>
 
                         <p class="my-0">
-                            يوافق تاريخ :
+                            {{ 'emp_permission.يوافق_تاريخ' | translate }} :
                             <span> {{order.startDate.split('T')[0]}}</span>
                         </p>
                     </div>
@@ -25,13 +25,13 @@
 
 
                 <div class="col-md-3">
-                    <div class="w-100 border-start noBorder-mobile ">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile ">
                         <p class="my-0">
-                            بداية الاذن :
+                            {{ 'emp_permission.بداية_الاذن' | translate }} :
                             <span class="fw-lighter"> {{order.startDate | date : 'hh:mm a'}}</span>
                         </p>
                         <p class="my-0">
-                            نهاية الاذن :
+                            {{ 'emp_permission.نهاية_الاذن' | translate }} :
                             <span class="fw-lighter"> {{order.endDate | date : 'hh:mm a'}} </span>
                         </p>
 
@@ -42,32 +42,32 @@
                     <div class="w-100 noBorder-mobile ">
                         <!-- تحميل المرفق -->
                         <p class="my-0">
-                            مرفقات :
+                            {{ 'emp_permission.مرفقات' | translate }} :
                             <span class="my-0 cursor-pointer" *ngIf="order.uploadFileId">
                                 <a (click)="fileDownload(order.uploadFileId)"
                                     class="link-underline-opacity-50 link-underline">
-                                    تحميل المرفق
+                                    {{ 'emp_permission.تحميل_المرفق' | translate }}
                                 </a>
                             </span>
-                            <span *ngIf="order.uploadFileId == null"> لا يوجد </span>
+                            <span *ngIf="order.uploadFileId == null"> {{ 'emp_permission.لا_يوجد' | translate }} </span>
                         </p>
                         <!-- تفاصيل الرد (ان وجد ) -->
                         <p class="my-0" *ngIf="order.approveDetails">
-                            {{ 'my_order_vac.تفاصيل_الرد' | translate }} : {{order.approveDetails}}
+                            {{ 'emp_permission.تفاصيل_الرد' | translate }} : {{order.approveDetails}}
                         </p>
 
                         <!-- حالة الطلب  -->
                         <p *ngIf="order.approveStatus == 'Approved'" class="my-0">
-                            {{ 'my_order_vac.حالة_الطلب' | translate }} : <span class="status-Msg-confirmed">{{
-                                'my_order_vac.تمت_الموافقة' | translate }}</span>
+                            {{ 'emp_permission.حالة_الطلب' | translate }} : <span class="status-Msg-confirmed">{{
+                                'emp_permission.تمت_الموافقة' | translate }}</span>
                         </p>
                         <p *ngIf="order.approveStatus == 'NotApproved'" class="my-0">
-                            {{ 'my_order_vac.حالة_الطلب' | translate }} : <span class="status-Msg-rejected">{{
-                                'my_order_vac.تم_رفض_الطلب' | translate }}</span>
+                            {{ 'emp_permission.حالة_الطلب' | translate }} : <span class="status-Msg-rejected">{{
+                                'emp_permission.تم_رفض_الطلب' | translate }}</span>
                         </p>
                         <p *ngIf="order.approveStatus == 'Pinding'" class="my-0">
-                            {{ 'my_order_vac.حالة_الطلب' | translate }} : <span class="status-Msg-pendding">{{
-                                'my_order_vac.جاري_مراجعة_الطلب' | translate }}</span>
+                            {{ 'emp_permission.حالة_الطلب' | translate }} : <span class="status-Msg-pendding">{{
+                                'emp_permission.جاري_مراجعة_الطلب' | translate }}</span>
                         </p>
 
                     </div>

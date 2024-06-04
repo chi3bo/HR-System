@@ -11,7 +11,7 @@
             <div
                 class="parentOfOrders {{ 'direction' | translate }} mx-0 w-100 bg-white rounded border row d-flex justify-content-center align-items-center overflow-hidden ">
                 <div class="col-md-3">
-                    <div class="w-100 border-start noBorder-mobile">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                         <p *ngIf="order.vacationType=='Emergency'" class="my-0">
                             {{ 'my_order_vac.نوع_الاجازة.Emergency' | translate }}
                         </p>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="w-100 border-start noBorder-mobile">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                         <p class="my-0">
                             {{ 'my_order_vac.عدد_الايام' | translate }} : {{order.numberOfDays}}
                         </p>

@@ -14,20 +14,21 @@
         </div>
         <div class="col-md-2 w-40-mobile hide-on-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/permissions"
-                class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton ">
-                طلبات الاسئذان
+                class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton {{ 'all_orders.حجم_الخط' | translate }}">
+                {{ 'all_orders.طلبات_الاستئذان' | translate }}
             </button>
         </div>
         <div class="col-md-2 w-40-mobile hide-on-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/assets"
                 class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton ">
-                طلبات العهدة
+                {{ 'all_orders.طلبات_العهدة' | translate }}
             </button>
         </div>
         <div class="col-md-2 w-40-mobile hide-on-mobile ">
             <button routerLinkActive="btn-dark text-white" routerLink="/allOrders/letters"
                 class="btn btn-outline-dark w-100 rounded-1 fw-bolder py-4 ordersButton ">
-                طلبات الخطابات</button>
+                {{ 'all_orders.طلبات_الخطابات' | translate }}
+            </button>
         </div>
 
 
@@ -38,14 +39,14 @@
         <div class="nav-item dropdown w-75 px-3 text-center mx-auto z-3 show-on-mobile-only">
             <span class="nav-link form-control w-100 p-2 d-flex justify-content-center align-items-center {{ 'direction' | translate}}" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                اختر احد الاقسام لعرضها<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
+                {{ 'all_orders.اختر_احد_الاقسام_لعرضها' | translate }}<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
             </span>
             <ul class="dropdown-menu sidedown text-center w-75">
-                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/loan">طلبات السلفة</span></li>
-                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/vacation">طلبات الاجازات</span></li>
-                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/assets">طلبات العهدة</span></li>
-                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/letters">طلبات الخطابات</span></li>
-                <li><span class="dropdown-item py-2" routerLink="/allOrders/permissions">طلبات الاذن</span></li>
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/loan">{{ 'all_orders.طلبات_السلفة' | translate }}</span></li>
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/vacation">{{ 'all_orders.طلبات_الإجازة' | translate }}</span></li>
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/assets">{{ 'all_orders.طلبات_العهدة' | translate }}</span></li>
+                <li><span class="dropdown-item py-2 border-bottom " routerLink="/allOrders/letters">{{ 'all_orders.طلبات_الخطابات' | translate }}</span></li>
+                <li><span class="dropdown-item py-2" routerLink="/allOrders/permissions">{{ 'all_orders.طلبات_الاستئذان' | translate }}</span></li>
             </ul>
         </div>
 
@@ -53,8 +54,8 @@
 
 
 
-    </div>
 
+    </div>
 
 
 

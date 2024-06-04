@@ -17,6 +17,7 @@ body {
     }
 }
 
+
 .btn-danger {
     background-color: #f44336;
     color: white;
@@ -31,10 +32,12 @@ body {
 
 
 .ordersHead {
-    background-color: #4CAF50;
+    background-color: #006d8e;
     color: #fff;
     padding-inline: 20px;
     padding-left: 44px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
 }
 
 .opendOrder {
@@ -111,6 +114,11 @@ body {
     .vacationHead {
         font-size: 20px !important;
         padding-inline: 0;
+    }
+
+
+    .font-22-mobile{
+        font-size: 22px;
     }
 
 }

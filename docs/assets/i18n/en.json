@@ -17,11 +17,18 @@
     "englishBody": "englishBody",
     "admin_nav": {
         "الرئيسية": "Home",
-        "طلبات_الاجازات": "Vacation Requests",
-        "طلبات_السلفة": "Loan Requests",
+        "طلبات_الاجازات": "Vacations",
+        "طلبات_السلفة": "Loans",
         "مرحباً": "Welcome",
         "العربية": "العربية",
-        "حقوق_الطبع": "Copyright © 2024 All Rights Reserved."
+        "حقوق_الطبع": "Copyright © 2024 All Rights Reserved.",
+        "الاجازات": "Vacations",
+        "السلفة": "Loans",
+        "الخطابات": "Letters",
+        "الإذن": "Permissions",
+        "العهدة": "Assets",
+        "حـســابـي": "My Account",
+        "تسجيل الخروج": "Logout"
     },
     "login_page": {
         "تسجيل_الدخول": "Login",
@@ -33,6 +40,7 @@
         "ليس_لديك_حساب": "Don't have an account?"
     },
     "admin_orders": {
+        "ادارة_طلبات_السلفة": "Manage Loan Requests ",
         "ادارة_الطلبات": "Requests Management",
         "اسم_الموظف": "Employee Name",
         "رقم_الطلب": "Order Number",
@@ -49,7 +57,7 @@
         "رفض": "Reject"
     },
     "admin_vacation": {
-        "إدارة_الطلبات": "Requests Management",
+        "إدارة_الطلبات": "Manage Vacation Requests",
         "حجم_الخط_إدارة_الطلبات": "vacationHead",
         "اسم_الموظف": "Employee Name",
         "رقم_الطلب": "Request Number",
@@ -68,14 +76,55 @@
         "أيام_مستحقة": "Deserved Days",
         "قبول": "Accept",
         "رفض": "Reject",
-        "أضف_ملاحظاتك_هنا": "Add your notes here . ."
+        "أضف_ملاحظاتك_هنا": "Add your notes here . .",
+        "نوع_الطلب": "Request Type",
+        "قائمة_طلبات_الاذن": "Permissions List",
+        "طلب_اذن": "Permission Request",
+        "تفاصيل_العهدة": "Asset Details",
+        "الحفاظ_علي_العهدة": "Asset Maintenance",
+        "سبب_الاذن": "Permission Reason",
+        "بداية_الاذن": "Permission Start",
+        "نهاية_الاذن": "Permission End",
+        "إدارة_طلبات_الإذن": "Manage Permissions",
+        "border": "border-end"
+    },
+    "admin-letters": {
+        "ادارة_طلبات_الخطابات": "Manage Letter Requests",
+        "اسم_الموظف": "Employee Name",
+        "رقم_الطلب": "Request Number",
+        "نوع_الطلب": "Request Type",
+        "نوع_الخطاب": "Letter Type",
+        "طلب_خطاب": "Letter Request",
+        "موجه_الي": "Directed To",
+        "يصدق_الغرفة_التجارية": "Authenticated (Chamber of Commerce)",
+        "تفاصيل_الخطاب": "Letter Details",
+        "مرفقات": "Attachments",
+        "تحميل_المرفق": "Download",
+        "لا_يوجد": "No",
+        "أضف_ملاحظاتك_هنا": "Add Your Notes Here",
+        "قبول": "Accept",
+        "رفض": "Reject",
+        "كود_الموظف": "Employee Code",
+        "الطلبات_الخاصة_بالخطابات": "Letter Requests",
+        "خطاب_تعريف": "Identification Letter",
+        "خطاب_مفتوح": "Open Letter",
+        "خطاب_خارجي": "External Letter (Authentication)",
+        "خطاب_تفويض": "Delegation Letter"
+    },
+    "general": {
+        "نعم": "Yes",
+        "لا": "No"
     },
     "all_orders": {
         "قائمة_الطلبات": "Request List",
         "طلبات_السلفة": "Loan Requests",
         "طلبات_الإجازة": "Vacation Requests",
         "الطلبات_الأخرى": "Other Requests",
-        "حجم_الخط": "vacationBtn-mobile"
+        "حجم_الخط": "vacationBtn-mobile",
+        "طلبات_الاستئذان": "Permissions",
+        "طلبات_العهدة": "Asset Requests",
+        "طلبات_الخطابات": "Letter Requests",
+        "اختر_احد_الاقسام_لعرضها": "Choose one of the sections to display"
     },
     "asset_request": {
         "طلب_عهدة": "Asset Request",
@@ -188,7 +237,7 @@
         "مساعدة": "Help",
         "مرحباً": "Hello",
         "حقوق_الطبع": "Copyright © 2024 All Rights Reserved.",
-        "طلباتي" : "My Requests"
+        "طلباتي": "My Requests"
     },
     "my_order_vac": {
         "رقم_الطلب": "Order Number",
@@ -252,5 +301,72 @@
         "هل_ترغب_في_اطلاعنا": "Do you have any other details to share?",
         "ارفق_مستند": "Attach Document",
         "ارسال_الطلب": "Submit Request"
+    },
+    "admin_assets": {
+        "إدارة_طلبات_العهدة": "Manage Assets Requests",
+        "نوع_الطلب": "Request Type",
+        "قائمة_طلبات_العهدة": "Asset Requests List",
+        "طلب_عهدة": "Asset Request",
+        "تفاصيل_العهدة": "Asset Details",
+        "الحفاظ_علي_العهدة": "Asset Maintenance",
+        "موافق": "Agree",
+        "غير_موافق": "Disagree",
+        "مرفقات": "Attachments",
+        "تحميل_المرفق": "Download Attachment",
+        "لا_يوجد": "None",
+        "نعم": "Yes",
+        "قبول": "Accept",
+        "رفض": "Reject",
+        "أضف_ملاحظاتك_هنا": "Add your notes here",
+        "حجم_العنوان": "font-22-mobile"
+    },
+    "EmpAssets": {
+        "تفاصيل_العهدة": "Asset Details",
+        "الحفاظ_علي_العهدة": "Asset Preservation",
+        "موافق": "Agreed",
+        "غير_موافق": "Disagreed",
+        "مرفقات": "Attachments",
+        "نعم": "Yes",
+        "لا_يوجد": "No Attachments",
+        "تحميل_المرفق": "Download Attachment",
+        "تفاصيل_الرد": "Response Details",
+        "حالة_الطلب": "Request Status",
+        "تمت_الموافقة": "Approved",
+        "تم_رفض_الطلب": "Request Rejected",
+        "جاري_مراجعة_الطلب": "Pending"
+    },
+    "EmpLetters": {
+        "الجهة_المستفيدة": "Beneficiary",
+        "يصدق_من_الغرفة_التجارية": "Validated by Chamber of Commerce",
+        "نعم": "Yes",
+        "لا": "No",
+        "نوع_الخطاب": "Letter Type",
+        "تعريف": "Identification",
+        "خطابات_مفتوحة": "Opened Letters",
+        "خارجي_(تصديق)": "External (Attestation)",
+        "تفويض": "Delegation",
+        "تفاصيل_الخطاب": "Letter Details",
+        "مرفقات": "Attachments",
+        "تحميل_المرفق": "Download Attachment",
+        "لا_يوجد": "No Attachments",
+        "تفاصيل_الرد": "Response Details",
+        "حالة_الطلب": "Request Status",
+        "تمت_الموافقة": "Approved",
+        "تم_رفض_الطلب": "Request Rejected",
+        "جاري_مراجعة_الطلب": "Pending"
+    },
+    "emp_permission": {
+        "سبب_الاذن": "Reason for permission",
+        "يوافق_تاريخ": "date",
+        "بداية_الاذن": "Permission start",
+        "نهاية_الاذن": "Permission end",
+        "مرفقات": "Attachments",
+        "تحميل_المرفق": "Download",
+        "لا_يوجد": "No attachments",
+        "تفاصيل_الرد": "Response details",
+        "حالة_الطلب": "Request status",
+        "تمت_الموافقة": "Approved",
+        "تم_رفض_الطلب": "Rejected",
+        "جاري_مراجعة_الطلب": "Pending"
     }
 }

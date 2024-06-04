@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoanService } from 'src/app/shared/services/loan.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { LoanService } from 'src/app/shared/services/loan.service';
   styleUrls: ['./admin-nav.component.css']
 })
 export class AdminNavComponent {
-  constructor(private _LoanService: LoanService, private _Router: Router, private _TranslateService: TranslateService) { }
+  constructor(private _LoanService: LoanService, private _Router: Router, private _TranslateService: TranslateService, private _AuthService: AuthService) { }
   employeeName: any = ''
   opened: boolean = false
   closed: boolean = true
@@ -42,6 +43,23 @@ export class AdminNavComponent {
       this._TranslateService.use('en');
       localStorage.setItem('myLanguage', 'en')
     }
+  }
+
+
+
+  setLogout() {
+    this._AuthService.logout().subscribe({
+      next: (Response) => {
+        localStorage.clear()
+        this._Router.navigate(['/login'])
+        console.log(Response);
+      },
+      error: (err) => {
+        localStorage.clear()
+        this._Router.navigate(['/login'])
+        console.log(err);
+      }
+    })
   }
 
 

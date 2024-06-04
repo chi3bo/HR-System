@@ -20,15 +20,15 @@ export class GetOrdersService {
 
 
   getAssetsOrders(): Observable<any> {
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/GetEmployeeCustodies', '', this.setHeadrs())
+    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeeCustodies',  this.setHeadrs())
   }
 
   getLettersOrders(): Observable<any> {
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/GetEmployeeLetter', '', this.setHeadrs())
+    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeeLetter', this.setHeadrs())
   }
 
   getPermissionsOrders(): Observable<any> {
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/GetEmployeePermissions', '', this.setHeadrs())
+    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeePermissions', this.setHeadrs())
   }
 
   downloadFile(fileId: string): Observable<any> {

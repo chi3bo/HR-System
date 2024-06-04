@@ -1,11 +1,11 @@
-<div class="bg-white   px-sm-5" >
-    <section class=" w-100 container-fluid  rounded-3 vh-80  py-5 p-sm-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}">
+<div class="bg-white px-sm-5">
+    <section class="w-100 container-fluid rounded-3 vh-80 py-5 p-sm-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}">
         <h1 class="text-center py-5 fw-bolder {{ 'admin_vacation.حجم_الخط_إدارة_الطلبات' | translate }}">
-            ادارة طلبات الإذن
+            {{ 'admin_vacation.إدارة_طلبات_الإذن' | translate }}
         </h1>
 
         <!-- the table header -->
-        <div class="{{  'direction' | translate }} ">
+        <div class="{{ 'direction' | translate }}">
             <div class="ordersHead rounded-top-1 w-100 py-3">
                 <div class="row">
                     <div class="col-md-3 text-center hide-on-mobile">
@@ -15,20 +15,20 @@
                         <p class="p-0 my-0">{{ 'admin_vacation.رقم_الطلب' | translate }}</p>
                     </div>
                     <div class="col-md-3 text-center hide-on-mobile">
-                        <p class="p-0 my-0 px-5">نوع الطلب</p>
+                        <p class="p-0 my-0 px-5">{{ 'admin_vacation.نوع_الطلب' | translate }}</p>
                     </div>
                     <div class="col-md-3 text-center hide-on-mobile">
                         <p class="p-0 my-0">{{ 'admin_vacation.التاريخ' | translate }}</p>
                     </div>
                     <div class="col-md-3 text-center miniHeader show-on-mobile-only">
-                        <p class="p-0 my-0">قائمة طلبات العهدة</p>
+                        <p class="p-0 my-0">{{ 'admin_vacation.قائمة_طلبات_الاذن' | translate }}</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- the row of each employee -->
-        <div class="accordion {{  'direction' | translate }} overflow-hidden" id="accordionExample">
+        <div class="accordion {{ 'direction' | translate }} overflow-hidden" id="accordionExample">
 
             <!-- one employee -->
             <div id="oneItem" #oneItem class="accordion-item rounded-0" *ngFor="let order of PermissionList.reverse()">
@@ -39,10 +39,9 @@
                             <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">{{ order.employeeName }}</p>
                             <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">#{{ order.id }}</p>
                             <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
-                                طلب اذن </p>
-
+                                {{ 'admin_vacation.طلب_اذن' | translate }}</p>
                             <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
-                                {{order.startDate| date : 'yyyy/MM/dd' }}</p>
+                                {{ order.startDate | date : 'yyyy/MM/dd' }}</p>
                         </div>
                     </div>
                 </h2>
@@ -51,68 +50,52 @@
                         <div>
                             <p class="orderNumber my-0 d-inline-block bg-white px-2 mx-3 rounded">{{
                                 'admin_vacation.رقم_الطلب' | translate }}: {{ order.id }}</p>
-                            <div
-                                class="parentOfOrders mx-0 w-100 rounded border row d-flex justify-content-center align-items-center overflow-hidden">
+                            <div class="parentOfOrders mx-0 w-100 rounded border row d-flex justify-content-center align-items-center overflow-hidden">
                                 <div class="col-md-4">
-                                    <div class="w-100 border-start noBorder-mobile">
+                                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                                         <p class="my-0">{{ 'admin_vacation.اسم_الموظف' | translate }}: <span
-                                                class="my-0 small ">{{ order.employeeName }}</span></p>
-                                        <p class="my-0">{{ 'admin_vacation.كود_الموظف' | translate }}: {{
-                                            order.employeeId }}</p>
+                                                class="my-0 small">{{ order.employeeName }}</span></p>
+                                        <p class="my-0">{{ 'admin_vacation.كود_الموظف' | translate }}: {{ order.employeeId }}</p>
                                     </div>
                                 </div>
-
-
                                 <div class="col-md-3">
-                                    <div class="w-100 border-start noBorder-mobile">
+                                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                                         <p class="my-0">
-                                            التاريخ :
+                                            {{ 'admin_vacation.التاريخ' | translate }}:
                                             <span class="fw-lighter"> {{order.startDate | date : 'dd-MM-yyyy'}}</span>
                                         </p>
                                         <p class="my-0">
-                                            بداية الاذن :
+                                            {{ 'admin_vacation.بداية_الاذن' | translate }}:
                                             <span class="fw-lighter"> {{order.startDate | date : 'hh:mm a'}}</span>
                                         </p>
                                         <p class="my-0">
-                                            نهاية الاذن :
+                                            {{ 'admin_vacation.نهاية_الاذن' | translate }}:
                                             <span class="fw-lighter"> {{order.endDate | date : 'hh:mm a'}} </span>
                                         </p>
                                     </div>
                                 </div>
-
-                                <!--    stoooop herreeeee  -->
-
                                 <div class="col-md-3">
-
-
                                     <p class="my-0" *ngIf="order.details">
-                                        سبب الاذن :
-                                        <span class="fw-light">
-                                            {{order.details}}
-                                        </span>
+                                        {{ 'admin_vacation.سبب_الاذن' | translate }}:
+                                        <span class="fw-light">{{order.details}}</span>
                                     </p>
-
                                     <p class="my-0">
-                                        مرفقات :
+                                        {{ 'admin_assets.مرفقات' | translate }}:
                                         <span class="my-0" *ngIf="order.uploadFileId">
                                             <span (click)="fileDownload(order.uploadFileId)"
                                                 class="download-button text-primary cursor-pointer">
-                                                تحميل المرفق
+                                                {{ 'admin_assets.تحميل_المرفق' | translate }}
                                             </span>
                                         </span>
-                                        <span *ngIf="order.uploadFileId == null"> لا يوجد </span>
+                                        <span *ngIf="order.uploadFileId == null"> {{ 'admin_assets.لا_يوجد' | translate }} </span>
                                     </p>
-
-
                                 </div>
                                 <div class="col-md-2">
                                     <div class="w-100 mx-auto p-1 text-center">
                                         <button (click)="actionRequest(order.id, true, detailsInput.value, oneItem)"
-                                            class="btn btn-success my-1 w-100">{{ 'admin_vacation.قبول' | translate
-                                            }}</button>
+                                            class="btn btn-success my-1 w-100">{{ 'admin_vacation.قبول' | translate }}</button>
                                         <button (click)="actionRequest(order.id, false, detailsInput.value, oneItem)"
-                                            class="btn btn-danger my-1 w-100">{{ 'admin_vacation.رفض' | translate
-                                            }}</button>
+                                            class="btn btn-danger my-1 w-100">{{ 'admin_vacation.رفض' | translate }}</button>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

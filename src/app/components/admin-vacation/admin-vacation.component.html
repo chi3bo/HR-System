@@ -1,7 +1,7 @@
 <div class="bg-white   px-sm-5 ">
     <section class=" w-100 container-fluid  rounded-3 vh-80  py-5 p-sm-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}">
         <h1 class="text-center py-5 fw-bolder {{ 'admin_vacation.حجم_الخط_إدارة_الطلبات' | translate }}">
-            ادارة طلبات الاجازة
+            {{"admin_vacation.إدارة_الطلبات" | translate}}
         </h1>
 
         <!-- the table header -->
@@ -67,7 +67,7 @@
                             <div
                                 class="parentOfOrders mx-0 w-100 rounded border row d-flex justify-content-center align-items-center overflow-hidden">
                                 <div class="col-md-4">
-                                    <div class="w-100 border-start noBorder-mobile">
+                                    <div class="w-100   {{'admin_vacation.border' | translate}} noBorder-mobile">
                                         <p class="my-0">{{ 'admin_vacation.اسم_الموظف' | translate }}: <span
                                                 class="my-0 small">{{ order.employeeName }}</span></p>
                                         <p class="my-0">{{ 'admin_vacation.كود_الموظف' | translate }}: {{
@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="w-100 border-start noBorder-mobile">
+                                    <div class="w-100 {{'admin_vacation.border' | translate}}  noBorder-mobile">
                                         <p class="my-0">{{ 'admin_vacation.مدة_الإجازة' | translate }}: {{
                                             order.numberOfDays }}</p>
                                         <p class="my-0">{{ 'admin_vacation.تاريخ_البدء' | translate }}: {{

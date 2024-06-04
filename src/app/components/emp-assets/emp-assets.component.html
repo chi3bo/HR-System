@@ -11,31 +11,30 @@
             <div
                 class="parentOfOrders {{ 'direction' | translate }} mx-0 w-100 bg-white rounded border row d-flex justify-content-center align-items-center overflow-hidden ">
                 <div class="col-md-4">
-                    <div class="w-100 border-start noBorder-mobile">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                         <p class="my-0">
-                            تفاصيل العهدة : {{order.details}}
+                            {{ 'EmpAssets.تفاصيل_العهدة' | translate }} : {{ order.details }}
                         </p>
 
-                        <p *ngIf="order.isEmployeeAgree== true" class="my-0">
-                            الحفاظ علي العهدة : موافق
-                        </p>
-                        <p *ngIf="order.isEmployeeAgree== false" class="my-0">
-                            الحفاظ علي العهدة : غير موافق
+                        <p class="my-0">
+                            {{ 'EmpAssets.الحفاظ_علي_العهدة' | translate }} :
+                            <span *ngIf="order.isEmployeeAgree == true">{{ 'EmpAssets.موافق' | translate }}</span>
+                            <span *ngIf="order.isEmployeeAgree == false">{{ 'EmpAssets.غير_موافق' | translate }}</span>
                         </p>
                     </div>
                 </div>
 
                 <div class="col-md-2">
-                    <div class="w-100 border-start noBorder-mobile">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                         <p class="my-0">
-                            مرفقات :
-                            <span *ngIf="order.uploadFileId"> نعم </span>
-                            <span *ngIf="order.uploadFileId == null"> لا يوجد </span>
+                            {{ 'EmpAssets.مرفقات' | translate }} :
+                            <span *ngIf="order.uploadFileId">{{ 'EmpAssets.نعم' | translate }}</span>
+                            <span *ngIf="!order.uploadFileId">{{ 'EmpAssets.لا_يوجد' | translate }}</span>
                         </p>
                         <p class="my-0" *ngIf="order.uploadFileId">
                             <a (click)="fileDownload(order.uploadFileId)"
                                 class="link-underline-opacity-50 link-underline">
-                                تحميل المرفق
+                                {{ 'EmpAssets.تحميل_المرفق' | translate }}
                             </a>
                         </p>
                     </div>
@@ -44,19 +43,19 @@
                 <div class="col-md-4">
                     <div class="w-100 noBorder-mobile">
                         <p class="my-0">
-                            {{ 'my_order_vac.تفاصيل_الرد' | translate }} : {{order.approveDetails}}
+                            {{ 'EmpAssets.تفاصيل_الرد' | translate }} : {{ order.approveDetails }}
                         </p>
                         <p *ngIf="order.approveStatus == 'Approved'" class="my-0">
-                            {{ 'my_order_vac.حالة_الطلب' | translate }} : <span class="status-Msg-confirmed">{{
-                                'my_order_vac.تمت_الموافقة' | translate }}</span>
+                            {{ 'EmpAssets.حالة_الطلب' | translate }} :
+                            <span class="status-Msg-confirmed">{{ 'EmpAssets.تمت_الموافقة' | translate }}</span>
                         </p>
                         <p *ngIf="order.approveStatus == 'NotApproved'" class="my-0">
-                            {{ 'my_order_vac.حالة_الطلب' | translate }} : <span class="status-Msg-rejected">{{
-                                'my_order_vac.تم_رفض_الطلب' | translate }}</span>
+                            {{ 'EmpAssets.حالة_الطلب' | translate }} :
+                            <span class="status-Msg-rejected">{{ 'EmpAssets.تم_رفض_الطلب' | translate }}</span>
                         </p>
                         <p *ngIf="order.approveStatus == 'Pinding'" class="my-0">
-                            {{ 'my_order_vac.حالة_الطلب' | translate }} : <span class="status-Msg-pendding">{{
-                                'my_order_vac.جاري_مراجعة_الطلب' | translate }}</span>
+                            {{ 'EmpAssets.حالة_الطلب' | translate }} :
+                            <span class="status-Msg-pendding">{{ 'EmpAssets.جاري_مراجعة_الطلب' | translate }}</span>
                         </p>
                     </div>
                 </div>
@@ -74,8 +73,5 @@
                             class="w-50 w-100-mobile">
                     </div>
                 </div>
-                
+
             </div>
-        </div>
-    </div>
-</section>

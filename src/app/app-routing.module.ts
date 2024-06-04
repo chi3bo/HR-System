@@ -29,6 +29,7 @@ import { EmpPermissionsComponent } from './components/emp-permissions/emp-permis
 import { AdminAssetsComponent } from './components/admin-assets/admin-assets.component';
 import { AdminLettersComponent } from './components/admin-letters/admin-letters.component';
 import { AdminLeaveComponent } from './components/admin-leave/admin-leave.component';
+import { TimeSheetComponent } from './components/time-sheet/time-sheet.component';
 
 const routes: Routes = [
 
@@ -77,7 +78,9 @@ const routes: Routes = [
       { path: 'admin-assets', component: AdminAssetsComponent, title: 'assets orders' },
       { path: 'admin-letters', component: AdminLettersComponent, title: 'letters orders' },
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
+      { path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
+
     ]
   },
 

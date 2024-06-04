@@ -38,6 +38,12 @@ import { EmpPermissionsComponent } from './components/emp-permissions/emp-permis
 import { AdminAssetsComponent } from './components/admin-assets/admin-assets.component';
 import { AdminLettersComponent } from './components/admin-letters/admin-letters.component';
 import { AdminLeaveComponent } from './components/admin-leave/admin-leave.component';
+import { FakeNavComponent } from './components/fake-nav/fake-nav.component';
+import { TimeSheetComponent } from './components/time-sheet/time-sheet.component';
+import { EnterKeyFocusDirective } from './shared/enter-key-focus.directive';
+import { CalcTimePipe } from './shared/calc-time.pipe';
+import { CalcLatePipe } from './shared/calc-late.pipe';
+import { CalcEarlyPipe } from './shared/calc-early.pipe';
 
 
 
@@ -77,7 +83,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmpPermissionsComponent,
     AdminAssetsComponent,
     AdminLettersComponent,
-    AdminLeaveComponent
+    AdminLeaveComponent,
+    FakeNavComponent,
+    TimeSheetComponent,
+    EnterKeyFocusDirective,
+    CalcTimePipe,
+    CalcLatePipe,
+    CalcEarlyPipe,
   ],
   imports: [
     BrowserModule,

@@ -32,10 +32,12 @@ body {
 
 
 .ordersHead {
-    background-color: #4CAF50;
+    background-color: #006d8e;
     color: #fff;
     padding-inline: 20px;
     padding-left: 44px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
 }
 
 .opendOrder {
