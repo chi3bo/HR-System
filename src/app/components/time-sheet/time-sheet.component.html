@@ -1,12 +1,12 @@
-<section class="w-100 bg-body-secondary vh-100 p-5">
-    <div class="bg-white w-100 vh-80 rounded-2">
+<section class="w-100 bg-body-secondary min-vh-100 p-5">
+    <div class="bg-white w-100 min-vh-100 rounded-2">
         <form [formGroup]="tiemSheet">
 
-            <div class="table-responsive">
-                <table class="table  table-bordered">
+            <div class="table-responsive" formArrayName="bigFormArray">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <!-- <th class="py-3 text-center ">num</th> -->
+                            <th class="py-3 text-center "></th>
                             <th class="py-3 text-center ">id</th>
                             <th class="py-3 text-start ">name</th>
                             <th class="py-3 text-center  ">date</th>
@@ -39,85 +39,98 @@
                             <td class="py-3 fw-lighter text-center"> <span>{{item.total1}}</span></td>
                             <td class="py-3 fw-lighter text-center"> <span>{{item.total2}}</span></td>
                         </tr> -->
-                        <div formArrayName="lessons">
-                            <tr *ngFor="let item of lessons.controls; let myIi = index" class="table-bordered">
-                                <!-- <td class="py-2 fw-lighter text-center w-auto small align-middle "> {{myIi +1}} </td> -->
-                                <td class="py-2 idwidth text-center"><span><input appEnterKeyFocus type="text"
-                                            formControlName="id" class="form-control-plaintext text-center"> </span>
-                                </td>
 
 
-                                <td class="py-2  personTd">
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <div class="greenDot px-1 me-2"></div>
-                                        <img src="./assets/images/person2.jpg" alt="" class="empImg px-1">
-                                        <span class="px-1 empcolor"> <input appEnterKeyFocus type="text"
-                                                class="form-control-plaintext text-center empcolor"
-                                                formControlName="name">
-                                        </span>
-                                    </div>
-                                </td>
-
-                                <td class="py-2 fw-lighter text-center w-auto "> <input appEnterKeyFocus type="text"
-                                        class="form-control-plaintext text-center" formControlName="date">
-                                </td>
-
-                                <td class="py-2 fw-lighter text-center ">
-                                    <input #starting appEnterKeyFocus type="time"
-                                        class="form-control-plaintext text-center" formControlName="time1">
-                                </td>
-
-                                <td class="py-2 fw-lighter ">
-                                    <input #ending appEnterKeyFocus type="time"
-                                        class="form-control-plaintext text-center" formControlName="time2">
-                                </td>
-
-                                <td class="py-2 fw-lighter "><input appEnterKeyFocus type="text"
-                                        class="form-control-plaintext text-center" formControlName="early"
-                                        [value]="starting.valueAsNumber | calcEarly ">
-                                </td>
-
-                                <td class="py-2 fw-lighter"><input appEnterKeyFocus type="text"
-                                        class="form-control-plaintext text-center" formControlName="late"
-                                        [value]="starting.valueAsNumber | CalcLate "></td>
-
-                                <td class="py-2 fw-lighter "><input appEnterKeyFocus type="text"
-                                        class="form-control-plaintext text-center" formControlName="workingTime"
-                                        [value]=" ending.valueAsNumber - starting.valueAsNumber| calcTime "> </td>
-
-                                <td class="py-2 fw-lighter">
-
-                                    <select appEnterKeyFocus formControlName="project" name="project" id="project"
-                                        class="form-select border-0 project-options">
-                                        <option class="" value="1">project1</option>
-                                        <option class="" value="2">project2</option>
-                                        <option class="" value="3">project3</option>
-                                        <option class="" value="4">project4</option>
-                                        <option class="" value="5">project5</option>
-                                    </select>
-                                </td>
-
-                                <td class="py-2 fw-lighter text-center">
-                                    <input appEnterKeyFocus type="checkbox"
-                                        class="form-check form-check-input form-check-inline border-secondary-subtle border"
-                                        formControlName="abbsent">
-                                </td>
 
 
-                            </tr>
-                        </div>
+
+
+                        <tr *ngFor="let item of bigFormArray.controls; let myIi = index" [formGroupName]="myIi"
+                            class="table-bordered">
+
+                            <td 
+                                class="py-2 fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
+                                <input appEnterKeyFocus disabled type="text" class=" form-control-plaintext  text-center" [value]="myIi +1">
+                            </td>
+
+                            <td class="py-2 idwidth text-center "><span><input appEnterKeyFocus type="text"
+                                        formControlName="id" class="form-control-plaintext is-invalid text-center ">
+                                </span>
+                            </td>
+
+
+                            <td class="py-2  personTd">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <div class="greenDot px-1 me-2"></div>
+                                    <img src="./assets/images/person2.jpg" alt="" class="empImg px-1">
+                                    <span class=" empcolor"> <input appEnterKeyFocus type="text"
+                                            class="form-control-plaintext text-center empcolor" formControlName="name">
+                                    </span>
+                                </div>
+                            </td>
+
+                            <td class="py-2 fw-lighter text-center w-auto "> <input appEnterKeyFocus type="text"
+                                    class="form-control-plaintext text-center" formControlName="date">
+                            </td>
+
+                            <td class="py-2 fw-lighter text-center ">
+                                <input #starting appEnterKeyFocus type="time" class="form-control-plaintext text-center"
+                                    formControlName="time1">
+                            </td>
+
+                            <td class="py-2 fw-lighter ">
+                                <input #ending appEnterKeyFocus type="time" class="form-control-plaintext text-center"
+                                    formControlName="time2">
+                            </td>
+
+                            <td class="py-2 fw-lighter "><input appEnterKeyFocus type="text"
+                                    class="form-control-plaintext text-center" formControlName="early"
+                                    [value]="starting.valueAsNumber | calcEarly ">
+                            </td>
+
+                            <td class="py-2 fw-lighter"><input appEnterKeyFocus type="text"
+                                    class="form-control-plaintext text-center" formControlName="late"
+                                    [value]="starting.valueAsNumber | CalcLate "></td>
+
+                            <td class="py-2 fw-lighter "><input appEnterKeyFocus type="text"
+                                    class="form-control-plaintext text-center" formControlName="workingTime"
+                                    [value]=" ending.valueAsNumber - starting.valueAsNumber| calcTime "> </td>
+
+                            <td class="py-2 fw-lighter">
+
+                                <select appEnterKeyFocus formControlName="project" name="project" id="project"
+                                    class="form-select border-0 project-options">
+                                    <option class="" value="1">project1</option>
+                                    <option class="" value="2">project2</option>
+                                    <option class="" value="3">project3</option>
+                                    <option class="" value="4">project4</option>
+                                    <option class="" value="5">project5</option>
+                                </select>
+                            </td>
+
+                            <td class="py-2 fw-lighter text-center" #parent>
+                                <input appEnterKeyFocus #absent type="checkbox"
+                                    class="form-check form-check-input form-check-inline border-secondary-subtle border"
+                                    formControlName="abbsent" (click)="isAbssent(myIi , absent.checked , parent)">
+                            </td>
+
+
+                        </tr>
                     </tbody>
 
                 </table>
-                <button type="button" class="btn btn-primary ms-auto text-center d-block adding-btn">
+                <button (click)="addNow()" type="button" class="btn btn-primary ms-auto text-center d-block adding-btn">
                     save
-                </button>
-                <button (click)="adding()" type="button" class="btn btn-success ms-auto text-center d-block adding-btn">
-                    add
                 </button>
             </div>
         </form>
-
     </div>
+
+
+
+
+
+
+
 
 </section>

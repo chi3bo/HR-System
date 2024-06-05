@@ -5,9 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CalcTimePipe implements PipeTransform {
 
-  transform(value: number, ...args: unknown[]): unknown {    
+  transform(value: number): unknown {
+    if (value) {
       //                     HOURS                      MINUETS      
-    return Math.floor( value/1000/60/60 )+ ' h : ' + value/1000/60%60 + ' m ';
+      return Math.floor(value / 1000 / 60 / 60) + ' h : ' + value / 1000 / 60 % 60 + ' m ';
+    }
+    return null
   }
 
 

@@ -1,11 +1,11 @@
-.greenDot{
+.greenDot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: rgb(0, 211, 53);
 }
 
-.empImg{
+.empImg {
     width: 40px;
     height: auto;
     border-radius: 50%;
@@ -13,30 +13,44 @@
 }
 
 
-.empcolor{
+.empcolor {
     color: rgb(255, 153, 0);
     text-transform: capitalize;
 }
 
-.idwidth{
-    width: 100px;
+.number-Width {
+    min-width: 30px;
+    max-width: 30px;
+}
+
+.idwidth {
+    min-width: 70px;
+    max-width: 70px;
     text-align: center;
     font-weight: lighter;
 }
 
-.personTd{
+.personTd {
     width: 300px;
 }
 
-th{
-    text-transform:uppercase;
-font-weight: light;
+th {
+    text-transform: uppercase;
+    font-weight: light;
 }
 
-.adding-btn{
+.adding-btn {
     width: 200px;
 }
 
-.project-options option{
-font-size: 20px;
+.project-options option {
+    font-size: 20px;
+}
+
+/* td:has(input:disabled) {
+    background-color: rgba(255, 172, 172, 0.232) !important;
+} */
+
+td :disabled {
+    background-color: rgba(0, 0, 0, 0.091) !important;
 }

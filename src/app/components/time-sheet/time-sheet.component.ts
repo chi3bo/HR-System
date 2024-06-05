@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControlOptions, FormGroup } from '@angular/forms';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormControlOptions, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -8,50 +8,83 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./time-sheet.component.css']
 })
 export class TimeSheetComponent {
-  constructor(private _FormBuilder: FormBuilder) { }
+  constructor(private _FormBuilder: FormBuilder, private _Renderer2: Renderer2) { }
+
+
   tiemSheet: FormGroup = this._FormBuilder.group({
-    id: [null],
-    img: [null],
-    name: [null],
-    date: [null],
-    time1: [null],
-    time2: [null],
-    early: [null],
-    late: [null],
-    workingTime: [null],
-    project: [null],
-    abbsent: [null],
-    lessons: this._FormBuilder.array([])
-  }, { validators: [this.isAbssent] } as FormControlOptions)
+    bigFormArray: this._FormBuilder.array([])
+  })
 
 
-  get lessons() {
-    return this.tiemSheet.controls['lessons'] as FormArray
+  // customValidator
+  isAbssent(id: number, status: boolean, parent: HTMLElement) {
+    let MyForm = this.bigFormArray.controls[id]
+    if (status == true) {
+      MyForm.disable()
+      MyForm.patchValue({
+        workingTime: [],
+        time1: [null],
+        time2: [null],
+        early: [null],
+        late: [null],
+        project: [null],
+
+      })
+
+      MyForm.get('abbsent')?.enable()
+    }
+    else {
+      MyForm.enable()
+      MyForm.get('name')?.enable()
+    }
+
   }
+  //لسة مخلتصش المفروض نروح نطبقها هناك
 
-  adding() {
-    const x = this._FormBuilder.group({
-      id: [9999],
-      img: [null],
-      name: ['haaaaaamed'],
-      date: [null],
-      time1: [null],
-      time2: [null],
-      early: [null],
-      late: [null],
-      workingTime: [null],
-      project: [null],
-      abbsent: [null],
-    })
-    this.lessons.push(x)
+  get bigFormArray() {
+    return this.tiemSheet.get('bigFormArray') as FormArray
   }
-
-
-
 
 
   ngOnInit(): void {
+    for (let i = 0; i < 15; i++) {
+      let newRow = this._FormBuilder.group({
+        id: [null],
+        img: [null],
+        name: [null],
+        date: [null],
+        time1: [null],
+        time2: [null],
+        early: [null],
+        late: [null],
+        workingTime: [null],
+        project: [null],
+        abbsent: [null],
+      })
+      this.bigFormArray.push(newRow)
+    }
   }
+
+  addNow() {
+    console.log(this.bigFormArray.value);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   myData: any[] = [
@@ -237,31 +270,27 @@ export class TimeSheetComponent {
     },
   ]
 
-  display() {
-    console.log(this.tiemSheet);
-
-  }
-
-  isAbssent(myForm: FormGroup) {
-    if (myForm.get('abbsent')?.value == true) {
-      myForm.setErrors({ heabsent: true })
-    }
-  }//لسة مخلتصش المفروض نروح نطبقها هناك
-
-  setNewRow() {
-    let newRow = {
-      id: this.tiemSheet.get('id')?.value,
-      img: './assets/images/person2.jpg',
-      name: this.tiemSheet.get('name')?.value,
-      date: this.tiemSheet.get('date')?.value,
-      time1: this.tiemSheet.get('time1')?.value + 'hrs',
-      time2: this.tiemSheet.get('time2')?.value + 'hrs',
-      time3: this.tiemSheet.get('time3')?.value + 'hrs',
-      time4: this.tiemSheet.get('time4')?.value + 'hrs',
-      total1: '$ ' + this.tiemSheet.get('total1')?.value + ',00',
-      total2: '$ ' + this.tiemSheet.get('total2')?.value + ',00',
-    }
-    this.myData.push(newRow)
-    this.tiemSheet.reset('null')
-  }
 }
+
+
+
+
+
+
+// getting and display data
+  // setNewRow() {
+  //   let newRow = {
+  //     id: this.tiemSheet.get('id')?.value,
+  //     img: './assets/images/person2.jpg',
+  //     name: this.tiemSheet.get('name')?.value,
+  //     date: this.tiemSheet.get('date')?.value,
+  //     time1: this.tiemSheet.get('time1')?.value + 'hrs',
+  //     time2: this.tiemSheet.get('time2')?.value + 'hrs',
+  //     time3: this.tiemSheet.get('time3')?.value + 'hrs',
+  //     time4: this.tiemSheet.get('time4')?.value + 'hrs',
+  //     total1: '$ ' + this.tiemSheet.get('total1')?.value + ',00',
+  //     total2: '$ ' + this.tiemSheet.get('total2')?.value + ',00',
+  //   }
+  //   this.myData.push(newRow)
+  //   this.tiemSheet.reset('null')
+  // }

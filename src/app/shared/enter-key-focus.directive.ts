@@ -10,11 +10,14 @@ export class EnterKeyFocusDirective {
     if (event.key === 'Enter') {
       const allInputs = Array.from(this.myElement.nativeElement.form.elements)
       const currentInput: number = allInputs.indexOf(this.myElement.nativeElement)
-      let nextInput:HTMLElement = allInputs[currentInput + 1] as HTMLElement
-      if (nextInput.hasAttribute('disabled')) {
-        
+      let nextInput: HTMLElement = allInputs[currentInput + 1] as HTMLElement
+      if (!nextInput.hasAttribute('disabled')) {
+        nextInput.focus()
       }
-      nextInput.focus()      
+      else {
+        let nextInput: HTMLElement = allInputs[currentInput + 2] as HTMLElement
+        nextInput.focus()
+      }
     }
 
   }
