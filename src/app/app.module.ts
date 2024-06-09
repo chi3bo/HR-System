@@ -44,6 +44,12 @@ import { EnterKeyFocusDirective } from './shared/enter-key-focus.directive';
 import { CalcTimePipe } from './shared/calc-time.pipe';
 import { CalcLatePipe } from './shared/calc-late.pipe';
 import { CalcEarlyPipe } from './shared/calc-early.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
+import { EmpCarComponent } from './components/emp-car/emp-car.component';
+import { EmpPassportComponent } from './components/emp-passport/emp-passport.component';
+import { EmpContractComponent } from './components/emp-contract/emp-contract.component';
+import { EmpIdentityComponent } from './components/emp-identity/emp-identity.component';
+import { ProfileNavComponent } from './components/profile-nav/profile-nav.component';
 
 
 
@@ -90,6 +96,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     CalcTimePipe,
     CalcLatePipe,
     CalcEarlyPipe,
+    ProfileComponent,
+    EmpCarComponent,
+    EmpPassportComponent,
+    EmpContractComponent,
+    EmpIdentityComponent,
+    ProfileNavComponent,
   ],
   imports: [
     BrowserModule,

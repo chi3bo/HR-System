@@ -30,6 +30,11 @@ import { AdminAssetsComponent } from './components/admin-assets/admin-assets.com
 import { AdminLettersComponent } from './components/admin-letters/admin-letters.component';
 import { AdminLeaveComponent } from './components/admin-leave/admin-leave.component';
 import { TimeSheetComponent } from './components/time-sheet/time-sheet.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { EmpContractComponent } from './components/emp-contract/emp-contract.component';
+import { EmpCarComponent } from './components/emp-car/emp-car.component';
+import { EmpIdentityComponent } from './components/emp-identity/emp-identity.component';
+import { EmpPassportComponent } from './components/emp-passport/emp-passport.component';
 
 const routes: Routes = [
 
@@ -44,8 +49,6 @@ const routes: Routes = [
       { path: 'leave', component: LeavePermissionComponent, title: 'leave' },
       { path: 'letters', component: LettersComponent, title: 'Letters' },
       { path: 'asset', component: AssetRequestComponent, title: 'Asset Request' },
-
-
       {
         path: 'allOrders', component: AllOrdersComponent, title: 'my orders', children: [
           { path: 'loan', component: OrderloanComponent, title: 'loan orders' },
@@ -61,7 +64,14 @@ const routes: Routes = [
     ]
   },
   { path: 'help', component: HelpComponent, title: 'help' },
-
+  {
+    path: 'my-profile', component: ProfileComponent, title: 'my Profile', children: [
+      { path: 'contract', component: EmpContractComponent, title: '' },
+      { path: 'car', component: EmpCarComponent, title: '' },
+      { path: 'identity', component: EmpIdentityComponent, title: '' },
+      { path: 'passport', component: EmpPassportComponent, title: '' },
+    ]
+  },
 
   {
     path: '', component: AuthComponent, title: 'auth', children: [

@@ -1,0 +1,15 @@
+.full-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.w-40{
+    width: 35%;
+}
+
+.text-teal{
+    color: teal;
+    text-shadow: 2px 2px 3px rgb(0, 202, 202);
+}

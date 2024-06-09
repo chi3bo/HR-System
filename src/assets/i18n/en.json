@@ -368,5 +368,33 @@
         "تمت_الموافقة": "Approved",
         "تم_رفض_الطلب": "Rejected",
         "جاري_مراجعة_الطلب": "Pending"
-    }
+    },
+    "my profile start ==========================": "",
+    "page": {
+        "كود": "ID",
+        "موظف": "Employee",
+        "تابعنا_علي_مواقع_التواصل_الاجتماعي": "Follow us on social media",
+        "هوية": "Identity",
+        "سيارة": "Car",
+        "جواز_سفر": "Passport",
+        "عقد": "Contract",
+        "تحديث_صورة_الملف_الشخصي": "Update Profile Picture",
+        "قم_بأختيار_الصورة_الجديدة": "Choose the new picture",
+        "حفظ": "Save",
+        "تعديل": "Edit",
+        "تواصل_معنا": "Contact us",
+        "احتاج_المساعدة": "I need help",
+        "تعديل_الصورة": "Update Picture ",
+        "لا_يوجد_بيانات_متاحة": "No data available",
+        "عن_الشركة": "about us ",
+        "رقم_جواز_السفر": "Passport Number",
+        "تاريخ_انتهاء_الجواز": "Passport Expiry Date",
+        "رقم_الهوية": "ID Number",
+        "تاريخ_الانتهاء": "Expiry Date",
+        "تاريخ_بداية_العقد": "Contract Start Date",
+        "تاريخ_نهاية_العقد": "Contract End Date",
+        "رقم_السيارة": "Car Number",
+        "تاريخ_نهاية_الفحص": "Inspection End Date"
+    },
+    "my profile end ==========================": ""
 }

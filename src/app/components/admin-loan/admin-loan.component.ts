@@ -40,6 +40,8 @@ export class AdminLoanComponent {
     })
 
   }
+
+  
   actionRequest(orderId: number, action: boolean, oneItem: HTMLElement) {
     if(localStorage.getItem('userToken') == (null || undefined)){
       this._router.navigate(['login'])
