@@ -111,7 +111,7 @@
             </div>
             <ul class="list-unstyled sidbarUnits  my-5 border-top border-bottom">
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link w-7" routerLink="/home" routerLinkActive="active-menu">{{ 'main_nav.الرئيسية' |
+                    <a class="nav-link w-7" [routerLink]="isAdmin ?  '/admin-home' : '/home' " routerLinkActive="active-menu">{{ 'main_nav.الرئيسية' |
                         translate }}</a>
                 </li>
 

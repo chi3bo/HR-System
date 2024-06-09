@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Profile } from 'src/app/shared/interfaces/profile';
@@ -69,6 +69,10 @@ export class ProfileComponent {
       }
 
     })
+  }
+
+  moveDown() {
+    window.scrollTo(0, screen.height)
   }
 
 

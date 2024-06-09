@@ -68,7 +68,8 @@
                                 <i class="fa-solid fa-user-tie align-middle  px-1"></i>
                             </span>
                             <ul class="dropdown-menu sidedown myAccount text-center  ">
-                                <li><span class="dropdown-item py-2 {{ 'direction' | translate}}" (click)="closeNav()">
+                                <li routerLink="my-profile"><span
+                                        class="dropdown-item py-2 {{ 'direction' | translate}}" (click)="closeNav()">
                                         {{ 'admin_nav.حـســابـي' | translate }}
                                         <i class="fa-regular fa-id-badge px-1"></i>
                                     </span>
@@ -151,10 +152,18 @@
             </ul>
         </div>
 
-        <div class="text-end px-3 text-dark logoutBtn-side w-100 mb-2 {{ 'direction' | translate}}">
+
+        <div class="text-end px-3 py-2 text-dark logoutBtn-side w-100 mb-2 {{ 'direction' | translate}}">
+            <span class="py-2 " routerLink="my-profile" (click)="closeNav()">{{ 'admin_nav.حـســابـي' | translate }}
+                <i class="fa-regular fa-id-badge px-1"></i></span>
+        </div>
+
+
+        <div class="text-end px-3 py-2 text-dark logoutBtn-side w-100 mb-2 {{ 'direction' | translate}}">
             <span class="py-2 " (click)="setLogout()">{{ 'admin_nav.تسجيل الخروج' | translate }}
                 <i class="fa-solid fa-arrow-right-from-bracket px-1 "></i></span>
         </div>
+
 
         <div class="sideFooter position-absolute bottom-0 text-darkly">
             <div>
