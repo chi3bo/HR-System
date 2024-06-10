@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +50,9 @@ import { EmpPassportComponent } from './components/emp-passport/emp-passport.com
 import { EmpContractComponent } from './components/emp-contract/emp-contract.component';
 import { EmpIdentityComponent } from './components/emp-identity/emp-identity.component';
 import { ProfileNavComponent } from './components/profile-nav/profile-nav.component';
+import { DisplayTimesheetComponent } from './components/display-timesheet/display-timesheet.component';
+import { SendTimesheetComponent } from './components/send-timesheet/send-timesheet.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -102,6 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmpContractComponent,
     EmpIdentityComponent,
     ProfileNavComponent,
+    DisplayTimesheetComponent,
+    SendTimesheetComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +115,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -120,6 +126,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
 
   ],
+
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 
   providers: [],

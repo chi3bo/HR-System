@@ -42,7 +42,6 @@ export class ProfileNavComponent implements OnInit {
 
   adminOrEmp() {
     if (localStorage.getItem('userRole')) {
-      console.log('admiiiiiiiiiiiiin');
       this.isAdmin = true
     }
     else {

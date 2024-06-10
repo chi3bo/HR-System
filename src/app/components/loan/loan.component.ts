@@ -24,7 +24,7 @@ export class LoanComponent implements OnInit {
     lastInstallmentValue: [{ value: null, disabled: true }, Validators.required], // القسط الاخير
     numberOfInstallment: [{ value: null, disabled: true }, Validators.required],// عدد الاقساط
     startDate: [null, Validators.required]// تاريخ البدء
-  }, { validators: [this.Install], } as FormControlOptions)
+  }, { validators: [this.Install] } as FormControlOptions)
 
   pageOpenOne: boolean = false
   empName: any = ''

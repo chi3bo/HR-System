@@ -298,6 +298,14 @@ body {
 
 /* ==============  animate order   ===================== */
 
+.loading-text{
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    /* filter: drop-shadow( white 0 0 2px); */
+
+}
+
+
 /* =====================      animation of sections       ===================  */
 
 .CardOne {

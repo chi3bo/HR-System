@@ -35,6 +35,8 @@ import { EmpContractComponent } from './components/emp-contract/emp-contract.com
 import { EmpCarComponent } from './components/emp-car/emp-car.component';
 import { EmpIdentityComponent } from './components/emp-identity/emp-identity.component';
 import { EmpPassportComponent } from './components/emp-passport/emp-passport.component';
+import { SendTimesheetComponent } from './components/send-timesheet/send-timesheet.component';
+import { DisplayTimesheetComponent } from './components/display-timesheet/display-timesheet.component';
 
 const routes: Routes = [
 
@@ -88,8 +90,13 @@ const routes: Routes = [
       { path: 'admin-assets', component: AdminAssetsComponent, title: 'assets orders' },
       { path: 'admin-letters', component: AdminLettersComponent, title: 'letters orders' },
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
-      { path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
+      { path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet' ,children:[
+        { path: 'new', component: SendTimesheetComponent, title: 'new' },
+        { path: 'display', component: DisplayTimesheetComponent, title: 'display' },
+        { path: 'new', component: SendTimesheetComponent, title: 'new' },
+
+      ] },
 
     ]
   },

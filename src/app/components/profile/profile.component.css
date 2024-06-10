@@ -20,6 +20,7 @@
 
 
 
+
 .icon-div:hover {
     background-color: rgba(0, 0, 0, 0.053);
     color: rgb(0, 118, 118);
@@ -170,9 +171,83 @@
     display: none;
 }
 
-.bg-blur {
-background-color: #000000a1;
+.font-14 {
+    font-size: 14px;
 }
+
+.min-h-60 {
+    min-height: 60% !important;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: rgba(0, 0, 0, 0.662);
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+        color: #000000;
+    }
+}
+
+.bg-black-opacity{
+    background-color: #000000a1;
+}
+
+
+.img-container {
+    position: relative;
+    width: 100% !important;
+    padding-top: 100% !important;
+    /* هذا يجعل العنصر يكون مربع */
+}
+
+.img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    /* هذا يجعل الصورة تملأ العنصر بالكامل مع الحفاظ على نسبة العرض إلى الارتفاع */
+}
+
+
+
+
+/* ==============  test skelton ==================== */
+/* ==============  test skelton ==================== */
+.skeleton-profile-circle-shimmer {
+    animation: shimmer 2s infinite;
+    background: #ddd linear-gradient(to right, rgba(255, 255, 255, .10) 5%, rgba(255, 255, 255, .30) 10%, rgba(255, 255, 255, .50) 15%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -500px 0;
+    }
+
+    100% {
+        background-position: 500px 0;
+    }
+}
+/* ==============  test skelton ==================== */
+/* ==============  test skelton ==================== */
+
+
+
 
 /*   =================      staaaaaaart media query    =================      */
 /*   =================      staaaaaaart media query    =================      */
@@ -184,6 +259,11 @@ background-color: #000000a1;
         padding: 10px !important;
         width: 150px;
         font-size: 14px;
+    }
+
+    .emp-img {
+        margin-top: 50px;
+        width: 50%;
     }
 
     .show-on-tab-only {
@@ -258,22 +338,11 @@ background-color: #000000a1;
         width: 95% !important;
     }
 
+    .font-13-mobile {
+        font-size: 13px;
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*   =================      eeeennnnndddd media query    =================      */

@@ -1,0 +1,62 @@
+<form [formGroup]="tiemSheet">
+
+    <div class="table-responsive bg-white" formArrayName="bigFormArray">
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th class="py-3 text-center border-0"></th>
+                    <th class="py-3 text-center border-0 ">id</th>
+                    <th class="py-3 text-start border-0 ">name</th>
+                    <th class="py-3 text-center  border-0 ">date</th>
+                    <th class="py-3 text-center border-0 ">start</th>
+                    <th class="py-3 text-center border-0 ">leave</th>
+                    <th class="py-3 text-center border-0 ">early</th>
+                    <th class="py-3 text-center border-0 ">late</th>
+                    <th class="py-3 text-center border-0 ">working Time</th>
+                    <th class="py-3 text-center border-0 ">project</th>
+                    <th class="py-3 text-center border-0 ">appsent</th>
+                </tr>
+            </thead>
+
+
+            <tr *ngFor="let item of myData ; let myIi = index">
+                <td class="fw-lighter text-center number-Width align-middle text-muted opacity-50 small"><span>
+                        {{myIi+1}} </span> </td>
+
+                <!-- 
+                                        <td class="py-2 fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
+                            <input appEnterKeyFocus disabled type="text" class=" form-control-plaintext  text-center"
+                                [value]="myIi +1">
+                        </td>
+                -->
+
+                <td class="py-3 idwidth text-center ">
+                    <span>
+                        {{item.id}}
+                    </span>
+                </td>
+
+                <td class="py-3 name-Width personTd">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="greenDot px-1 me-2"></div>
+                        <img [src]="item.img" alt="" class="empImg px-1">
+                        <span class="px-1 empcolor">{{item.name}}</span>
+                    </div>
+
+                </td>
+                <td class="py-3 fw-lighter text-center date-Width "> <span>{{item.date}}</span> </td>
+                <td class="py-3 fw-lighter text-center time-Width"> <span>{{item.time1}}</span> </td>
+                <td class="py-3 fw-lighter text-center time-Width"><span>{{item.time2}}</span> </td>
+                <td class="py-3 fw-lighter text-center time-Width"><span>{{item.time3}}</span> </td>
+                <td class="py-3 fw-lighter text-center time-Width"> <span>{{item.time4}} </span></td>
+                <td class="py-3 fw-lighter text-center time-Width"> <span>{{item.total2}}</span></td>
+                <td class="py-3 fw-lighter text-center"> <span>{{item.project}}</span></td>
+                <td class="py-3 fw-lighter text-center"> <span>No</span></td>
+            </tr>
+
+
+
+        </table>
+    </div>
+</form>

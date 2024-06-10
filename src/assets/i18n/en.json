@@ -373,6 +373,8 @@
     "page": {
         "كود": "ID",
         "موظف": "Employee",
+        "مسؤول": "Admin",
+
         "تابعنا_علي_مواقع_التواصل_الاجتماعي": "Follow us on social media",
         "هوية": "Identity",
         "سيارة": "Car",
