@@ -9,7 +9,6 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class DisplayTimesheetComponent {
   constructor(private _FormBuilder: FormBuilder, private _Renderer2: Renderer2) { }
 
-
   tiemSheet: FormGroup = this._FormBuilder.group({
     bigFormArray: this._FormBuilder.array([])
   })
@@ -27,7 +26,6 @@ export class DisplayTimesheetComponent {
         early: [null],
         late: [null],
         project: [null],
-
       })
 
       MyForm.get('abbsent')?.enable()
@@ -67,18 +65,6 @@ export class DisplayTimesheetComponent {
   addNow() {
     console.log(this.bigFormArray.value);
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -270,3 +256,11 @@ export class DisplayTimesheetComponent {
   ]
 
 }
+
+// شكل الداتا المطلوبة لجيت داتا تايم شيت ببعتها بودي جيسون
+// {
+//   "employeeId": "string",
+//   "projectId": 0,
+//   "fromDate": "2024-06-10T22:22:23.080Z",
+//   "toDate": "2024-06-10T22:22:23.080Z"
+// }

@@ -53,6 +53,8 @@ import { ProfileNavComponent } from './components/profile-nav/profile-nav.compon
 import { DisplayTimesheetComponent } from './components/display-timesheet/display-timesheet.component';
 import { SendTimesheetComponent } from './components/send-timesheet/send-timesheet.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { FullTimePipe } from './shared/full-time.pipe';
+import { FullTime2Pipe } from './shared/full-time2.pipe';
 
 
 
@@ -107,6 +109,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileNavComponent,
     DisplayTimesheetComponent,
     SendTimesheetComponent,
+    FullTimePipe,
+    FullTime2Pipe,
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,62 @@
-<div class="bg-white w-100 min-vh-100 rounded-2">
+<!-- ================================ start setting  ================================ -->
+<form [formGroup]="settingSheet">
+    <p class=" fs-2 text-center py-3">اعداد سجل جديد</p>
+    <div class="dashboard w-100 pb-2 px-2 arabicList">
+
+
+        <div class="row">
+            <div class="col-xxl-2 col-xl-3 col-md-4 ">
+                <label for="empName"> اسم الموظف :</label>
+                <input type="text" id="empName" class="form-control w-100 mx-auto bg-white text-center" disabled
+                    [value]="empName">
+                <label for="empId" class="py-1"> كود الموظف :</label>
+                <input type="text" id="empId" class="form-control w-100 mx-auto bg-white  text-center" disabled
+                    [value]="empId">
+            </div>
+            <div class="col-xxl-2 col-xl-3 col-md-4 ">
+                <label for="rowNumbers"> ادخل عدد الصفوف :</label>
+                <input #number type="text" formControlName="rowNumbers" id="rowNumbers"
+                    class="form-control w-100 mx-auto text-center" maxlength="2">
+
+
+                <label for="rowNumbers" class="my-1"> ادخل تاريخ موحد : <input formControlName="fixedDate"
+                        type="checkbox" class="form-check form-check-input form-check-inline my-0 border-dark-subtle">
+                </label>
+                <input #date type="date" [disabled]="!settingSheet.get('fixedDate')?.value"
+                    [value]=" !settingSheet.get('fixedDate')?.value ? null : '' " id="rowNumbers"
+                    class="form-control w-100 mx-auto text-center" maxlength="2">
+            </div>
+        </div>
+
+        <div class="mx-auto col-xxl-1 col-xl-2 col-md-3 d-flex justify-content-center align-items-center">
+            <button [disabled]="" (click)="setSetting(number.value , date.value)"
+                class="btn btn-dark w-100 mx-auto d-block my-2">
+                اعداد </button>
+        </div>
+
+    </div>
+</form>
+<!-- ================================ end setting  ================================ -->
+
+
+<div *ngIf="bigFormArray.length > 0" class="bg-white w-100 min-vh-100 rounded-2">
     <form [formGroup]="tiemSheet">
 
         <div class="table-responsive" formArrayName="bigFormArray">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th class="py-3 text-center "></th>
-                        <th class="py-3 text-center ">id</th>
-                        <th class="py-3 text-start ">name</th>
-                        <th class="py-3 text-center  ">date</th>
-                        <th class="py-3 text-center ">start</th>
-                        <th class="py-3 text-center ">leave</th>
-                        <th class="py-3 text-center ">early</th>
-                        <th class="py-3 text-center ">late</th>
-                        <th class="py-3 text-center ">working Time</th>
-                        <th class="py-3 text-center ">project</th>
-                        <th class="py-3 text-center ">appsent</th>
+                        <th class="py-3 text-center  "></th>
+                        <th class="py-3 text-center  ">id</th>
+                        <th class="py-3 text-center name-Width  ">name</th>
+                        <th class="py-3 text-center date-Width  ">date</th>
+                        <th class="py-3 text-center  time-Width">start</th>
+                        <th class="py-3 text-center time-Width ">leave</th>
+                        <th class="py-3 text-center time-Width ">early</th>
+                        <th class="py-3 text-center time-Width ">late</th>
+                        <th class="py-3 text-center  Worktime-Width">working Time</th>
+                        <th class="py-3 text-center project-Width ">project</th>
+                        <th class="py-3 text-center abbsent-Width ">appsent</th>
                     </tr>
                 </thead>
 
@@ -31,8 +72,8 @@
 
                             </td>
                             <td class="py-3 fw-lighter text-center "> <span>{{item.date}}</span> </td>
-                            <td class="py-3 fw-lighter text-center "> <span>{{item.time1}}</span> </td>
-                            <td class="py-3 fw-lighter text-center"><span>{{item.time2}}</span> </td>
+                            <td class="py-3 fw-lighter text-center "> <span>{{item.start}}</span> </td>
+                            <td class="py-3 fw-lighter text-center"><span>{{item.leave}}</span> </td>
                             <td class="py-3 fw-lighter text-center"><span>{{item.time3}}</span> </td>
                             <td class="py-3 fw-lighter text-center"> <span>{{item.time4}} </span></td>
                             <td class="py-3 fw-lighter text-center"> <span>{{item.total1}}</span></td>
@@ -47,58 +88,135 @@
                     <tr *ngFor="let item of bigFormArray.controls; let myIi = index" [formGroupName]="myIi"
                         class="table-bordered">
 
-                        <td class="py-2 fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
-                            <input appEnterKeyFocus disabled type="text" class=" form-control-plaintext  text-center"
-                                [value]="myIi +1">
+
+
+
+
+
+
+                        <!--        ===================================  index   ================================       -->
+                        <td class="py-2 fw-lighter text-center number-Width align-middle text-muted opacity-50 small ">
+                            <input appEnterKeyFocus disabled type="text"
+                                class=" form-control-plaintext  text-center active-border" [value]="myIi +1">
                         </td>
 
-                        <td class="py-2 idwidth text-center "><span><input appEnterKeyFocus type="text"
-                                    formControlName="id" class="form-control-plaintext is-invalid text-center ">
+
+
+
+
+                        <!--        ===================================  id   ================================       -->
+                        <td class="py-2 idwidth text-center "><span><input appEnterKeyFocus type="text" min="1"
+                                    formControlName="employeeId"
+                                    class="form-control-plaintext  is-invalid text-center englishFont idInput active-border">
                             </span>
                         </td>
 
 
-                        <td class="py-2  personTd">
-                            <div class="d-flex justify-content-start align-items-center">
+
+
+
+
+                        <!--        ===================================  name   ================================       -->
+                        <td class="py-2  ">
+                            <div class="d-flex justify-content-start align-items-center arabicFont">
                                 <div class="greenDot px-1 me-2"></div>
                                 <img src="./assets/images/person2.jpg" alt="" class="empImg px-1">
                                 <span class=" empcolor"> <input appEnterKeyFocus type="text"
-                                        class="form-control-plaintext text-center empcolor" formControlName="name">
+                                        class="form-control-plaintext text-center empcolor active-border"
+                                        formControlName="employeeName">
                                 </span>
                             </div>
                         </td>
 
-                        <td class="py-2 fw-lighter text-center w-auto "> <input appEnterKeyFocus type="text"
-                                class="form-control-plaintext text-center" formControlName="date">
+
+
+
+
+
+
+
+                        <!--        ===================================  date   ================================       -->
+                        <td class="py-2 fw-lighter text-center w-auto "> <input appEnterKeyFocus type="date"
+                                class="form-control-plaintext text-center active-border" formControlName="date">
                         </td>
 
-                        <td class="py-2 fw-lighter text-center ">
-                            <input #starting appEnterKeyFocus type="time" class="form-control-plaintext text-center"
-                                formControlName="time1">
+
+
+
+
+
+
+
+                        <!--        ===================================  start   ================================       -->
+                        <td class="py-2 fw-lighter text-center">
+                            <input #starting appEnterKeyFocus type="time"
+                                class="form-control-plaintext text-center active-border" formControlName="start"
+                                [value]="starting.value | fullTime : item">
                         </td>
 
-                        <td class="py-2 fw-lighter ">
-                            <input #ending appEnterKeyFocus type="time" class="form-control-plaintext text-center"
-                                formControlName="time2">
+
+
+
+
+
+                        <!--        ===================================  leave   ================================       -->
+                        <td class="py-2 fw-lighter position-relative"
+                            [ngClass]="{'errorInput': item.get('leave')?.errors && item.get('leave')?.touched}">
+                            <input #ending appEnterKeyFocus type="time"
+                                class="form-control-plaintext text-center active-border" formControlName="leave"
+                                [value]="ending.value | fullTime2 : item">
+
+
+
+                            <div *ngIf="item.get('leave')?.errors && item.get('leave')?.touched"
+                                class="bg-danger rounded-2 errInputMsg ">
+                                <i class="fa-solid fa-triangle-exclamation p-2"></i><br />
+                                <p *ngIf="item.get('leave')?.getError('leaveSmaller')" class="text-center my-0 mb-2 ">
+                                    يجب ان يكون وقت الخروج بعد وقت البدء
+                                </p>
+                                <p *ngIf="item.get('leave')?.getError('required')" class="text-center my-0 mb-2 ">
+                                    يجب ملئ الحقل بشكل صحيح
+                                </p>
+                            </div>
                         </td>
 
+
+
+
+
+
+
+                        <!--        ===================================  early   ================================       -->
                         <td class="py-2 fw-lighter "><input appEnterKeyFocus type="text"
-                                class="form-control-plaintext text-center" formControlName="early"
-                                [value]="starting.valueAsNumber | calcEarly ">
+                                class="form-control-plaintext text-center active-border" readonly
+                                formControlName="earlyByMinute" [value]=" starting.valueAsNumber | calcEarly : item ">
                         </td>
 
+
+
+
+
+                        <!--        ===================================  late   ================================       -->
                         <td class="py-2 fw-lighter"><input appEnterKeyFocus type="text"
-                                class="form-control-plaintext text-center" formControlName="late"
-                                [value]="starting.valueAsNumber | CalcLate "></td>
+                                class="form-control-plaintext text-center active-border" readonly
+                                formControlName="lateByMinute" [value]="starting.valueAsNumber | CalcLate : item "></td>
 
+
+
+
+                        <!--        ===================================  working Time   ================================       -->
                         <td class="py-2 fw-lighter "><input appEnterKeyFocus type="text"
-                                class="form-control-plaintext text-center" formControlName="workingTime"
-                                [value]=" ending.valueAsNumber - starting.valueAsNumber| calcTime "> </td>
+                                class="form-control-plaintext text-center active-border" readonly
+                                formControlName="workingTimeByMinute"
+                                [value]=" ending.valueAsNumber - starting.valueAsNumber| calcTime :item "> </td>
 
+
+
+
+                        <!--        ===================================  project   ================================       -->
                         <td class="py-2 fw-lighter">
-
-                            <select appEnterKeyFocus formControlName="project" name="project" id="project"
-                                class="form-select border-0 project-options">
+                            <select appEnterKeyFocus formControlName="projectId" name="projectId" id="projectId"
+                                class="form-select border-0 project-options active-border">
                                 <option class="" value="1">project1</option>
                                 <option class="" value="2">project2</option>
                                 <option class="" value="3">project3</option>
@@ -107,10 +225,12 @@
                             </select>
                         </td>
 
+
+                        <!--        ===================================  abssent   ================================       -->
                         <td class="py-2 fw-lighter text-center" #parent>
                             <input appEnterKeyFocus #absent type="checkbox"
-                                class="form-check form-check-input form-check-inline border-secondary-subtle border"
-                                formControlName="abbsent" (click)="isAbssent(myIi , absent.checked , parent)">
+                                class="form-check form-check-input abbsent form-check-inline border-secondary-subtle border"
+                                formControlName="absent" (click)="isAbssent(myIi , absent.checked , parent)">
                         </td>
 
 
@@ -118,9 +238,12 @@
                 </tbody>
 
             </table>
-            <button (click)="addNow()" type="button" class="btn btn-primary ms-auto text-center d-block adding-btn">
+            <button (click)="sendData()" type="button" class="btn btn-primary ms-auto text-center d-block adding-btn">
                 save
             </button>
         </div>
     </form>
 </div>
+
+
+<p *ngIf="doneSent" class="text-center text-success fs-2 h-100 my-5">! تم ارسال البيانات بنجاح  </p>

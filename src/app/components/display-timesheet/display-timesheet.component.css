@@ -18,13 +18,26 @@
     text-transform: capitalize;
 }
 
+
+.arabicFont {
+    font-family: "Almarai", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.englishFont {
+    font-family: "Be Vietnam Pro", sans-serif !important;
+}
+
+
+
 /*=============================== table sizing ================================ */
 .number-Width {
     min-width: 30px;
     max-width: 30px;
 }
 
-.name-Width{
+.name-Width {
     min-width: 270px;
     max-width: 270px;
 }
@@ -33,16 +46,30 @@
     min-width: 70px;
     max-width: 70px;
     text-align: center;
-    font-weight: lighter;
 }
 
-.date-Width{
-    min-width: 110px;
-    max-width: 110px;
+.date-Width {
+    min-width: 112px;
+    max-width: 112px;
 }
-.time-Width{
+
+.time-Width {
     min-width: 100px;
     max-width: 100px;
+}
+
+.Worktime-Width {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.project-Width {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.font-w-500 {
+    font-weight: 400;
 }
 
 th {

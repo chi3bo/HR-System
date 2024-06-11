@@ -1,6 +1,6 @@
 <form [formGroup]="tiemSheet">
 
-    <div class="table-responsive bg-white" formArrayName="bigFormArray">
+    <div class="table-responsive bg-white rounded-3" formArrayName="bigFormArray">
         <table class="table table-bordered">
 
             <thead>
@@ -13,7 +13,7 @@
                     <th class="py-3 text-center border-0 ">leave</th>
                     <th class="py-3 text-center border-0 ">early</th>
                     <th class="py-3 text-center border-0 ">late</th>
-                    <th class="py-3 text-center border-0 ">working Time</th>
+                    <th class="py-3 text-center border-0 ">w_ Time</th>
                     <th class="py-3 text-center border-0 ">project</th>
                     <th class="py-3 text-center border-0 ">appsent</th>
                 </tr>
@@ -31,13 +31,13 @@
                         </td>
                 -->
 
-                <td class="py-3 idwidth text-center ">
+                <td class="py-2 idwidth englishFont text-center font-w-500 ">
                     <span>
                         {{item.id}}
                     </span>
                 </td>
 
-                <td class="py-3 name-Width personTd">
+                <td class="py-2 arabicFont name-Width personTd">
                     <div class="d-flex justify-content-start align-items-center">
                         <div class="greenDot px-1 me-2"></div>
                         <img [src]="item.img" alt="" class="empImg px-1">
@@ -45,14 +45,14 @@
                     </div>
 
                 </td>
-                <td class="py-3 fw-lighter text-center date-Width "> <span>{{item.date}}</span> </td>
-                <td class="py-3 fw-lighter text-center time-Width"> <span>{{item.time1}}</span> </td>
-                <td class="py-3 fw-lighter text-center time-Width"><span>{{item.time2}}</span> </td>
-                <td class="py-3 fw-lighter text-center time-Width"><span>{{item.time3}}</span> </td>
-                <td class="py-3 fw-lighter text-center time-Width"> <span>{{item.time4}} </span></td>
-                <td class="py-3 fw-lighter text-center time-Width"> <span>{{item.total2}}</span></td>
-                <td class="py-3 fw-lighter text-center"> <span>{{item.project}}</span></td>
-                <td class="py-3 fw-lighter text-center"> <span>No</span></td>
+                <td class="py-2 font-w-500 englishFont text-center date-Width "> <span>{{item.date}}</span> </td>
+                <td class="py-2 font-w-500 englishFont text-center time-Width"> <span>{{item.time1}}</span> </td>
+                <td class="py-2 font-w-500 englishFont text-center  time-Width"><span>{{item.time2}}</span> </td>
+                <td class="py-2 font-w-500 englishFont text-center  time-Width"><span>{{item.time3}}</span> </td>
+                <td class="py-2 font-w-500 englishFont text-center  time-Width"> <span>{{item.time4}} </span></td>
+                <td class="py-2 font-w-500 englishFont text-center  Worktime-Width"> <span>{{item.total2}}</span></td>
+                <td class="py-2 font-w-500 englishFont text-center  project-Width"> <span>{{item.project}}</span></td>
+                <td class="py-2 font-w-500 englishFont text-center  time-Width"> <span>No</span></td>
             </tr>
 
 
