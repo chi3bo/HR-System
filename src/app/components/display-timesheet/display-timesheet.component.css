@@ -29,6 +29,9 @@
     font-family: "Be Vietnam Pro", sans-serif !important;
 }
 
+.all-Check {
+    font-size: 12px !important;
+}
 
 
 /*=============================== table sizing ================================ */
@@ -91,4 +94,27 @@ th {
 
 td :disabled {
     background-color: rgba(0, 0, 0, 0.091) !important;
+}
+
+@media screen and (max-width:576px) {
+    .pt-5-on-mobile {
+        padding-top: 50px;
+    }
+
+    .font-16-mobile {
+        font-size: 16px !important;
+    }
+
+    .font-20-mobile {
+        font-size: 20px !important;
+    }
+
+    .p-3-mobile {
+        padding: 60px 10px 10px !important;
+    }
+
+    .p-2-mobile {
+        padding: 10px 10px !important;
+
+    }
 }

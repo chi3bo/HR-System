@@ -55,7 +55,9 @@ import { SendTimesheetComponent } from './components/send-timesheet/send-timeshe
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FullTimePipe } from './shared/full-time.pipe';
 import { FullTime2Pipe } from './shared/full-time2.pipe';
-
+import { Time12hoursPipe } from './shared/time12hours.pipe';
+import { MinToHoursPipe } from './shared/min-to-hours.pipe';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -111,6 +113,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SendTimesheetComponent,
     FullTimePipe,
     FullTime2Pipe,
+    Time12hoursPipe,
+    MinToHoursPipe,
   ],
   imports: [
     BrowserModule,
@@ -127,7 +131,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    SweetAlert2Module.forRoot()
 
   ],
 

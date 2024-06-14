@@ -1,266 +1,214 @@
-import { Component, Renderer2 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Renderer2, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormArray, FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular/forms';
+import { EmpTimesheet } from 'src/app/shared/interfaces/emp-timesheet';
+import { TimesheetService } from 'src/app/shared/services/timesheet.service';
+import { Response } from './../../shared/interfaces/response';
+import { Event, Router } from '@angular/router';
+import { debounceTime } from 'rxjs';
+import { parse } from 'date-fns';
+
 
 @Component({
   selector: 'app-display-timesheet',
   templateUrl: './display-timesheet.component.html',
   styleUrls: ['./display-timesheet.component.css']
 })
-export class DisplayTimesheetComponent {
-  constructor(private _FormBuilder: FormBuilder, private _Renderer2: Renderer2) { }
+export class DisplayTimesheetComponent implements OnInit {
+  constructor(private _TimesheetService: TimesheetService, private _FormBuilder: FormBuilder, private _Renderer2: Renderer2, private _Router: Router) { }
+  @ViewChild('mainDiv') mainDiv!: ElementRef
+  noData: boolean = false
+  noId: boolean = false
+  empName: any = null
+  empId: any = ''
+  todayDate: any = new Date().toISOString().split('T')[0]
+  allData: EmpTimesheet[] = [];
 
-  tiemSheet: FormGroup = this._FormBuilder.group({
-    bigFormArray: this._FormBuilder.array([])
+  // [
+  //   {
+  //     "id": 35,
+  //     "employeeId": "1305",
+  //     "employeeName": "محمود عبدالله عبدالكريم حميد",
+  //     "date": "2024-06-13",
+  //     start: 10: 00: 00,
+  //     "leave": "17:00:00",
+  //     "earlyByMinute": 0,
+  //     "lateByMinute": 60,
+  //     "workingTimeByMinute": 420,
+  //     "projectId": 5,
+  //     "absent": false
+  //   },
+  //   {
+  //     "id": 30,
+  //     "employeeId": "1305",
+  //     "employeeName": "محمود عبدالله عبدالكريم حميد",
+  //     "date": "2024-06-12",
+  //     "start": "00:00:00",
+  //     "leave": "00:00:00",
+  //     "earlyByMinute": 0,
+  //     "lateByMinute": 0,
+  //     "workingTimeByMinute": 0,
+  //     "projectId": 3,
+  //     "absent": true
+  //   },
+  //   {
+  //     "id": 34,
+  //     "employeeId": "1305",
+  //     "employeeName": "محمود عبدالله عبدالكريم حميد",
+  //     "date": "2024-06-12",
+  //     "start": "09:00:00",
+  //     "leave": "17:00:00",
+  //     "earlyByMinute": 0,
+  //     "lateByMinute": 0,
+  //     "workingTimeByMinute": 480,
+  //     "projectId": 4,
+  //     "absent": false
+  //   }
+  // ]// delete it after test
+
+
+  settingSheet: FormGroup = this._FormBuilder.group({
+    employeeId: [null, [Validators.required, Validators.minLength(4)]],
+    projectId: [null],
+    fromDate: [null, Validators.required],
+    toDate: [this.todayDate, Validators.required]
   })
 
+  // ======= start custom validations ======  
+  // , { validators: this.idValidation } as FormControlOptions  
+  // idValidation(myForm: FormGroup) {
+  //   if (myForm.get('employeeId')?.value) {
+  //     let value: string = myForm.get('employeeId')?.value
+  //     if (value.length < 4) {
+  // myForm.get('employeeId')?.setErrors({ idValidation: true })
+  // }
 
-  // customValidator
-  isAbssent(id: number, status: boolean, parent: HTMLElement) {
-    let MyForm = this.bigFormArray.controls[id]
-    if (status == true) {
-      MyForm.disable()
-      MyForm.patchValue({
-        workingTime: [],
-        time1: [null],
-        time2: [null],
-        early: [null],
-        late: [null],
-        project: [null],
+  // }
+
+  // }
+  // ======= end custom validations ========       
+
+  getData() {
+    console.log(this.settingSheet.value);
+    if (this.settingSheet.valid) {
+      this._TimesheetService.getData(this.settingSheet.value).subscribe({
+        next: (Response) => {
+          console.log(Response);
+          if (Response.employeeAttendances.length > 0) {
+            this.allData = Response.employeeAttendances
+            this.disableForm()
+            this.noData = false
+            this.scrollDown()
+          }
+          else {
+            this.noData = true
+          }
+
+
+        },
+
+        error: (err) => {
+          console.log(err);
+          this.EnableForm()
+        },
       })
-
-      MyForm.get('abbsent')?.enable()
     }
     else {
-      MyForm.enable()
-      MyForm.get('name')?.enable()
+      this.settingSheet.markAllAsTouched()
     }
 
   }
-  //لسة مخلتصش المفروض نروح نطبقها هناك
 
-  get bigFormArray() {
-    return this.tiemSheet.get('bigFormArray') as FormArray
+  newSearch(checkBox: HTMLInputElement) {
+    this.EnableForm()
+    this.settingSheet.reset()
+    this.allData = []
+    checkBox.checked = false
+    this.empName = null
   }
 
+  disableForm() {
+    this.settingSheet.disable()
+  }
+
+  EnableForm() {
+    this.settingSheet.enable()
+  }
 
   ngOnInit(): void {
-    for (let i = 0; i < 15; i++) {
-      let newRow = this._FormBuilder.group({
-        id: [null],
-        img: [null],
-        name: [null],
-        date: [null],
-        time1: [null],
-        time2: [null],
-        early: [null],
-        late: [null],
-        workingTime: [null],
-        project: [null],
-        abbsent: [null],
-      })
-      this.bigFormArray.push(newRow)
+    // سبسكرايب علي انبوت الاي دي عشان اسحب تغيراته لما اليوزر يكتب فيه
+    this.settingSheet.get('employeeId')?.valueChanges
+      // .pipe(debounceTime(300))  // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
+      .subscribe(value => {
+        if (value) {
+          if (value.length == 4) {
+            this.getNameByid(value);
+          }
+          else {
+            this.empName = null
+            this.noId = false
+            this.noData = false
+          }
+        }
+
+
+
+      });
+  }
+
+
+  getNameByid(id: any) {
+    this._TimesheetService.getNamebyId(id).subscribe({
+      next: (Response) => {
+        console.log(Response);
+        this.empName = Response
+        this.noId = false
+      },
+
+      error: (err) => {
+        this.empName = null
+        this.noId = true
+        console.log(JSON.parse(err.error).message);
+        if (err.error.message == 'Unauthorized') {
+          localStorage.clear()
+          this._Router.navigate(['login'])
+        }
+      }
+    })
+  }
+
+  markAllEmp(checked: any) {
+    if (checked) {
+      console.log(checked);
+
+      this.settingSheet.get('employeeId')?.clearValidators()
+      this.settingSheet.get('employeeId')?.disable()
+      this.settingSheet.get('employeeId')?.setValue(null)
+      this.settingSheet.get('employeeId')?.updateValueAndValidity()
+      this.noId = false
+      this.empName = "الجميع"
+
     }
+    else if (!checked) {
+      console.log(checked);
+
+      this.settingSheet.get('employeeId')?.setValidators([Validators.required, Validators.minLength(4)])
+      this.settingSheet.get('employeeId')?.updateValueAndValidity()
+      this.settingSheet.get('employeeId')?.enable()
+      this.empName = null
+
+
+    }
+
   }
 
-  addNow() {
-    console.log(this.bigFormArray.value);
+
+
+  scrollDown() {
+    let theDiv = this.mainDiv.nativeElement as HTMLElement
+    setTimeout(() => { window.scrollTo(0, theDiv.offsetHeight) }, 0)
   }
 
 
 
-
-
-
-
-  myData: any[] = [
-    {
-      id: 1321,
-      img: "./assets/images/person1.jpg",
-      name: 'محمود عبدالله سيد حكيم',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'dammam',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1654,
-      img: "./assets/images/person2.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'jeddah',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 9824,
-      img: "./assets/images/person3.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'cairo',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1231,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'paris',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 3123,
-      img: "./assets/images/person5.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'mekka',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1783,
-      img: "./assets/images/person1.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'aswan',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 4432,
-      img: "./assets/images/person2.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'sheets',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1231,
-      img: "./assets/images/person3.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'ramadan',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1754,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'jeddah',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1441,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'dammam',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1380,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'cairo',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 9131,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'cairo',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 1464,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'dammam',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 8728,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'paris',
-      total2: '$ 0,00 '
-    },
-    {
-      id: 4583,
-      img: "./assets/images/person4.jpg",
-      name: 'ahmed sayed',
-      date: '25-6-2024',
-      time1: '03:00 hrs',
-      time2: '03:00 hrs',
-      time3: '00:00 hrs',
-      time4: '00:00 hrs',
-      project: 'dammam',
-      total2: '$ 0,00 '
-    },
-  ]
 
 }
-
-// شكل الداتا المطلوبة لجيت داتا تايم شيت ببعتها بودي جيسون
-// {
-//   "employeeId": "string",
-//   "projectId": 0,
-//   "fromDate": "2024-06-10T22:22:23.080Z",
-//   "toDate": "2024-06-10T22:22:23.080Z"
-// }

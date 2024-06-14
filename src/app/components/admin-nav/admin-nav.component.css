@@ -1,4 +1,4 @@
-.admin-nav{
+.admin-nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,10 +11,13 @@
     cursor: pointer;
 }
 
+.custom-border {
+    border-top: transparent 3px solid !important;
+}
 
-.navbar{
-    background-image: linear-gradient(90deg, #3077a1 , #3fb674 ) !important;
-    
+.navbar {
+    background-image: linear-gradient(90deg, #3077a1, #3fb674) !important;
+
     /* background-image: linear-gradient( 0% !important; */
 }
 
@@ -23,7 +26,7 @@
     content: '';
     width: 0%;
     height: 3px;
-    background-color:#fff;
+    background-color: #fff;
     position: absolute;
     top: 100%;
     left: 0px;
@@ -54,6 +57,7 @@
     color: rgb(255, 255, 255);
     transition: all .5s;
 }
+
 /* .dropdown:hover .dropdown-menu {
     display: block;
 } */
@@ -69,7 +73,7 @@
     display: none;
     z-index: 99;
     transition: all .2s;
-    background-image: linear-gradient(90deg, #3077a1 , #3fb674 ) !important;
+    background-image: linear-gradient(90deg, #3077a1, #3fb674) !important;
 }
 
 
@@ -88,7 +92,7 @@
 .sideNav .right {
     width: 20%;
     height: 100vh;
-    background-image: linear-gradient(90deg , #3fb674, #3077a1 ) !important;
+    background-image: linear-gradient(90deg, #3fb674, #3077a1) !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -123,9 +127,10 @@
 }
 
 
-.logoutBtn:hover{
+.logoutBtn:hover {
     filter: drop-shadow(0 0 10px white);
 }
+
 .fa-xmark:hover,
 .fa-bars:hover {
     color: #000;
@@ -144,7 +149,7 @@
     left: 0 !important;
 }
 
-.shadow-now{
+.shadow-now {
     filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.446));
 }
 
@@ -204,4 +209,5 @@
         margin: 4px 0;
     }
 }
+
 /*  eeennnnddd side nave css */

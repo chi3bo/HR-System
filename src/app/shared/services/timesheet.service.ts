@@ -27,5 +27,9 @@ export class TimesheetService {
     return this._HttpClient.post('https://hrapp.runasp.net/Api/EmployeeAttendance/GetEmployeeAttendance', body, this.setHeadrs())
   }
 
+  getNamebyId(id: string): Observable<any> {
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/General/GetEmployeeName?EmployeeId=${id}`,
+      { ...this.setHeadrs(), responseType: 'text' })
+  }
 
 }

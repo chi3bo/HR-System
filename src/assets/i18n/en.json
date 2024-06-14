@@ -28,7 +28,10 @@
         "الإذن": "Permissions",
         "العهدة": "Assets",
         "حـســابـي": "My Account",
-        "تسجيل الخروج": "Logout"
+        "تسجيل الخروج": "Logout",
+        "سجل_الحضور" : "time sheet",
+        "سجل_جديد" : "new sheet",
+        "عرض_سجل" : "display sheet"
     },
     "login_page": {
         "تسجيل_الدخول": "Login",

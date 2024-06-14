@@ -117,10 +117,16 @@ td :disabled {
     background-color: rgba(0, 0, 0, 0.091) !important;
 }
 
+.dropdown {
+    border-bottom: 0 !important;
+}
 
 .errorInput {
-    border: red 2px solid;
-    /* background-color: red; */
+    border: red 2px solid !important;
+}
+
+.falseId {
+    border: rgb(255, 196, 0) 2px solid !important;
 }
 
 
@@ -151,10 +157,23 @@ textarea {
     color: white;
 }
 
+
+.falseId:hover .errInputMsg,
 .errorInput:hover .errInputMsg {
     display: block !important;
     width: 200px !important;
     height: auto !important;
     opacity: 1;
     overflow: unset;
+}
+
+
+@media screen and (max-width:576px) {
+
+
+    .p-3-mobile {
+        padding: 60px 10px 10px !important;
+    }
+
+
 }

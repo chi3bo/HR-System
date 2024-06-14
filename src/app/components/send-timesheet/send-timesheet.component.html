@@ -1,49 +1,88 @@
 <!-- ================================ start setting  ================================ -->
-<form [formGroup]="settingSheet">
-    <p class=" fs-2 text-center py-3">اعداد سجل جديد</p>
-    <div class="dashboard w-100 pb-2 px-2 arabicList">
+<div #mainDiv class=" p-5 bg-body-secondary p-3-mobile">
+
+    <form class="bg-white  shadow rounded-4 " [formGroup]="settingSheet">
+        <p  class=" fs-2 text-center py-3">اعداد سجل جديد</p>
+        <div class="dashboard w-100 p-5 arabicList">
 
 
-        <div class="row">
-            <div class="col-xxl-2 col-xl-3 col-md-4 ">
-                <label for="empName"> اسم الموظف :</label>
-                <input type="text" id="empName" class="form-control w-100 mx-auto bg-white text-center" disabled
-                    [value]="empName">
-                <label for="empId" class="py-1"> كود الموظف :</label>
-                <input type="text" id="empId" class="form-control w-100 mx-auto bg-white  text-center" disabled
-                    [value]="empId">
+            <div class="row">
+                <div class="col-xxl-2 col-xl-3 col-md-4 ">
+                    <label for="empName"> اسم الموظف :</label>
+                    <input type="text" id="empName" class="form-control w-100 mx-auto bg-white text-center" disabled
+                        [value]="empName">
+                    <label for="empId" class="py-1"> كود الموظف :</label>
+                    <input type="text" id="empId" class="form-control w-100 mx-auto bg-white  text-center" disabled
+                        [value]="empId">
+                </div>
+                <div class="col-xxl-2 col-xl-3 col-md-4 ">
+                    <label for="rowNumbers"> ادخل عدد الصفوف :</label>
+                    <input #number type="text" formControlName="rowNumbers" id="rowNumbers"
+                        class="form-control w-100 mx-auto text-center" maxlength="2">
+
+
+                    <label for="fixedDate" class="my-1"> ادخل تاريخ موحد : <input formControlName="fixedDate"
+                            type="checkbox"
+                            class="form-check form-check-input form-check-inline my-0 border-dark-subtle">
+                    </label>
+                    <input #date type="date" [disabled]="!settingSheet.get('fixedDate')?.value"
+                        [value]=" !settingSheet.get('fixedDate')?.value ? null : '' " id="fixedDate"
+                        class="form-control w-100 mx-auto text-center" maxlength="2">
+                </div>
             </div>
-            <div class="col-xxl-2 col-xl-3 col-md-4 ">
-                <label for="rowNumbers"> ادخل عدد الصفوف :</label>
-                <input #number type="text" formControlName="rowNumbers" id="rowNumbers"
-                    class="form-control w-100 mx-auto text-center" maxlength="2">
 
 
-                <label for="rowNumbers" class="my-1"> ادخل تاريخ موحد : <input formControlName="fixedDate"
-                        type="checkbox" class="form-check form-check-input form-check-inline my-0 border-dark-subtle">
-                </label>
-                <input #date type="date" [disabled]="!settingSheet.get('fixedDate')?.value"
-                    [value]=" !settingSheet.get('fixedDate')?.value ? null : '' " id="rowNumbers"
-                    class="form-control w-100 mx-auto text-center" maxlength="2">
+            <div class="row text-center ">
+                <div *ngIf="bigFormArray.length == 0"
+                    class=" col-xxl-2 col-xl-4 col-md-6 d-flex justify-content-center mx-auto align-items-center">
+                    <div class="w-100 px-2">
+                        <button (click)="setSetting(number.value , date.value)"
+                            class="btn btn-dark w-100 mx-auto d-block my-2">
+                            اعداد </button>
+                    </div>
+                </div>
+                <div *ngIf="bigFormArray.length > 0"
+                    class=" col-xxl-2 col-xl-4 col-md-6 d-flex justify-content-center mx-auto align-items-center">
+                    <div class="w-100 px-2">
+                        <button (click)="clearFormArray()" class="btn btn-danger w-100 mx-auto d-block my-2">
+                            إعادة تعيين</button>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="mx-auto col-xxl-1 col-xl-2 col-md-3 d-flex justify-content-center align-items-center">
-            <button [disabled]="" (click)="setSetting(number.value , date.value)"
-                class="btn btn-dark w-100 mx-auto d-block my-2">
-                اعداد </button>
-        </div>
 
-    </div>
-</form>
+        </div>
+    </form>
+
+</div>
 <!-- ================================ end setting  ================================ -->
 
 
-<div *ngIf="bigFormArray.length > 0" class="bg-white w-100 min-vh-100 rounded-2">
+
+
+
+
+
+
+
+
+<!-- ================================ start main Table  ================================ -->
+<div *ngIf="bigFormArray.length > 0" class=" w-100 min-vh-100 rounded-2 py-2">
     <form [formGroup]="tiemSheet">
 
-        <div class="table-responsive" formArrayName="bigFormArray">
-            <table class="table table-bordered">
+        <div class="table-responsive  min-vh-100" formArrayName="bigFormArray">
+            <table class="table  table-bordered">
+
+
+
+
+
+
+
+
+
+
+                <!--====================== start Table header =================-->
                 <thead>
                     <tr>
                         <th class="py-3 text-center  "></th>
@@ -56,36 +95,26 @@
                         <th class="py-3 text-center time-Width ">late</th>
                         <th class="py-3 text-center  Worktime-Width">working Time</th>
                         <th class="py-3 text-center project-Width ">project</th>
-                        <th class="py-3 text-center abbsent-Width ">appsent</th>
+                        <th class="py-3 text-center abbsent-Width ">absent</th>
                     </tr>
                 </thead>
+                <!--====================== end Table header =================-->
+
+
+
+
+
+
+
+
+
 
                 <tbody>
-                    <!-- <tr *ngFor="let item of myData ; let myIi = index">
-                            <td class="py-3 idwidth "><span> {{myIi+1}} </span> </td>
-                            <td class="py-3  personTd">
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <div class="greenDot px-1 me-2"></div>
-                                    <img [src]="item.img" alt="" class="empImg px-1">
-                                    <span class="px-1 empcolor">{{item.name}}</span>
-                                </div>
-
-                            </td>
-                            <td class="py-3 fw-lighter text-center "> <span>{{item.date}}</span> </td>
-                            <td class="py-3 fw-lighter text-center "> <span>{{item.start}}</span> </td>
-                            <td class="py-3 fw-lighter text-center"><span>{{item.leave}}</span> </td>
-                            <td class="py-3 fw-lighter text-center"><span>{{item.time3}}</span> </td>
-                            <td class="py-3 fw-lighter text-center"> <span>{{item.time4}} </span></td>
-                            <td class="py-3 fw-lighter text-center"> <span>{{item.total1}}</span></td>
-                            <td class="py-3 fw-lighter text-center"> <span>{{item.total2}}</span></td>
-                        </tr> -->
 
 
 
 
-
-
-                    <tr *ngFor="let item of bigFormArray.controls; let myIi = index" [formGroupName]="myIi"
+                    <tr *ngFor="let item of bigFormArray.controls; let i = index" [formGroupName]="i"
                         class="table-bordered">
 
 
@@ -97,7 +126,7 @@
                         <!--        ===================================  index   ================================       -->
                         <td class="py-2 fw-lighter text-center number-Width align-middle text-muted opacity-50 small ">
                             <input appEnterKeyFocus disabled type="text"
-                                class=" form-control-plaintext  text-center active-border" [value]="myIi +1">
+                                class=" form-control-plaintext  text-center active-border " [value]="i +1">
                         </td>
 
 
@@ -105,10 +134,62 @@
 
 
                         <!--        ===================================  id   ================================       -->
-                        <td class="py-2 idwidth text-center "><span><input appEnterKeyFocus type="text" min="1"
-                                    formControlName="employeeId"
+                        <td class="py-2 idwidth text-center position-relative" [ngClass]="{
+                            'errorInput': item.get('employeeId')?.errors && item.get('employeeId')?.touched ,
+                             }">
+                            <span>
+                                <input appEnterKeyFocus type="text" maxlength="4" formControlName="employeeId"
                                     class="form-control-plaintext  is-invalid text-center englishFont idInput active-border">
                             </span>
+
+                            <!-- -----------start error msg---------------- -->
+                            <div *ngIf="item.get('employeeId')?.errors && item.get('employeeId')?.touched"
+                                class="bg-danger rounded-2 errInputMsg text-start">
+                                <i class="fa-solid fa-triangle-exclamation p-2 "></i><br />
+                                <p *ngIf="item.get('employeeId')?.getError('required')" class="text-center my-0 mb-2 ">
+                                    يجب ملئ الحقل بشكل صحيح
+                                </p>
+                                <p *ngIf="item.get('employeeId')?.getError('minlength')" class="text-center my-0 mb-2 ">
+                                    يتكون رقم التعريف من 4 ارقام
+                                </p>
+                            </div>
+
+
+                            <div *ngIf="noId" class="bg-warning rounded-2 errInputMsg text-dark text-start">
+                                <i class="fa-solid fa-triangle-exclamation p-2 "></i><br />
+                                <p class="text-center my-0 mb-2 ">
+                                    رقم التعريف غير موجود
+                                </p>
+
+                            </div>
+
+
+
+
+                            <!-- tempoooo -->
+                            <!-- error msg -->
+
+
+                            <!-- error msg -->
+
+                            <!-- error msg -->
+                            <!-- tempoooo -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!-- -----------start error msg---------------- -->
+
                         </td>
 
 
@@ -117,14 +198,25 @@
 
 
                         <!--        ===================================  name   ================================       -->
-                        <td class="py-2  ">
-                            <div class="d-flex justify-content-start align-items-center arabicFont">
+                        <td class="py-2 falseId position-relative" [ngClass]="{
+                            'falseId': !item.get('employeeId')?.errors && item.get('employeeName')?.getError('required') ,
+                            }">
+                            <div class="d-flex justify-content-start align-items-center arabicFont ">
                                 <div class="greenDot px-1 me-2"></div>
-                                <img src="./assets/images/person2.jpg" alt="" class="empImg px-1">
-                                <span class=" empcolor"> <input appEnterKeyFocus type="text"
-                                        class="form-control-plaintext text-center empcolor active-border"
+                                <!-- <img src="./assets/images/person2.jpg" alt="" class="empImg px-1"> -->
+                                <span class=" empcolor w-100"> <input appEnterKeyFocus type="text" readonly
+                                        class="form-control-plaintext text-center empcolor fw-bolder active-border"
                                         formControlName="employeeName">
                                 </span>
+                            </div>
+
+                            <div *ngIf=" !item.get('employeeId')?.errors && item.get('employeeName')?.getError('required')"
+                                class="bg-warning rounded-2 errInputMsg text-dark text-start">
+                                <i class="fa-solid fa-triangle-exclamation p-2 "></i><br />
+                                <p class="text-center my-0 mb-2 ">
+                                    رقم التعريف غير موجود
+                                </p>
+
                             </div>
                         </td>
 
@@ -136,8 +228,22 @@
 
 
                         <!--        ===================================  date   ================================       -->
-                        <td class="py-2 fw-lighter text-center w-auto "> <input appEnterKeyFocus type="date"
-                                class="form-control-plaintext text-center active-border" formControlName="date">
+                        <td class="py-2 fw-lighter text-center w-auto position-relative"
+                            [ngClass]="{'errorInput': item.get('date')?.getError('required') && item.get('date')?.touched}">
+                            <input appEnterKeyFocus type="date" class="form-control-plaintext text-center active-border"
+                                formControlName="date">
+
+
+                            <!-- -----------start error msg---------------- -->
+                            <div *ngIf="item.get('date')?.getError('required') && item.get('date')?.touched"
+                                class="bg-danger rounded-2 errInputMsg text-start">
+                                <i class="fa-solid fa-triangle-exclamation p-2 "></i><br />
+                                <p class="text-center my-0 mb-2 ">
+                                    يجب ملئ الحقل بشكل صحيح
+                                </p>
+                            </div>
+                            <!-- -----------start error msg---------------- -->
+
                         </td>
 
 
@@ -148,10 +254,22 @@
 
 
                         <!--        ===================================  start   ================================       -->
-                        <td class="py-2 fw-lighter text-center">
-                            <input #starting appEnterKeyFocus type="time"
-                                class="form-control-plaintext text-center active-border" formControlName="start"
-                                [value]="starting.value | fullTime : item">
+                        <td class="py-2 fw-lighter text-center position-relative"
+                            [ngClass]="{'errorInput': item.get('start')?.getError('required') && item.get('start')?.touched}">
+                            <input #starting appEnterKeyFocus type="time" [readonly]="readonly"
+                                class="form-control-plaintext text-center active-border readOnly"
+                                formControlName="start" [value]="starting.value | fullTime : item">
+
+                            <!-- -----------start error msg---------------- -->
+                            <div *ngIf="item.get('start')?.getError('required') && item.get('start')?.touched"
+                                class="bg-danger rounded-2 errInputMsg text-start">
+                                <i class="fa-solid fa-triangle-exclamation p-2 "></i><br />
+                                <p class="text-center my-0 mb-2 ">
+                                    يجب ملئ الحقل بشكل صحيح
+                                </p>
+                            </div>
+                            <!-- -----------start error msg---------------- -->
+
                         </td>
 
 
@@ -162,7 +280,7 @@
                         <!--        ===================================  leave   ================================       -->
                         <td class="py-2 fw-lighter position-relative"
                             [ngClass]="{'errorInput': item.get('leave')?.errors && item.get('leave')?.touched}">
-                            <input #ending appEnterKeyFocus type="time"
+                            <input #ending appEnterKeyFocus type="time" [readonly]="readonly"
                                 class="form-control-plaintext text-center active-border" formControlName="leave"
                                 [value]="ending.value | fullTime2 : item">
 
@@ -214,7 +332,8 @@
 
 
                         <!--        ===================================  project   ================================       -->
-                        <td class="py-2 fw-lighter">
+                        <td class="py-2 fw-lighter position-relative"
+                            [ngClass]="{'errorInput': item.get('projectId')?.errors && item.get('projectId')?.touched}">
                             <select appEnterKeyFocus formControlName="projectId" name="projectId" id="projectId"
                                 class="form-select border-0 project-options active-border">
                                 <option class="" value="1">project1</option>
@@ -223,27 +342,48 @@
                                 <option class="" value="4">project4</option>
                                 <option class="" value="5">project5</option>
                             </select>
+
+                            <!-- -----------start error msg---------------- -->
+                            <div *ngIf="item.get('projectId')?.getError('required') && item.get('projectId')?.touched"
+                                class="bg-danger rounded-2 errInputMsg text-start">
+                                <i class="fa-solid fa-triangle-exclamation p-2 "></i><br />
+                                <p class="text-center my-0 mb-2 ">
+                                    يجب ملئ الحقل بشكل صحيح
+                                </p>
+                            </div>
+                            <!-- -----------start error msg---------------- -->
                         </td>
 
 
-                        <!--        ===================================  abssent   ================================       -->
+                        <!--        ===================================  absent   ================================       -->
                         <td class="py-2 fw-lighter text-center" #parent>
-                            <input appEnterKeyFocus #absent type="checkbox"
+                            <input appEnterKeyFocus type="checkbox"
                                 class="form-check form-check-input abbsent form-check-inline border-secondary-subtle border"
-                                formControlName="absent" (click)="isAbssent(myIi , absent.checked , parent)">
+                                formControlName="absent" (change)="isAbssent(i)">
                         </td>
 
 
                     </tr>
                 </tbody>
 
+
+
+
+
+
+
+
+
             </table>
-            <button (click)="sendData()" type="button" class="btn btn-primary ms-auto text-center d-block adding-btn">
-                save
+            <div class="py-4 w-100">
+            </div>
+            <button (click)="sendData()" type="button" class="btn  btn-primary ms-auto text-center d-block adding-btn">
+                حفظ و ارسال
             </button>
         </div>
+
     </form>
 </div>
+<!-- ================================ end main Table  ================================== -->
 
 
-<p *ngIf="doneSent" class="text-center text-success fs-2 h-100 my-5">! تم ارسال البيانات بنجاح  </p>

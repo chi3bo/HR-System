@@ -19,20 +19,62 @@
                             'admin_nav.الرئيسية' | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">{{ 'admin_nav.الاجازات' | translate }}</a>
+                        <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">{{
+                            'admin_nav.الاجازات' | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{ 'admin_nav.السلفة' | translate }}</a>
+                        <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{ 'admin_nav.السلفة'
+                            | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-letters" routerLinkActive="active-menu">{{ 'admin_nav.الخطابات' | translate }}</a>
+                        <a class="nav-link" routerLink="admin-letters" routerLinkActive="active-menu">{{
+                            'admin_nav.الخطابات' | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-permissions" routerLinkActive="active-menu">{{ 'admin_nav.الإذن' | translate }}</a>
+                        <a class="nav-link" routerLink="admin-permissions" routerLinkActive="active-menu">{{
+                            'admin_nav.الإذن' | translate }}</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" routerLink="admin-assets" routerLinkActive="active-menu">{{ 'admin_nav.العهدة' | translate }}</a>
+                        <a class="nav-link" routerLink="admin-assets" routerLinkActive="active-menu">{{
+                            'admin_nav.العهدة' | translate }}</a>
                     </li>
+                    <!-- <li class="nav-item mx-2">
+                        <a class="nav-link" routerLink="admin-timesheet/new" routerLinkActive="active-menu">{{
+                            'admin_nav.سجل_الحضور' | translate }} </a>
+                    </li> -->
+
+
+                    <li class="  mx-2">
+                        <div class=" dropdown w-100  text-center mx-auto z-3 cursor-pointer">
+                            <span
+                                class="nav-link border-0 d-flex justify-content-center align-items-center {{ 'direction' | translate}} logoutBtn"
+                                data-bs-toggle="dropdown" aria-expanded="true">
+                                <span class="fw-bold custom-border">{{ 'admin_nav.سجل_الحضور' | translate }}</span>
+                            </span>
+
+
+
+                            <ul class="dropdown-menu sidedown myAccount text-center ">
+                                <li routerLink="admin-timesheet/new"><span class="dropdown-item py-2 border-bottom">
+                                        {{ 'admin_nav.سجل_جديد' | translate }}
+                                        <i class="fa-solid fa-plus px-1"></i>
+                                    </span>
+                                </li>
+
+                                <li routerLink="admin-timesheet/display"> <span class="dropdown-item py-2 ">
+                                        {{ 'admin_nav.عرض_سجل' | translate }}
+                                        <i class="fa-regular fa-file-lines px-1"></i></span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+                    </li>
+
+
+
+
                 </ul>
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-capitalize">
@@ -46,8 +88,9 @@
                                 <i class="fa-solid fa-user-tie align-middle  px-1"></i>
                             </span>
                             <ul class="dropdown-menu sidedown myAccount text-center  ">
-                                <li  routerLink="my-profile" ><span class="dropdown-item py-2 border-bottom {{ 'direction' | translate}}"
-                                        (click)="closeNav()" >
+                                <li routerLink="my-profile"><span
+                                        class="dropdown-item py-2 border-bottom {{ 'direction' | translate}}"
+                                        (click)="closeNav()">
                                         {{ 'admin_nav.حـســابـي' | translate }}
                                         <i class="fa-regular fa-id-badge px-1"></i>
                                     </span>
@@ -96,22 +139,28 @@
 
             <ul class="list-unstyled sidbarUnits overflow-hidden my-3 border-top border-bottom">
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-home" routerLinkActive="active-menu">{{ 'admin_nav.الرئيسية' | translate }}</a>
+                    <a class="nav-link" routerLink="admin-home" routerLinkActive="active-menu">{{ 'admin_nav.الرئيسية' |
+                        translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">{{ 'admin_nav.طلبات_الاجازات' | translate }}</a>
+                    <a class="nav-link" routerLink="admin-vacation" routerLinkActive="active-menu">{{
+                        'admin_nav.طلبات_الاجازات' | translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{ 'admin_nav.طلبات_السلفة' | translate }}</a>
+                    <a class="nav-link" routerLink="admin-loan" routerLinkActive="active-menu">{{
+                        'admin_nav.طلبات_السلفة' | translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-letters" routerLinkActive="active-menu">{{ 'admin_nav.الخطابات' | translate }}</a>
+                    <a class="nav-link" routerLink="admin-letters" routerLinkActive="active-menu">{{
+                        'admin_nav.الخطابات' | translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-permissions" routerLinkActive="active-menu">{{ 'admin_nav.الإذن' | translate }}</a>
+                    <a class="nav-link" routerLink="admin-permissions" routerLinkActive="active-menu">{{
+                        'admin_nav.الإذن' | translate }}</a>
                 </li>
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link" routerLink="admin-assets" routerLinkActive="active-menu">{{ 'admin_nav.العهدة' | translate }}</a>
+                    <a class="nav-link" routerLink="admin-assets" routerLinkActive="active-menu">{{ 'admin_nav.العهدة' |
+                        translate }}</a>
                 </li>
             </ul>
         </div>
@@ -159,4 +208,3 @@
         </div>
     </div>
 </div>
-

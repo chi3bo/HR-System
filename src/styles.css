@@ -14,7 +14,12 @@ body {
     font-style: normal;
     /* background-position: center; */
 }
+.full-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
 .englishBody {
     font-family: "Be Vietnam Pro", sans-serif !important;
     font-weight: 700 !important;
@@ -305,7 +310,7 @@ body {
 }
 
 
-/* =====================      animation of sections       ===================  */
+/* =====================    start  animation of sections       ===================  */
 
 .CardOne {
     position: relative;
@@ -319,7 +324,13 @@ body {
     opacity: 1;
 }
 
-/* =====================      animation of sections       ===================  */
+/* =====================    end  animation of sections       ===================  */
+
+
+
+/* =====================    start  media query       ===================  */
+/* =====================    start  media query       ===================  */
+/* =====================    start  media query       ===================  */
 
 @media screen and (max-width:992px) {
     .hero-text {
@@ -528,7 +539,6 @@ body {
 
 }
 
-
-
-/* ==== token ========= */
-/*  */
+/* =====================    end  media query       ===================  */
+/* =====================    end  media query       ===================  */
+/* =====================    end  media query       ===================  */
