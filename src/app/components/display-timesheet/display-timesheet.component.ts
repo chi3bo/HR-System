@@ -23,47 +23,6 @@ export class DisplayTimesheetComponent implements OnInit {
   todayDate: any = new Date().toISOString().split('T')[0]
   allData: EmpTimesheet[] = [];
 
-  // [
-  //   {
-  //     "id": 35,
-  //     "employeeId": "1305",
-  //     "employeeName": "محمود عبدالله عبدالكريم حميد",
-  //     "date": "2024-06-13",
-  //     start: 10: 00: 00,
-  //     "leave": "17:00:00",
-  //     "earlyByMinute": 0,
-  //     "lateByMinute": 60,
-  //     "workingTimeByMinute": 420,
-  //     "projectId": 5,
-  //     "absent": false
-  //   },
-  //   {
-  //     "id": 30,
-  //     "employeeId": "1305",
-  //     "employeeName": "محمود عبدالله عبدالكريم حميد",
-  //     "date": "2024-06-12",
-  //     "start": "00:00:00",
-  //     "leave": "00:00:00",
-  //     "earlyByMinute": 0,
-  //     "lateByMinute": 0,
-  //     "workingTimeByMinute": 0,
-  //     "projectId": 3,
-  //     "absent": true
-  //   },
-  //   {
-  //     "id": 34,
-  //     "employeeId": "1305",
-  //     "employeeName": "محمود عبدالله عبدالكريم حميد",
-  //     "date": "2024-06-12",
-  //     "start": "09:00:00",
-  //     "leave": "17:00:00",
-  //     "earlyByMinute": 0,
-  //     "lateByMinute": 0,
-  //     "workingTimeByMinute": 480,
-  //     "projectId": 4,
-  //     "absent": false
-  //   }
-  // ]// delete it after test
 
 
   settingSheet: FormGroup = this._FormBuilder.group({
@@ -149,8 +108,9 @@ export class DisplayTimesheetComponent implements OnInit {
             this.noData = false
           }
         }
-
-
+        else {
+          this.empName = null
+        }
 
       });
   }
@@ -162,6 +122,7 @@ export class DisplayTimesheetComponent implements OnInit {
         console.log(Response);
         this.empName = Response
         this.noId = false
+
       },
 
       error: (err) => {
@@ -176,13 +137,13 @@ export class DisplayTimesheetComponent implements OnInit {
     })
   }
 
+
   markAllEmp(checked: any) {
     if (checked) {
       console.log(checked);
-
+      this.settingSheet.get('employeeId')?.setValue(null)
       this.settingSheet.get('employeeId')?.clearValidators()
       this.settingSheet.get('employeeId')?.disable()
-      this.settingSheet.get('employeeId')?.setValue(null)
       this.settingSheet.get('employeeId')?.updateValueAndValidity()
       this.noId = false
       this.empName = "الجميع"
@@ -200,7 +161,6 @@ export class DisplayTimesheetComponent implements OnInit {
     }
 
   }
-
 
 
   scrollDown() {

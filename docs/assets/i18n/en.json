@@ -29,9 +29,9 @@
         "العهدة": "Assets",
         "حـســابـي": "My Account",
         "تسجيل الخروج": "Logout",
-        "سجل_الحضور" : "time sheet",
-        "سجل_جديد" : "new sheet",
-        "عرض_سجل" : "display sheet"
+        "سجل_الحضور": "time sheet",
+        "سجل_جديد": "new sheet",
+        "عرض_سجل": "display sheet"
     },
     "login_page": {
         "تسجيل_الدخول": "Login",
@@ -377,7 +377,6 @@
         "كود": "ID",
         "موظف": "Employee",
         "مسؤول": "Admin",
-
         "تابعنا_علي_مواقع_التواصل_الاجتماعي": "Follow us on social media",
         "هوية": "Identity",
         "سيارة": "Car",
@@ -401,5 +400,61 @@
         "رقم_السيارة": "Car Number",
         "تاريخ_نهاية_الفحص": "Inspection End Date"
     },
-    "my profile end ==========================": ""
+    "my profile end ==========================": "",
+    "send_time_sheet": {
+        "اعداد_سجل_جديد": "New Record",
+        "اسم_الموظف": "Employee Name",
+        "كود_الموظف": "Employee Code",
+        "ادخل_عدد_الصفوف": "Enter Number of Rows",
+        "ادخل_تاريخ_موحد": "Enter Unified Date",
+        "اعداد": "set",
+        "إعادة_تعيين": "Reset",
+        "id": "id",
+        "name": "name",
+        "date": "date",
+        "start": "start",
+        "leave": "leave",
+        "early": "early",
+        "late": "late",
+        "working_time": "working time",
+        "project": "project",
+        "absent": "absent",
+        "حفظ_و_ارسال": "Save and Send"
+    },
+    "errors": {
+        "required": "This field is required",
+        "minlength": "ID must be 4 digits",
+        "id_not_found": "ID not found",
+        "leave_smaller": "Leave time must be after start time"
+    },
+    "display_time_sheet": {
+        "page_title": "Display Attendance Record",
+        "name_label": "Name:",
+        "employee_code_label": "Employee Code:",
+        "all_label": "All",
+        "not_found_id": "ID not found!",
+        "min_length_error": "ID consists of 4 digits",
+        "required_id_error": "ID is required",
+        "project_label": "Project:",
+        "all_projects": "All",
+        "from_date_label": "From Date:",
+        "required_from_date_error": "Start date is required",
+        "to_date_label": "To Date:",
+        "required_to_date_error": "End date is required",
+        "show_button": "Show",
+        "reset_button": "Reset",
+        "id": "id",
+        "name": "name",
+        "date": "date",
+        "start": "start",
+        "leave": "leave",
+        "early": "early",
+        "late": "late",
+        "working_time": "working time",
+        "project": "project",
+        "absent": "absent",
+        "absent2": "absent",
+        "no_data_title": "No Matching Data",
+        "no_data_subtitle": "Please check the entered data"
+    }
 }

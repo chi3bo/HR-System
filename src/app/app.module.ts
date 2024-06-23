@@ -60,6 +60,7 @@ import { MinToHoursPipe } from './shared/min-to-hours.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

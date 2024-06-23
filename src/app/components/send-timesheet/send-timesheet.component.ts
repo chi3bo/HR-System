@@ -22,6 +22,8 @@ export class SendTimesheetComponent {
   doneSent: boolean = false
   readonly: boolean = false
   noId: boolean = false
+  todayDate: any = new Date().toISOString().split('T')[0]
+
 
   tiemSheet: FormGroup = this._FormBuilder.group({
     bigFormArray: this._FormBuilder.array([])
