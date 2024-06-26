@@ -394,11 +394,24 @@
         "رقم_جواز_السفر": "Passport Number",
         "تاريخ_انتهاء_الجواز": "Passport Expiry Date",
         "رقم_الهوية": "ID Number",
-        "تاريخ_الانتهاء": "Expiry Date",
+        "تاريخ_انتهاء_الهوية": "ID Expiry Date",
         "تاريخ_بداية_العقد": "Contract Start Date",
         "تاريخ_نهاية_العقد": "Contract End Date",
-        "رقم_السيارة": "Car Number",
-        "تاريخ_نهاية_الفحص": "Inspection End Date"
+
+        "البيانات_الشخصية": "Personal data",
+        "المسمى_الوظيفي" : "Job Title",
+        "الادارة_التابع_لها" : "Department" ,
+        "رقم_الجوال" : "Mobile Number",
+        "رقم_الجوال_الاضافي" : "Additional Emergency Mobile" ,
+        "فئة_الدم":" Blood Type ",
+
+        "غير_متوفر" : "not found",
+
+        "بيانات_السيارة" : "Car info",
+        "لاتوجد_سيارة" : "No car registered ! ",
+
+        "بيانات_ادارية" : "Document data"
+
     },
     "my profile end ==========================": "",
     "send_time_sheet": {

@@ -7,7 +7,7 @@
 }
 
 .navbar-brand {
-    width: 170px;
+    width: 170px !important;
     cursor: pointer;
 }
 
@@ -17,7 +17,7 @@
 
 .navbar {
     background-image: linear-gradient(90deg, #3077a1, #3fb674) !important;
-
+    height: 90px;
     /* background-image: linear-gradient( 0% !important; */
 }
 
@@ -161,6 +161,19 @@
 
 
 /* ======    start media query        ======== */
+
+@media screen and (max-width : 1400px) {
+    .t-sheet {
+        width: 120px !important;
+    }
+}
+
+
+
+
+
+
+
 @media screen and (max-width : 576px) {
 
     .container {

@@ -33,7 +33,7 @@ export class VacationComponent implements OnInit {
     Details: [null], // تفاصيل اخري
     vacationType: [null, Validators.required],// نوع الاجازة 
     myFile: [null],// نوع الاجازة 
-  },)
+  })
 
   setFormData(): FormData {
     let myData: FormData = new FormData()
@@ -44,12 +44,15 @@ export class VacationComponent implements OnInit {
     // التأكد من وجود الملف وإرساله بشكل صحيح
     const fileInput = this.userFile.nativeElement;
     if (fileInput.files.length > 0) {
-      myData.append('File', fileInput.files[0]);      
+      myData.append('File', fileInput.files[0]);
+      console.log(fileInput.files[0]);
+
     } else {
       console.log('No file selected');
     }
     return myData;
   }
+
 
   sendRequest() {
     console.log(this.vacationForm.valid, 'valid');

@@ -1,12 +1,11 @@
-<div class="bg-body-secondary min-vh-100">
+<div class=" bg-secondary-subtle min-vh-100">
     <app-fake-nav></app-fake-nav>
     <app-profile-nav></app-profile-nav>
-    <section class="w-100 vh-90 full-flex p-md-5  overflow-hidden">
-        <div class=" w-100   shadow rounded-2 overflow-hidden  ">
-            <div class="row w-100 m-0 vh-80 bg-nav d-flex justify-content-center">
-
+    <section class="w-100 vh-90 d-flex justify-content-center   overflow-hidden">
+        <div class=" w-100 pb-5  ">
+            <div class="row w-100 mx-auto m-0 mb-3 rounded-3    bg-nav d-flex justify-content-center">
                 <!-- side bar -->
-                <div class="col-3 ps-0 abo hide-on-mobile hide-on-tab ">
+                <!-- <div class="col-3 ps-0 abo hide-on-mobile hide-on-tab ">
 
                     <div class="sideNav   rounded-start-2">
                         <div class="left ">
@@ -71,23 +70,23 @@
 
 
                     </div>
-                </div>
+                </div> -->
 
                 <!-- main content -->
-                <div class="col-lg-9 bg-body-tertiary py-3 ">
-                    <div class="row border-bottom">
+                <div class="col-lg-10 col-xl-9 col-xxl-9 mx-auto py-4 bg-body-tertiary">
+                    <div class="row  ">
                         <div class="col-lg-9 ">
                             <div class=" row d-flex justify-content-center align-items-center">
 
                                 <!-- ==============  employee img   ====================-->
-                                <div class="col-sm-8 col-md-7 col-lg-5 col-xxl-4  position-relative emp-img">
+                                <div class="col-sm-7 col-md-6 col-lg-4 col-xl-4 col-xxl-3  position-relative emp-img">
                                     <div class="p-2 img-border border-layer">
                                         <div class="bg-white p-2 border-layer rounded-circle">
                                             <div class="img-container">
                                                 <div *ngIf="empImg == null" class="skeleton-profile-circle-shimmer">
                                                 </div>
-                                                <img *ngIf="empImg != null" [src]="empImg"
-                                                    alt="employee img" class="rounded-circle w-100 ">
+                                                <img *ngIf="empImg != null" [src]="empImg" alt="employee img"
+                                                    class="rounded-circle w-100 ">
                                             </div>
                                         </div>
                                     </div>
@@ -103,12 +102,12 @@
 
                                     <div
                                         class=" py-5 d-flex align-content-between flex-column emp-Data text-sm-center text-lg-start position-relative ">
-                                        <p class="fs-1 p  emp-Name my-lg-0 my-xl-3">{{empName}}</p>
-                                        <p class="text-muted my-lg-0 my-xl-1 fs-4 ">{{'page.كود' | translate}} :
+                                        <p class="fs-2 p  emp-Name my-lg-0 my-xl-3 arabicFont">{{empName}}</p>
+                                        <p class="text-muted my-lg-0 my-xl-1  ">{{'page.كود' | translate}} :
                                             {{empID}}</p>
-                                        <p *ngIf="!isAdmin" class="text-muted  my-lg-0 my-xl-1 fs-4 ">{{'page.موظف' |
+                                        <p *ngIf="!isAdmin" class="text-muted  my-lg-0 my-xl-1  ">{{'page.موظف' |
                                             translate}} </p>
-                                        <p *ngIf="isAdmin" class="text-muted  my-lg-0 my-xl-1 fs-4 ">{{'page.مسؤول' |
+                                        <p *ngIf="isAdmin" class="text-muted  my-lg-0 my-xl-1  ">{{'page.مسؤول' |
                                             translate}} </p>
                                         <div
                                             class="mt-3 arabicList text-start position-absolute Edit-btn-mobile show-on-mobile-only">
@@ -135,7 +134,7 @@
 
 
 
-                        <div class="col-md-3  my-btns hide-on-tab">
+                        <div class="col-md-3   my-btns hide-on-tab">
                             <div class=" full-flex flex-column  h-100 ">
                                 <button (click)="showImgModal()"
                                     class="btn btn-outline-dark w-100 py-3 my-1  option-btn">
@@ -158,7 +157,7 @@
 
 
 
-                        <div class="col-xxl-5 col-xlg-6 col-lg-7 mx-auto">
+                        <!-- <div class="col-xxl-5 col-xlg-6 col-lg-7 mx-auto">
                             <div
                                 class="border border-bottom-0 rounded-top-3 overflow-hidden d-flex justify-content-center text-muted">
                                 <div (click)="moveDown()" class="border-end  icon-div   w-25 full-flex flex-column p-3"
@@ -193,15 +192,15 @@
                             </div>
 
                         </div>
-                        <div class="line"></div>
+                        <div class="line"></div> -->
 
 
 
 
                         <!-- ===================== كل قسم من اقسام البيانات ===================== -->
-                        <div class="col-12 bg-white rounded-3 rounded-top-0 sup-profile ">
+                        <!-- <div class="col-12 bg-white rounded-3 rounded-top-0 sup-profile ">
                             <router-outlet></router-outlet>
-                        </div>
+                        </div> -->
 
 
                     </div>
@@ -209,25 +208,161 @@
 
 
                 </div>
-
-
-
-
             </div>
+
+
+
+
+
+            <!-- col-lg-10 col-xl-9 col-xxl-8 -->
+            <!-- =============================     personal info       ====================================== -->
+            <div
+                class=" col-md-11 col-lg-10 col-xl-9  mx-auto row  mb-3 m-0  rounded-3  bg-white bg-nav d-flex justify-content-center">
+                <div class="col-md-12  px-5  {{ 'direction' | translate}} ">
+                    <p class="fs-3 pt-3 "> {{ 'page.البيانات_الشخصية' | translate }}</p>
+                    <div class="   mx-auto">
+
+                        <div class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.المسمى_الوظيفي' | translate }}:</span>
+                            <p class="px-3 my-0 fw-semibold">رئيس قطاع</p>
+                        </div>
+
+                        <div class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.الادارة_التابع_لها' | translate }}
+                                :</span>
+                            <p class="px-3 my-0 fw-semibold"> الموارد البشرية </p>
+                        </div>
+
+                        <div class="border-bottom py-3">
+                            <span class="small fw-semibold text-muted"> {{ 'page.رقم_الجوال' | translate }} :</span>
+                            <p class="px-3 my-0 englishFont fw-semibold"> +96623434321 </p>
+                        </div>
+
+                        <div class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.رقم_الجوال_الاضافي' | translate }}
+                                :</span>
+                            <p class="px-3 my-0 englishFont fw-semibold"> +96623434321 </p>
+                        </div>
+
+                        <div *ngIf="identityNumber" class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.رقم_الهوية' | translate }} :</span>
+                            <p class="px-3 my-0 englishFont  fw-semibold"> {{identityNumber}} </p>
+                        </div>
+
+                        <div *ngIf="identityExpire" class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.تاريخ_انتهاء_الهوية' | translate }}
+                                :</span>
+                            <p class="px-3 my-0 englishFont fw-semibold"> {{identityExpire}}</p>
+                        </div>
+
+                        <div class=" py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.فئة_الدم' | translate }} :</span>
+                            <p class="px-3 my-0"> O+ </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- =============================     car info       ====================================== -->
+            <div
+                class=" col-md-11 col-lg-10 col-xl-9 mx-auto row mb-3 m-0  rounded-3  bg-white bg-nav d-flex justify-content-center">
+                <div class="col-md-12  {{ 'direction' | translate}}  px-5">
+                    <p class="fs-3 pt-3 "> {{ 'page.بيانات_السيارة' | translate }}</p>
+                    <div *ngIf="carNumber" class="  mx-auto ">
+                        <div class="border-bottom py-3">
+                            <span class="small fw-semibold text-muted">{{ 'page.رقم_السيارة' | translate }} :</span>
+                            <p class="px-3 my-0  fw-semibold"> {{carNumber}}</p>
+                        </div>
+                        <div class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.تاريخ_نهاية_العقد' | translate }}
+                                :</span>
+                            <p class="px-3 my-0 englishFont fw-semibold">{{contractCarEnd}}</p>
+                        </div>
+                        <div class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted">{{ 'page.تاريخ_نهاية_الفحص' | translate }}
+                                :</span>
+                            <p class="px-3 my-0 englishFont fw-semibold">{{checkCarEnd}}</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!carNumber" class="  mx-auto ">
+                        <div class=" py-3 text-center">
+                            <!-- <span class="small fw-semibold text-muted"> لا توجد سيارة مسجلة </span> -->
+                            <p class="px-3 my-0 py-4 fw-semibold"> {{ 'page.لاتوجد_سيارة' | translate }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- =============================     other info       ====================================== -->
+            <div
+                class=" col-md-11 col-lg-10 col-xl-9 mx-auto row mb-3 m-0  rounded-3  bg-white bg-nav d-flex justify-content-center">
+                <div class="col-md-12  px-5   {{ 'direction' | translate}} ">
+                    <p class="fs-3 pt-3 "> {{ 'page.بيانات_ادارية' | translate }}</p>
+                    <div class="   mx-auto ">
+
+                        <div class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted"> {{ 'page.تاريخ_بداية_العقد' | translate }} :
+                            </span>
+                            <p *ngIf="contractStart" class="px-3 my-0 englishFont fw-semibold">{{contractStart}}</p>
+                            <p *ngIf="!contractStart" class="px-3 my-0  fw-medium"> {{ 'page.غير_متوفر' | translate }}
+                            </p>
+                        </div>
+
+                        <div class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted">{{ 'page.تاريخ_نهاية_العقد' | translate }} :
+                            </span>
+                            <p *ngIf="contractEnd" class="px-3 my-0 englishFont fw-semibold">{{contractEnd}}</p>
+                            <p *ngIf="!contractEnd" class="px-3 my-0  fw-medium">{{ 'page.غير_متوفر' | translate }} </p>
+
+                        </div>
+
+                        <div *ngIf="passportNumber" class="border-bottom py-3">
+                            <span class="small  fw-semibold text-muted">{{ 'page.رقم_جواز_السفر' | translate }} :</span>
+                            <p *ngIf="passportNumber" class="px-3 my-0 englishFont fw-semibold">{{passportNumber}}</p>
+                            <p *ngIf="!passportNumber" class="px-3 my-0  fw-medium">{{ 'page.غير_متوفر' | translate }}
+                            </p>
+                        </div>
+
+                        <div *ngIf="endPassport" class=" py-3">
+                            <span class="small  fw-semibold text-muted">{{ 'page.تاريخ_انتهاء_الجواز' | translate }} :
+                            </span>
+                            <p *ngIf="endPassport" class="px-3 my-0 englishFont fw-semibold">{{endPassport}}</p>
+                            <p *ngIf="!endPassport" class="px-3 my-0  fw-medium">{{ 'page.غير_متوفر' | translate }} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
 
         </div>
     </section>
 </div>
 
 
+
+
+
+
+
 <form [formGroup]="imgForm">
-    <div #imgModal class="vh-100 full-flex bg-black-opacity position-fixed top-0 start-0 end-0 bottom-0 d-none overflow-hidden">
+    <div #imgModal
+        class="vh-100 full-flex bg-black-opacity position-fixed top-0 start-0 end-0 bottom-0 d-none overflow-hidden">
         <div class="w-50 img-Modal h-50 bg-white rounded-2 position-relative z-1 {{ 'direction' | translate }}">
             <p class=" text-center py-3 fs-3">{{ 'page.تحديث_صورة_الملف_الشخصي' | translate }}</p>
             <div class="w-75 mx-auto  min-h-60 full-flex flex-column">
-                <label for="updateImg" class="py-3 ms-auto fs-5 ">{{ 'page.قم_بأختيار_الصورة_الجديدة' | translate }}:</label>
-                <input #imgInputEl formControlName="imgInput" class="form-control form-control-lg" type="file"
-                    name="updateImg" id="updateImg">
+
+                <label for="updateImg" class="py-3 ms-auto fs-5 ">
+                    {{ 'page.قم_بأختيار_الصورة_الجديدة' | translate }}:</label>
+
+                <input (change)="imgSize()" #imgInputEl formControlName="imgInput" class="form-control form-control-lg"
+                    type="file" name="updateImg" id="updateImg">
 
                 <div class="text-center" *ngIf="imgForm.get('imgInput')?.getError('type')">
                     <p class="text-danger py-3 small font-13-mobile">
@@ -235,6 +370,16 @@
                         يجب ان تكون الصورة بأمتداد ( png - jpg - jpeg )
                     </p>
                 </div>
+
+
+                <div class="text-center" *ngIf="imgSizeError">
+                    <p class="text-danger py-3 small font-13-mobile">
+                        حجم الصورة كبير للغاية , <br class="show-on-mobile-only">
+                        يجب الا يتجاوز حجم الصورة 2 ميجا
+                    </p>
+                </div>
+
+
                 <div *ngIf="imgForm.get('imgInput')?.getError('required') && imgForm.get('imgInput')?.touched">
                     <p class="text-danger  py-3 ">
                         يجب اختيار صورة . .

@@ -1,8 +1,8 @@
 <section class="hide-on-mobile  admin-nav">
     <nav class="navbar navbar-expand-lg  shadow z-3 py-1">
         <div class="container">
-            <a class="navbar-brand" routerLink="">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png" alt="dashboard logo"
+            <a class="navbar-brand" routerLink="/admin-home">
+                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png" alt="saudia formica logo"
                     class="w-75">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -44,12 +44,12 @@
                     </li> -->
 
 
-                    <li class="  mx-2">
+                    <li class="  mx-2 t-sheet ">
                         <div class=" dropdown w-100  text-center mx-auto z-3 cursor-pointer">
                             <span
                                 class="nav-link border-0 d-flex justify-content-center align-items-center {{ 'direction' | translate}} logoutBtn"
                                 data-bs-toggle="dropdown" aria-expanded="true">
-                                <span class="fw-bold custom-border">{{ 'admin_nav.سجل_الحضور' | translate }}</span>
+                                <span class="fw-bold  custom-border">{{ 'admin_nav.سجل_الحضور' | translate }}</span>
                             </span>
 
 
@@ -158,6 +158,7 @@
                     <a class="nav-link" routerLink="admin-permissions" routerLinkActive="active-menu">{{
                         'admin_nav.الإذن' | translate }}</a>
                 </li>
+
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
                     <a class="nav-link" routerLink="admin-assets" routerLinkActive="active-menu">{{ 'admin_nav.العهدة' |
                         translate }}</a>

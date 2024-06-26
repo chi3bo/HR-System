@@ -29,9 +29,22 @@ export class ProfileComponent {
   empName: string = localStorage.getItem('employeeName')!
   empID: string = ''
   empImg: any = null
+
+  passportNumber: any = null
+  endPassport: any = null
+  contractStart: any = null
+  contractEnd: any = null
+  identityNumber: any = null
+  identityExpire: any = null
+  carNumber: any = null
+  checkCarEnd: any = null
+  contractCarEnd: any = null
   isAdmin: Boolean = false
+
   isLoading: Boolean = false
+  imgSizeError: boolean = false
   saudiMen: string = './assets/images/non-compressed/arabi_men.jpg'
+  imgSrc: any = null
   dataArrive: boolean = false
 
   ngOnInit(): void {
@@ -41,7 +54,16 @@ export class ProfileComponent {
         this.allDetails = data
         this._MyProfileService.srcData.next(this.allDetails)
         this.empName = this.allDetails.employeeInfo.name
-        //                                     there is  data ?   if no put saudi  ,   if yes put the base64+pic     
+        this.passportNumber = this.allDetails.passportInfo.passportNumber
+        this.endPassport = this.allDetails.passportInfo.expiredDate
+        this.contractStart = this.allDetails.contractInfo.startDate
+        this.contractEnd = this.allDetails.contractInfo.endDate
+        this.identityNumber = this.allDetails.identityInfo.identityNumber
+        this.identityExpire = this.allDetails.identityInfo.expiredDate
+        this.carNumber = this.allDetails.carInfo.carNumber
+        this.checkCarEnd = this.allDetails.carInfo.checkCarEndDate
+        this.contractCarEnd = this.allDetails.carInfo.contractCarEndDate
+        //                                     there is  data ?   if no put saudiImg  ,   if yes put the base64+pic     
         this.empImg = this.allDetails.employeeInfo.image == null ? this.saudiMen : 'data:;base64,' + this.allDetails.employeeInfo.image
         this.empID = this.allDetails.employeeInfo.id
         console.log(this.allDetails);
@@ -78,7 +100,7 @@ export class ProfileComponent {
   }
 
   sendImg() {
-    if (this.imgForm.valid) {
+    if (this.imgForm.valid && !this.imgSizeError) {
       this.spinner.show() // show loading
       this._MyProfileService.updateImg(this.setFormData()).subscribe({
         next: (response) => {
@@ -139,5 +161,24 @@ export class ProfileComponent {
       }
     }
     return null
+  }
+
+  // manual validation for img size (max 2m)
+  imgSize() {
+    let file: string = this.imgForm.get('imgInput')?.value
+    if (file) {
+      const fileInput = this.imgElement.nativeElement;
+      if (fileInput.files[0].size > 2097151) {
+        console.log(Number(fileInput.files[0].size / 1024 / 1024).toFixed(2));
+        this.imgSizeError = true
+      }
+      else {
+        this.imgSizeError = false
+      }
+    }
+    else {
+      this.imgSizeError = false
+    }
+
   }
 }

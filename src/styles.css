@@ -26,6 +26,17 @@ body {
     font-style: normal !important;
 }
 
+.arabicFont {
+    font-family: "Almarai", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.englishFont {
+    font-family: "Be Vietnam Pro", sans-serif !important;
+}
+
+
 .download-button{
     text-decoration: underline ;
 }
