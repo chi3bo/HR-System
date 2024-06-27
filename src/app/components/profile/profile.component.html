@@ -3,75 +3,8 @@
     <app-profile-nav></app-profile-nav>
     <section class="w-100 vh-90 d-flex justify-content-center   overflow-hidden">
         <div class=" w-100 pb-5  ">
+            
             <div class="row w-100 mx-auto m-0 mb-3 rounded-3    bg-nav d-flex justify-content-center">
-                <!-- side bar -->
-                <!-- <div class="col-3 ps-0 abo hide-on-mobile hide-on-tab ">
-
-                    <div class="sideNav   rounded-start-2">
-                        <div class="left ">
-                            <div class="w-100">
-                                <div class="navbar-brand w-50 mx-auto mb-3" routerLink="/home">
-                                    <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png"
-                                        alt="dashboard logo" class="w-100">
-                                </div>
-
-                                <div
-                                    class="nav-link w-100 text-end px-3 pt-5 d-flex justify-content-between {{ 'direction' | translate}}">
-                                    <div>
-                                        <span class=" px-1">{{ 'page.تابعنا_علي_مواقع_التواصل_الاجتماعي' | translate
-                                            }}</span>
-                                    </div>
-
-                                </div>
-
-                                <ul class="list-unstyled sidbarUnits overflow-hidden my-3 border-top border-bottom">
-                                    <li class="nav-item w-75 px-xl-5  px-md-3 my-4">
-                                        <a class="nav-link d-flex justify-content-start  fs-3"
-                                            href="https://www.facebook.com/SaudiFormicaSheets.Company" target="_blank">
-                                            <i
-                                                class="fa-brands fa-facebook fa-xl px-2 text-start align-middle"></i>/facebook
-                                        </a>
-                                    </li>
-                                    <li class="nav-item w-75 px-xl-5  px-md-3 my-4 text-center   ">
-                                        <a class="nav-link d-flex justify-content-start   fs-3"
-                                            href="https://www.linkedin.com/company/saudi-formica-sheets-company/"
-                                            target="_blank">
-                                            <i
-                                                class="fa-brands fa-linkedin fa-xl px-2 text-start align-middle"></i>/Linkedin
-                                        </a>
-                                    </li>
-                                    <li class="nav-item w-75 px-xl-5  px-md-3 my-4 text-center   ">
-                                        <a class="nav-link d-flex justify-content-start   fs-3"
-                                            href="https://x.com/sfsco_sa?t=ofAIQXiOBnp4E70QmD8Ykw&s=09" target="_blank">
-                                            <i
-                                                class="fa-brands fa-square-x-twitter fa-xl px-2 text-start align-middle"></i>/X.com
-                                        </a>
-                                    </li>
-                                    <li class="nav-item w-75 px-xl-5  px-md-3 my-4 text-center   ">
-                                        <a class="nav-link d-flex justify-content-start   fs-3"
-                                            href="https://www.instagram.com/sfsco.sa/" target="_blank">
-                                            <i
-                                                class="fa-brands fa-instagram fa-xl px-2 text-start align-middle"></i>/instagram
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-
-                            <div class="text-center p-3 logoutBtn w-100 mb-2 {{ 'direction' | translate}}">
-                                <span class="py-2 fs-4">
-                                    {{"page.عن_الشركة" | translate}}
-                                    <i class="fa-brands fa-slack px-1 "></i></span>
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-                </div> -->
-
                 <!-- main content -->
                 <div class="col-lg-10 col-xl-9 col-xxl-9 mx-auto py-4 bg-body-tertiary">
                     <div class="row  ">
@@ -97,12 +30,16 @@
                                 </div>
 
                                 <!-- ==============  employee name and sub   ====================-->
-
                                 <div class="  col-lg-7 col-xxl-8">
 
                                     <div
                                         class=" py-5 d-flex align-content-between flex-column emp-Data text-sm-center text-lg-start position-relative ">
-                                        <p class="fs-2 p  emp-Name my-lg-0 my-xl-3 arabicFont">{{empName}}</p>
+                                        <p
+                                            class="fs-2 p  emp-Name my-lg-0 my-xl-3 arabicFont {{ 'lang-arabic' | translate}} ">
+                                            {{empNameAR}} </p>
+                                        <p
+                                            class="fs-2 p  emp-Name my-lg-0 my-xl-3 englishFont {{ 'lang-english' | translate}} ">
+                                            {{empNameEN}}</p>
                                         <p class="text-muted my-lg-0 my-xl-1  ">{{'page.كود' | translate}} :
                                             {{empID}}</p>
                                         <p *ngIf="!isAdmin" class="text-muted  my-lg-0 my-xl-1  ">{{'page.موظف' |
@@ -112,25 +49,15 @@
                                         <div
                                             class="mt-3 arabicList text-start position-absolute Edit-btn-mobile show-on-mobile-only">
                                             <button (click)="showImgModal()"
-                                                class="btn btn-outline-dark px-5 py-3 mx-1 adminButton1"> {{
-                                                'page.تعديل' | translate }} <i
-                                                    class="fa-solid fa-pen-to-square "></i></button>
+                                                class="btn btn-outline-dark px-5 py-3 mx-1 adminButton1"> {{'page.تعديل'
+                                                | translate }} <i class="fa-solid fa-pen-to-square "></i></button>
                                         </div>
 
                                     </div>
                                 </div>
 
-
-
-
-
                             </div>
                         </div>
-
-
-
-
-
 
 
 
@@ -157,50 +84,6 @@
 
 
 
-                        <!-- <div class="col-xxl-5 col-xlg-6 col-lg-7 mx-auto">
-                            <div
-                                class="border border-bottom-0 rounded-top-3 overflow-hidden d-flex justify-content-center text-muted">
-                                <div (click)="moveDown()" class="border-end  icon-div   w-25 full-flex flex-column p-3"
-                                    routerLink="identity" routerLinkActive="icon-active">
-                                    <span><i class=" icon-img fa-solid   fa-id-card"></i></span>
-                                    <span class="icon-text">{{ 'page.هوية' | translate }}</span>
-                                </div>
-
-
-                                <div (click)="moveDown()" class="border-end icon-div w-25 full-flex flex-column p-3 "
-                                    routerLink="car" routerLinkActive="icon-active">
-                                    <span><i class=" icon-img fa-solid   fa-car-side"></i></span>
-                                    <span class="icon-text">{{ 'page.سيارة' | translate }}</span>
-                                </div>
-
-                                <div (click)="moveDown()" class="border-end  icon-div w-25 full-flex flex-column p-3 "
-                                    routerLink="passport" routerLinkActive="icon-active">
-                                    <span><i class=" icon-img fa-solid   fa-passport"></i></span>
-                                    <span class="icon-text">{{ 'page.جواز_سفر' | translate }}</span>
-                                </div>
-
-
-
-                                <div (click)="moveDown()" class=" w-25  icon-div full-flex flex-column p-3"
-                                    routerLink="contract" routerLinkActive="icon-active">
-                                    <span><i class=" icon-img fa-solid   fa-file-signature"></i></span>
-                                    <span class="icon-text">{{ 'page.عقد' | translate }}</span>
-                                </div>
-
-
-
-                            </div>
-
-                        </div>
-                        <div class="line"></div> -->
-
-
-
-
-                        <!-- ===================== كل قسم من اقسام البيانات ===================== -->
-                        <!-- <div class="col-12 bg-white rounded-3 rounded-top-0 sup-profile ">
-                            <router-outlet></router-outlet>
-                        </div> -->
 
 
                     </div>
@@ -214,7 +97,6 @@
 
 
 
-            <!-- col-lg-10 col-xl-9 col-xxl-8 -->
             <!-- =============================     personal info       ====================================== -->
             <div
                 class=" col-md-11 col-lg-10 col-xl-9  mx-auto row  mb-3 m-0  rounded-3  bg-white bg-nav d-flex justify-content-center">
@@ -224,40 +106,57 @@
 
                         <div class="border-bottom py-3">
                             <span class="small  fw-semibold text-muted"> {{ 'page.المسمى_الوظيفي' | translate }}:</span>
-                            <p class="px-3 my-0 fw-semibold">رئيس قطاع</p>
+                            <p class="px-3 my-0 fw-semibold {{ 'lang-arabic' | translate}} "> {{jobNameAr }}</p>
+                            <p class="px-3 my-0 fw-semibold {{ 'lang-english' | translate}}"> {{jobNameEn }}</p>
+                            <p *ngIf="!jobNameAr " class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
+
                         </div>
 
                         <div class="border-bottom py-3">
                             <span class="small  fw-semibold text-muted"> {{ 'page.الادارة_التابع_لها' | translate }}
                                 :</span>
-                            <p class="px-3 my-0 fw-semibold"> الموارد البشرية </p>
+                            <p class="px-3 my-0 fw-semibold {{ 'lang-arabic' | translate}} ">{{departmentAr}}</p>
+                            <p class="px-3 my-0 fw-semibold {{ 'lang-english' | translate}} ">{{departmentEn}}</p>
+                            <p *ngIf="!departmentAr" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
 
                         <div class="border-bottom py-3">
                             <span class="small fw-semibold text-muted"> {{ 'page.رقم_الجوال' | translate }} :</span>
-                            <p class="px-3 my-0 englishFont fw-semibold"> +96623434321 </p>
+                            <p class="px-3 my-0 englishFont fw-semibold"> {{mobile}} </p>
+                            <p *ngIf="!mobile" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
 
                         <div class="border-bottom py-3">
                             <span class="small  fw-semibold text-muted"> {{ 'page.رقم_الجوال_الاضافي' | translate }}
                                 :</span>
-                            <p class="px-3 my-0 englishFont fw-semibold"> +96623434321 </p>
+                            <p class="px-3 my-0 englishFont fw-semibold"> {{mobileEmergency}} </p>
+                            <p *ngIf="!mobileEmergency" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
 
-                        <div *ngIf="identityNumber" class="border-bottom py-3">
+                        <div class="border-bottom py-3">
                             <span class="small  fw-semibold text-muted"> {{ 'page.رقم_الهوية' | translate }} :</span>
                             <p class="px-3 my-0 englishFont  fw-semibold"> {{identityNumber}} </p>
+                            <p *ngIf="!identityNumber" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
 
-                        <div *ngIf="identityExpire" class="border-bottom py-3">
+                        <div class="border-bottom py-3">
                             <span class="small  fw-semibold text-muted"> {{ 'page.تاريخ_انتهاء_الهوية' | translate }}
                                 :</span>
                             <p class="px-3 my-0 englishFont fw-semibold"> {{identityExpire}}</p>
+                            <p *ngIf="!identityExpire" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
 
                         <div class=" py-3">
                             <span class="small  fw-semibold text-muted"> {{ 'page.فئة_الدم' | translate }} :</span>
-                            <p class="px-3 my-0"> O+ </p>
+                            <p class="px-3 my-0"> {{ bloodType }} </p>
+                            <p *ngIf="!bloodType" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
 
                     </div>
@@ -279,11 +178,15 @@
                             <span class="small  fw-semibold text-muted"> {{ 'page.تاريخ_نهاية_العقد' | translate }}
                                 :</span>
                             <p class="px-3 my-0 englishFont fw-semibold">{{contractCarEnd}}</p>
+                            <p *ngIf="!contractCarEnd" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
                         <div class="border-bottom py-3">
                             <span class="small  fw-semibold text-muted">{{ 'page.تاريخ_نهاية_الفحص' | translate }}
                                 :</span>
                             <p class="px-3 my-0 englishFont fw-semibold">{{checkCarEnd}}</p>
+                            <p *ngIf="!checkCarEnd" class="px-3 my-0  fw-medium">
+                                {{ 'page.غير_متوفر' | translate }}</p>
                         </div>
                     </div>
 
@@ -320,14 +223,14 @@
 
                         </div>
 
-                        <div *ngIf="passportNumber" class="border-bottom py-3">
+                        <div class="border-bottom py-3">
                             <span class="small  fw-semibold text-muted">{{ 'page.رقم_جواز_السفر' | translate }} :</span>
                             <p *ngIf="passportNumber" class="px-3 my-0 englishFont fw-semibold">{{passportNumber}}</p>
                             <p *ngIf="!passportNumber" class="px-3 my-0  fw-medium">{{ 'page.غير_متوفر' | translate }}
                             </p>
                         </div>
 
-                        <div *ngIf="endPassport" class=" py-3">
+                        <div class=" py-3">
                             <span class="small  fw-semibold text-muted">{{ 'page.تاريخ_انتهاء_الجواز' | translate }} :
                             </span>
                             <p *ngIf="endPassport" class="px-3 my-0 englishFont fw-semibold">{{endPassport}}</p>
@@ -356,9 +259,9 @@
         class="vh-100 full-flex bg-black-opacity position-fixed top-0 start-0 end-0 bottom-0 d-none overflow-hidden">
         <div class="w-50 img-Modal h-50 bg-white rounded-2 position-relative z-1 {{ 'direction' | translate }}">
             <p class=" text-center py-3 fs-3">{{ 'page.تحديث_صورة_الملف_الشخصي' | translate }}</p>
-            <div class="w-75 mx-auto  min-h-60 full-flex flex-column">
+            <div class="w-75 mx-auto min-h-60 d-flex justify-content-center flex-column">
 
-                <label for="updateImg" class="py-3 ms-auto fs-5 ">
+                <label for="updateImg" class="py-3 justify-content-start  fs-5 ">
                     {{ 'page.قم_بأختيار_الصورة_الجديدة' | translate }}:</label>
 
                 <input (change)="imgSize()" #imgInputEl formControlName="imgInput" class="form-control form-control-lg"
@@ -366,23 +269,23 @@
 
                 <div class="text-center" *ngIf="imgForm.get('imgInput')?.getError('type')">
                     <p class="text-danger py-3 small font-13-mobile">
-                        صورة غير مدعومة , <br class="show-on-mobile-only">
-                        يجب ان تكون الصورة بأمتداد ( png - jpg - jpeg )
+                        {{ 'page.صورة_غير_مدعومة' | translate }} <br class="show-on-mobile-only">
+                        {{ 'page.يجب_أن_تكون_بامتداد' | translate }}
                     </p>
                 </div>
 
 
                 <div class="text-center" *ngIf="imgSizeError">
                     <p class="text-danger py-3 small font-13-mobile">
-                        حجم الصورة كبير للغاية , <br class="show-on-mobile-only">
-                        يجب الا يتجاوز حجم الصورة 2 ميجا
+                        {{ 'page.حجم_الصورة_كبير_للغاية' | translate }} <br class="">
+                        {{ 'page.اختر_صورة_أصغر' | translate }}
                     </p>
                 </div>
 
 
-                <div *ngIf="imgForm.get('imgInput')?.getError('required') && imgForm.get('imgInput')?.touched">
+                <div *ngIf="imgForm.get('imgInput')?.getError('required') && imgForm.get('imgInput')?.touched" class="text-center">
                     <p class="text-danger  py-3 ">
-                        يجب اختيار صورة . .
+                        {{ 'page.يجب_اختيار_صورة' | translate }}
                     </p>
                 </div>
                 <button class="btn btn-primary px-5 py-2 my-3 d-block me-auto" (click)="sendImg()">
@@ -405,3 +308,7 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="square-jelly-box" [fullScreen]="true">
     <p class=" w-100  loading-text"> Loading.. </p>
 </ngx-spinner>
+
+
+<!--  {{ 'lang-arabic' | translate}}  -->
+<!-- {{ 'lang-english' | translate}} -->

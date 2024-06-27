@@ -15,6 +15,8 @@
     "direction": "englishList",
     "حجم_الخط": "font-30-mobile",
     "englishBody": "englishBody",
+    "lang-arabic": "d-none",
+    "lang-english": "",
     "admin_nav": {
         "الرئيسية": "Home",
         "طلبات_الاجازات": "Vacations",
@@ -384,6 +386,13 @@
         "عقد": "Contract",
         "تحديث_صورة_الملف_الشخصي": "Update Profile Picture",
         "قم_بأختيار_الصورة_الجديدة": "Choose the new picture",
+
+        "يجب_اختيار_صورة": "  You must select an image . . ",
+        "حجم_الصورة_كبير_للغاية": " The image size is too large , ",
+        "اختر_صورة_أصغر": " Please choose an image smaller than 2 MB ",
+        "صورة_غير_مدعومة": " Unsupported image format , ",
+        "يجب_أن_تكون_بامتداد": " The image must be in (png - jpg - jpeg) format ",
+
         "حفظ": "Save",
         "تعديل": "Edit",
         "تواصل_معنا": "Contact us",
@@ -397,21 +406,16 @@
         "تاريخ_انتهاء_الهوية": "ID Expiry Date",
         "تاريخ_بداية_العقد": "Contract Start Date",
         "تاريخ_نهاية_العقد": "Contract End Date",
-
         "البيانات_الشخصية": "Personal data",
         "المسمى_الوظيفي" : "Job Title",
         "الادارة_التابع_لها" : "Department" ,
         "رقم_الجوال" : "Mobile Number",
         "رقم_الجوال_الاضافي" : "Additional Emergency Mobile" ,
         "فئة_الدم":" Blood Type ",
-
         "غير_متوفر" : "not found",
-
         "بيانات_السيارة" : "Car info",
         "لاتوجد_سيارة" : "No car registered ! ",
-
         "بيانات_ادارية" : "Document data"
-
     },
     "my profile end ==========================": "",
     "send_time_sheet": {

@@ -14,14 +14,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul
                     class="navbar-nav arabicList mx-auto me-0 mb-2 mb-lg-0 text-capitalize text-center {{ 'direction' | translate }}">
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" [routerLink]="isAdmin ?  '/admin-home' : '/home' " routerLinkActive="active-menu">{{ 'main_nav.الرئيسية'
+                    <li class="nav-item mx-xl-3 mx-lg-2 ">
+                        <a class="nav-link" [routerLink]="isAdmin ?  '/admin-home' : '/home' "
+                            routerLinkActive="active-menu">{{ 'main_nav.الرئيسية'
                             |translate }}</a>
                     </li>
 
 
 
-                    <li class="nav-item dropdown mx-3">
+                    <li class="nav-item dropdown mx-xl-3 mx-lg-2  ">
                         <span class="nav-link d-flex justify-content-center align-items-center" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {{'main_nav.الطلبات' | translate }}<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
@@ -45,13 +46,13 @@
 
 
 
-                    <li class="nav-item mx-3">
+                    <li class="nav-item mx-xl-3 mx-lg-2 ">
                         <a class="nav-link" routerLink="/allOrders/loan" routerLinkActive="active-menu">{{
                             'main_nav.طلباتي' | translate }}</a>
                     </li>
 
 
-                    <li class="nav-item mx-3">
+                    <li class="nav-item mx-xl-3 mx-lg-2 ">
                         <a class="nav-link" routerLink="/help" routerLinkActive="active-menu">{{ 'main_nav.مساعدة' |
                             translate }}</a>
                     </li>
@@ -99,8 +100,7 @@
                 <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png" alt="dashboard logo"
                     class="w-100">
             </div>
-            <div
-                class="nav-link w-100 text-end px-3  d-flex justify-content-between {{ 'direction' | translate}}">
+            <div class="nav-link w-100 text-end px-3  d-flex justify-content-between {{ 'direction' | translate}}">
                 <div>
                     <span class="fw-light px-1">{{ 'admin_nav.مرحباً' | translate }}</span>
                     <span class="fw-bolder">{{employeeName}}</span>
@@ -111,7 +111,8 @@
             </div>
             <ul class="list-unstyled sidbarUnits  my-5 border-top border-bottom">
                 <li class="nav-item w-75 px-3 text-center mx-auto" (click)="closeNav()">
-                    <a class="nav-link w-7" [routerLink]="isAdmin ?  '/admin-home' : '/home' " routerLinkActive="active-menu">{{ 'main_nav.الرئيسية' |
+                    <a class="nav-link w-7" [routerLink]="isAdmin ?  '/admin-home' : '/home' "
+                        routerLinkActive="active-menu">{{ 'main_nav.الرئيسية' |
                         translate }}</a>
                 </li>
 

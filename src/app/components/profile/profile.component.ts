@@ -26,26 +26,46 @@ export class ProfileComponent {
 
 
   allDetails: Profile = {} as Profile
-  empName: string = localStorage.getItem('employeeName')!
-  empID: string = ''
-  empImg: any = null
 
-  passportNumber: any = null
-  endPassport: any = null
-  contractStart: any = null
-  contractEnd: any = null
-  identityNumber: any = null
-  identityExpire: any = null
-  carNumber: any = null
-  checkCarEnd: any = null
-  contractCarEnd: any = null
-  isAdmin: Boolean = false
 
+
+  // ========================== start Flags ===========================
   isLoading: Boolean = false
   imgSizeError: boolean = false
+  dataArrive: boolean = false
+  isAdmin: Boolean = false
+
+  // ========================== start head section ===========================
+  empNameAR: string = localStorage.getItem('employeeName')!
+  empNameEN: string = localStorage.getItem('employeeName')!
+  empID: string = ' **** '
+  empImg: any = null
   saudiMen: string = './assets/images/non-compressed/arabi_men.jpg'
   imgSrc: any = null
-  dataArrive: boolean = false
+
+  // ======================  start personal section ===========================
+  jobNameAr: any = ' . . . '
+  jobNameEn: any = ' . . . '
+  mobile: any = ' . . . '
+  mobileEmergency: any = ' . . . '
+  departmentAr: any = ' . . . '
+  departmentEn: any = ' . . . '
+  identityNumber: any = ' . . . '
+  identityExpire: any = ' . . . '
+  bloodType: any = ' . . . '
+
+  // ========================     start document section       ===========================
+  passportNumber: any = ' . . . '
+  endPassport: any = ' . . . '
+  contractStart: any = ' . . . '
+  contractEnd: any = ' . . . '
+  carNumber: any = ' . . . '
+  checkCarEnd: any = ' . . . '
+  contractCarEnd: any = ' . . . '
+
+
+
+
 
   ngOnInit(): void {
     this.spinner.show()
@@ -53,7 +73,17 @@ export class ProfileComponent {
       next: (data) => {
         this.allDetails = data
         this._MyProfileService.srcData.next(this.allDetails)
-        this.empName = this.allDetails.employeeInfo.name
+
+        this.empNameAR = this.allDetails.employeeInfo.nameAr
+        this.empNameEN = this.allDetails.employeeInfo.nameEn
+        this.jobNameAr = this.allDetails.employeeInfo.jobNameAr
+        this.jobNameEn = this.allDetails.employeeInfo.jobNameEn
+        this.mobile = this.allDetails.employeeInfo.mobile
+        this.mobileEmergency = this.allDetails.employeeInfo.mobileEmergency
+        this.departmentAr = this.allDetails.employeeInfo.depatmentNameAr
+        this.departmentEn = this.allDetails.employeeInfo.depatmentNameEn
+        this.bloodType = this.allDetails.employeeInfo.bloodType
+
         this.passportNumber = this.allDetails.passportInfo.passportNumber
         this.endPassport = this.allDetails.passportInfo.expiredDate
         this.contractStart = this.allDetails.contractInfo.startDate
@@ -70,7 +100,10 @@ export class ProfileComponent {
         this.spinner.hide()
         this.dataArrive = true
       },
+
+
       error: (err) => {
+
         this.spinner.hide()
         console.log(err);
         if (err.error.message == 'Unauthorized') {
@@ -80,9 +113,6 @@ export class ProfileComponent {
       },
     })
     this.adminOrEmp()
-
-
-
 
   }
 
@@ -163,13 +193,13 @@ export class ProfileComponent {
     return null
   }
 
-  // manual validation for img size (max 2m)
+  // manual validation for img size (max 2mb)
   imgSize() {
     let file: string = this.imgForm.get('imgInput')?.value
     if (file) {
       const fileInput = this.imgElement.nativeElement;
+      // --------------  this number = 2mb 
       if (fileInput.files[0].size > 2097151) {
-        console.log(Number(fileInput.files[0].size / 1024 / 1024).toFixed(2));
         this.imgSizeError = true
       }
       else {

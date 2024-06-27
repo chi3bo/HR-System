@@ -6,9 +6,18 @@ export interface Profile {
     carInfo: CarInfo
 }
 
+
 export interface EmployeeInfo {
     id: string
-    name: string
+    nameAr: string
+    nameEn: string
+    bloodType: string
+    mobile: string
+    mobileEmergency: string
+    jobNameAr: string
+    jobNameEn: string
+    depatmentNameAr: string
+    depatmentNameEn: string
     image: any
 }
 
