@@ -58,6 +58,9 @@ import { FullTime2Pipe } from './shared/full-time2.pipe';
 import { Time12hoursPipe } from './shared/time12hours.pipe';
 import { MinToHoursPipe } from './shared/min-to-hours.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ContentLoaderModule } from '@ngneat/content-loader';
+import { NgxPaginationModule } from "ngx-pagination";
 
 
 
@@ -116,6 +119,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FullTime2Pipe,
     Time12hoursPipe,
     MinToHoursPipe,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,8 +137,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    SweetAlert2Module.forRoot()
-
+    SweetAlert2Module.forRoot(),
+    ContentLoaderModule,
+    NgxPaginationModule
   ],
 
 

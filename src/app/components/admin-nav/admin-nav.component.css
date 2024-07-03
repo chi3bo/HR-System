@@ -21,6 +21,10 @@
     /* background-image: linear-gradient( 0% !important; */
 }
 
+.nav-link.show {
+    color:#fff;
+}
+
 
 .nav-item ::after {
     content: '';

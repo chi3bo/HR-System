@@ -270,19 +270,6 @@ export class SendTimesheetComponent {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 // شكل الداتا المطلوبة لأرسال التايم شيت في body json

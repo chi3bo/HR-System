@@ -36,6 +36,10 @@ body {
     font-family: "Be Vietnam Pro", sans-serif !important;
 }
 
+.font-w-500 {
+    font-weight: 400 !important;
+}
+
 
 .download-button{
     text-decoration: underline ;

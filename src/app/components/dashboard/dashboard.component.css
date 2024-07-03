@@ -1,0 +1,150 @@
+.one-character {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50%;
+    font-size: 22px;
+    color: white;
+}
+
+.department-List li {
+    padding-block: 3px;
+    padding-left: 30px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: scale .1s;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        /* background-color: white; */
+        scale: 1.05;
+        /* color: white; */
+    }
+}
+
+.bg-active {
+    background-image: linear-gradient(90deg, #3077a1, #3fb674) !important;
+    color: white;
+}
+
+
+.employee-card {
+
+    transition: all .5s;
+
+    &:hover {
+        transform: translate(0, -7PX);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.599);
+        /* transform:  */
+    }
+}
+
+.inner-Modal {
+    min-height: 80vh !important;
+    border-radius: 10px;
+}
+
+
+.closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.942);
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+        color: #2d2d2d;
+    }
+}
+
+
+.bg-teal {
+    background-image: linear-gradient(90deg, #3fb674, #3fb674) !important;
+    color: #fff;
+}
+
+
+content-loader {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination button[disabled] {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.activePage:disabled {
+    background-color: rgb(0, 0, 0) !important;
+    display: inline-block;
+    scale: 1.1;
+}
+
+.testing {
+    position: fixed !important;
+}
+
+.manageDiv {
+    min-height: 68.5vh;
+}
+
+.up-test {
+    position: relative !important;
+}
+
+/* .downSetting {
+    position: relative;
+    bottom: 10px;
+    opacity: 0 !important;
+    transition: all .3s;
+}
+
+.openDownSetting {
+    opacity: 1 !important;
+    bottom: 0 !important;
+} */
+
+
+@media screen and (max-width:992px) {
+
+    .testing {
+        position: static !important;
+        padding: 16px 12px !important;
+    }
+
+
+}
+
+@media screen and (max-width:576px) {
+
+    .testing {
+        position: static !important;
+        padding: 12px !important;
+    }
+
+
+}

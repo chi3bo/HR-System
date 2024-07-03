@@ -185,6 +185,9 @@ Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
 
+@ngneat/content-loader
+MIT
+
 @ngx-translate/core
 SEE LICENSE IN LICENSE
 
@@ -267,6 +270,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+
+ngx-pagination
+MIT
 
 ngx-spinner
 MIT

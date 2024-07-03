@@ -95,6 +95,13 @@
                                         <i class="fa-regular fa-id-badge px-1"></i>
                                     </span>
                                 </li>
+                                <li routerLink="admin-dashboard"><span
+                                        class="dropdown-item py-2 border-bottom {{ 'direction' | translate}}"
+                                        (click)="closeNav()">
+                                        {{ 'admin_nav.لوحة_التحكم' | translate }}
+                                        <i class="fa-solid fa-dashboard px-1"></i>
+                                    </span>
+                                </li>
                                 <li><span class="dropdown-item py-2 {{ 'direction' | translate}}"
                                         (click)="setLogout()">{{ 'admin_nav.تسجيل الخروج' | translate }}
                                         <i class="fa-solid fa-arrow-right-from-bracket px-1"></i></span>
