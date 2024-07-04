@@ -43,8 +43,16 @@
 }
 
 .inner-Modal {
-    min-height: 80vh !important;
-    border-radius: 10px;
+    height: 75vh !important;
+    border-radius: 10px !important;
+    overflow: auto !important;
+}
+
+.employee-Modal{
+    z-index: 99;
+}
+.groub-Modal{
+    z-index: 10;
 }
 
 
@@ -104,7 +112,7 @@ content-loader {
     scale: 1.1;
 }
 
-.testing {
+.sideBar-manages {
     position: fixed !important;
 }
 
@@ -131,17 +139,19 @@ content-loader {
 
 @media screen and (max-width:992px) {
 
-    .testing {
+    .sideBar-manages {
         position: static !important;
         padding: 16px 12px !important;
     }
-
+    .manageDiv {
+        min-height: auto;
+    }
 
 }
 
 @media screen and (max-width:576px) {
 
-    .testing {
+    .sideBar-manages {
         position: static !important;
         padding: 12px !important;
     }

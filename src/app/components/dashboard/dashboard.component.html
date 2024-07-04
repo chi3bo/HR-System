@@ -9,45 +9,52 @@
                         <input formControlName="searchInput" type="text" class="form-control "
                             aria-label="Text input with dropdown button">
 
-                        <button  class="btn btn-dark  dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        <button class="btn btn-dark  dropdown-toggle z-0" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false"> {{searchCategory}} </button>
-                        <ul class="dropdown-menu dropdown-menu-end arabicList text-center">
-                            <li (click)="setSearchCategory('موظف')"><a class="dropdown-item"> موظفين <span
-                                        *ngIf="searchCategory == 'موظف'"><i
-                                            class="fa-solid fa-square-check px-1"></i></span> </a> </li>
-                            <li (click)="setSearchCategory('فرع')"><a class="dropdown-item"> فروع <span
-                                        *ngIf="searchCategory == 'فرع'"><i
-                                            class="fa-solid fa-square-check px-1"></i></span> </a></li>
-                            <li (click)="setSearchCategory('ادارة')"><a class="dropdown-item"> ادارات <span
-                                        *ngIf="searchCategory == 'ادارة'"><i
-                                            class="fa-solid fa-square-check px-1"></i></span> </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item " href="#">Separated link</a></li>
-                        </ul>
-
-
-
-
-
-
-
-
+                        <div class="  py-0 dropdown-menu dropdown-menu-start ">
+                            <div class="d-flex">
+                                <div class="  ">
+                                    <p class="text-center">search by</p>
+                                    <ul class="arabicList list-unstyled text-center px-1 w-100">
+                                        <li>
+                                            <div class="px-2">
+                                                <input checked (click)="setSearchKey('الاسم')" type="radio" name="key"
+                                                    id="key1" value="" class="">
+                                                <label for="key1" class="small px-1">الاسم</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="px-2">
+                                                <input (click)="setSearchKey('الرقم التعريفي')" type="radio" name="key"
+                                                    id="key1" value="" class="">
+                                                <label for="key1" class="small px-1">الكود</label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="border-start  text-center">
+                                    <p class="text-center">groub by</p>
+                                    <ul class="arabicList list-unstyled px-3 w-100">
+                                        <li (click)="setSearchCategory('موظف')"><a class="dropdown-item"> موظفين <span
+                                                    *ngIf="searchCategory == 'موظف'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a> </li>
+                                        <li (click)="setSearchCategory('فرع')"><a class="dropdown-item"> فروع <span
+                                                    *ngIf="searchCategory == 'فرع'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a></li>
+                                        <li (click)="setSearchCategory('ادارة')"><a class="dropdown-item"> ادارات <span
+                                                    *ngIf="searchCategory == 'ادارة'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item " href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
-                    <div
-                        class=" text-center arabicList d-flex justify-content-center align-items-center py-1 downSetting">
-                        <p class="small my-0 d-inline-block "> بحث بـــــ</p>
-                        <div class="px-2">
-                            <input (click)="setSearchKey('الاسم')" type="radio" name="key" id="key1" value="" class="">
-                            <label for="key1" class="small px-1">الاسم</label>
-                        </div>
-                        <div class="px-2">
-                            <input (click)="setSearchKey('الرقم التعريفي')" type="radio" name="key" id="key1" value="" class="">
-                            <label for="key1" class="small px-1">الكود</label>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -55,12 +62,13 @@
         <div class="row">
             <!-- side list -->
             <div class="col-lg-2  position-relative p-0">
-                <div class="testing col-lg-2 mx-0 px-1">
+                <div class="sideBar-manages col-lg-2 mx-0 px-1">
                     <div class="bg-white fw-semibold  rounded-2 rounded overflow-hidden manageDiv ">
 
-                        <p class=" bg-dark-subtle englishFont text-center my-0 py-3">Department
+                        <p class=" bg-dark-subtle englishFont text-center my-0 py-3">Management
                             <i class="fa-solid fa-layer-group"></i>
                         </p>
+
 
                         <ul class="list-unstyled department-List  px-xl-2 mt-1 ">
                             <li (click)="getOneManage('')"><span>All</span></li>
@@ -77,7 +85,13 @@
             </div>
 
 
+
+
+
+
             <!-- main content -->
+
+            <!-- ============ ----------- all Employee ----------- ============ -->
             <div *ngIf="searchCategory == 'موظف' " class=" col-lg-10 ">
                 <div *ngIf="employeeList.length > 0 " class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of paginatedResults; let i = index ">
@@ -101,6 +115,7 @@
                     </div>
                 </div>
 
+                <!-- ==========  not found  ========== -->
                 <div *ngIf="noEmplyeFound" class="py-5 bg-white rounded-3">
                     <p class="fs-3 my-5 text-center">
                         بيانات البحث غير مطابقة لأي موظف
@@ -134,20 +149,18 @@
                     </div>
                 </div>
 
-
-
-
-
-
             </div>
 
 
 
 
+
+
+            <!-- ============ ----------- all groub ----------- ============ -->
             <div *ngIf="searchCategory == 'فرع' " class=" col-lg-10 ">
                 <div *ngIf="branchesList.length > 0 " class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of paginatedBranches; let i = index ">
-                        <div (click)="getEmpDetails()"
+                        <div (click)="getGroubDetails(item.id , '' , '' , item.nameAr , item.nameEn)"
                             class=" bg-white employee-card w-100 rounded full-flex flex-column h-100">
                             <!-- <div class="full-flex pt-2"> <p [style.background-color]="randomColor[i]" class=" one-character" > أ </p> </div> -->
                             <div class="full-flex pt-3 p-3 one-character">
@@ -175,8 +188,7 @@
                 <!-- loading content ---- (show only when data is loading) -->
                 <div *ngIf="loadingData" class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of tempList ; let i = index ">
-                        <div (click)="getEmpDetails()"
-                            class=" bg-white employee-card w-100 rounded full-flex flex-column">
+                        <div class=" bg-white employee-card w-100 rounded full-flex flex-column">
                             <div class="full-flex pt-2 one-character">
                                 <content-loader viewBox="0 0 200 200" [speed]="1" backgroundColor="#f2f2f2"
                                     foregroundColor="#e8e8e8">
@@ -218,13 +230,13 @@
 
 
     <!-- ==========================   start employee info   ========================== -->
-    <div *ngIf="showModal"
+    <div *ngIf="showEmpModal"
         class="employee-Modal bg-danger w-100 vh-100 bg-black bg-opacity-75 position-fixed top-0 start-0 end-0">
 
         <app-fake-nav></app-fake-nav>
         <div class="row w-100  mx-0 vh-90 full-flex ">
             <div id="inner-Modal" class="col-md-8 mx-auto ">
-                <div class="bg-white w-100 inner-Modal overflow-hidden position-relative">
+                <div class="bg-white w-100 inner-Modal overflow-auto position-relative">
 
                     <p class="fs-3 py-3 my-0 bg-teal text-center"> بيانات الموظف </p>
 
@@ -237,8 +249,7 @@
                         </div>
                     </div>
 
-
-                    <span (click)="closeImgModal()">
+                    <span (click)="closeEmpModal()">
                         <i class="fa-solid fa-xmark fa-3x closeBtn"></i>
                     </span>
 
@@ -250,6 +261,115 @@
 
     </div>
     <!-- ==========================   end employee info   ========================== -->
+
+
+
+
+
+
+    <!-- ==========================   start group info   ========================== -->
+    <div *ngIf="showGroubModal"
+        class=" bg-danger w-100 vh-100 bg-black bg-opacity-75 position-fixed top-0 start-0 end-0">
+
+        <app-fake-nav></app-fake-nav>
+        <div class="row w-100  mx-0 vh-90 full-flex ">
+            <div id="inner-Modal" class="col-md-11 mx-auto ">
+                <div class="bg-white w-100  overflow-auto rounded-2 overflow-hidden position-relative">
+
+                    <div class="py-3  bg-teal text-center">
+                        <p class="fs-3 my-0"> {{OneGroupName}}</p>
+                    </div>
+
+
+                    <div class="emp-cards inner-Modal bg-secondary-subtle p-3 g-3 my-0 ">
+                        <p class="small my-0 text-end px-5"> {{groubEmployeeList.length}} : عدد العاملين</p>
+                        <div class="p-3 row g-3 ">
+                            <div class="col-md-6 col-lg-6 col-xl-4 col-xxl-3 "
+                                *ngFor="let item of groubEmployeeList; let i = index ">
+                                <div (click)="getEmpDetails()"
+                                    class=" bg-white employee-card w-100 rounded full-flex flex-column ">
+                                    <!-- <div class="full-flex pt-2"> <p [style.background-color]="randomColor[i]" class=" one-character" > أ </p> </div> -->
+                                    <div class="full-flex pt-2 one-character">
+                                        <img src="./assets/images/compressed-images/wepb/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.webp"
+                                            class="w-100" alt="">
+                                    </div>
+                                    <div class="text-center">
+                                        <!-- <p class="font-w-500 englishFont my-1">Ahmed mohamed ali</p> -->
+                                        <!-- <p  class="font-w-500 englishFont my-1">{{item.employeeNameEn}}</p> -->
+                                        <p class=" my-1">{{item.employeeNameAr}}</p>
+                                        <!-- <p class="fw-medium arabicFont small my-0"> </p> -->
+                                        <p *ngIf="item.jobNameAr" class="fw-medium arabicFont mb-2 small">
+                                            {{item.jobNameAr}}
+                                        </p>
+                                        <p *ngIf="!item.jobNameAr" class="fw-medium arabicFont mb-2 small">مسؤول مخزن
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                                            <!-- loading content ---- (show only when data is loading) -->
+                <div *ngIf="GroubloadingData" class="emp-cards row g-3 ">
+                    <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of tempList ; let i = index ">
+                        <div class=" bg-white employee-card w-100 rounded full-flex flex-column">
+                            <div class="full-flex pt-2 one-character">
+                                <content-loader viewBox="0 0 200 200" [speed]="1" backgroundColor="#f2f2f2"
+                                    foregroundColor="#e8e8e8">
+                                    <svg:circle cx="96" cy="101" r="84" />
+                                </content-loader>
+                            </div>
+                            <div class="text-center  mt-1 w-75">
+                                <content-loader viewBox="0 0 300 40" [speed]="1" backgroundColor="#f2f2f2"
+                                    foregroundColor="#e8e8e8">
+                                    <svg:rect x="2" y="3" rx="0" ry="0" width="292" height="32" />
+                                </content-loader>
+                            </div>
+                            <div class="text-center  mb-1 w-50">
+                                <content-loader viewBox="0 0 300 25" [speed]="1" backgroundColor="#f2f2f2"
+                                    foregroundColor="#e8e8e8">
+                                    <svg:rect x="2" y="3" rx="0" ry="0" width="292" height="25" />
+                                </content-loader>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <span (click)="closeGroubModal()">
+                        <i class="fa-solid fa-xmark fa-3x closeBtn"></i>
+                    </span>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- ==========================   end group info   ========================== -->
+
+
+
 
 
 

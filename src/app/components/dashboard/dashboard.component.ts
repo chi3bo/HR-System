@@ -21,23 +21,28 @@ export class DashboardComponent {
   })
 
   // ================= flags =================
-  showModal: boolean = false
+  showEmpModal: boolean = false
+  showGroubModal: boolean = false
   noEmplyeFound: boolean = false
   noBranchFound: boolean = false
   loadingData: boolean = true
+  GroubloadingData: boolean = true
   setting: boolean = false
+  showBranch: boolean = false
   // ================= flags =================
 
 
   tempList: string[] = Array(16).fill('0')
   originalEmployeeList: employeeDetails[] = []
   employeeList: employeeDetails[] = []
+  groubEmployeeList: employeeDetails[] = []
   randomColor: any[] = []
   managementList: oneManage[] = []
   originalBranchList: branch[] = []
   branchesList: branch[] = []
   searchCategory: string = 'موظف'
   searchKey: string = 'الاسم'
+  OneGroupName: string = 'مجموعة'
 
   ngOnInit(): void {
     // make a temp array of random color 
@@ -59,7 +64,6 @@ export class DashboardComponent {
     this.loadingData = true
     this.searchCategory = 'موظف'
     this.searchKey = 'الاسم'
-    // this._spinner.show()
     this._DashboardService.getAllDataSmall(body).subscribe({
       next: (data) => {
         console.log(data);
@@ -117,8 +121,35 @@ export class DashboardComponent {
     //   next:()=>{},
     //   error:()=>{}
     // })
+    this.openEmpModal()
+  }
 
-    this.openModal()
+  getGroubDetails(branchId: string = '', manageId: string = '', jobId: string = '', nameAR: any, nameEn: any) {
+    this.OneGroupName = nameAR
+    this.groubEmployeeList = []
+    this.GroubloadingData= true
+    let body = {
+      "branchId": branchId,
+      "manageId": manageId,
+      "jobId": jobId,
+    }
+    this._DashboardService.getAllDataSmall(body).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.groubEmployeeList = data.employees
+        this.GroubloadingData = false
+      },
+      error: (err) => {
+        this.GroubloadingData = false
+        console.log(err);
+      }
+    })
+
+
+
+
+
+    this.openGroubModal()
   }
   // !!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -202,11 +233,17 @@ export class DashboardComponent {
 
 
   // ==========================    start moving and (open-close)    ======================
-  closeImgModal() {
-    this.showModal = false
+  closeEmpModal() {
+    this.showEmpModal = false
   }
-  openModal() {
-    this.showModal = true
+  openEmpModal() {
+    this.showEmpModal = true
+  }
+  closeGroubModal() {
+    this.showGroubModal = false
+  }
+  openGroubModal() {
+    this.showGroubModal = true
   }
 
   showSetting() {
