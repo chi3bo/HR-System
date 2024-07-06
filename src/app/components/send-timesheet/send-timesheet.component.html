@@ -6,7 +6,8 @@
             <div class="row">
                 <div class="col-xxl-2 col-xl-3 col-md-4">
                     <label for="empName">{{ 'send_time_sheet.اسم_الموظف' | translate }}</label>
-                    <input type="text" id="empName" class="form-control w-100 mx-auto bg-white text-center" disabled [value]="empName">
+                    <input type="text" id="empName" class="form-control w-100 mx-auto bg-white text-center {{ 'lang-arabic' | translate }}" disabled [value]="nameAr">
+                    <input type="text" id="empName" class="form-control w-100 mx-auto bg-white text-center {{ 'lang-english' | translate }}" disabled [value]="nameEN">
                     <label for="empId" class="py-1">{{ 'send_time_sheet.كود_الموظف' | translate }}</label>
                     <input type="text" id="empId" class="form-control w-100 mx-auto bg-white text-center" disabled [value]="empId">
                 </div>

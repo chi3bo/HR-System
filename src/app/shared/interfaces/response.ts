@@ -5,7 +5,8 @@ export interface Response {
 
 export interface EmployeeInfo {
     empId: string
-    name: string
+    nameAr: string
+    nameEn: string
     isAdmin: boolean
 }
 
@@ -39,7 +40,8 @@ export interface adminOrderLoan {
     lastInstallmentValue: number
     startDate: string
     employeeId: string
-    employeeName: string
+    employeeNameAr: string
+    employeeNameEn: string
 }
 
 export interface adminOrderVacation {
@@ -49,8 +51,12 @@ export interface adminOrderVacation {
     details: string
     vacationType: string
     employeeId: string
-    employeeName: string
-    availableDays: string
+    employeeNameAr: string
+    employeeNameEn: string
+    totalAllowanceDays: number
+    availableDays: number
+    takenDays: number
+    uploadFileId: string
 }
 
 

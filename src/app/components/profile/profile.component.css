@@ -192,7 +192,7 @@
     }
 }
 
-.bg-black-opacity{
+.bg-black-opacity {
     background-color: #000000a1;
 }
 
@@ -212,6 +212,16 @@
     height: 100% !important;
     object-fit: cover !important;
     /* هذا يجعل الصورة تملأ العنصر بالكامل مع الحفاظ على نسبة العرض إلى الارتفاع */
+}
+
+
+.capitalize-first-letter {
+    text-transform: lowercase !important;
+    /* لتحويل كل الأحرف إلى صغيرة */
+}
+
+.capitalize-first-letter::first-line {
+    text-transform: capitalize !important;
 }
 
 
@@ -245,6 +255,7 @@
         background-position: 500px 0;
     }
 }
+
 /* ==============  test skelton ==================== */
 /* ==============  test skelton ==================== */
 

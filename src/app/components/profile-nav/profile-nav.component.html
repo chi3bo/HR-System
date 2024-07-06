@@ -65,8 +65,8 @@
                                 class="nav-link border-0 d-flex justify-content-center align-items-center {{ 'direction' | translate}} logoutBtn"
                                 data-bs-toggle="dropdown" aria-expanded="true">
                                 <span class="fw-light px-1">{{ 'admin_nav.مرحباً' | translate }}</span>
-                                <span class="fw-bolder">{{employeeName}}</span>
-                                <i class="fa-solid fa-user-tie align-middle  px-1"></i>
+                                <span class="fw-bolder {{ 'lang-arabic' | translate }}">{{employeeNameAR}}</span>
+                                <span class="fw-light {{ 'lang-english' | translate }}">{{employeeNameEN}}</span>                                <i class="fa-solid fa-user-tie align-middle  px-1"></i>
                             </span>
                             <ul class="dropdown-menu sidedown myAccount text-center  ">
                                 <li><span class="dropdown-item py-2 {{ 'direction' | translate}}" (click)="closeNav()">
@@ -103,8 +103,8 @@
             <div class="nav-link w-100 text-end px-3  d-flex justify-content-between {{ 'direction' | translate}}">
                 <div>
                     <span class="fw-light px-1">{{ 'admin_nav.مرحباً' | translate }}</span>
-                    <span class="fw-bolder">{{employeeName}}</span>
-                </div>
+                    <span class="fw-bolder {{ 'lang-arabic' | translate }}">{{employeeNameAR}}</span>
+                    <span class="fw-light {{ 'lang-english' | translate }}">{{employeeNameEN}}</span>                </div>
                 <div class="nav-item mx-2  " (click)="switchLanguage()">
                     <a class="nav-link fs-6 fw-light cursor-pointer">{{ 'admin_nav.العربية' | translate }}</a>
                 </div>

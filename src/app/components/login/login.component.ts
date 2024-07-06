@@ -40,7 +40,8 @@ export class LoginComponent {
         this.isloading = false
         this.myresponse = response
         localStorage.setItem('userToken', this.myresponse.accessToken )
-        localStorage.setItem('employeeName', this.myresponse.employeeInfo.name )
+        localStorage.setItem('employeeNameAR', this.myresponse.employeeInfo.nameAr )
+        localStorage.setItem('employeeNameEN', this.myresponse.employeeInfo.nameEn )
         if (response.employeeInfo.isAdmin == false) {
           this._Router.navigate(['home'])
         }

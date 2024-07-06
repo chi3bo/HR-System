@@ -18,7 +18,8 @@ export class VacationComponent implements OnInit {
   @ViewChild('fileInput') userFile!: ElementRef;
 
   pageOpenOne: boolean = false
-  empName: any = ''
+  nameAr: any = localStorage.getItem('employeeNameAR')
+  nameEN: any = localStorage.getItem('employeeNameEN')
   empId: any = ''
   availableDays: number = 0
   takenDays: number = 0
@@ -86,7 +87,8 @@ export class VacationComponent implements OnInit {
     setTimeout(() => { this.pageOpenOne = true }, 0);
     this._VacationService.basicvacationData().subscribe({
       next: (Response) => {
-        this.empName = Response.name
+        this.nameAr = Response.nameAr
+        this.nameEN = Response.nameEn
         this.empId = Response.empId
         this.availableDays = Response.availableDays
         this.takenDays = Response.takenDays

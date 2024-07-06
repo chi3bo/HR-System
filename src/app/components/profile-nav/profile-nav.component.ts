@@ -12,7 +12,8 @@ import { LoanService } from 'src/app/shared/services/loan.service';
 export class ProfileNavComponent implements OnInit {
 
   constructor(private _LoanService: LoanService, private _Router: Router, private _TranslateService: TranslateService, private _AuthService: AuthService) { }
-  employeeName: any = ''
+  employeeNameAR: any = ''
+  employeeNameEN: any = ''
   opened: boolean = false
   closed: boolean = true
   isAdmin: boolean = false
@@ -24,8 +25,8 @@ export class ProfileNavComponent implements OnInit {
 
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {
-        this.employeeName = Response.name.split(' ', 1)
-
+        this.employeeNameAR = Response.nameAr.split(' ', 1)
+        this.employeeNameEN = Response.nameEn.split(' ', 1)
       },
 
       error: (err) => {

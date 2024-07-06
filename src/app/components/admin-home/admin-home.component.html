@@ -4,8 +4,10 @@
         <div [ngClass]="{'slideIntop': pageOpenOne}"
             class="col-md-6 vh-40-mobile d-flex justify-content-center align-items-center CardOne">
             <div class="w-100 text-center {{ 'direction' | translate }} ">
-                <h1 class="fw-bolder hero-text {{ 'حجم_الخط' | translate }} ">
-                    {{ 'رسالة_ترحيب' | translate }} {{name.split(' ', 2).join(' ') }}
+                <h1 class="fw-bolder  hero-text {{ 'حجم_الخط' | translate }} ">
+                    {{ 'رسالة_ترحيب' | translate }}
+                    <span class=" {{ 'lang-arabic' | translate }}">{{nameAr.split(' ', 2).join(' ') }}</span>
+                    <p class=" capitalize-first-letter text-capitalize my-0 d-inline-block    {{ 'lang-english' | translate }}">{{nameEN.split(' ', 1).join(' ') }}</p>
                 </h1>
                 <h1 class="suphero">{{ 'رسالة_ادارة_المهام' | translate }}</h1>
 

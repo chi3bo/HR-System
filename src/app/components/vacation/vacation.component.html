@@ -3,12 +3,16 @@
         <div class="vacationDetails arabicList bg-white rounded-4 w-100 overflow-hidden shadow-lg ">
             <div class="row">
                 <div class="col-md-7 col-lg-6">
-                    <div class="d-flex justify-content-center align-items-center flex-column p-5 requestDetails {{ 'direction' | translate }}">
+                    <div
+                        class="d-flex justify-content-center align-items-center flex-column p-5 requestDetails {{ 'direction' | translate }}">
                         <h2 class="fw-bold my-3">{{ 'vacation.ادخل_بيانات_الطلب' | translate }}</h2>
                         <div class="w-100 mt-5">
                             <div class="w-100 p-2">
                                 <label for="empName">{{ 'vacation.اسم_الموظف' | translate }}:</label>
-                                <input type="text" id="empName" class="form-control" [value]="empName" disabled>
+                                <input type="text" id="empName" class="form-control {{ 'lang-arabic' | translate }}"
+                                    [value]="nameAr" disabled>
+                                <input type="text" id="empName" class="form-control {{ 'lang-english' | translate }} "
+                                    [value]="nameEN" disabled>
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-50 p-2">
@@ -17,14 +21,16 @@
                                 </div>
                                 <div class="w-50 p-2">
                                     <label for="empCredit">{{ 'vacation.الايام_المستحقة' | translate }}:</label>
-                                    <input type="text" id="empCredit" class="form-control w-100" [value]="availableDays" disabled>
+                                    <input type="text" id="empCredit" class="form-control w-100" [value]="availableDays"
+                                        disabled>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-50 p-2">
                                     <label for="empName">{{ 'vacation.نوع_الاجازة' | translate }}:</label>
                                     <select formControlName="vacationType" name="" id="" class="form-select">
-                                        <option disabled selected value="null">{{ 'vacation.اختر_نوع_الاجازة' | translate }}</option>
+                                        <option disabled selected value="null">{{ 'vacation.اختر_نوع_الاجازة' |
+                                            translate }}</option>
                                         <option value="1">{{ 'vacation.اجازة_مرضية' | translate }}</option>
                                         <option value="2">{{ 'vacation.اجازة_سنوية' | translate }}</option>
                                         <option value="3">{{ 'vacation.اجازة_طارئة' | translate }}</option>
@@ -34,40 +40,51 @@
                                 </div>
                                 <div class="w-50 p-2">
                                     <label for="empId">{{ 'vacation.مدة_الاجازة' | translate }}:</label>
-                                    <input formControlName="numberOfDays" type="number" id="empId" class="form-control w-100" placeholder="{{ 'vacation.ادخل_مدة_الاجازة' | translate }}">
+                                    <input formControlName="numberOfDays" type="number" id="empId"
+                                        class="form-control w-100"
+                                        placeholder="{{ 'vacation.ادخل_مدة_الاجازة' | translate }}">
                                 </div>
                             </div>
                             <div class="errorsMsg d-flex">
-                                <p class="text-danger small errorInput px-3 w-50" *ngIf="this.vacationForm.get('vacationType')?.value == null && (this.vacationForm.get('startDate')?.touched)">
+                                <p class="text-danger small errorInput px-3 w-50"
+                                    *ngIf="this.vacationForm.get('vacationType')?.value == null && (this.vacationForm.get('startDate')?.touched)">
                                     {{ 'vacation.اختر_نوع_الاجازة_خطأ' | translate }}
                                 </p>
-                                <p class="text-danger small errorInput px-3 w-50" *ngIf="this.vacationForm.get('numberOfDays')?.getError('required') && this.vacationForm.get('numberOfDays')?.touched">
+                                <p class="text-danger small errorInput px-3 w-50"
+                                    *ngIf="this.vacationForm.get('numberOfDays')?.getError('required') && this.vacationForm.get('numberOfDays')?.touched">
                                     {{ 'vacation.ادخل_مدة_الاجازة' | translate }}
                                 </p>
                             </div>
-                            <p class="text-danger small errorInput px-3" [ngClass]="{'d-none' : this.vacationForm.get('numberOfDays')?.value <= this.availableDays}">
+                            <p class="text-danger small errorInput px-3"
+                                [ngClass]="{'d-none' : this.vacationForm.get('numberOfDays')?.value <= this.availableDays}">
                                 {{ 'vacation.مدة_الاجازة_اكبر' | translate }}
                             </p>
 
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-100 p-2">
                                     <label for="startingDate">{{ 'vacation.تاريخ_بداية_الاجازة' | translate }}:</label>
-                                    <input formControlName="startDate" type="date" id="startingDate" class="form-control w-100" [min]="todayDate" placeholder="{{ 'vacation.تاريخ_بداية_الاجازة' | translate }}">
+                                    <input formControlName="startDate" type="date" id="startingDate"
+                                        class="form-control w-100" [min]="todayDate"
+                                        placeholder="{{ 'vacation.تاريخ_بداية_الاجازة' | translate }}">
                                 </div>
                             </div>
-                            <p class="text-danger small errorInput px-3" *ngIf="this.vacationForm.get('startDate')?.getError('required') && this.vacationForm.get('startDate')?.touched">
+                            <p class="text-danger small errorInput px-3"
+                                *ngIf="this.vacationForm.get('startDate')?.getError('required') && this.vacationForm.get('startDate')?.touched">
                                 {{ 'vacation.ادخل_تاريخ_بدء_الاجازة' | translate }}
                             </p>
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-100 p-2">
                                     <label for="Details">{{ 'vacation.تفاصيل_اخري' | translate }}:</label>
-                                    <textarea formControlName="Details" name="" id="Details" rows="3" placeholder="{{ 'vacation.هل_ترغب_في_اطلاعنا' | translate }}" class="form-control"></textarea>
+                                    <textarea formControlName="Details" name="" id="Details" rows="3"
+                                        placeholder="{{ 'vacation.هل_ترغب_في_اطلاعنا' | translate }}"
+                                        class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-100 p-2">
                                     <label for="myFile">{{ 'vacation.ارفق_مستند' | translate }}:</label>
-                                    <input #fileInput formControlName="myFile" type="file" id="myFile" class="form-control w-100">
+                                    <input #fileInput formControlName="myFile" type="file" id="myFile"
+                                        class="form-control w-100">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +99,8 @@
                 </div>
                 <div class="col-md-5 col-lg-6 hide-on-mobile">
                     <div class="d-flex justify-content-center align-items-center vectorForm h-100">
-                        <img src="./assets/images/compressed-images/wepb/agaza.webp" alt="طلب اجازة" class="w-75 vectorImg">
+                        <img src="./assets/images/compressed-images/wepb/agaza.webp" alt="طلب اجازة"
+                            class="w-75 vectorImg">
                     </div>
                 </div>
             </div>

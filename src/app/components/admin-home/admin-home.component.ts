@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-home.component.css']
 })
 export class AdminHomeComponent {
-name:any = localStorage.getItem('employeeName')
+nameAr:any = localStorage.getItem('employeeNameAR')
+nameEN:any = localStorage.getItem('employeeNameEN')
 pageOpenOne:boolean = false
 
 ngOnInit(): void {

@@ -17,7 +17,8 @@ export class SendTimesheetComponent {
   constructor(private _FormBuilder: FormBuilder, private _Renderer2: Renderer2, private _TimesheetService: TimesheetService, private _Router: Router) { }
 
   @ViewChild('mainDiv') mainDiv!: ElementRef
-  empName: any = ''
+  nameAr: any = localStorage.getItem('employeeNameAR')
+  nameEN: any = localStorage.getItem('employeeNameEN')
   empId: any = ''
   doneSent: boolean = false
   readonly: boolean = false
@@ -98,7 +99,8 @@ export class SendTimesheetComponent {
   ngOnInit(): void {
     this._TimesheetService.getBasicData().subscribe({
       next: (Response) => {
-        this.empName = Response.name
+        this.nameAr = Response.nameAr
+        this.nameEN = Response.nameEn
         this.empId = Response.empId
         console.log(Response);
       },

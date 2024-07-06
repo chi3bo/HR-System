@@ -36,11 +36,15 @@
                     <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#'+order.id" aria-expanded="false" [attr.aria-controls]="order.id">
                         <div class="py-2 px-0 d-flex w-100 row justify-content-center align-items-center">
-                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">{{ order.employeeName }}</p>
-                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">#{{ order.id }}</p>
+                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center {{ 'lang-arabic' | translate }} ">
+                                {{ order.employeeNameAr }}</p>
+                            <p
+                                class="my-0 col-md-3 fw-normal w-50-mobile text-center {{ 'lang-english' | translate }} ">
+                                {{ order.employeeNameEn }}</p>
+                            <p class="my-0 col-md-3 arabicFont fw-bolder w-50-mobile text-center">#{{ order.id }}</p>
                             <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
                                 {{ 'admin_vacation.طلب_اذن' | translate }}</p>
-                            <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
+                            <p class="my-0 col-md-3 arabicFont fw-bolder text-center w-50-mobile hide-on-mobile">
                                 {{ order.startDate | date : 'yyyy/MM/dd' }}</p>
                         </div>
                     </div>
@@ -50,12 +54,18 @@
                         <div>
                             <p class="orderNumber my-0 d-inline-block bg-white px-2 mx-3 rounded">{{
                                 'admin_vacation.رقم_الطلب' | translate }}: {{ order.id }}</p>
-                            <div class="parentOfOrders mx-0 w-100 rounded border row d-flex justify-content-center align-items-center overflow-hidden">
+                            <div
+                                class="parentOfOrders mx-0 w-100 rounded border row d-flex justify-content-center align-items-center overflow-hidden">
                                 <div class="col-md-4">
                                     <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
-                                        <p class="my-0">{{ 'admin_vacation.اسم_الموظف' | translate }}: <span
-                                                class="my-0 small">{{ order.employeeName }}</span></p>
-                                        <p class="my-0">{{ 'admin_vacation.كود_الموظف' | translate }}: {{ order.employeeId }}</p>
+                                        <p class="my-0">{{ 'admin_vacation.اسم_الموظف' | translate }}:
+                                            <span class="my-0 small  {{ 'lang-arabic' | translate }} ">{{
+                                                order.employeeNameAr }}</span>
+                                            <span class="my-0 small fw-normal {{ 'lang-english' | translate }} ">{{
+                                                order.employeeNameEn }}</span>
+                                        </p>
+                                        <p class="my-0">{{ 'admin_vacation.كود_الموظف' | translate }}: {{
+                                            order.employeeId }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -87,15 +97,18 @@
                                                 {{ 'admin_assets.تحميل_المرفق' | translate }}
                                             </span>
                                         </span>
-                                        <span *ngIf="order.uploadFileId == null"> {{ 'admin_assets.لا_يوجد' | translate }} </span>
+                                        <span *ngIf="order.uploadFileId == null"> {{ 'admin_assets.لا_يوجد' | translate
+                                            }} </span>
                                     </p>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="w-100 mx-auto p-1 text-center">
                                         <button (click)="actionRequest(order.id, true, detailsInput.value, oneItem)"
-                                            class="btn btn-success my-1 w-100">{{ 'admin_vacation.قبول' | translate }}</button>
+                                            class="btn btn-success my-1 w-100">{{ 'admin_vacation.قبول' | translate
+                                            }}</button>
                                         <button (click)="actionRequest(order.id, false, detailsInput.value, oneItem)"
-                                            class="btn btn-danger my-1 w-100">{{ 'admin_vacation.رفض' | translate }}</button>
+                                            class="btn btn-danger my-1 w-100">{{ 'admin_vacation.رفض' | translate
+                                            }}</button>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

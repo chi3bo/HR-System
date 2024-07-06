@@ -1,23 +1,27 @@
 
 export interface adminLetter {
-    id: number;
-    destinationName: string;
-    isRequiredCCC: boolean;
-    details: string;
-    letterType: string;
-    uploadFileId: string;
-    employeeId: string;
-    employeeName: string;
+    id: number
+    destinationName: string
+    isRequiredCCC: boolean
+    details: string
+    letterType: string
+    uploadFileId: string
+    employeeId: string
+    employeeNameAr: string
+    employeeNameEn: string
 }
+
 
 export interface adminAsset {
     id: number
     details: string
     isEmployeeAgree: boolean
-    uploadFileId: any
+    uploadFileId: string
     employeeId: string
-    employeeName: string
+    employeeNameAr: string
+    employeeNameEn: string
 }
+
 
 
 export interface adminPermission {
@@ -27,6 +31,6 @@ export interface adminPermission {
     details: string
     uploadFileId: any
     employeeId: string
-    employeeName: string
+    employeeNameAr: string
+    employeeNameEn: string
 }
-

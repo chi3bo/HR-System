@@ -22,7 +22,13 @@
     opacity: 1;
 }
 
+.capitalize-first-letter {
+    text-transform: lowercase !important; /* لتحويل كل الأحرف إلى صغيرة */
+}
 
+.capitalize-first-letter::first-letter {
+    text-transform: capitalize !important; /* لتحويل أول حرف إلى كبير */
+}
 
 @media screen and (max-width:576px) {
     .adminButton1 {

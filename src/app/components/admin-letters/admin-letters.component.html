@@ -1,6 +1,7 @@
 <div class="bg-white px-sm-5">
     <section class="w-100 container-fluid rounded-3 vh-80 py-5 p-sm-5 CardOne" [ngClass]="{'slideIn': pageOpenOne}">
-        <h1 class="text-center py-5 fw-bolder {{ 'admin_vacation.حجم_الخط_إدارة_الطلبات' | translate }}">{{ 'admin-letters.ادارة_طلبات_الخطابات' | translate }}</h1>
+        <h1 class="text-center py-5 fw-bolder {{ 'admin_vacation.حجم_الخط_إدارة_الطلبات' | translate }}">{{
+            'admin-letters.ادارة_طلبات_الخطابات' | translate }}</h1>
 
         <!-- the table header -->
         <div class="{{ 'direction' | translate }}">
@@ -34,8 +35,12 @@
                     <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#'+order.id" aria-expanded="false" [attr.aria-controls]="order.id">
                         <div class="py-2 px-0 d-flex w-100 row justify-content-center align-items-center">
-                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">{{ order.employeeName }}</p>
-                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">#{{ order.id }}</p>
+                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center {{ 'lang-arabic' | translate }} ">
+                                {{ order.employeeNameAr }}</p>
+                            <p
+                                class="my-0 col-md-3 fw-normal w-50-mobile text-center {{ 'lang-english' | translate }} ">
+                                {{ order.employeeNameEn }}</p>
+                            <p class="my-0 col-md-3 fw-bolder arabicFont w-50-mobile text-center">#{{ order.id }}</p>
                             <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">{{
                                 'admin-letters.طلب_خطاب' | translate }}</p>
                             <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
@@ -62,7 +67,11 @@
                                 <div class="col-md-4">
                                     <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
                                         <p class="my-0">{{ 'admin-letters.اسم_الموظف' | translate }}: <span
-                                                class="my-0 small">{{ order.employeeName }}</span></p>
+                                                class="my-0 small  {{ 'lang-arabic' | translate }} ">{{
+                                                order.employeeNameAr }}</span>
+                                            <span class="my-0 small fw-normal {{ 'lang-english' | translate }} ">{{
+                                                order.employeeNameEn }}</span>
+                                        </p>
                                         <p class="my-0">{{ 'admin-letters.كود_الموظف' | translate }}: {{
                                             order.employeeId }}</p>
                                     </div>

@@ -58,7 +58,7 @@ export class AdminVacationComponent implements OnInit {
             oneItem.classList.add('beSmallAndHideR')
             setTimeout(() => { oneItem.classList.add('d-none') }, 500)
           }
-          else { // هنا لو كان الزرار قبول يحرك العنصر يسار 
+          else { // هنا لو كان الزرار رفض يحرك العنصر يسار 
             this._ToastrService.error('تم رفض الطلب')
             oneItem.classList.add('beSmallAndHideL')
             setTimeout(() => { oneItem.classList.add('d-none') }, 500)

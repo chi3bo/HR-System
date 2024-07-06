@@ -27,7 +27,8 @@ export class LoanComponent implements OnInit {
   }, { validators: [this.Install] } as FormControlOptions)
 
   pageOpenOne: boolean = false
-  empName: any = ''
+  NameAR: any = ''
+  NameEN: any = ''
   empId: any = ''
   raseed: number = 0
   requestSent: boolean = false
@@ -140,7 +141,8 @@ export class LoanComponent implements OnInit {
     }
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {
-        this.empName = Response.name
+        this.NameAR = Response.nameAr
+        this.NameEN = Response.nameEn
         this.empId = Response.empId
         this.raseed = Response.loansbal
         console.log(Response);

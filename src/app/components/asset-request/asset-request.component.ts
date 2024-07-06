@@ -16,7 +16,8 @@ export class AssetRequestComponent {
   @ViewChild('successModal') successModal!: ElementRef;
   @ViewChild('mainSection') mainSection!: ElementRef;
   todayDate: any = new Date().toISOString().split('T')[0]
-  empName: any = localStorage.getItem('employeeName')
+  nameAr: any = localStorage.getItem('employeeNameAR')
+  nameEN: any = localStorage.getItem('employeeNameEN')
   userToken: any = jwtDecode(localStorage.getItem('userToken')!)
   empId: any = this.userToken.empId
 
@@ -50,7 +51,7 @@ export class AssetRequestComponent {
 
   sendRequest() {
     console.log(this.AssetForm.invalid);
-    
+
     if (this.AssetForm.valid) {
       this._NewOrderService.requestasset(this.setFormData()).subscribe({
 

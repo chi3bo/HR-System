@@ -37,8 +37,9 @@
                     <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#'+order.id" aria-expanded="false" [attr.aria-controls]="order.id">
                         <div class="py-2 px-0 d-flex w-100 row justify-content-center align-items-center">
-                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">{{ order.employeeName }}</p>
-                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center">#{{ order.id }}</p>
+                            <p class="my-0 col-md-3 fw-bolder w-50-mobile text-center {{ 'lang-arabic' | translate }} ">{{ order.employeeNameAr }}</p>
+                            <p class="my-0 col-md-3 fw-normal w-50-mobile text-center {{ 'lang-english' | translate }} ">{{ order.employeeNameEn }}</p>
+                            <p class="my-0 col-md-3 fw-bolder arabicFont w-50-mobile text-center">#{{ order.id }}</p>
                             <p *ngIf="order.vacationType=='Emergency'"
                                 class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
                                 {{'admin_vacation.إجازة_طارئة' | translate }} </p>
@@ -54,7 +55,7 @@
                             <p *ngIf="order.vacationType=='Hajj'"
                                 class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">
                                 {{'admin_vacation.إجازة_الحج' | translate }}</p>
-                            <p class="my-0 col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">{{ order.startDate
+                            <p class="my-0 arabicFont col-md-3 fw-bolder text-center w-50-mobile hide-on-mobile">{{ order.startDate
                                 | date : 'yyyy/MM/dd' }}</p>
                         </div>
                     </div>
@@ -68,8 +69,11 @@
                                 class="parentOfOrders mx-0 w-100 rounded border row d-flex justify-content-center align-items-center overflow-hidden">
                                 <div class="col-md-4">
                                     <div class="w-100   {{'admin_vacation.border' | translate}} noBorder-mobile">
-                                        <p class="my-0">{{ 'admin_vacation.اسم_الموظف' | translate }}: <span
-                                                class="my-0 small">{{ order.employeeName }}</span></p>
+                                        <p class="my-0">{{ 'admin_vacation.اسم_الموظف' | translate }}:
+                                            <span class="my-0 small  {{ 'lang-arabic' | translate }} ">{{ order.employeeNameAr }}</span>
+                                            <span class="my-0 small fw-normal {{ 'lang-english' | translate }} ">{{ order.employeeNameEn }}</span>
+                                        
+                                        </p>
                                         <p class="my-0">{{ 'admin_vacation.كود_الموظف' | translate }}: {{
                                             order.employeeId }}</p>
                                         <p class="my-0">{{ 'admin_vacation.تفاصيل_أخرى' | translate }}:<span

@@ -36,8 +36,8 @@ export class ProfileComponent {
   isAdmin: Boolean = false
 
   // ========================== start head section ===========================
-  empNameAR: string = localStorage.getItem('employeeName')!
-  empNameEN: string = localStorage.getItem('employeeName')!
+  empNameAR: string = localStorage.getItem('employeeNameAR')!
+  empNameEN: string = localStorage.getItem('employeeNameEN')!
   empID: string = ' **** '
   empImg: any = null
   saudiMen: string = './assets/images/non-compressed/arabi_men.jpg'
