@@ -96,7 +96,7 @@
                 <div *ngIf="employeeList.length > 0 " class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of paginatedResults; let i = index ">
                         <div (click)="getEmpDetails()"
-                            class=" bg-white employee-card w-100 rounded full-flex flex-column h-100">
+                            class=" bg-white position-relative employee-card w-100 rounded full-flex flex-column h-100">
                             <!-- <div class="full-flex pt-2"> <p [style.background-color]="randomColor[i]" class=" one-character" > أ </p> </div> -->
                             <div class="full-flex pt-2 one-character">
                                 <img src="./assets/images/compressed-images/wepb/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.webp"
@@ -111,6 +111,8 @@
                                 </p>
                                 <p *ngIf="!item.jobNameAr" class="fw-medium arabicFont mb-2 small">مسؤول مخزن </p>
                             </div>
+                            <p class="fw-semibold text-muted  englishFont  mb-2 small opacity-50 empId-Card">
+                                {{item.employeeId}} </p>
                         </div>
                     </div>
                 </div>
@@ -161,7 +163,7 @@
                 <div *ngIf="branchesList.length > 0 " class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of paginatedBranches; let i = index ">
                         <div (click)="getGroubDetails(item.id , '' , '' , item.nameAr , item.nameEn)"
-                            class=" bg-white employee-card w-100 rounded full-flex flex-column h-100">
+                            class=" bg-white employee-card position-relative w-100 rounded full-flex flex-column h-100">
                             <!-- <div class="full-flex pt-2"> <p [style.background-color]="randomColor[i]" class=" one-character" > أ </p> </div> -->
                             <div class="full-flex pt-3 p-3 one-character">
                                 <img src="./assets/images/non-compressed/organization-structure_8321686.png"
@@ -173,8 +175,10 @@
                                 <p class=" my-1">{{item.nameAr}}</p>
                                 <!-- <p class="fw-medium arabicFont small my-0"> </p> -->
 
-                                <p class="fw-medium arabicFont mb-2 small"> {{item.id}} </p>
+                                <p class=" arabicFont mb-2 small"> عدد العاملين : {{item.employeesCount}} </p>
                             </div>
+                            <p class="fw-semibold text-muted  englishFont  mb-2 small opacity-50 empId-Card">
+                                {{item.id}} </p>
                         </div>
                     </div>
                 </div>
@@ -307,31 +311,31 @@
                                 </div>
                             </div>
 
-                                            <!-- loading content ---- (show only when data is loading) -->
-                <div *ngIf="GroubloadingData" class="emp-cards row g-3 ">
-                    <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of tempList ; let i = index ">
-                        <div class=" bg-white employee-card w-100 rounded full-flex flex-column">
-                            <div class="full-flex pt-2 one-character">
-                                <content-loader viewBox="0 0 200 200" [speed]="1" backgroundColor="#f2f2f2"
-                                    foregroundColor="#e8e8e8">
-                                    <svg:circle cx="96" cy="101" r="84" />
-                                </content-loader>
+                            <!-- loading content ---- (show only when data is loading) -->
+                            <div *ngIf="GroubloadingData" class="emp-cards row g-3 ">
+                                <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of tempList ; let i = index ">
+                                    <div class=" bg-white employee-card w-100 rounded full-flex flex-column">
+                                        <div class="full-flex pt-2 one-character">
+                                            <content-loader viewBox="0 0 200 200" [speed]="1" backgroundColor="#f2f2f2"
+                                                foregroundColor="#e8e8e8">
+                                                <svg:circle cx="96" cy="101" r="84" />
+                                            </content-loader>
+                                        </div>
+                                        <div class="text-center  mt-1 w-75">
+                                            <content-loader viewBox="0 0 300 40" [speed]="1" backgroundColor="#f2f2f2"
+                                                foregroundColor="#e8e8e8">
+                                                <svg:rect x="2" y="3" rx="0" ry="0" width="292" height="32" />
+                                            </content-loader>
+                                        </div>
+                                        <div class="text-center  mb-1 w-50">
+                                            <content-loader viewBox="0 0 300 25" [speed]="1" backgroundColor="#f2f2f2"
+                                                foregroundColor="#e8e8e8">
+                                                <svg:rect x="2" y="3" rx="0" ry="0" width="292" height="25" />
+                                            </content-loader>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="text-center  mt-1 w-75">
-                                <content-loader viewBox="0 0 300 40" [speed]="1" backgroundColor="#f2f2f2"
-                                    foregroundColor="#e8e8e8">
-                                    <svg:rect x="2" y="3" rx="0" ry="0" width="292" height="32" />
-                                </content-loader>
-                            </div>
-                            <div class="text-center  mb-1 w-50">
-                                <content-loader viewBox="0 0 300 25" [speed]="1" backgroundColor="#f2f2f2"
-                                    foregroundColor="#e8e8e8">
-                                    <svg:rect x="2" y="3" rx="0" ry="0" width="292" height="25" />
-                                </content-loader>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                         </div>
 

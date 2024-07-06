@@ -54,6 +54,9 @@ export class DashboardComponent {
     this.getAllData()
     this.searching()
     // سبسكرايب علي انبوت الاي دي عشان اسحب تغيراته لما اليوزر يكتب فيه
+    let ahmed = [3, 5, 2, 8, 1]
+    let x = ahmed.sort()
+
 
   }
 
@@ -69,7 +72,9 @@ export class DashboardComponent {
         console.log(data);
         this.loadingData = false
         this.originalEmployeeList = data.employees
-        this.employeeList = this.originalEmployeeList
+        this.employeeList = this.originalEmployeeList.slice().sort((a, b) => Number( a.employeeId) - Number( b.employeeId))
+        console.log(this.employeeList);
+        
         this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
         this.currentPage = 1
       },
@@ -103,7 +108,7 @@ export class DashboardComponent {
       next: (Response) => {
         console.log(Response);
         this.originalBranchList = Response
-        this.branchesList = this.originalBranchList
+        this.branchesList = this.originalBranchList.slice().sort((a, b) => Number( a.id) - Number( b.id))
         this.loadingData = false
         this.totalPages = Math.ceil(this.branchesList.length / this.itemsPerPage);
         this.currentPage = 1
@@ -127,7 +132,7 @@ export class DashboardComponent {
   getGroubDetails(branchId: string = '', manageId: string = '', jobId: string = '', nameAR: any, nameEn: any) {
     this.OneGroupName = nameAR
     this.groubEmployeeList = []
-    this.GroubloadingData= true
+    this.GroubloadingData = true
     let body = {
       "branchId": branchId,
       "manageId": manageId,

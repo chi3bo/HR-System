@@ -26,6 +26,7 @@ export interface employeeDetails {
 
 
 export interface branch {
+    employeesCount: number
     id: string
     nameAr: string
     nameEn: any

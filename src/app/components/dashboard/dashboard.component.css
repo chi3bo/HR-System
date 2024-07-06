@@ -124,6 +124,12 @@ content-loader {
     position: relative !important;
 }
 
+.empId-Card{
+    position: absolute !important;
+    top: 10px;
+    left: 15px;
+}
+
 /* .downSetting {
     position: relative;
     bottom: 10px;
