@@ -15,27 +15,32 @@ export class DashboardService {
   }
 
 
-  getAllDataSmall(body:any = {}):Observable<any>{
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Dashboard/GetEmployeesTree', body , this.setHeadrs() )
+  getAllDataSmall(body: any = {}): Observable<any> {
+    return this._HttpClient.post('https://hrapp.runasp.net/Api/Dashboard/GetEmployeesTree', body, this.setHeadrs())
   }
 
-  getAllDataBig(body:any = ''):Observable<any>{
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Dashboard/GetEmployeesTree', body , this.setHeadrs() )
+  getEmpFullData(id: any): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/Dashboard/GetEmployeeTreeById?employeeId=${id}`,'', this.setHeadrs())
   }
 
 
-  getAllManages():Observable<any>{
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Manage/GetAllManage', '' , this.setHeadrs() )
+  getAllManages(): Observable<any> {
+    return this._HttpClient.post('https://hrapp.runasp.net/Api/Manage/GetAllManage', '', this.setHeadrs())
   }
-  
-  getAllBranches():Observable<any>{
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Branch/GetAllBranch', '' , this.setHeadrs() )
+
+  getAllGroubOf(groubName: string): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/${groubName}/GetAll`, '', this.setHeadrs())
   }
+
+  getOneGroup(groubName: string, groubID: String): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/${groubName}/GetById?id=${groubID}`, '', this.setHeadrs())
+  }
+
 
 
   // ======== !!!!! not ready !!!!! =========
-  getEmpData(body:any = ''):Observable<any>{
-    return this._HttpClient.post('', body , this.setHeadrs() )
+  getEmpData(body: any = ''): Observable<any> {
+    return this._HttpClient.post('', body, this.setHeadrs())
   }
 
 

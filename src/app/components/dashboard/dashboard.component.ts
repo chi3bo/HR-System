@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from 'src/app/shared/services/dashboard.service';
 import { Response } from 'src/app/shared/interfaces/response';
-import { branch, employeeDetails, oneManage } from 'src/app/shared/interfaces/dashboard';
+import { branch, empFullDetails, employeeDetails, oneManage } from 'src/app/shared/interfaces/dashboard';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs';
@@ -42,7 +42,9 @@ export class DashboardComponent {
   branchesList: branch[] = []
   searchCategory: string = 'موظف'
   searchKey: string = 'الاسم'
+  groubNameKey: string = ''
   OneGroupName: string = 'مجموعة'
+  employeeFullData: empFullDetails = {} as empFullDetails
 
   ngOnInit(): void {
     // make a temp array of random color 
@@ -60,7 +62,6 @@ export class DashboardComponent {
 
   }
 
-
   getAllData(id: string = '') {
     this.employeeList = []
     let body = { "manageId": id }
@@ -72,9 +73,9 @@ export class DashboardComponent {
         console.log(data);
         this.loadingData = false
         this.originalEmployeeList = data.employees
-        this.employeeList = this.originalEmployeeList.slice().sort((a, b) => Number( a.employeeId) - Number( b.employeeId))
+        this.employeeList = this.originalEmployeeList.slice().sort((a, b) => Number(a.employeeId) - Number(b.employeeId))
         console.log(this.employeeList);
-        
+
         this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
         this.currentPage = 1
       },
@@ -102,13 +103,14 @@ export class DashboardComponent {
     this.getAllData(id)
   }
 
-  getAllBranch() {
+  getAllGroupOf(key: string) {
+    this.branchesList = []
     this.loadingData = true
-    this._DashboardService.getAllBranches().subscribe({
+    this._DashboardService.getAllGroubOf(key).subscribe({
       next: (Response) => {
         console.log(Response);
         this.originalBranchList = Response
-        this.branchesList = this.originalBranchList.slice().sort((a, b) => Number( a.id) - Number( b.id))
+        this.branchesList = this.originalBranchList.slice().sort((a, b) => Number(a.id) - Number(b.id))
         this.loadingData = false
         this.totalPages = Math.ceil(this.branchesList.length / this.itemsPerPage);
         this.currentPage = 1
@@ -121,26 +123,62 @@ export class DashboardComponent {
   }
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!
-  getEmpDetails() {
-    // this._DashboardService.getEmpData().subscribe({
-    //   next:()=>{},
-    //   error:()=>{}
-    // })
-    this.openEmpModal()
+  getEmpDetails(empID: any) {
+    this.employeeFullData = {} as empFullDetails
+    let id = empID
+    this._DashboardService.getEmpFullData(id).subscribe({
+
+      next: (data) => {
+        this.employeeFullData = data
+        console.log(data);
+        this.openEmpModal()
+      },
+
+      error: (err) => {
+        console.log(err);
+      }
+
+    })
+
+    
   }
 
-  getGroubDetails(branchId: string = '', manageId: string = '', jobId: string = '', nameAR: any, nameEn: any) {
+  // getGroubDetails(branchId: string = '', manageId: string = '', jobId: string = '', nameEn: any) {
+  //   this.OneGroupName = ""
+  //   this.OneGroupName = nameAR
+  //   this.groubEmployeeList = []
+  //   this.GroubloadingData = true
+  //   let body = {
+  //     "branchId": branchId,
+  //     "manageId": manageId,
+  //     "jobId": jobId,
+  //   }
+  //   this._DashboardService.getAllDataSmall(body).subscribe({
+  //     next: (data) => {
+  //       console.log(data);
+  //       this.groubEmployeeList = data.employees
+  //       this.GroubloadingData = false
+  //       this.openGroubModal()
+  //     },
+  //     error: (err) => {
+  //       this.GroubloadingData = false
+  //       console.log(err);
+  //     }
+  //   })
+
+
+
+
+
+  // }
+  getOneGroubDetails(groubID: string = '' ,  nameAR: any) {
     this.OneGroupName = nameAR
     this.groubEmployeeList = []
     this.GroubloadingData = true
-    let body = {
-      "branchId": branchId,
-      "manageId": manageId,
-      "jobId": jobId,
-    }
-    this._DashboardService.getAllDataSmall(body).subscribe({
+    this._DashboardService.getOneGroup(this.groubNameKey, groubID).subscribe({
       next: (data) => {
         console.log(data);
+        this.OneGroupName = data.nameAr
         this.groubEmployeeList = data.employees
         this.GroubloadingData = false
       },
@@ -149,10 +187,6 @@ export class DashboardComponent {
         console.log(err);
       }
     })
-
-
-
-
 
     this.openGroubModal()
   }
@@ -180,15 +214,16 @@ export class DashboardComponent {
       });
   }
 
-  setSearchCategory(key: string) {
+  setSearchCategory(key: string, groub: string) {
     this.searchCategory = key
+    this.groubNameKey = groub
     if (key == 'موظف') {
       this.branchesList = []
       this.getAllData()
     }
     else if (key == 'فرع') {
       this.employeeList = []
-      this.getAllBranch()
+      this.getAllGroupOf(groub)
     }
   }
 

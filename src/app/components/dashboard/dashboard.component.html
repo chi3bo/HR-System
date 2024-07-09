@@ -1,53 +1,94 @@
-<section class="bg-info-subtle w-100 vh-80 p-3 position-relative">
+<section class="bg-test2 w-100 vh-80 p-3 position-relative">
     <div class=" w-100 h-100  ">
 
         <div [formGroup]="searchingForm" class="custom-bar py-3 ">
             <div class="row">
                 <div class="col-5 mx-auto ">
-                    <!-- <input formControlName="searchInput" type="search" class="form-control" placeholder="search . . "> -->
                     <div class="input-group  ">
                         <input formControlName="searchInput" type="text" class="form-control "
-                            aria-label="Text input with dropdown button">
+                            aria-label="Text input with dropdown button" placeholder="search . . ">
 
                         <button class="btn btn-dark  dropdown-toggle z-0" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"> {{searchCategory}} </button>
+                            aria-expanded="false"> {{groubNameKey? groubNameKey : searchCategory}} </button>
                         <div class="  py-0 dropdown-menu dropdown-menu-start ">
                             <div class="d-flex">
-                                <div class="  ">
+                                <div class="">
                                     <p class="text-center">search by</p>
-                                    <ul class="arabicList list-unstyled text-center px-1 w-100">
+                                    <ul class="arabicList list-unstyled text-center px-1 w-100 px-3">
                                         <li>
                                             <div class="px-2">
                                                 <input checked (click)="setSearchKey('الاسم')" type="radio" name="key"
-                                                    id="key1" value="" class="">
-                                                <label for="key1" class="small px-1">الاسم</label>
+                                                    id="key1" value="" class="form-check-input border-secondary">
+                                                <label for="key1" class="small px-1">{{'Dashboard.الاسم' |
+                                                    translate}}</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="px-2">
                                                 <input (click)="setSearchKey('الرقم التعريفي')" type="radio" name="key"
-                                                    id="key1" value="" class="">
-                                                <label for="key1" class="small px-1">الكود</label>
+                                                    id="key1" value="" class="form-check-input border-secondary">
+                                                <label for="key1"
+                                                    class="small {{ 'padding_3Eng_1Ar' | translate}} ">{{'Dashboard.الكود'
+                                                    | translate}}</label>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+
+
+
                                 <div class="border-start  text-center">
                                     <p class="text-center">groub by</p>
                                     <ul class="arabicList list-unstyled px-3 w-100">
-                                        <li (click)="setSearchCategory('موظف')"><a class="dropdown-item"> موظفين <span
-                                                    *ngIf="searchCategory == 'موظف'"><i
+                                        <li (click)="setSearchCategory('موظف' , '')"><a class="dropdown-item">
+                                                {{'Dashboard.موظفين' | translate}}
+                                                <span *ngIf="searchCategory == 'موظف'"><i
                                                         class="fa-solid fa-square-check px-1"></i></span> </a> </li>
-                                        <li (click)="setSearchCategory('فرع')"><a class="dropdown-item"> فروع <span
-                                                    *ngIf="searchCategory == 'فرع'"><i
-                                                        class="fa-solid fa-square-check px-1"></i></span> </a></li>
-                                        <li (click)="setSearchCategory('ادارة')"><a class="dropdown-item"> ادارات <span
-                                                    *ngIf="searchCategory == 'ادارة'"><i
-                                                        class="fa-solid fa-square-check px-1"></i></span> </a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
+
+                                        <li (click)="setSearchCategory('فرع' , 'Branch')">
+                                            <a class="dropdown-item">
+                                                {{'Dashboard.فروع' | translate}}
+                                                <span *ngIf="groubNameKey == 'Branch'">
+                                                    <i class="fa-solid fa-square-check px-1"></i>
+                                                </span>
+                                            </a>
                                         </li>
-                                        <li><a class="dropdown-item " href="#">Separated link</a></li>
+
+                                        <li (click)="setSearchCategory('فرع' , 'Manage')"><a
+                                                class="dropdown-item">{{'Dashboard.ادارات' | translate}}
+                                                <span *ngIf="groubNameKey == 'Manage'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a>
+                                        </li>
+
+                                        <li (click)="setSearchCategory('فرع' , 'Job')"><a class="dropdown-item">
+                                                {{'Dashboard.وظائف' | translate}}
+                                                <span *ngIf="groubNameKey == 'Job'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a>
+                                        </li>
+
+                                        <li (click)="setSearchCategory('فرع' , 'Company')"><a
+                                                class="dropdown-item">{{'Dashboard.شركات' | translate}}
+                                                <span *ngIf="groubNameKey == 'Company'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a>
+                                        </li>
+
+                                        <li (click)="setSearchCategory('فرع' , 'Department')"><a
+                                                class="dropdown-item">{{'Dashboard.اقسام' | translate}}
+                                                <span *ngIf="groubNameKey == 'Department'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a>
+                                        </li>
+
+                                        <li (click)="setSearchCategory('فرع' , 'Kafil')"><a
+                                                class="dropdown-item">{{'Dashboard.كفيل' | translate}}
+                                                <span *ngIf="groubNameKey == 'Kafil'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a>
+                                        </li>
+
+                                        <li (click)="setSearchCategory('فرع' , 'Nation')"><a
+                                                class="dropdown-item">{{'Dashboard.جنسية' | translate}}
+                                                <span *ngIf="groubNameKey == 'Nation'"><i
+                                                        class="fa-solid fa-square-check px-1"></i></span> </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -71,7 +112,7 @@
 
 
                         <ul class="list-unstyled department-List  px-xl-2 mt-1 ">
-                            <li (click)="getOneManage('')"><span>All</span></li>
+                            <li (click)="getOneManage('')"><span>{{'Dashboard.الكل' | translate}}</span></li>
                             <li (click)="getOneManage(manage.id)" [id]="manage.id"
                                 *ngFor="let manage of managementList">
                                 <span>{{manage.nameAr }}</span>
@@ -95,7 +136,7 @@
             <div *ngIf="searchCategory == 'موظف' " class=" col-lg-10 ">
                 <div *ngIf="employeeList.length > 0 " class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of paginatedResults; let i = index ">
-                        <div (click)="getEmpDetails()"
+                        <div (click)="getEmpDetails(item.employeeId)"
                             class=" bg-white position-relative employee-card w-100 rounded full-flex flex-column h-100">
                             <!-- <div class="full-flex pt-2"> <p [style.background-color]="randomColor[i]" class=" one-character" > أ </p> </div> -->
                             <div class="full-flex pt-2 one-character">
@@ -105,11 +146,27 @@
                             <div class="text-center">
                                 <!-- <p class="font-w-500 englishFont my-1">Ahmed mohamed ali</p> -->
                                 <!-- <p  class="font-w-500 englishFont my-1">{{item.employeeNameEn}}</p> -->
-                                <p class=" my-1">{{item.employeeNameAr}}</p>
-                                <!-- <p class="fw-medium arabicFont small my-0"> </p> -->
-                                <p *ngIf="item.jobNameAr" class="fw-medium arabicFont mb-2 small">{{item.jobNameAr}}
+                                <p class=" my-1 {{ 'lang-arabic' | translate}}   ">{{item.employeeNameAr}}</p>
+                                <p class=" my-1 font-w-500 englishFont {{ 'lang-english' | translate}}   ">{{item.employeeNameEn }} </p>
+                                <p *ngIf="!item.employeeNameEn" class=" font-w-500 englishFont my-1 {{ 'lang-english' | translate}}   ">
+                                    {{item.employeeNameAr}}</p>
+
+                                <p *ngIf="item.jobNameAr" class=" {{ 'lang-arabic' | translate}}   fw-medium arabicFont mb-2 small">{{item.jobNameAr}}
                                 </p>
-                                <p *ngIf="!item.jobNameAr" class="fw-medium arabicFont mb-2 small">مسؤول مخزن </p>
+                                <p *ngIf="!item.jobNameAr" class=" {{ 'lang-arabic' | translate}}   fw-medium arabicFont mb-2 small">غير متوفر
+                                </p>
+
+
+
+                                <p *ngIf="item.jobNameEn" class="  {{ 'lang-english' | translate}}  fw-light  mb-2 ">{{item.jobNameEn}}
+                                </p>
+                                <p *ngIf="!item.jobNameEn" class=" {{ 'lang-english' | translate}}   fw-light mb-2 ">not found
+                                </p>
+
+
+
+
+
                             </div>
                             <p class="fw-semibold text-muted  englishFont  mb-2 small opacity-50 empId-Card">
                                 {{item.employeeId}} </p>
@@ -127,8 +184,7 @@
                 <!-- loading content ---- (show only when data is loading) -->
                 <div *ngIf="loadingData" class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of tempList ; let i = index ">
-                        <div (click)="getEmpDetails()"
-                            class=" bg-white employee-card w-100 rounded full-flex flex-column">
+                        <div class=" bg-white employee-card w-100 rounded full-flex flex-column">
                             <div class="full-flex pt-2 one-character">
                                 <content-loader viewBox="0 0 200 200" [speed]="1" backgroundColor="#f2f2f2"
                                     foregroundColor="#e8e8e8">
@@ -162,12 +218,35 @@
             <div *ngIf="searchCategory == 'فرع' " class=" col-lg-10 ">
                 <div *ngIf="branchesList.length > 0 " class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of paginatedBranches; let i = index ">
-                        <div (click)="getGroubDetails(item.id , '' , '' , item.nameAr , item.nameEn)"
+                        <div (click)="getOneGroubDetails(item.id , item.nameAr)"
                             class=" bg-white employee-card position-relative w-100 rounded full-flex flex-column h-100">
                             <!-- <div class="full-flex pt-2"> <p [style.background-color]="randomColor[i]" class=" one-character" > أ </p> </div> -->
                             <div class="full-flex pt-3 p-3 one-character">
-                                <img src="./assets/images/non-compressed/organization-structure_8321686.png"
+
+                                <img *ngIf="groubNameKey == 'Branch'" src="./assets/images/non-compressed/branch.png"
                                     class="w-100" alt="">
+
+                                <img *ngIf="groubNameKey == 'Job'" src="./assets/images/non-compressed/job.png"
+                                    class="w-100" alt="">
+
+                                <img *ngIf="groubNameKey == 'Manage'"
+                                    src="./assets/images/non-compressed/team_7286799.png" class="w-100" alt="">
+
+                                <!-- <img *ngIf="groubNameKey == 'Nation'"
+                                    src="{{item.nameEn | translate }}" class="w-100" alt=""> -->
+                                <img *ngIf="groubNameKey == 'Nation'"
+                                    src="./assets/images/non-compressed/earth-globe-design.png" class="w-100" alt="">
+
+                                <img *ngIf="groubNameKey == 'Kafil'" src="./assets/images/non-compressed/kafil.svg"
+                                    class="w-100" alt="">
+
+                                <img *ngIf="groubNameKey == 'Department'"
+                                    src="./assets/images/non-compressed/team_7286799.png" class="w-100" alt="">
+
+
+                                <img *ngIf="groubNameKey == 'Company'" src="./assets/images/non-compressed/branch.png"
+                                    class="w-100" alt="">
+
                             </div>
                             <div class="text-center">
                                 <!-- <p class="font-w-500 englishFont my-1">Ahmed mohamed ali</p> -->
@@ -242,17 +321,221 @@
             <div id="inner-Modal" class="col-md-8 mx-auto ">
                 <div class="bg-white w-100 inner-Modal overflow-auto position-relative">
 
-                    <p class="fs-3 py-3 my-0 bg-teal text-center"> بيانات الموظف </p>
+                    <p class="fs-3 py-3 my-0 bg-teal text-center"> {{'Dashboard.بيانات_الموظف' | translate}}</p>
 
                     <div class="d-flex justify-content-center align-items-center  my-0">
                         <div class="full-flex  one-character "> <img
                                 src="./assets/images/compressed-images/wepb/145857007_307ce493-b254-4b2d-8ba4-d12c080d6651.webp"
                                 class="w-100" alt=""> </div>
                         <div class="text-center">
-                            <p class=" fs-2">محمود سيد عبد الحكيم</p>
+                            <p class=" fs-2 {{ 'lang-arabic' | translate}}  ">{{employeeFullData.employeeNameAr}}</p>
+                            <p class=" fs-2  {{ 'lang-english' | translate}} ">{{employeeFullData.employeeNameEn}}</p>
                         </div>
                     </div>
+                    <div class="row mx-0 fw-light {{ 'direction' | translate}}">
+                        <div class=" mx-0 col-lg-7">
+                            <table class="">
+                                <tbody class=" mx-0  ">
+                                    <tr class="  ">
+                                        <td class="fw-bold px-3 fs-5  py-3  "> {{'Dashboard.الاسم' | translate}} :</td>
+                                        <td class=" fs-5   py-3  ">
+                                            <span class=" {{ 'lang-arabic' | translate}}  ">
+                                                {{employeeFullData.employeeNameAr}}</span>
+                                            <span class=" {{ 'lang-english' | translate}} ">
+                                                {{employeeFullData.employeeNameEn}}</span>
+                                        </td>
 
+                                    </tr>
+                                    <tr class=" ">
+                                        <td class="fw-bold px-3 fs-5  py-3  "> {{'Dashboard.الكود' | translate}} :</td>
+                                        <td class=" fs-5   py-3  ">{{employeeFullData.employeeId}} </td>
+
+                                    </tr>
+
+
+                                    <tr class=" ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.الشركة' | translate}} :</td>
+                                        <td class=" fs-5   py-3 ">
+                                            <span class=" {{ 'lang-arabic' | translate}}  ">
+                                                {{employeeFullData.companyNameAr}}</span>
+                                            <span *ngIf="!employeeFullData.companyNameAr"
+                                                class=" {{ 'lang-arabic' | translate}}  ">
+                                                غير متوفر </span>
+
+
+                                            <span class=" {{ 'lang-english' | translate}} ">
+                                                {{employeeFullData.companyNameEn}}</span>
+                                            <span *ngIf="!employeeFullData.companyNameEn"
+                                                class=" {{ 'lang-english' | translate}} ">
+                                                not found </span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class=" ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.الفرع' | translate}} :</td>
+                                        <td class=" fs-5   py-3 ">
+                                            <span class=" {{ 'lang-arabic' | translate}}  ">
+                                                {{employeeFullData.branchNameAr}}</span>
+                                            <span *ngIf="!employeeFullData.branchNameAr"
+                                                class=" {{ 'lang-arabic' | translate}}  ">
+                                                غير متوفر </span>
+
+
+                                            <span class=" {{ 'lang-english' | translate}} ">
+                                                {{employeeFullData.branchNameEn}}</span>
+                                            <span *ngIf="!employeeFullData.branchNameEn"
+                                                class=" {{ 'lang-english' | translate}} ">
+                                                not found </span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class=" ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.الادارة' | translate}} :</td>
+                                        <td class=" fs-5   py-3 "> <span class=" {{ 'lang-arabic' | translate}}  ">
+                                                {{employeeFullData.manageNameAr}}</span>
+                                            <span *ngIf="!employeeFullData.manageNameAr"
+                                                class=" {{ 'lang-arabic' | translate}}  ">
+                                                غير متوفر </span>
+
+
+                                            <span class=" {{ 'lang-english' | translate}} ">
+                                                {{employeeFullData.manageNameEn}}</span>
+                                            <span *ngIf="!employeeFullData.manageNameEn"
+                                                class=" {{ 'lang-english' | translate}} ">
+                                                not found </span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class=" ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.الوظيفة' | translate}} :</td>
+                                        <td class=" fs-5   py-3 ">
+                                            <span class=" {{ 'lang-arabic' | translate}}  ">
+                                                {{employeeFullData.jobNameAr}}</span>
+                                            <span *ngIf="!employeeFullData.jobNameAr"
+                                                class=" {{ 'lang-arabic' | translate}}  ">
+                                                غير متوفر </span>
+
+                                            <span class=" {{ 'lang-english' | translate}} ">
+                                                {{employeeFullData.jobNameEn}}</span>
+                                            <span *ngIf="!employeeFullData.jobNameEn"
+                                                class=" {{ 'lang-english' | translate}} ">
+                                                not found </span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="col-md-3 ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.الكفيل' | translate}} :</td>
+                                        <td class=" fs-5   py-3 ">
+                                            <span class=" {{ 'lang-arabic' | translate}}  ">
+                                                {{employeeFullData.kafilNameAr}}</span>
+                                            <span *ngIf="!employeeFullData.kafilNameAr"
+                                                class=" {{ 'lang-arabic' | translate}}  ">
+                                                غير متوفر </span>
+
+                                            <span class=" {{ 'lang-english' | translate}} ">
+                                                {{employeeFullData.kafilNameEn}}</span>
+                                            <span *ngIf="!employeeFullData.kafilNameEn"
+                                                class=" {{ 'lang-english' | translate}} ">
+                                                not found </span>
+                                        </td>
+                                    </tr>
+
+
+
+
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class=" mx-0 col-lg-5">
+                            <table class="">
+                                <tbody class=" mx-0  w-100">
+                                    <tr class=" col-md-3 ">
+                                        <td class="fw-bold px-3 fs-5  py-3  "> {{'Dashboard.رقم_الجوال' | translate}} :
+                                        </td>
+                                        <td class=" fs-5   py-3  ">
+                                            <span>
+                                                {{employeeFullData.mobile}}
+                                            </span>
+                                            <span *ngIf="!employeeFullData.mobile" class="">
+                                                {{'Dashboard.غير_متوفر' | translate}}</span>
+                                        </td>
+
+
+                                    </tr>
+                                    <tr class="col-md-3 ">
+                                        <td class="fw-bold px-3 fs-5  py-3  "> {{'Dashboard.جوال_احتياطي' | translate}}
+                                            :</td>
+                                        <td class=" fs-5   py-3  ">
+                                            <span>
+                                                {{employeeFullData.mobileEmergency}}
+                                            </span>
+                                            <span *ngIf="!employeeFullData.mobileEmergency">
+                                                {{'Dashboard.غير_متوفر' | translate}}</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr class=" col-md-3">
+                                        <td class="fw-bold px-3 fs-5  py-3  "> {{'Dashboard.رقم_الهوية' | translate}} :
+                                        </td>
+                                        <td class=" fs-5   py-3  ">
+                                            <span>
+                                                {{employeeFullData.employeePersonId}}
+                                            </span>
+
+                                            <span *ngIf="!employeeFullData.employeePersonId">
+                                                {{'Dashboard.غير_متوفر' | translate}}</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr class="col-md-3 ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.انتهاء_الهوية' | translate}}
+                                            :</td>
+                                        <td class=" fs-5   py-3 ">
+                                            <span>
+                                                {{employeeFullData.employeePersonExpireDate}}
+                                            </span>
+                                            <span *ngIf="!employeeFullData.employeePersonExpireDate">
+                                                {{'Dashboard.غير_متوفر' | translate}}</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="col-md-3 ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.فصيلة_الدم' | translate}} :
+                                        </td>
+                                        <td class=" fs-5   py-3 ">
+                                            <span>
+                                                {{employeeFullData.blood}}
+                                            </span>
+                                            <span *ngIf="!employeeFullData.blood">
+                                                {{'Dashboard.غير_متوفر' | translate}}</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="col-md-3 ">
+                                        <td class="fw-bold px-3 fs-5  py-3 "> {{'Dashboard.الجنسية' | translate}} :</td>
+                                        <td class=" fs-5   py-3 "> <span class=" {{ 'lang-arabic' | translate}}  ">
+                                                {{employeeFullData.nationNameAr}}</span>
+                                            <span *ngIf="!employeeFullData.nationNameAr"
+                                                class=" {{ 'lang-arabic' | translate}}  ">
+                                                غير متوفر </span>
+
+                                            <span class=" {{ 'lang-english' | translate}} ">
+                                                {{employeeFullData.nationNameEn}}</span>
+                                            <span *ngIf="!employeeFullData.nationNameEn"
+                                                class=" {{ 'lang-english' | translate}} ">
+                                                not found </span>
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <span (click)="closeEmpModal()">
                         <i class="fa-solid fa-xmark fa-3x closeBtn"></i>
                     </span>
@@ -272,8 +555,7 @@
 
 
     <!-- ==========================   start group info   ========================== -->
-    <div *ngIf="showGroubModal"
-        class=" bg-danger w-100 vh-100 bg-black bg-opacity-75 position-fixed top-0 start-0 end-0">
+    <div *ngIf="showGroubModal" class="  w-100 vh-100 bg-black bg-opacity-75 position-fixed top-0 start-0 end-0">
 
         <app-fake-nav></app-fake-nav>
         <div class="row w-100  mx-0 vh-90 full-flex ">
@@ -281,7 +563,7 @@
                 <div class="bg-white w-100  overflow-auto rounded-2 overflow-hidden position-relative">
 
                     <div class="py-3  bg-teal text-center">
-                        <p class="fs-3 my-0"> {{OneGroupName}}</p>
+                        <p class="fs-3 my-0"> <i class="fa-solid fa-users-rectangle"></i> {{OneGroupName}} </p>
                     </div>
 
 
@@ -290,7 +572,7 @@
                         <div class="p-3 row g-3 ">
                             <div class="col-md-6 col-lg-6 col-xl-4 col-xxl-3 "
                                 *ngFor="let item of groubEmployeeList; let i = index ">
-                                <div (click)="getEmpDetails()"
+                                <div (click)="getEmpDetails(item.employeeId)"
                                     class=" bg-white employee-card w-100 rounded full-flex flex-column ">
                                     <!-- <div class="full-flex pt-2"> <p [style.background-color]="randomColor[i]" class=" one-character" > أ </p> </div> -->
                                     <div class="full-flex pt-2 one-character">

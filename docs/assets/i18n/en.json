@@ -17,6 +17,7 @@
     "englishBody": "englishBody",
     "lang-arabic": "d-none",
     "lang-english": "",
+    "padding_3Eng_1Ar":"px-3",
     "admin_nav": {
         "الرئيسية": "Home",
         "طلبات_الاجازات": "Vacations",
@@ -474,5 +475,32 @@
         "absent2": "absent",
         "no_data_title": "No Matching Data",
         "no_data_subtitle": "Please check the entered data"
+    },
+    "Dashboard": {
+        "غير_متوفر": "not found",
+        "موظفين": "Employees",
+        "فروع": "Branches",
+        "ادارات": "Management",
+        "شركات": "Companies",
+        "وظائف": "Jobs",
+        "اقسام": "Departments",
+        "كفيل": "Kafil",
+        "جنسية": "Nationality",
+        "الاسم": "Name",
+        "الكود": "ID",
+        "الكل": "All",
+        "عدد_العاملين": "Number of Employees",
+        "بيانات_الموظف":"Employee info",
+        "الشركة":"Company",
+        "الفرع":"Branch",
+        "الادارة":"Management",
+        "الوظيفة":"Job",
+        "الكفيل":"Kafil",
+        "رقم_الجوال":"Mobile Number",
+        "جوال_احتياطي":"Emergency mobile ",
+        "رقم_الهوية":"Personal ID  ",
+        "انتهاء_الهوية":" ID Expiry ",
+        "فصيلة_الدم":"Blood type ",
+        "الجنسية":"Nationality "
     }
 }
