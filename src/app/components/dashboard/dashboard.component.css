@@ -156,6 +156,8 @@ content-loader {
 } */
 
 
+
+
 @media screen and (max-width:992px) {
 
     .sideBar-manages {
@@ -174,6 +176,9 @@ content-loader {
         position: static !important;
         padding: 12px !important;
     }
-
+    .w-70-mobile {
+        width: 70% !important;
+        /* font-size: 14px; */
+    }
 
 }
