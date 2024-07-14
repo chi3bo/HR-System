@@ -5,7 +5,7 @@ import { Response } from 'src/app/shared/interfaces/response';
 import { branch, empFullDetails, employeeDetails, oneManage } from 'src/app/shared/interfaces/dashboard';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { debounceTime, filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +29,17 @@ export class DashboardComponent {
   GroubloadingData: boolean = true
   setting: boolean = false
   showBranch: boolean = false
+  displayRows: boolean = false
+  displayCards: boolean = true
+  assignedWork: boolean = false
+
+  acvtiveFilterJob: any = null
+  acvtiveFilterCompany: any = null
+  acvtiveFilterBranch: any = null
+  acvtiveFilterNation: any = null
+  acvtiveFilterAge: any = null
+  acvtiveFilterGender: any = null
+  theKey: any = null
   // ================= flags =================
 
 
@@ -46,6 +57,13 @@ export class DashboardComponent {
   OneGroupName: string = 'مجموعة'
   employeeFullData: empFullDetails = {} as empFullDetails
 
+  JobList: any
+  CompanyList: any
+  branchList: any
+  genderList: any
+  nationalityList: any
+  ageList: any
+
   ngOnInit(): void {
     // make a temp array of random color 
     for (let i = 0; i < this.employeeList.length; i++) {
@@ -55,12 +73,175 @@ export class DashboardComponent {
     this.getAllMangements()
     this.getAllData()
     this.searching()
-    // سبسكرايب علي انبوت الاي دي عشان اسحب تغيراته لما اليوزر يكتب فيه
-    let ahmed = [3, 5, 2, 8, 1]
-    let x = ahmed.sort()
-
-
   }
+
+  // =======================  start filtering function   =======================
+  listOfHeaders() {
+    this.JobList = new Set(this.employeeList.map(item => { return item.jobNameAr }))
+    this.CompanyList = new Set(this.employeeList.map(item => { return item.companyNameAr }))
+    this.branchList = new Set(this.employeeList.map(item => { return item.branchNameAr }))
+    this.genderList = new Set(this.employeeList.map(item => { return item.gender }))
+    this.ageList = new Set(this.employeeList.map(item => { return item.age }))
+    this.ageList = Array.from(this.ageList).slice().sort((a, b) => Number(a) - Number(b))
+    console.log(this.ageList);
+    
+    this.nationalityList = new Set(this.employeeList.map(item => { return item.nationNameAr }))
+    console.log(this.CompanyList);
+  }
+
+  JobFilter(list: employeeDetails[], key: any) {
+    console.log(key, 'llllllll');
+    return list.filter((item) => { return item.jobNameAr == key })
+  }
+
+  companyFilter(list: employeeDetails[], key: any) {
+    return list.filter((item) => { return item.companyNameAr == key })
+  }
+
+  BranchFilter(list: employeeDetails[], key: any) {
+    return list.filter((item) => { return item.branchNameAr == key })
+  }
+
+  GenderFilter(list: employeeDetails[], key: any) {
+    return list.filter((item) => { return item.gender == key })
+  }
+
+  nationaltyFilter(list: employeeDetails[], key: any) {
+    return list.filter((item) => { return item.nationNameAr == key })
+  }
+
+  ageFilter(list: employeeDetails[], key: any) {
+    return list.filter((item) => { return item.age == key })
+  }
+
+
+  avctiveFilter(type: any, event: any) {
+
+    this.theKey = event.target.value
+
+    if (type == 'job') {
+      if (this.acvtiveFilterJob) {
+        this.employeeList = this.originalEmployeeList
+        this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+        this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
+        this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+        this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.theKey == 'all' ? this.acvtiveFilterJob = null : this.acvtiveFilterJob = this.theKey
+      }
+      else {
+        this.theKey == 'all' ? this.acvtiveFilterJob = null : this.acvtiveFilterJob = this.theKey
+      }
+
+    }
+
+    if (type == 'company') {
+
+      if (this.acvtiveFilterCompany) {
+        this.employeeList = this.originalEmployeeList
+        this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+        this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
+        this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+        this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.theKey == 'all' ? this.acvtiveFilterCompany = null : this.acvtiveFilterCompany = this.theKey
+      }
+      else {
+        this.theKey == 'all' ? this.acvtiveFilterCompany = null : this.acvtiveFilterCompany = this.theKey
+      }
+
+    }
+
+    if (type == 'branch') {
+
+      if (this.acvtiveFilterBranch) {
+        this.employeeList = this.originalEmployeeList
+        this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+        this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+        this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+        this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.theKey == 'all' ? this.acvtiveFilterBranch = null : this.acvtiveFilterBranch = this.theKey
+      }
+      else {
+        this.theKey == 'all' ? this.acvtiveFilterBranch = null : this.acvtiveFilterBranch = this.theKey
+      }
+    }
+
+    if (type == 'nation') {
+
+      if (this.acvtiveFilterNation) {
+        this.employeeList = this.originalEmployeeList
+        this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+        this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+        this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
+        this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.theKey == 'all' ? this.acvtiveFilterNation = null : this.acvtiveFilterNation = this.theKey
+      }
+      else {
+        this.theKey == 'all' ? this.acvtiveFilterNation = null : this.acvtiveFilterNation = this.theKey
+      }
+
+    }
+
+    if (type == 'age') {
+
+      if (this.acvtiveFilterAge) {
+        this.employeeList = this.originalEmployeeList
+        this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+        this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+        this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+        this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
+        this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.theKey == 'all' ? this.acvtiveFilterAge = null : this.acvtiveFilterAge = this.theKey
+      }
+      else {
+        this.theKey == 'all' ? this.acvtiveFilterAge = null : this.acvtiveFilterAge = this.theKey
+      }
+
+    }
+
+    if (type == 'gender') {
+
+      if (this.acvtiveFilterGender) {
+        this.employeeList = this.originalEmployeeList
+        this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+        this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+        this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+        this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
+        this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        this.theKey == 'all' ? this.acvtiveFilterGender = null : this.acvtiveFilterGender = this.theKey
+      }
+      else {
+        this.theKey == 'all' ? this.acvtiveFilterGender = null : this.acvtiveFilterGender = this.theKey
+      }
+
+    }
+
+    console.log(this.theKey, 'active filter');
+    // this.getAllData()
+
+    this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+    this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
+    this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+    this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+    this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+    this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+    console.log(this.acvtiveFilterJob, 'active filter job');
+    console.log(this.acvtiveFilterCompany, 'active filter Company');
+    console.log(this.acvtiveFilterBranch, 'active filter Branch');
+    console.log(this.acvtiveFilterAge, 'active filter Age');
+    console.log(this.acvtiveFilterNation, 'active filter Nation');
+    console.log(this.acvtiveFilterGender, 'active filter Gender');
+
+    this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
+    this.currentPage = 1
+  }
+  // =======================  end filtering function   =======================
+
+
+
 
   getAllData(id: string = '') {
     this.employeeList = []
@@ -74,6 +255,25 @@ export class DashboardComponent {
         this.loadingData = false
         this.originalEmployeeList = data.employees
         this.employeeList = this.originalEmployeeList.slice().sort((a, b) => Number(a.employeeId) - Number(b.employeeId))
+        this.assignedWork ? this.employeeList = this.employeeList.filter((item) => { return item.state == 0 }) : ''
+        this.listOfHeaders()
+
+
+        // ======== filtering ==========
+
+        // this.employeeList = this.BranchFilter(this.employeeList , '7000' )
+        // this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+        // this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList,this.acvtiveFilterBranch) : ''
+        // this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+        // this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        // this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+        // this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList,this.acvtiveFilterGender) : ''
+        // console.log(this.acvtiveFilterCompany , 'get all data');
+
+
+        // ======== filtering ==========
+
+
         console.log(this.employeeList);
 
         this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
@@ -140,38 +340,10 @@ export class DashboardComponent {
 
     })
 
-    
+
   }
 
-  // getGroubDetails(branchId: string = '', manageId: string = '', jobId: string = '', nameEn: any) {
-  //   this.OneGroupName = ""
-  //   this.OneGroupName = nameAR
-  //   this.groubEmployeeList = []
-  //   this.GroubloadingData = true
-  //   let body = {
-  //     "branchId": branchId,
-  //     "manageId": manageId,
-  //     "jobId": jobId,
-  //   }
-  //   this._DashboardService.getAllDataSmall(body).subscribe({
-  //     next: (data) => {
-  //       console.log(data);
-  //       this.groubEmployeeList = data.employees
-  //       this.GroubloadingData = false
-  //       this.openGroubModal()
-  //     },
-  //     error: (err) => {
-  //       this.GroubloadingData = false
-  //       console.log(err);
-  //     }
-  //   })
-
-
-
-
-
-  // }
-  getOneGroubDetails(groubID: string = '' ,  nameAR: any) {
+  getOneGroubDetails(groubID: string = '', nameAR: any) {
     this.OneGroupName = nameAR
     this.groubEmployeeList = []
     this.GroubloadingData = true
@@ -307,6 +479,15 @@ export class DashboardComponent {
         behavior: 'smooth'
       })
     }, 100)
+  }
+
+  tableView(){
+    this.displayCards = false
+    this.displayRows = true
+  }
+  cardsView(){
+    this.displayCards = true
+    this.displayRows = false
   }
   // ==========================    end moving and (open-close)    ======================
 

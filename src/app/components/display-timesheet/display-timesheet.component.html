@@ -144,7 +144,8 @@
                     <div class="d-flex justify-content-start align-items-center">
                         <div class="greenDot px-1 me-2"></div>
                         <img src="./assets/images/non-compressed/arabi_men(mini).webp" alt="" class="empImg px-1">
-                        <span class="px-1 empcolor">{{ item.employeeName }}</span>
+                        <span class="px-1 empcolor  {{ 'lang-arabic' | translate}} ">{{ item.employeeNameAr }}</span>
+                        <span class="px-1 empcolor   {{ 'lang-english' | translate}} ">{{ item.employeeNameEn }}</span>
                     </div>
                 </td>
                 <td class="py-2 font-w-500 englishFont text-center date-Width">

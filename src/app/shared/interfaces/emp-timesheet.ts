@@ -1,7 +1,8 @@
 export interface EmpTimesheet {
     id: number
     employeeId: string
-    employeeName: string
+    employeeNameAr: any
+    employeeNameEn: any
     date: string
     start: string
     leave: string
