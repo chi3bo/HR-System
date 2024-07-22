@@ -301,6 +301,15 @@ td :disabled {
     height: 55px;
 }
 
+.switchView{
+position: absolute;
+top: 0;
+right: 0;
+margin-block: 8px;
+padding-block: 0;
+width: auto;
+}
+
 @media screen and (max-width:576px) {
     .pt-5-on-mobile {
         padding-top: 50px;
@@ -322,4 +331,12 @@ td :disabled {
         padding: 10px 10px !important;
 
     }
+
+    /* full-flex position-static top-0 end-0 my-2 py-2 w-100  */
+    .switchView{
+        position: static;
+        margin-block: 8px;
+        padding-block: 8px;
+        width: 100%;
+        }
 }
