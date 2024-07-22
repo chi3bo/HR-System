@@ -4,8 +4,10 @@ import { DashboardService } from 'src/app/shared/services/dashboard.service';
 import { Response } from 'src/app/shared/interfaces/response';
 import { branch, empFullDetails, employeeDetails, oneManage } from 'src/app/shared/interfaces/dashboard';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, filter, map } from 'rxjs';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +19,8 @@ export class DashboardComponent {
   constructor(private _DashboardService: DashboardService, private _Router: Router, private _spinner: NgxSpinnerService, private _FB: FormBuilder) { }
 
   searchingForm: FormGroup = this._FB.group({
-    searchInput: [null]
+    searchInput: [null],
+    excelNameInput: [null , Validators.required]
   })
 
 
@@ -33,7 +36,7 @@ export class DashboardComponent {
   displayRows: boolean = false
   displayCards: boolean = true
   dataArrivedRow: boolean = false
-  assignedWork: boolean = false  // ==================== علي رأس العمل =========
+  assignedWork: boolean = false  // =========== علي رأس العمل =========
 
   acvtiveFilterJob: any = null
   acvtiveFilterCompany: any = null
@@ -44,6 +47,7 @@ export class DashboardComponent {
   acvtiveFilterKafil: any = null
   theKey: any = null
   detailsRow: boolean = false
+  excelModal: boolean = false
   // ================= flags =================
 
 
@@ -62,7 +66,10 @@ export class DashboardComponent {
   searchKey: string = 'الاسم'
   groubNameKey: string = ''
   OneGroupName: string = 'مجموعة'
+  selectedNumber: number = 0
   employeeFullData: empFullDetails = {} as empFullDetails
+  selectedEmployees: string[] = []
+
   @ViewChild('rowDetails') rowDetailsDiv!: ElementRef
 
   JobList: any
@@ -96,20 +103,6 @@ export class DashboardComponent {
     this.ageList = Array.from(this.ageList).slice().sort((a, b) => Number(a) - Number(b))
     this.nationalityList = new Set(this.employeeList.map(item => { return item.nationNameAr }))
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   JobFilter(list: employeeDetails[], key: any) {
@@ -648,6 +641,64 @@ export class DashboardComponent {
 
 
 
+  
+  // ===================== start save To excel =======================
+
+  selectRow(event: any, empId: any ) {
+
+    let status = event.target as HTMLInputElement
+    let isCheked = status.checked
+    if (isCheked) {
+      if (this.selectedEmployees.includes(empId)) {
+        this.selectedNumber = this.selectedEmployees.length
+      }
+      else {
+        this.selectedEmployees.push(empId)
+        this.selectedNumber = this.selectedEmployees.length
+      }
+    }
+    else {
+      let IndexOFid = this.selectedEmployees.indexOf(empId)
+      this.selectedEmployees.splice(IndexOFid, 1)
+      this.selectedNumber = this.selectedEmployees.length
+    }
+  }
+
+  sendToExcel() {
+    const fileName = this.searchingForm.get('excelNameInput')?.value
+    if (fileName) {
+      this.setExcelFile(fileName)
+    }
+    else {
+      this.searchingForm.get('excelNameInput')?.markAsTouched()
+    }
+  }
+
+  openExcelModal() {
+    this.excelModal = true
+  }
+
+  setExcelFile(name: string) {
+    let myData = this.employeeList.filter((item) => { return this.selectedEmployees.includes(item.employeeId) })
+
+    const mySheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(myData)
+    const myWorkBook: XLSX.WorkBook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(myWorkBook, mySheet, `sheet1`)
+    XLSX.writeFile(myWorkBook, `${name}.xlsx`)
+    this.selectedEmployees.length = 0
+    this.selectedNumber = 0
+
+    this.closeExcelForm()
+    this.searchingForm.get('excelNameInput')?.setValue(null)
+    this.searchingForm.get('excelNameInput')?.markAsUntouched()
+
+
+  }
+
+
+  // ===================== end save To excel =======================
+
+
 
 
   // ==========================    start moving and (open-close)    ======================
@@ -693,7 +744,7 @@ export class DashboardComponent {
     else {
       setTimeout(() => {
         window.scrollTo({
-          top:  0,
+          top: 0,
           left: 0,
           behavior: 'smooth'
         })
@@ -723,18 +774,11 @@ export class DashboardComponent {
     this.detailsRow = true
 
   }
+
+  closeExcelForm() {
+    this.excelModal = false
+  }
   // ==========================    end moving and (open-close)    ======================
-
-
-
-
-
-
-
-
-
-
-
 
   // ==========================   start pagination   ==========================
   itemsPerPage = 100; // عدد العناصر لكل صفحة
@@ -835,4 +879,30 @@ export class DashboardComponent {
   }
   // ==========================   end pagination   ==========================
 
+  test(){
+    console.log(this.employeeList);
+    
+  }
+  allEmployeeListId(event:any){
+
+    
+    let status = event.target as HTMLInputElement
+    let isCheked = status.checked
+    if (isCheked) {
+      let allId = this.employeeList.map(item => { return item.employeeId })
+      this.selectedEmployees = allId;
+      this.selectedNumber= allId.length
+      console.log(this.selectedEmployees);
+    }
+    else {
+      this.selectedEmployees.length = 0;
+      this.selectedNumber= 0
+      console.log(this.selectedEmployees);
+
+    }
+
+
+
+
+  }
 }

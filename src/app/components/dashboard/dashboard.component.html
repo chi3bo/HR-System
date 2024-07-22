@@ -3,13 +3,14 @@
 
         <div [formGroup]="searchingForm" class="custom-bar py-3 ">
             <div class="row  position-relative">
-                <div class="col-md-5 mx-auto ">
-                    <div class="input-group mx-auto w-70-mobile">
+                <div class="col-md-6 mx-auto ">
+                    <div class="input-group mx-auto w-70-mobile ">
                         <input formControlName="searchInput" type="text" class="form-control  "
                             aria-label="Text input with dropdown button" placeholder="search . . ">
 
-                        <button class="btn btn-dark  dropdown-toggle z-0" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"> {{groubNameKey? groubNameKey : searchCategory}} </button>
+                        <button class="btn btn-dark rounded-end dropdown-toggle z-0" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"> {{groubNameKey? groubNameKey :
+                            searchCategory}} </button>
                         <div class="  py-0 dropdown-menu dropdown-menu-start ">
                             <div class="d-flex">
                                 <div class="">
@@ -108,21 +109,27 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- send to excel -->
+                        <div (click)="openExcelModal()" *ngIf="selectedNumber > 0"
+                            class=" mx-2 bg-white full-flex rounded-1 cursor-pointer position-relative">
+                            <i class=" px-2 fa-solid fa-floppy-disk fa-xl"></i>
+                            <span class="iconNumber bg-danger px-1 full-flex py-0 my-0">{{selectedNumber}}</span>
 
+                        </div>
                     </div>
-
                 </div>
+
                 <div class="full-flex switchView">
                     <div class=" py-0 my-0 ms-auto ">
                         <span (click)="cardsView()"
                             [ngClass]="{ 'bg-white' : displayCards , 'bg-secondary-subtle' : displayRows}"
-                            class="p-2  rounded-start my-0 cursor-pointer">
-                            <i class="fa-regular fa-address-card fa-xl"></i>
+                            class="p-2  rounded-start my-0 cursor-pointer ">
+                            <i class="fa-regular fa-address-card fa-xl cursor-pointer"></i>
                         </span>
                         <span (click)="tableView()"
                             [ngClass]="{ 'bg-white' : displayRows , 'bg-secondary-subtle' : displayCards}"
                             class="p-2  rounded-end my-0 cursor-pointer">
-                            <i class="fa-solid fa-table-list fa-xl"></i>
+                            <i class="fa-solid fa-table-list fa-xl cursor-pointer"></i>
                         </span>
                     </div>
                 </div>
@@ -251,6 +258,13 @@
                     <table class="table table-bordered ">
                         <thead>
                             <tr>
+                                <th class="py-3 text-center ">
+                                    <div>
+                                        <input [checked]="selectedEmployees.length == employeeList.length" type="checkbox"
+                                            class="form-check form-check-input"
+                                            (click)="allEmployeeListId($event)">
+                                    </div>
+                                </th>
                                 <th class="py-3 text-center "></th>
                                 <th class="py-3 text-center  ">
                                     id
@@ -347,6 +361,13 @@
 
                         <tbody *ngIf="employeeList.length > 0 ">
                             <tr *ngFor="let item of paginatedResults; let myIi = index">
+                                <td class="py-2 w-auto text-center ">
+                                    <div>
+                                        <input [checked]="selectedEmployees.includes(item.employeeId)" type="checkbox"
+                                            class="form-check form-check-input"
+                                            (click)="selectRow($event , item.employeeId)">
+                                    </div>
+                                </td>
                                 <td
                                     class="fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
                                     <span>{{ (currentPage-1) * 100 + myIi +1 }}</span>
@@ -575,17 +596,13 @@
                                 <img *ngIf="groubNameKey == 'Manage'"
                                     src="./assets/images/non-compressed/team_7286799.png" class="w-100" alt="">
 
-                                <img *ngIf="groubNameKey == 'Nation'" src="{{item.nameEn|translate}}"
-                                    class="w-100 rounded " alt="">
-                                <img *ngIf="groubNameKey == 'Nation' && item.nameEn == 'out nationality' "
-                                    src="./assets/images/non-compressed/earth-globe-design.png" class="w-100" alt="">
-                                <img *ngIf="groubNameKey == 'Nation' && item.nameEn == 'Tribes displaced' "
-                                    src="./assets/images/non-compressed/earth-globe-design.png" class="w-100" alt="">
-                                <img *ngIf="groubNameKey == 'Nation' && item.nameEn ==  null "
-                                    src="./assets/images/non-compressed/earth-globe-design.png" class="w-100" alt="">
+                                <img *ngIf="groubNameKey == 'Nation' &&  item.nameEn !=  null "
+                                    src="{{item.nameEn|translate}}" class="w-100 rounded " alt="">
 
-                                <!-- <img *ngIf="groubNameKey == 'Nation'"
-                                    src="./assets/images/non-compressed/earth-globe-design.png" class="w-100" alt=""> -->
+                                <img *ngIf="groubNameKey == 'Nation' && item.nameEn ==  null "
+                                    src="./assets/images/non-compressed/otherCountry.webp" class="W-100 flag-img"
+                                    [alt]="item.nameEn">
+
 
 
                                 <img *ngIf="groubNameKey == 'Kafil'" src="./assets/images/non-compressed/kafil.svg"
@@ -687,25 +704,21 @@
                                         <option class="fw-bold px-3 py-2 w-100 {{ 'lang-arabic' | translate}} "
                                             (click)="counterRowPageFilter( groubNameKey , $event)"
                                             (click)=" RowDetailsOpenClose()" [value]="item.nameAr">
-                                            <span>{{item.nameAr}} </span> 
+                                            <span>{{item.nameAr}} </span>
                                         </option>
                                         <option class="fw-bold px-3 py-2 w-100 {{ 'lang-english' | translate}} "
                                             (click)="counterRowPageFilter( groubNameKey , $event)"
                                             (click)=" RowDetailsOpenClose()" [value]="item.nameAr">
-                                            <span>{{item.nameEn}} </span> 
+                                            <span>{{item.nameEn}} </span>
                                         </option>
                                         <div class="flag-width">
-                                            <img *ngIf="groubNameKey == 'Nation'" src="{{item.nameEn|translate}}"
-                                                class="w-100 rounded flag-img" alt="">
-                                            <img *ngIf="groubNameKey == 'Nation' && item.nameEn == 'out nationality' "
-                                                src="./assets/images/non-compressed/earth-globe-design.png" class="w-75"
-                                                alt="">
-                                            <img *ngIf="groubNameKey == 'Nation' && item.nameEn == 'Tribes displaced' "
-                                                src="./assets/images/non-compressed/earth-globe-design.png" class="w-75"
-                                                alt="">
+                                            <img *ngIf="groubNameKey == 'Nation' &&  item.nameEn !=  null "
+                                                src="{{item.nameEn|translate}}" class="w-100 rounded flag-img"
+                                                [alt]="item.nameEn">
+
                                             <img *ngIf="groubNameKey == 'Nation' && item.nameEn ==  null "
-                                                src="./assets/images/non-compressed/earth-globe-design.png" class="w-75"
-                                                alt="">
+                                                src="./assets/images/non-compressed/otherCountry.webp"
+                                                class="W-100 flag-img" [alt]="item.nameEn">
                                         </div>
                                     </div>
                                 </td>
@@ -793,7 +806,8 @@
                                     <th class="py-3 text-center  ">
                                         id
                                     </th>
-                                    <th class="py-3 text-center ">{{ 'display_time_sheet.name' | translate }}</th>
+                                    <th class="py-3 text-center  name-Width personTd">{{ 'display_time_sheet.name' |
+                                        translate }}</th>
                                     <th class="py-3 text-center  my-0">
                                         <p class="my-0">الوظيفة</p>
                                         <!-- <select
@@ -902,7 +916,7 @@
                                         <span>{{ item.employeeId }}</span>
                                     </td>
 
-                                    <td class="py-2 arabicFont w-auto">
+                                    <td class="py-2 arabicFont w-auto w-100-mobile">
                                         <div class="d-flex justify-content-start align-items-center">
                                             <div class="greenDot px-1 me-2"></div>
                                             <span class="px-1 empcolor  {{ 'lang-arabic' | translate}} ">{{
@@ -1364,3 +1378,42 @@
     </p>
 </div>
 <!-- ==========================   end pagination   ========================== -->
+
+
+
+
+<!-- start form send to excel -->
+<form [formGroup]="searchingForm">
+    <div *ngIf="excelModal"
+        class="vh-100 full-flex bg-black-opacity position-fixed top-0 start-0 end-0 bottom-0 overflow-hidden">
+        <div class="w-50 img-Modal min-h-50 bg-white rounded-2 position-relative z-1 {{ 'direction' | translate }}">
+            <p class=" text-center py-3 fs-3 englishFont">save as Excel</p>
+            <div class="w-75 mx-auto min-h-60 d-flex justify-content-center flex-column">
+
+                <label for="excelNameInput" class="py-3 justify-content-start  fs-5 ">
+                    ادخل اسم الملف : </label>
+
+                <input formControlName="excelNameInput" class="form-control form-control-lg"
+                    type="text" name="excelNameInput" id="excelNameInput">
+
+
+
+
+                <div *ngIf="searchingForm.get('excelNameInput')?.getError('required') && searchingForm.get('excelNameInput')?.touched"
+                    class="text-center">
+                    <p class="text-danger  py-3 ">
+                        يجب ادخال اسم الملف
+                    </p>
+                </div>
+                <button class="btn btn-primary px-5 py-2 my-3 d-block me-auto" (click)="sendToExcel()">
+                    {{ 'page.حفظ' | translate }}
+                </button>
+
+            </div>
+            <span (click)="closeExcelForm()">
+                <i class="fa-solid fa-xmark fa-2x closeBtn"></i>
+            </span>
+        </div>
+    </div>
+</form>
+<!-- end form send to excel -->

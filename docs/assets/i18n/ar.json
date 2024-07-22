@@ -24,7 +24,7 @@
     "Sudanese": "https://flagcdn.com/sd.svg",
     "Moroccan": "https://flagcdn.com/ma.svg",
     "Srilanki": "https://flagcdn.com/lk.svg",
-    "Other": "https://flagcdn.com/unknown.svg",
+    "Other": "./assets/images/non-compressed/otherCountry.webp",
     "Tunisia": "https://flagcdn.com/tn.svg",
     "Indonesian": "https://flagcdn.com/id.svg",
     "Thai": "https://flagcdn.com/th.svg",
@@ -33,10 +33,10 @@
     "American": "https://flagcdn.com/us.svg",
     "Espany": "https://flagcdn.com/es.svg",
     "Bahran": "https://flagcdn.com/bh.svg",
-    "Tribes displaced": "https://flagcdn.com/unknown.svg",
+    "Tribes displaced": "./assets/images/non-compressed/otherCountry.webp",
     "Czech": "https://flagcdn.com/cz.svg",
     "Amman": "https://flagcdn.com/jo.svg",
-    "out nationality": "https://flagcdn.com/unknown.svg",
+    "out nationality": "./assets/images/non-compressed/otherCountry.webp",
 
     
     "South Sudan": "https://flagcdn.com/ss.svg",
