@@ -264,7 +264,8 @@ td :disabled {
     padding-block: 0;
     width: auto;
 }
-.cursor-pointer{
+
+.cursor-pointer {
     cursor: pointer !important;
 }
 
@@ -295,8 +296,12 @@ td :disabled {
     background-color: #000000a1;
 }
 
-.min-h-50{
+.min-h-50 {
     min-height: 50% !important;
+}
+
+.selectIcon-width {
+    width: 45px;
 }
 
 @media screen and (max-width:992px) {
@@ -348,7 +353,7 @@ td :disabled {
         max-width: 230px;
     }
 
-    
+
     .sideBar-manages {
         position: static !important;
         padding: 12px !important;
@@ -367,11 +372,8 @@ td :disabled {
         font-size: 13px;
     }
 
-    .min-h-50{
+    .min-h-50 {
         min-height: 40% !important;
     }
 
 }
-
-
-

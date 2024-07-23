@@ -20,7 +20,7 @@ export class DashboardComponent {
 
   searchingForm: FormGroup = this._FB.group({
     searchInput: [null],
-    excelNameInput: [null , Validators.required]
+    excelNameInput: [null, Validators.required]
   })
 
 
@@ -45,6 +45,7 @@ export class DashboardComponent {
   acvtiveFilterAge: any = null
   acvtiveFilterGender: any = null
   acvtiveFilterKafil: any = null
+  acvtiveFilterdepartment: any = null
   theKey: any = null
   detailsRow: boolean = false
   excelModal: boolean = false
@@ -66,9 +67,11 @@ export class DashboardComponent {
   searchKey: string = 'الاسم'
   groubNameKey: string = ''
   OneGroupName: string = 'مجموعة'
-  selectedNumber: number = 0
   employeeFullData: empFullDetails = {} as empFullDetails
   selectedEmployees: string[] = []
+  selectedNumber: number = this.selectedEmployees.length
+  selectedGroub: any[] = []
+  selectedGrNumber: number = this.selectedGroub.length
 
   @ViewChild('rowDetails') rowDetailsDiv!: ElementRef
 
@@ -140,6 +143,11 @@ export class DashboardComponent {
   kafilFilter(list: employeeDetails[], key: any) {
     // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return (item.kafilNameAr == key || item.kafilNameEn == key) })
+  }
+  departmentFilter(list: employeeDetails[], key: any) {
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    return list.filter((item) => { return (item.departmentNameAr == key || item.departmentNameEn == key) })
+
   }
 
   stateFilter(list: employeeDetails[], key: any) {
@@ -309,7 +317,6 @@ export class DashboardComponent {
     console.log('the key : ', this.theKey);
     console.log('type : ', type);
 
-
     if (type == 'job') {
       this.employeeList = this.originalEmployeeList
       this.acvtiveFilterJob = this.theKey
@@ -366,6 +373,14 @@ export class DashboardComponent {
     }
 
 
+    if (type == 'department') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterdepartment = this.theKey
+      this.originalEmployeeListRow = this.departmentFilter(this.employeeList, this.acvtiveFilterdepartment)
+      this.employeeListRow = this.originalEmployeeListRow
+    }
+
+
     if (this.assignedWork) {
       this.employeeListRow = this.originalEmployeeListRow.filter((item) => { return item.state == 0 })
     }
@@ -376,13 +391,14 @@ export class DashboardComponent {
 
 
 
-    console.log('active filter job : ', this.acvtiveFilterJob);
-    console.log('active filter Company : ', this.acvtiveFilterCompany);
-    console.log('active filter Branch : ', this.acvtiveFilterBranch);
-    console.log('active filter Age : ', this.acvtiveFilterAge);
-    console.log('active filter Nation : ', this.acvtiveFilterNation);
-    console.log('active filter Gender : ', this.acvtiveFilterGender);
-    console.log('active filter kafil : ', this.acvtiveFilterKafil);
+    console.log('active f job : ', this.acvtiveFilterJob);
+    console.log('active f Company : ', this.acvtiveFilterCompany);
+    console.log('active f Branch : ', this.acvtiveFilterBranch);
+    console.log('active f Age : ', this.acvtiveFilterAge);
+    console.log('active f Nation : ', this.acvtiveFilterNation);
+    console.log('active f Gender : ', this.acvtiveFilterGender);
+    console.log('active f kafil : ', this.acvtiveFilterKafil);
+    console.log('active f department : ', this.acvtiveFilterdepartment);
 
 
 
@@ -531,6 +547,10 @@ export class DashboardComponent {
   setSearchCategory(key: string, groub: string) {
     this.searchCategory = key
     this.groubNameKey = groub
+    this.selectedGroub = []
+    this.selectedEmployees = []
+    this.selectedGrNumber = 0
+    this.selectedNumber = 0
     if (key == 'موظف') {
       this.branchesList = []
       this.getAllData()
@@ -641,10 +661,63 @@ export class DashboardComponent {
 
 
 
-  
-  // ===================== start save To excel =======================
 
-  selectRow(event: any, empId: any ) {
+  // ===================== start save To excel =======================
+  allEmployeeListId(event: any) {
+    // this function will be the ( select all) function
+    let status = event.target as HTMLInputElement
+    let isCheked = status.checked
+    if (isCheked) {
+      let allId = this.employeeList.map(item => { return item.employeeId })
+      this.selectedEmployees = allId;
+      this.selectedNumber = allId.length
+      console.log(this.selectedEmployees);
+    }
+    else {
+      this.selectedEmployees.length = 0;
+      this.selectedNumber = 0
+      console.log(this.selectedEmployees);
+    }
+
+  }
+
+  selectGroub(event: any, groubId: any) {
+    let status = event.target as HTMLInputElement
+    let isCheked = status.checked
+    if (isCheked) {
+      if (this.selectedGroub.includes(groubId)) {
+        this.selectedGrNumber = this.selectedGroub.length
+      }
+      else {
+        this.selectedGroub.push(groubId)
+        this.selectedGrNumber = this.selectedGroub.length
+      }
+    }
+    else {
+      let IndexOFid = this.selectedGroub.indexOf(groubId)
+      this.selectedGroub.splice(IndexOFid, 1)
+      this.selectedGrNumber = this.selectedGroub.length
+    }
+  }
+
+  selectedGrData() {
+    let selectedGroubMember: any[] = []
+    for (const groubId of this.selectedGroub) {
+      this.groubNameKey == 'Nation' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.nationId == groubId })) : ''
+      this.groubNameKey == 'Branch' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.branchId == groubId })) : ''
+      this.groubNameKey == 'Manage' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.manageId == groubId })) : ''
+      this.groubNameKey == 'Job' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.jobId == groubId })) : ''
+      this.groubNameKey == 'Company' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.companyId == groubId })) : ''
+      this.groubNameKey == 'Department' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.departmentId == groubId })) : ''
+      this.groubNameKey == 'Kafil' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.kafilId == groubId })) : ''
+    }
+    this.assignedWork ? selectedGroubMember = selectedGroubMember.filter((item) => { return item.state == 0 }) : ''
+    console.log('selectedGroubMember : ', selectedGroubMember);
+    return selectedGroubMember
+  }
+
+
+  selectRow(event: any, empId: any) {
 
     let status = event.target as HTMLInputElement
     let isCheked = status.checked
@@ -679,14 +752,17 @@ export class DashboardComponent {
   }
 
   setExcelFile(name: string) {
-    let myData = this.employeeList.filter((item) => { return this.selectedEmployees.includes(item.employeeId) })
-
+    let myData: employeeDetails[] = []
+    this.selectedEmployees.length > 0 ? myData = this.employeeList.filter((item) => { return this.selectedEmployees.includes(item.employeeId) }) : ''
+    this.selectedGroub.length > 0 ? myData = this.selectedGrData() : ''
     const mySheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(myData)
     const myWorkBook: XLSX.WorkBook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(myWorkBook, mySheet, `sheet1`)
     XLSX.writeFile(myWorkBook, `${name}.xlsx`)
     this.selectedEmployees.length = 0
     this.selectedNumber = 0
+    this.selectedGroub.length = 0
+    this.selectedGrNumber = 0
 
     this.closeExcelForm()
     this.searchingForm.get('excelNameInput')?.setValue(null)
@@ -879,30 +955,7 @@ export class DashboardComponent {
   }
   // ==========================   end pagination   ==========================
 
-  test(){
-    console.log(this.employeeList);
-    
-  }
-  allEmployeeListId(event:any){
-
-    
-    let status = event.target as HTMLInputElement
-    let isCheked = status.checked
-    if (isCheked) {
-      let allId = this.employeeList.map(item => { return item.employeeId })
-      this.selectedEmployees = allId;
-      this.selectedNumber= allId.length
-      console.log(this.selectedEmployees);
-    }
-    else {
-      this.selectedEmployees.length = 0;
-      this.selectedNumber= 0
-      console.log(this.selectedEmployees);
-
-    }
 
 
 
-
-  }
 }

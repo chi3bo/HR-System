@@ -9,8 +9,8 @@
                             aria-label="Text input with dropdown button" placeholder="search . . ">
 
                         <button class="btn btn-dark rounded-end dropdown-toggle z-0" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> {{groubNameKey? groubNameKey :
-                            searchCategory}} </button>
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                             {{groubNameKey? groubNameKey : searchCategory}} </button>
                         <div class="  py-0 dropdown-menu dropdown-menu-start ">
                             <div class="d-flex">
                                 <div class="">
@@ -110,11 +110,13 @@
                             </div>
                         </div>
                         <!-- send to excel -->
-                        <div (click)="openExcelModal()" *ngIf="selectedNumber > 0"
+                        <div (click)="openExcelModal()" *ngIf="selectedNumber > 0  || selectedGrNumber > 0"
                             class=" mx-2 bg-white full-flex rounded-1 cursor-pointer position-relative">
                             <i class=" px-2 fa-solid fa-floppy-disk fa-xl"></i>
-                            <span class="iconNumber bg-danger px-1 full-flex py-0 my-0">{{selectedNumber}}</span>
-
+                            <span class="iconNumber bg-danger px-1 full-flex py-0 my-0">
+                                <span *ngIf="selectedNumber > 0 "> {{selectedNumber}} </span>
+                                <span *ngIf="selectedGrNumber > 0"> {{selectedGrNumber}} </span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -260,8 +262,8 @@
                             <tr>
                                 <th class="py-3 text-center ">
                                     <div>
-                                        <input [checked]="selectedEmployees.length == employeeList.length" type="checkbox"
-                                            class="form-check form-check-input"
+                                        <input [checked]="selectedEmployees.length == employeeList.length"
+                                            type="checkbox" class="form-check form-check-input"
                                             (click)="allEmployeeListId($event)">
                                     </div>
                                 </th>
@@ -676,7 +678,10 @@
                     <table class="table table-hover table-bordered ">
                         <thead>
                             <tr>
-                                <th class="py-3 text-center "></th>
+                                <th class="py-3 "></th>
+                                <th class="py-3 text-center ">
+                                    <span><i class="fa-solid fa-list-ol"></i></span>
+                                </th>
                                 <th class="py-3 text-center  ">
                                     id
                                 </th>
@@ -689,12 +694,20 @@
 
                         <tbody>
                             <tr *ngFor="let item of paginatedBranches; let myIi = index">
+                                <td class="py-2 align-middle text-center selectIcon-width">
+                                    <div>
+                                        <input [checked]="selectedGroub.includes(item.id)" [disabled]="item.employeesCount==0 || (item.employeesWorkCount == 0 && assignedWork )" type="checkbox"
+                                            class="form-check form-check-input mx-auto "
+                                            (click)="selectGroub($event , item.id)">
+                                    </div>
+                                </td>
+
                                 <td
                                     class="fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
                                     <span>{{ (currentPage-1) * 100 + myIi +1 }}</span>
                                 </td>
 
-                                <td class="py-2 idwidth englishFont text-center font-w-500">
+                                <td class="py-2 idwidth englishFont text-center  align-middle  font-w-500">
                                     <span>{{ item.id }}</span>
                                 </td>
 
@@ -722,7 +735,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-2 font-w-500 englishFont text-center w-auto">
+                                <td class="py-2 font-w-500 englishFont text-center  align-middle  w-auto">
                                     <span *ngIf="!assignedWork"> {{item.employeesCount}} </span>
                                     <span *ngIf="assignedWork"> {{item.employeesWorkCount}} </span>
                                 </td>
@@ -1393,8 +1406,8 @@
                 <label for="excelNameInput" class="py-3 justify-content-start  fs-5 ">
                     ادخل اسم الملف : </label>
 
-                <input formControlName="excelNameInput" class="form-control form-control-lg"
-                    type="text" name="excelNameInput" id="excelNameInput">
+                <input formControlName="excelNameInput" class="form-control form-control-lg" type="text"
+                    name="excelNameInput" id="excelNameInput">
 
 
 

@@ -10,6 +10,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   constructor(private _TranslateService: TranslateService, private _AuthService: AuthService, private _Router: Router) { }
+  screenDown: boolean = false
+
+  @HostListener('window:scroll') showScrollUp() {
+    if (window.scrollY > window.innerHeight - 100) {
+      this.screenDown = true
+    }
+    else {
+      this.screenDown = false
+    }
+  }
+
 
   title = 'saudiaFormica';
 
@@ -31,4 +42,8 @@ export class AppComponent implements OnInit {
 
   }
 
+
+  scrollUP(){
+    window.scrollTo(0 , 0)
+  }
 }
