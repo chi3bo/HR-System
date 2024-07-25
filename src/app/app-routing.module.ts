@@ -31,13 +31,12 @@ import { AdminLettersComponent } from './components/admin-letters/admin-letters.
 import { AdminLeaveComponent } from './components/admin-leave/admin-leave.component';
 import { TimeSheetComponent } from './components/time-sheet/time-sheet.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { EmpContractComponent } from './components/emp-contract/emp-contract.component';
-import { EmpCarComponent } from './components/emp-car/emp-car.component';
-import { EmpIdentityComponent } from './components/emp-identity/emp-identity.component';
-import { EmpPassportComponent } from './components/emp-passport/emp-passport.component';
 import { SendTimesheetComponent } from './components/send-timesheet/send-timesheet.component';
 import { DisplayTimesheetComponent } from './components/display-timesheet/display-timesheet.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EmpWorkTaskComponent } from './components/emp-work-task/emp-work-task.component';
+import { RequestWorkTaskComponent } from './components/request-work-task/request-work-task.component';
+import { AdminWorkTaskComponent } from './components/admin-work-task/admin-work-task.component';
 
 const routes: Routes = [
 
@@ -52,6 +51,7 @@ const routes: Routes = [
       { path: 'leave', component: LeavePermissionComponent, title: 'leave' },
       { path: 'letters', component: LettersComponent, title: 'Letters' },
       { path: 'asset', component: AssetRequestComponent, title: 'Asset Request' },
+      { path: 'work-task', component: RequestWorkTaskComponent, title: 'Work Task' },
       {
         path: 'allOrders', component: AllOrdersComponent, title: 'my orders', children: [
           { path: 'loan', component: OrderloanComponent, title: 'loan orders' },
@@ -59,6 +59,7 @@ const routes: Routes = [
           { path: 'assets', component: EmpAssetsComponent, title: 'Assets' },
           { path: 'letters', component: EmpLettersComponent, title: 'Letters' },
           { path: 'permissions', component: EmpPermissionsComponent, title: 'Permissions' },
+          { path: 'worktask', component: EmpWorkTaskComponent, title: 'Work Task' },
           { path: 'other', component: OrderotherComponent, title: 'other orders' },
           { path: '', component: BlankComponent, title: 'my orders' },
         ]
@@ -70,13 +71,7 @@ const routes: Routes = [
   { path: 'help', component: HelpComponent, title: 'help' },
 
   {
-    path: 'my-profile', component: ProfileComponent, title: 'my Profile', children: [
-      { path: 'contract', component: EmpContractComponent, title: '' },
-      { path: 'car', component: EmpCarComponent, title: '' },
-      { path: 'identity', component: EmpIdentityComponent, title: '' },
-      { path: 'passport', component: EmpPassportComponent, title: '' },
-    ]
-  },
+    path: 'my-profile', component: ProfileComponent, title: 'my Profile'},
 
   {
     path: '', component: AuthComponent, title: 'auth', children: [
@@ -93,6 +88,7 @@ const routes: Routes = [
       { path: 'admin-assets', component: AdminAssetsComponent, title: 'assets orders' },
       { path: 'admin-letters', component: AdminLettersComponent, title: 'letters orders' },
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
+      { path: 'admin-worktask', component: AdminWorkTaskComponent, title: 'work Task orders' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
       { path: 'admin-dashboard', component: DashboardComponent, title: 'dashboard' },
       { path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet' ,children:[

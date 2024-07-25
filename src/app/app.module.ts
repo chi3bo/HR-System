@@ -45,10 +45,6 @@ import { CalcTimePipe } from './shared/calc-time.pipe';
 import { CalcLatePipe } from './shared/calc-late.pipe';
 import { CalcEarlyPipe } from './shared/calc-early.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
-import { EmpCarComponent } from './components/emp-car/emp-car.component';
-import { EmpPassportComponent } from './components/emp-passport/emp-passport.component';
-import { EmpContractComponent } from './components/emp-contract/emp-contract.component';
-import { EmpIdentityComponent } from './components/emp-identity/emp-identity.component';
 import { ProfileNavComponent } from './components/profile-nav/profile-nav.component';
 import { DisplayTimesheetComponent } from './components/display-timesheet/display-timesheet.component';
 import { SendTimesheetComponent } from './components/send-timesheet/send-timesheet.component';
@@ -61,6 +57,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { NgxPaginationModule } from "ngx-pagination";
+import { EmpWorkTaskComponent } from "./components/emp-work-task/emp-work-task.component";
+import { AdminWorkTaskComponent } from "./components/admin-work-task/admin-work-task.component";
+import { RequestWorkTaskComponent } from './components/request-work-task/request-work-task.component';
 
 
 
@@ -108,10 +107,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CalcLatePipe,
     CalcEarlyPipe,
     ProfileComponent,
-    EmpCarComponent,
-    EmpPassportComponent,
-    EmpContractComponent,
-    EmpIdentityComponent,
     ProfileNavComponent,
     DisplayTimesheetComponent,
     SendTimesheetComponent,
@@ -120,6 +115,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     Time12hoursPipe,
     MinToHoursPipe,
     DashboardComponent,
+    EmpWorkTaskComponent,
+    AdminWorkTaskComponent,
+    RequestWorkTaskComponent
   ],
   imports: [
     BrowserModule,
