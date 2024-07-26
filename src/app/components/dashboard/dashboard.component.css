@@ -9,10 +9,11 @@
     color: white;
 }
 
-.bg-test{
+.bg-test {
     background-color: #F9F9F9;
 }
-.bg-test2{
+
+.bg-test2 {
     background-color: #d7f5f2;
 }
 
@@ -56,16 +57,11 @@
     overflow: auto !important;
 }
 
-.employee-Modal{
+.employee-Modal {
     z-index: 9;
-    /* position: fixed;
-    top: 88px;
-    left: 0;
-    right: 0;
-    bottom: 0; */
 }
 
-.groub-Modal{
+.groub-Modal {
     z-index: 98 !important;
 }
 
@@ -134,62 +130,20 @@ content-loader {
     overflow: auto;
 }
 
-.sideFlow{
-    height: 74vh ;
+.sideFlow {
+    height: 74vh;
     overflow: auto;
-    }
+}
 
 .up-test {
     position: relative !important;
 }
 
-.empId-Card{
+.empId-Card {
     position: absolute !important;
     top: 10px;
     left: 15px;
 }
-
-/* .downSetting {
-    position: relative;
-    bottom: 10px;
-    opacity: 0 !important;
-    transition: all .3s;
-}
-
-.openDownSetting {
-    opacity: 1 !important;
-    bottom: 0 !important;
-} */
-
-
-
-
-@media screen and (max-width:992px) {
-
-    .sideBar-manages {
-        position: static !important;
-        padding: 16px 12px !important;
-    }
-    .manageDiv {
-        min-height: auto;
-    }
-
-}
-
-@media screen and (max-width:576px) {
-
-    .sideBar-manages {
-        position: static !important;
-        padding: 12px !important;
-    }
-    .w-70-mobile {
-        width: 70% !important;
-        /* font-size: 14px; */
-    }
-
-}
-
-
 
 
 /* ========================    rows      =========================== */
@@ -293,6 +247,76 @@ td :disabled {
     background-color: rgba(0, 0, 0, 0.091) !important;
 }
 
+.flag-width {
+    width: 100px;
+}
+
+.flag-img {
+    width: 100%;
+    height: 55px;
+}
+
+.switchView {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-block: 8px;
+    padding-block: 0;
+    width: auto;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.iconNumber {
+    border-radius: 5px;
+    /* font-weight: bold; */
+    color: #fff;
+    font-size: 11px;
+    position: absolute;
+    top: 0;
+    left: 60%;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: rgba(0, 0, 0, 0.662);
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+        color: #000000;
+    }
+}
+
+.bg-black-opacity {
+    background-color: #000000a1;
+}
+
+.min-h-50 {
+    min-height: 50% !important;
+}
+
+.selectIcon-width {
+    width: 45px;
+}
+
+@media screen and (max-width:992px) {
+
+    .sideBar-manages {
+        position: static !important;
+        padding: 16px 12px !important;
+    }
+
+    .manageDiv {
+        min-height: auto;
+    }
+
+}
+
 @media screen and (max-width:576px) {
     .pt-5-on-mobile {
         padding-top: 50px;
@@ -314,4 +338,42 @@ td :disabled {
         padding: 10px 10px !important;
 
     }
+
+    /* full-flex position-static top-0 end-0 my-2 py-2 w-100  */
+    .switchView {
+        position: static;
+        margin-block: 8px;
+        padding-block: 8px;
+        width: 100%;
+    }
+
+
+    .name-Width {
+        min-width: 230px;
+        max-width: 230px;
+    }
+
+
+    .sideBar-manages {
+        position: static !important;
+        padding: 12px !important;
+    }
+
+    .w-70-mobile {
+        width: 70% !important;
+        /* font-size: 14px; */
+    }
+
+    .img-Modal {
+        width: 95% !important;
+    }
+
+    .font-13-mobile {
+        font-size: 13px;
+    }
+
+    .min-h-50 {
+        min-height: 40% !important;
+    }
+
 }

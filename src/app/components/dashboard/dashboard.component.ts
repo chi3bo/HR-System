@@ -4,8 +4,10 @@ import { DashboardService } from 'src/app/shared/services/dashboard.service';
 import { Response } from 'src/app/shared/interfaces/response';
 import { branch, empFullDetails, employeeDetails, oneManage } from 'src/app/shared/interfaces/dashboard';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, filter, map } from 'rxjs';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +19,8 @@ export class DashboardComponent {
   constructor(private _DashboardService: DashboardService, private _Router: Router, private _spinner: NgxSpinnerService, private _FB: FormBuilder) { }
 
   searchingForm: FormGroup = this._FB.group({
-    searchInput: [null]
+    searchInput: [null],
+    excelNameInput: [null, Validators.required]
   })
 
 
@@ -33,7 +36,7 @@ export class DashboardComponent {
   displayRows: boolean = false
   displayCards: boolean = true
   dataArrivedRow: boolean = false
-  assignedWork: boolean = false  // ==================== علي رأس العمل =========
+  assignedWork: boolean = false  // =========== علي رأس العمل =========
 
   acvtiveFilterJob: any = null
   acvtiveFilterCompany: any = null
@@ -41,15 +44,20 @@ export class DashboardComponent {
   acvtiveFilterNation: any = null
   acvtiveFilterAge: any = null
   acvtiveFilterGender: any = null
+  acvtiveFilterKafil: any = null
+  acvtiveFilterdepartment: any = null
   theKey: any = null
   detailsRow: boolean = false
+  excelModal: boolean = false
   // ================= flags =================
 
 
   tempList: string[] = Array(16).fill('0')
   originalEmployeeList: employeeDetails[] = []
   employeeList: employeeDetails[] = []
+  originalGroubEmployeeList: employeeDetails[] = []
   groubEmployeeList: employeeDetails[] = []
+  originalEmployeeListRow: employeeDetails[] = []
   employeeListRow: employeeDetails[] = []
   randomColor: any[] = []
   managementList: oneManage[] = []
@@ -60,6 +68,11 @@ export class DashboardComponent {
   groubNameKey: string = ''
   OneGroupName: string = 'مجموعة'
   employeeFullData: empFullDetails = {} as empFullDetails
+  selectedEmployees: string[] = []
+  selectedNumber: number = this.selectedEmployees.length
+  selectedGroub: any[] = []
+  selectedGrNumber: number = this.selectedGroub.length
+
   @ViewChild('rowDetails') rowDetailsDiv!: ElementRef
 
   JobList: any
@@ -94,39 +107,53 @@ export class DashboardComponent {
     this.nationalityList = new Set(this.employeeList.map(item => { return item.nationNameAr }))
   }
 
+
   JobFilter(list: employeeDetails[], key: any) {
-    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
-    return list.filter((item) => { return item.jobNameAr == key })
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    return list.filter((item) => { return (item.jobNameAr == key || item.jobNameEn == key) })
   }
 
   companyFilter(list: employeeDetails[], key: any) {
-    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
-    return list.filter((item) => { return item.companyNameAr == key })
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    return list.filter((item) => { return (item.companyNameAr == key || item.companyNameEn == key) })
   }
 
   BranchFilter(list: employeeDetails[], key: any) {
-    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
-    return list.filter((item) => { return item.branchNameAr == key })
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    return list.filter((item) => { return (item.branchNameAr == key || item.branchNameEn == key) })
   }
 
   GenderFilter(list: employeeDetails[], key: any) {
-    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return item.gender == key })
   }
 
   nationaltyFilter(list: employeeDetails[], key: any) {
-    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     if (key == 'non-Saudi') {
       return list.filter((item) => { return item.nationNameAr != key && item.nationNameAr != 'بدون جنسية' })
     }
-    return list.filter((item) => { return item.nationNameAr == key })
+    return list.filter((item) => { return (item.nationNameAr == key || item.nationNameEn == key) })
   }
 
   ageFilter(list: employeeDetails[], key: any) {
-    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return item.age == key })
   }
+  kafilFilter(list: employeeDetails[], key: any) {
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    return list.filter((item) => { return (item.kafilNameAr == key || item.kafilNameEn == key) })
+  }
+  departmentFilter(list: employeeDetails[], key: any) {
+    // this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    return list.filter((item) => { return (item.departmentNameAr == key || item.departmentNameEn == key) })
 
+  }
+
+  stateFilter(list: employeeDetails[], key: any) {
+    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    return list.filter((item) => { return item.state == 0 })
+  }
 
   avctiveFilter(type: any, event: any) {
 
@@ -137,12 +164,13 @@ export class DashboardComponent {
 
     if (type == 'job') {
       if (this.acvtiveFilterJob) {
-        this.employeeList = this.originalEmployeeList
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
         this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
         this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
         this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
         this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
         this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
         this.theKey == 'all' ? this.acvtiveFilterJob = null : this.acvtiveFilterJob = this.theKey
       }
       else {
@@ -154,12 +182,13 @@ export class DashboardComponent {
     if (type == 'company') {
 
       if (this.acvtiveFilterCompany) {
-        this.employeeList = this.originalEmployeeList
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
         this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
         this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
         this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
         this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
         this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
         this.theKey == 'all' ? this.acvtiveFilterCompany = null : this.acvtiveFilterCompany = this.theKey
       }
       else {
@@ -171,12 +200,13 @@ export class DashboardComponent {
     if (type == 'branch') {
 
       if (this.acvtiveFilterBranch) {
-        this.employeeList = this.originalEmployeeList
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
         this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
         this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
         this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
         this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
         this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
         this.theKey == 'all' ? this.acvtiveFilterBranch = null : this.acvtiveFilterBranch = this.theKey
       }
       else {
@@ -187,12 +217,13 @@ export class DashboardComponent {
     if (type == 'nation') {
 
       if (this.acvtiveFilterNation) {
-        this.employeeList = this.originalEmployeeList
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
         this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
         this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
         this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
         this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
         this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
         this.theKey == 'all' ? this.acvtiveFilterNation = null : this.acvtiveFilterNation = this.theKey
       }
       else {
@@ -204,12 +235,13 @@ export class DashboardComponent {
     if (type == 'age') {
 
       if (this.acvtiveFilterAge) {
-        this.employeeList = this.originalEmployeeList
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
         this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
         this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
         this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
         this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
         this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+        this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
         this.theKey == 'all' ? this.acvtiveFilterAge = null : this.acvtiveFilterAge = this.theKey
       }
       else {
@@ -221,12 +253,13 @@ export class DashboardComponent {
     if (type == 'gender') {
 
       if (this.acvtiveFilterGender) {
-        this.employeeList = this.originalEmployeeList
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
         this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
         this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
         this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
         this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
         this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
         this.theKey == 'all' ? this.acvtiveFilterGender = null : this.acvtiveFilterGender = this.theKey
       }
       else {
@@ -234,6 +267,25 @@ export class DashboardComponent {
       }
 
     }
+
+
+    if (type == 'kafil') {
+
+      if (this.acvtiveFilterKafil) {
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
+        this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
+        this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
+        this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
+        this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
+        this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
+        this.theKey == 'all' ? this.acvtiveFilterKafil = null : this.acvtiveFilterKafil = this.theKey
+      }
+      else {
+        this.theKey == 'all' ? this.acvtiveFilterKafil = null : this.acvtiveFilterKafil = this.theKey
+      }
+
+    }
+
 
     console.log('the key : ', this.theKey);
     console.log('type : ', type);
@@ -244,12 +296,14 @@ export class DashboardComponent {
     this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
     this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
     this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
+    this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
     console.log('active filter job : ', this.acvtiveFilterJob);
     console.log('active filter Company : ', this.acvtiveFilterCompany);
     console.log('active filter Branch : ', this.acvtiveFilterBranch);
     console.log('active filter Age : ', this.acvtiveFilterAge);
     console.log('active filter Nation : ', this.acvtiveFilterNation);
     console.log('active filter Gender : ', this.acvtiveFilterGender);
+    console.log('active filter Kafil : ', this.acvtiveFilterKafil);
 
     this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
     this.currentPage = 1
@@ -263,43 +317,88 @@ export class DashboardComponent {
     console.log('the key : ', this.theKey);
     console.log('type : ', type);
 
-
     if (type == 'job') {
       this.employeeList = this.originalEmployeeList
       this.acvtiveFilterJob = this.theKey
-      this.employeeListRow = this.JobFilter(this.employeeList, this.acvtiveFilterJob)
+      this.originalEmployeeListRow = this.JobFilter(this.employeeList, this.acvtiveFilterJob)
+      this.employeeListRow = this.originalEmployeeListRow
+
     }
 
     if (type == 'company') {
       this.employeeList = this.originalEmployeeList
       this.acvtiveFilterCompany = this.theKey
-      this.employeeListRow = this.companyFilter(this.employeeList, this.acvtiveFilterCompany)
+      this.originalEmployeeListRow = this.companyFilter(this.employeeList, this.acvtiveFilterCompany)
+      this.employeeListRow = this.originalEmployeeListRow
     }
+
 
     if (type == 'branch') {
       this.employeeList = this.originalEmployeeList
       this.acvtiveFilterBranch = this.theKey
-      this.employeeListRow = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch)
+      this.originalEmployeeListRow = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch)
+      this.employeeListRow = this.originalEmployeeListRow
     }
+
+
 
     if (type == 'nation') {
       this.employeeList = this.originalEmployeeList
       this.acvtiveFilterNation = this.theKey
-      this.employeeListRow = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation)
+      this.originalEmployeeListRow = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation)
+      this.employeeListRow = this.originalEmployeeListRow
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
+      // if assigned ? emplistrow = original.filter : else : emplistrow= original
     }
+
 
     if (type == 'gender') {
       this.employeeList = this.originalEmployeeList
       this.acvtiveFilterGender = this.theKey
-      this.employeeListRow = this.GenderFilter(this.employeeList, this.acvtiveFilterGender)
+      this.originalEmployeeListRow = this.GenderFilter(this.employeeList, this.acvtiveFilterGender)
+      this.employeeListRow = this.originalEmployeeListRow
     }
 
-    console.log('active filter job : ', this.acvtiveFilterJob);
-    console.log('active filter Company : ', this.acvtiveFilterCompany);
-    console.log('active filter Branch : ', this.acvtiveFilterBranch);
-    console.log('active filter Age : ', this.acvtiveFilterAge);
-    console.log('active filter Nation : ', this.acvtiveFilterNation);
-    console.log('active filter Gender : ', this.acvtiveFilterGender);
+    if (type == 'kafil') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterKafil = this.theKey
+      this.originalEmployeeListRow = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil)
+      this.employeeListRow = this.originalEmployeeListRow
+    }
+
+
+    if (type == 'department') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterdepartment = this.theKey
+      this.originalEmployeeListRow = this.departmentFilter(this.employeeList, this.acvtiveFilterdepartment)
+      this.employeeListRow = this.originalEmployeeListRow
+    }
+
+
+    if (this.assignedWork) {
+      this.employeeListRow = this.originalEmployeeListRow.filter((item) => { return item.state == 0 })
+    }
+    else if (!this.assignedWork) {
+      this.employeeListRow = this.originalEmployeeListRow
+    }
+
+
+
+
+    console.log('active f job : ', this.acvtiveFilterJob);
+    console.log('active f Company : ', this.acvtiveFilterCompany);
+    console.log('active f Branch : ', this.acvtiveFilterBranch);
+    console.log('active f Age : ', this.acvtiveFilterAge);
+    console.log('active f Nation : ', this.acvtiveFilterNation);
+    console.log('active f Gender : ', this.acvtiveFilterGender);
+    console.log('active f kafil : ', this.acvtiveFilterKafil);
+    console.log('active f department : ', this.acvtiveFilterdepartment);
 
 
 
@@ -308,7 +407,7 @@ export class DashboardComponent {
     setTimeout(() => {
       this.scrollDown()
     }, 100);
-  
+
   }
   // =======================  end filtering function   =======================
 
@@ -324,14 +423,13 @@ export class DashboardComponent {
     this.searchKey = 'الاسم'
     this._DashboardService.getAllDataSmall(body).subscribe({
       next: (data) => {
-        console.log(data);
         this.originalEmployeeList = data.employees
-        this.employeeList = this.originalEmployeeList.slice().sort((a, b) => Number(a.employeeId) - Number(b.employeeId))
-        this.assignedWork ? this.employeeList = this.employeeList.filter((item) => { return item.state == 0 }) : ''
+        this.originalEmployeeList = this.originalEmployeeList.slice().sort((a, b) => Number(a.employeeId) - Number(b.employeeId))
+        this.assignedWork ? this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 }) : this.employeeList = this.originalEmployeeList
+        // this.employeeList = this.employeeList.slice().sort((a, b) => Number(a.employeeId) - Number(b.employeeId))
         this.loadingData = false
         this._spinner.hide()
         this.listOfHeaders()
-        console.log(this.employeeList);
 
         this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
         this.currentPage = 1
@@ -349,7 +447,6 @@ export class DashboardComponent {
   getAllMangements() {
     this._DashboardService.getAllManages().subscribe({
       next: (Response) => {
-        console.log(Response);
         this.managementList = Response
       },
       error: (err) => {
@@ -367,9 +464,10 @@ export class DashboardComponent {
     this.loadingData = true
     this._DashboardService.getAllGroubOf(key).subscribe({
       next: (Response) => {
-        console.log(Response);
+        console.log(Response, 'get all group of');
         this.originalBranchList = Response
-        this.branchesList = this.originalBranchList.slice().sort((a, b) => Number(a.id) - Number(b.id))
+        this.originalBranchList = this.originalBranchList.sort((a, b) => Number(a.id) - Number(b.id))
+        this.branchesList = this.originalBranchList.slice()
         this.loadingData = false
         this.totalPages = Math.ceil(this.branchesList.length / this.itemsPerPage);
         this.currentPage = 1
@@ -408,10 +506,11 @@ export class DashboardComponent {
     this.GroubloadingData = true
     this._DashboardService.getOneGroup(this.groubNameKey, groubID).subscribe({
       next: (data) => {
-        console.log(data);
         this.OneGroupName = data.nameAr
-        this.groubEmployeeList = data.employees
+        this.originalGroubEmployeeList = data.employees
+        this.groubEmployeeList = this.originalGroubEmployeeList
         this.GroubloadingData = false
+        this.assignedWork ? this.groubEmployeeList = this.originalGroubEmployeeList.filter((item) => { return item.state == 0 }) : this.groubEmployeeList = this.originalGroubEmployeeList
       },
       error: (err) => {
         this.GroubloadingData = false
@@ -448,6 +547,10 @@ export class DashboardComponent {
   setSearchCategory(key: string, groub: string) {
     this.searchCategory = key
     this.groubNameKey = groub
+    this.selectedGroub = []
+    this.selectedEmployees = []
+    this.selectedGrNumber = 0
+    this.selectedNumber = 0
     if (key == 'موظف') {
       this.branchesList = []
       this.getAllData()
@@ -471,12 +574,28 @@ export class DashboardComponent {
 
   searchByName(value: string) {
     if (this.searchCategory == 'موظف') {
-      this.employeeList = this.originalEmployeeList.filter((item) => { return item.employeeNameAr.includes(value) || String(item.employeeNameEn).toLowerCase().includes(value.toLowerCase()) })
+      let atWorkOriginalList = this.originalEmployeeList.filter((item) => { return item.state == 0 })
+      // this.employeeList = this.originalEmployeeList.filter((item) => { return item.employeeNameAr.includes(value) || String(item.employeeNameEn).toLowerCase().includes(value.toLowerCase()) })
+      if (this.assignedWork) {
+        this.employeeList = atWorkOriginalList.filter((item) => { return item.employeeNameAr.includes(value) || String(item.employeeNameEn).toLowerCase().includes(value.toLowerCase()) })
+      }
+      else {
+        this.employeeList = this.originalEmployeeList.filter((item) => { return item.employeeNameAr.includes(value) || String(item.employeeNameEn).toLowerCase().includes(value.toLowerCase()) })
+      }
       this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
       this.currentPage = 1
       this.employeeList.length == 0 ? this.noEmplyeFound = true : this.noEmplyeFound = false
     }
     else if (this.searchCategory == 'فرع') {
+
+
+      // already here 
+      // already here 
+      // already here 
+      // already here  '' is a value
+      // already here 
+      // already here 
+      // already here 
       this.branchesList = this.originalBranchList.filter((item) => { return item.nameAr.includes(value) || String(item.nameEn).toLowerCase().includes(value.toLowerCase()) })
       this.totalPages = Math.ceil(this.branchesList.length / this.itemsPerPage);
       this.currentPage = 1
@@ -486,7 +605,18 @@ export class DashboardComponent {
 
   searchById(value: string) {
     if (this.searchCategory == 'موظف') {
-      this.employeeList = this.originalEmployeeList.filter((item) => { return item.employeeId.includes(value) })
+      let atWorkOriginalList = this.originalEmployeeList.filter((item) => { return item.state == 0 })
+      if (this.assignedWork) {
+        console.log('yes assigned');
+
+        this.employeeList = atWorkOriginalList.filter((item) => { return item.employeeId.includes(value) })
+      }
+      else {
+        console.log('no assigned');
+
+        this.employeeList = this.originalEmployeeList.filter((item) => { return item.employeeId.includes(value) })
+      }
+      // this.employeeList = this.originalEmployeeList.filter((item) => { return item.employeeId.includes(value) })
       this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
       this.currentPage = 1
       this.employeeList.length == 0 ? this.noEmplyeFound = true : this.noEmplyeFound = false
@@ -502,10 +632,147 @@ export class DashboardComponent {
   searchByJob(value: string) {
     this.employeeList = this.originalEmployeeList.filter((item) => { return item.jobNameAr.includes(value) || String(item.jobNameEn).toLowerCase().includes(value.toLowerCase()) })
   }
+
+  setAssignedWork(event: Event) {
+    // this function to filter employees who assigned to work and who fired or leave the work 
+    let button = event.target as HTMLInputElement
+    if (button.checked) {
+      this.assignedWork = true
+      this.employeeList = this.originalEmployeeList.filter((item) => { return item.state == 0 })
+      this.employeeListRow = this.originalEmployeeListRow.filter((item) => { return item.state == 0 })
+      this.searchingForm.get('searchInput')?.setValue('')
+      console.log('the button : ', button.checked);
+
+    }
+    else {
+      this.assignedWork = false
+      this.employeeList = this.originalEmployeeList
+      this.employeeListRow = this.originalEmployeeListRow
+      this.searchingForm.get('searchInput')?.setValue('')
+      console.log('the button : ', button.checked);
+
+    }
+
+
+  }
   // ==========================    end searching     ======================
 
 
 
+
+
+
+  // ===================== start save To excel =======================
+  allEmployeeListId(event: any) {
+    // this function will be the ( select all) function
+    let status = event.target as HTMLInputElement
+    let isCheked = status.checked
+    if (isCheked) {
+      let allId = this.employeeList.map(item => { return item.employeeId })
+      this.selectedEmployees = allId;
+      this.selectedNumber = allId.length
+      console.log(this.selectedEmployees);
+    }
+    else {
+      this.selectedEmployees.length = 0;
+      this.selectedNumber = 0
+      console.log(this.selectedEmployees);
+    }
+
+  }
+
+  selectGroub(event: any, groubId: any) {
+    let status = event.target as HTMLInputElement
+    let isCheked = status.checked
+    if (isCheked) {
+      if (this.selectedGroub.includes(groubId)) {
+        this.selectedGrNumber = this.selectedGroub.length
+      }
+      else {
+        this.selectedGroub.push(groubId)
+        this.selectedGrNumber = this.selectedGroub.length
+      }
+    }
+    else {
+      let IndexOFid = this.selectedGroub.indexOf(groubId)
+      this.selectedGroub.splice(IndexOFid, 1)
+      this.selectedGrNumber = this.selectedGroub.length
+    }
+  }
+
+  selectedGrData() {
+    let selectedGroubMember: any[] = []
+    for (const groubId of this.selectedGroub) {
+      this.groubNameKey == 'Nation' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.nationId == groubId })) : ''
+      this.groubNameKey == 'Branch' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.branchId == groubId })) : ''
+      this.groubNameKey == 'Manage' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.manageId == groubId })) : ''
+      this.groubNameKey == 'Job' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.jobId == groubId })) : ''
+      this.groubNameKey == 'Company' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.companyId == groubId })) : ''
+      this.groubNameKey == 'Department' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.departmentId == groubId })) : ''
+      this.groubNameKey == 'Kafil' ? selectedGroubMember.push(...this.originalEmployeeList.filter((item) => { return item.kafilId == groubId })) : ''
+    }
+    this.assignedWork ? selectedGroubMember = selectedGroubMember.filter((item) => { return item.state == 0 }) : ''
+    console.log('selectedGroubMember : ', selectedGroubMember);
+    return selectedGroubMember
+  }
+
+
+  selectRow(event: any, empId: any) {
+
+    let status = event.target as HTMLInputElement
+    let isCheked = status.checked
+    if (isCheked) {
+      if (this.selectedEmployees.includes(empId)) {
+        this.selectedNumber = this.selectedEmployees.length
+      }
+      else {
+        this.selectedEmployees.push(empId)
+        this.selectedNumber = this.selectedEmployees.length
+      }
+    }
+    else {
+      let IndexOFid = this.selectedEmployees.indexOf(empId)
+      this.selectedEmployees.splice(IndexOFid, 1)
+      this.selectedNumber = this.selectedEmployees.length
+    }
+  }
+
+  sendToExcel() {
+    const fileName = this.searchingForm.get('excelNameInput')?.value
+    if (fileName) {
+      this.setExcelFile(fileName)
+    }
+    else {
+      this.searchingForm.get('excelNameInput')?.markAsTouched()
+    }
+  }
+
+  openExcelModal() {
+    this.excelModal = true
+  }
+
+  setExcelFile(name: string) {
+    let myData: employeeDetails[] = []
+    this.selectedEmployees.length > 0 ? myData = this.employeeList.filter((item) => { return this.selectedEmployees.includes(item.employeeId) }) : ''
+    this.selectedGroub.length > 0 ? myData = this.selectedGrData() : ''
+    const mySheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(myData)
+    const myWorkBook: XLSX.WorkBook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(myWorkBook, mySheet, `sheet1`)
+    XLSX.writeFile(myWorkBook, `${name}.xlsx`)
+    this.selectedEmployees.length = 0
+    this.selectedNumber = 0
+    this.selectedGroub.length = 0
+    this.selectedGrNumber = 0
+
+    this.closeExcelForm()
+    this.searchingForm.get('excelNameInput')?.setValue(null)
+    this.searchingForm.get('excelNameInput')?.markAsUntouched()
+
+
+  }
+
+
+  // ===================== end save To excel =======================
 
 
 
@@ -537,14 +804,28 @@ export class DashboardComponent {
     return newColor
   }
 
-  scrollUp() {
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      })
-    }, 100)
+  scrollUp(type: any) {
+    if (type == 'details') {
+      let div = this.rowDetailsDiv.nativeElement as HTMLElement
+      let divheit = div.offsetTop
+      setTimeout(() => {
+        window.scrollTo({
+          top: divheit,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }, 100)
+    }
+
+    else {
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }, 100)
+    }
   }
 
   scrollDown() {
@@ -569,18 +850,11 @@ export class DashboardComponent {
     this.detailsRow = true
 
   }
+
+  closeExcelForm() {
+    this.excelModal = false
+  }
   // ==========================    end moving and (open-close)    ======================
-
-
-
-
-
-
-
-
-
-
-
 
   // ==========================   start pagination   ==========================
   itemsPerPage = 100; // عدد العناصر لكل صفحة
@@ -611,20 +885,21 @@ export class DashboardComponent {
   goToPage(page: number, useFor: any) {
     useFor == 'normal' ? this.currentPage = page : ''
     useFor == 'details' ? this.currentPageDetails = page : ''
-    this.scrollUp()
+    useFor == 'details' ? this.scrollUp('details') : this.scrollUp('')
+
   }
 
   nextPage(useFor: any) {
     if (useFor == 'normal') {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
-        this.scrollUp()
+        this.scrollUp('')
       }
     }
     else if (useFor == 'details') {
       if (this.currentPageDetails < this.totalPagesDetails) {
         this.currentPageDetails++;
-        this.scrollUp()
+        this.scrollUp('details')
       }
     }
 
@@ -634,13 +909,13 @@ export class DashboardComponent {
     if (useFor == 'normal') {
       if (this.currentPage > 1) {
         this.currentPage--;
-        this.scrollUp()
+        this.scrollUp('')
       }
     }
     else if (useFor == 'details') {
       if (this.currentPageDetails > 1) {
         this.currentPageDetails--;
-        this.scrollUp()
+        this.scrollUp('details')
       }
     }
   }
@@ -648,13 +923,13 @@ export class DashboardComponent {
   firstPage(useFor: any) {
     useFor == 'normal' ? this.currentPage = 1 : ''
     useFor == 'details' ? this.currentPageDetails = 1 : ''
-    this.scrollUp()
+    useFor == 'details' ? this.scrollUp('details') : this.scrollUp('')
   }
 
   lastPage(useFor: any) {
     useFor == 'normal' ? this.currentPage = this.totalPages : ''
     useFor == 'details' ? this.currentPageDetails = this.totalPagesDetails : ''
-    this.scrollUp()
+    useFor == 'details' ? this.scrollUp('details') : this.scrollUp('')
   }
 
   get pagesArray() {
@@ -679,5 +954,8 @@ export class DashboardComponent {
     return pages;
   }
   // ==========================   end pagination   ==========================
+
+
+
 
 }

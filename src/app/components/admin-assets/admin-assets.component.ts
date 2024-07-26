@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { adminAsset } from 'src/app/shared/interfaces/admin';
@@ -13,6 +13,8 @@ import { GetOrdersService } from 'src/app/shared/services/get-orders.service';
 })
 export class AdminAssetsComponent {
   constructor(private _AdminService: AdminService, private _router: Router, private _ToastrService: ToastrService, private _GetOrdersService: GetOrdersService) { }
+
+
 
   AssetsList: adminAsset[] = []
   pageOpenOne: boolean = false

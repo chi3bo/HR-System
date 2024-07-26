@@ -114,6 +114,7 @@ export interface empFullDetails {
 
 export interface branch {
     employeesCount: number
+    employeesWorkCount: number
     id: string
     nameAr: string
     nameEn: any

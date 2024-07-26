@@ -3,13 +3,14 @@
 
         <div [formGroup]="searchingForm" class="custom-bar py-3 ">
             <div class="row  position-relative">
-                <div class="col-md-5 mx-auto ">
-                    <div class="input-group mx-auto w-70-mobile">
+                <div class="col-md-6 mx-auto ">
+                    <div class="input-group mx-auto w-70-mobile ">
                         <input formControlName="searchInput" type="text" class="form-control  "
                             aria-label="Text input with dropdown button" placeholder="search . . ">
 
-                        <button class="btn btn-dark  dropdown-toggle z-0" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"> {{groubNameKey? groubNameKey : searchCategory}} </button>
+                        <button class="btn btn-dark rounded-end dropdown-toggle z-0" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                             {{groubNameKey? groubNameKey : searchCategory}} </button>
                         <div class="  py-0 dropdown-menu dropdown-menu-start ">
                             <div class="d-flex">
                                 <div class="">
@@ -39,8 +40,8 @@
 
                                         <li>
                                             <div class="px-2">
-                                                <input type="checkbox" id="key1" value=""
-                                                    class="form-check-input border-secondary">
+                                                <input (change)="setAssignedWork($event)" type="checkbox" id="key1"
+                                                    value="" class="form-check-input border-secondary">
                                                 <label for="key1" class="small px-1">
                                                     علي رأس العمل
                                                 </label>
@@ -108,21 +109,29 @@
                                 </div>
                             </div>
                         </div>
-
+                        <!-- send to excel -->
+                        <div (click)="openExcelModal()" *ngIf="selectedNumber > 0  || selectedGrNumber > 0"
+                            class=" mx-2 bg-white full-flex rounded-1 cursor-pointer position-relative">
+                            <i class=" px-2 fa-solid fa-floppy-disk fa-xl"></i>
+                            <span class="iconNumber bg-danger px-1 full-flex py-0 my-0">
+                                <span *ngIf="selectedNumber > 0 "> {{selectedNumber}} </span>
+                                <span *ngIf="selectedGrNumber > 0"> {{selectedGrNumber}} </span>
+                            </span>
+                        </div>
                     </div>
-
                 </div>
-                <div class=" w-auto full-flex position-absolute top-0 end-0 my-2 py-0">
-                    <div class=" py-0 my-0 ">
+
+                <div class="full-flex switchView">
+                    <div class=" py-0 my-0 ms-auto ">
                         <span (click)="cardsView()"
                             [ngClass]="{ 'bg-white' : displayCards , 'bg-secondary-subtle' : displayRows}"
-                            class="p-2  rounded-start my-0 cursor-pointer">
-                            <i class="fa-regular fa-address-card fa-xl"></i>
+                            class="p-2  rounded-start my-0 cursor-pointer ">
+                            <i class="fa-regular fa-address-card fa-xl cursor-pointer"></i>
                         </span>
                         <span (click)="tableView()"
                             [ngClass]="{ 'bg-white' : displayRows , 'bg-secondary-subtle' : displayCards}"
                             class="p-2  rounded-end my-0 cursor-pointer">
-                            <i class="fa-solid fa-table-list fa-xl"></i>
+                            <i class="fa-solid fa-table-list fa-xl cursor-pointer"></i>
                         </span>
                     </div>
                 </div>
@@ -162,6 +171,7 @@
             <!-- ============ ----------- start all Employee ----------- ============ -->
             <!-- Cards -->
             <div *ngIf="searchCategory == 'موظف' && displayCards " class=" col-lg-10 ">
+                <p> عدد الموظفين : {{employeeList.length}}</p>
                 <div *ngIf="employeeList.length > 0 " class="emp-cards row g-3 ">
                     <div class="col-md-6 col-lg-4 col-xl-3 " *ngFor="let item of paginatedResults; let i = index ">
                         <div (click)="getEmpDetails(item.employeeId)"
@@ -246,10 +256,17 @@
 
             <!-- Row -->
             <div *ngIf="searchCategory == 'موظف' &&  displayRows " class=" col-lg-12 ">
-                <div *ngIf="!loadingData" class="table-responsive bg-white rounded-3">
-                    <table class="table table-bordered {{ 'direction' | translate }}">
+                <div *ngIf="!loadingData" class="table-responsive bg-white rounded-3 {{ 'direction' | translate }}">
+                    <table class="table table-bordered ">
                         <thead>
                             <tr>
+                                <th class="py-3 text-center ">
+                                    <div>
+                                        <input [checked]="selectedEmployees.length == employeeList.length"
+                                            type="checkbox" class="form-check form-check-input"
+                                            (click)="allEmployeeListId($event)">
+                                    </div>
+                                </th>
                                 <th class="py-3 text-center "></th>
                                 <th class="py-3 text-center  ">
                                     id
@@ -346,6 +363,13 @@
 
                         <tbody *ngIf="employeeList.length > 0 ">
                             <tr *ngFor="let item of paginatedResults; let myIi = index">
+                                <td class="py-2 w-auto text-center ">
+                                    <div>
+                                        <input [checked]="selectedEmployees.includes(item.employeeId)" type="checkbox"
+                                            class="form-check form-check-input"
+                                            (click)="selectRow($event , item.employeeId)">
+                                    </div>
+                                </td>
                                 <td
                                     class="fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
                                     <span>{{ (currentPage-1) * 100 + myIi +1 }}</span>
@@ -366,31 +390,31 @@
                                             }}</span>
                                     </div>
                                 </td>
-                                <td class="py-2 font-w-500 englishFont text-center date-Width">
+                                <td class="py-2 font-w-500 englishFont text-center w-auto">
                                     <span>{{ item.jobNameAr }}</span>
                                 </td>
 
-                                <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                <td class="py-2 font-w-500 englishFont text-center w-auto">
                                     <span>{{ item.companyNameAr}}</span>
                                 </td>
 
-                                <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                <td class="py-2 font-w-500 englishFont text-center w-auto">
                                     <span>{{ item.branchNameAr}}</span>
                                 </td>
 
-                                <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                <td class="py-2 font-w-500 englishFont text-center w-auto">
                                     <span>
                                         {{ item.age }}
                                     </span>
                                 </td>
 
-                                <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                <td class="py-2 font-w-500 englishFont text-center w-auto">
                                     <span>
                                         {{ item.nationNameAr }}
                                     </span>
                                 </td>
 
-                                <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                <td class="py-2 font-w-500 englishFont text-center w-auto">
                                     <span *ngIf=" item.gender == 0">
                                         رجل
                                     </span>
@@ -411,8 +435,8 @@
 
 
                 <!-- ----   loading row ----   (show only when data is loading)  ------  -->
-                <div *ngIf="loadingData" class="table-responsive bg-white rounded-3">
-                    <table class="table table-bordered {{ 'direction' | translate }}">
+                <div *ngIf="loadingData" class="table-responsive bg-white rounded-3 {{ 'direction' | translate }}">
+                    <table class="table table-bordered ">
                         <thead>
                             <tr>
                                 <th class="py-3 text-center "></th>
@@ -574,10 +598,14 @@
                                 <img *ngIf="groubNameKey == 'Manage'"
                                     src="./assets/images/non-compressed/team_7286799.png" class="w-100" alt="">
 
-                                <!-- <img *ngIf="groubNameKey == 'Nation'"
-                                    src="{{item.nameEn | translate }}" class="w-100" alt=""> -->
-                                <img *ngIf="groubNameKey == 'Nation'"
-                                    src="./assets/images/non-compressed/earth-globe-design.png" class="w-100" alt="">
+                                <img *ngIf="groubNameKey == 'Nation' &&  item.nameEn !=  null "
+                                    src="{{item.nameEn|translate}}" class="w-100 rounded " alt="">
+
+                                <img *ngIf="groubNameKey == 'Nation' && item.nameEn ==  null "
+                                    src="./assets/images/non-compressed/otherCountry.webp" class="W-100 flag-img"
+                                    [alt]="item.nameEn">
+
+
 
                                 <img *ngIf="groubNameKey == 'Kafil'" src="./assets/images/non-compressed/kafil.svg"
                                     class="w-100" alt="">
@@ -593,10 +621,14 @@
                             <div class="text-center">
                                 <!-- <p class="font-w-500 englishFont my-1">Ahmed mohamed ali</p> -->
                                 <!-- <p  class="font-w-500 englishFont my-1">{{item.employeeNameEn}}</p> -->
-                                <p class=" my-1">{{item.nameAr}}</p>
+                                <p class=" my-1 {{ 'lang-arabic' | translate}} ">{{item.nameAr}}</p>
+                                <p class=" my-1 {{ 'lang-english' | translate}} ">{{item.nameEn}}</p>
                                 <!-- <p class="fw-medium arabicFont small my-0"> </p> -->
 
-                                <p class=" arabicFont mb-2 small"> عدد العاملين : {{item.employeesCount}} </p>
+                                <p class=" arabicFont mb-2 small"> عدد العاملين :
+                                    <span *ngIf="!assignedWork"> {{item.employeesCount}} </span>
+                                    <span *ngIf="assignedWork"> {{item.employeesWorkCount}} </span>
+                                </p>
                             </div>
                             <p class="fw-semibold text-muted  englishFont  mb-2 small opacity-50 empId-Card">
                                 {{item.id}} </p>
@@ -641,11 +673,15 @@
             <div *ngIf="searchCategory == 'فرع' &&  displayRows " class=" col-lg-12 ">
 
                 <!-- main row -->
-                <div *ngIf="branchesList.length > 0 " class="table-responsive bg-white rounded-3">
-                    <table class="table table-hover table-bordered {{ 'direction' | translate }}">
+                <div *ngIf="branchesList.length > 0 "
+                    class="table-responsive bg-white rounded-3 {{ 'direction' | translate }}">
+                    <table class="table table-hover table-bordered ">
                         <thead>
                             <tr>
-                                <th class="py-3 text-center "></th>
+                                <th class="py-3 "></th>
+                                <th class="py-3 text-center ">
+                                    <span><i class="fa-solid fa-list-ol"></i></span>
+                                </th>
                                 <th class="py-3 text-center  ">
                                     id
                                 </th>
@@ -658,34 +694,50 @@
 
                         <tbody>
                             <tr *ngFor="let item of paginatedBranches; let myIi = index">
+                                <td class="py-2 align-middle text-center selectIcon-width">
+                                    <div>
+                                        <input [checked]="selectedGroub.includes(item.id)" [disabled]="item.employeesCount==0 || (item.employeesWorkCount == 0 && assignedWork )" type="checkbox"
+                                            class="form-check form-check-input mx-auto "
+                                            (click)="selectGroub($event , item.id)">
+                                    </div>
+                                </td>
+
                                 <td
                                     class="fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
                                     <span>{{ (currentPage-1) * 100 + myIi +1 }}</span>
                                 </td>
 
-                                <td class="py-2 idwidth englishFont text-center font-w-500">
+                                <td class="py-2 idwidth englishFont text-center  align-middle  font-w-500">
                                     <span>{{ item.id }}</span>
                                 </td>
 
                                 <td class="py-2 arabicFont name-Width personTd cursor-pointer">
                                     <div class="d-flex justify-content-start align-items-center">
                                         <div class="greenDot px-1 me-2"></div>
-                                        <option class="fw-bold px-3 py-2 w-100"
+                                        <option class="fw-bold px-3 py-2 w-100 {{ 'lang-arabic' | translate}} "
                                             (click)="counterRowPageFilter( groubNameKey , $event)"
                                             (click)=" RowDetailsOpenClose()" [value]="item.nameAr">
-
-                                            <!--     
-                                                                    المشكلة عندي انه بيأكتف فلاتر و مش بيرجع يلغيها تاني 
-                                                                    فا الفلاتر بيعملها تراكمي يعني في تقاطع و ده مش مطلوب هنا 
-                                                                    محتاجين نعدلها 
-
-                                            -->
-                                            {{item.nameAr}}
+                                            <span>{{item.nameAr}} </span>
                                         </option>
+                                        <option class="fw-bold px-3 py-2 w-100 {{ 'lang-english' | translate}} "
+                                            (click)="counterRowPageFilter( groubNameKey , $event)"
+                                            (click)=" RowDetailsOpenClose()" [value]="item.nameAr">
+                                            <span>{{item.nameEn}} </span>
+                                        </option>
+                                        <div class="flag-width">
+                                            <img *ngIf="groubNameKey == 'Nation' &&  item.nameEn !=  null "
+                                                src="{{item.nameEn|translate}}" class="w-100 rounded flag-img"
+                                                [alt]="item.nameEn">
+
+                                            <img *ngIf="groubNameKey == 'Nation' && item.nameEn ==  null "
+                                                src="./assets/images/non-compressed/otherCountry.webp"
+                                                class="W-100 flag-img" [alt]="item.nameEn">
+                                        </div>
                                     </div>
                                 </td>
-                                <td class="py-2 font-w-500 englishFont text-center date-Width">
-                                    <span>{{ item.employeesCount }}</span>
+                                <td class="py-2 font-w-500 englishFont text-center  align-middle  w-auto">
+                                    <span *ngIf="!assignedWork"> {{item.employeesCount}} </span>
+                                    <span *ngIf="assignedWork"> {{item.employeesWorkCount}} </span>
                                 </td>
                             </tr>
                         </tbody>
@@ -694,8 +746,8 @@
                 </div>
 
                 <!-- loading groups row -->
-                <div *ngIf="loadingData" class="table-responsive bg-white rounded-3">
-                    <table class="table table-bordered {{ 'direction' | translate }}">
+                <div *ngIf="loadingData" class="table-responsive bg-white rounded-3 {{ 'direction' | translate }}">
+                    <table class="table table-bordered ">
                         <thead>
                             <tr>
                                 <th class="py-3 text-center "></th>
@@ -711,10 +763,6 @@
 
                         <tbody>
                             <tr *ngFor="let item of tempList; let myIi = index">
-
-
-
-
                                 <td
                                     class="fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
                                     <content-loader viewBox="0 0 200 40" [speed]="1" backgroundColor="#f2f2f2"
@@ -737,26 +785,14 @@
                                     </content-loader>
                                 </td>
 
-
-
-
-                                <td class="py-2 font-w-500 englishFont text-center date-Width">
+                                <td class="py-2 font-w-500 englishFont text-center w-auto">
                                     <content-loader viewBox="0 0 300 40" [speed]="1" backgroundColor="#f2f2f2"
                                         foregroundColor="#e8e8e8">
                                         <svg:rect x="0" y="0" rx="0" ry="0" width="300" height="40" />
                                     </content-loader>
                                 </td>
-
-
-
-
-
-
                             </tr>
-
-
                         </tbody>
-
                     </table>
                 </div>
 
@@ -775,17 +811,19 @@
 
                     <h3 class=" text-center fw-bolder bg-white rounded py-3"> {{OneGroupName}} </h3>
 
-                    <div class="table-responsive bg-white rounded-3">
-                        <table class="table table-bordered {{ 'direction' | translate }}">
+                    <div class="table-responsive bg-white rounded-3 {{ 'direction' | translate }}">
+                        <table class="table table-bordered ">
                             <thead>
                                 <tr>
                                     <th class="py-3 text-center "></th>
                                     <th class="py-3 text-center  ">
                                         id
                                     </th>
-                                    <th class="py-3 text-center ">{{ 'display_time_sheet.name' | translate }}</th>
+                                    <th class="py-3 text-center  name-Width personTd">{{ 'display_time_sheet.name' |
+                                        translate }}</th>
                                     <th class="py-3 text-center  my-0">
-                                        <select
+                                        <p class="my-0">الوظيفة</p>
+                                        <!-- <select
                                             class="form-select text-center border-0 w-auto mx-auto fw-bold py-0 my-0 "
                                             aria-label="Default select example"
                                             (change)="avctiveFilter( 'job' , $event)">
@@ -799,11 +837,12 @@
                                                 <span *ngIf="item == null"> بدون </span>
                                                 <span *ngIf="item == ' ' "> فارغ </span>
                                             </option>
-                                        </select>
+                                        </select> -->
                                     </th>
 
                                     <th class="py-3 text-center  my-0">
-                                        <select class="form-select text-center border-0 w-auto mx-auto fw-bold py-0 m-0"
+                                        <p class="my-0">الشركة</p>
+                                        <!-- <select class="form-select text-center border-0 w-auto mx-auto fw-bold py-0 m-0"
                                             aria-label="Default select example"
                                             (change)="avctiveFilter( 'company' , $event) ">
                                             <option disabled selected class=""> الشركة </option>
@@ -814,11 +853,12 @@
                                                 <span *ngIf="item == ' ' "> فارغ </span>
                                             </option>
 
-                                        </select>
+                                        </select> -->
                                     </th>
 
                                     <th class="py-3 text-center  my-0">
-                                        <select class="form-select text-center border-0 w-auto mx-auto fw-bold py-0 m-0"
+                                        <p class="my-0">الفرع</p>
+                                        <!-- <select class="form-select text-center border-0 w-auto mx-auto fw-bold py-0 m-0"
                                             aria-label="Default select example"
                                             (change)="avctiveFilter( 'branch' , $event) ">
                                             <option disabled selected class=""> الفرع </option>
@@ -828,12 +868,13 @@
                                                 <span *ngIf="item == null "> بدون </span>
                                                 <span *ngIf="item == ' ' "> فارغ </span>
                                             </option>
-                                        </select>
+                                        </select> -->
                                     </th>
 
 
                                     <th class="py-3 text-center  my-0">
-                                        <select class="form-select text-center border-0 w-auto mx-auto fw-bold py-0 m-0"
+                                        <p class="my-0">العمر</p>
+                                        <!-- <select class="form-select text-center border-0 w-auto mx-auto fw-bold py-0 m-0"
                                             aria-label="Default select example"
                                             (change)="avctiveFilter( 'age' , $event) ">
                                             <option disabled selected class=""> العمر </option>
@@ -843,12 +884,13 @@
                                                 <span *ngIf="item == null "> بدون </span>
                                                 <span *ngIf="item == ' ' "> فارغ </span>
                                             </option>
-                                        </select>
+                                        </select> -->
                                     </th>
 
 
                                     <th class="py-3 text-center  my-0">
-                                        <select text-center class="form-select border-0 w-auto mx-auto fw-bold py-0 m-0"
+                                        الجنسية
+                                        <!-- <select text-center class="form-select border-0 w-auto mx-auto fw-bold py-0 m-0"
                                             aria-label="Default select example"
                                             (change)="avctiveFilter( 'nation' , $event) ">
                                             <option disabled selected class=""> الجنسية </option>
@@ -858,19 +900,20 @@
                                                 <span *ngIf="item == null "> بدون </span>
                                                 <span *ngIf="item == ' ' "> فارغ </span>
                                             </option>
-                                        </select>
+                                        </select> -->
                                     </th>
 
 
                                     <th class="py-3 text-center  my-0">
-                                        <select text-center class="form-select border-0 w-auto mx-auto fw-bold py-0 m-0"
+                                        <p class="my-0">النوع</p>
+                                        <!-- <select text-center class="form-select border-0 w-auto mx-auto fw-bold py-0 m-0"
                                             aria-label="Default select example"
                                             (change)="avctiveFilter( 'gender' , $event) ">
                                             <option disabled selected class=""> النوع </option>
                                             <option> all </option>
                                             <option value="0"> رجل </option>
                                             <option value="1"> امرأة </option>
-                                        </select>
+                                        </select> -->
                                     </th>
                                 </tr>
                             </thead>
@@ -879,14 +922,14 @@
                                 <tr *ngFor="let item of paginatedDetails; let myIi = index">
                                     <td
                                         class="fw-lighter text-center number-Width align-middle text-muted opacity-50 small">
-                                        <span>{{ (currentPage-1) * 100 + myIi +1 }}</span>
+                                        <span>{{ (currentPageDetails-1) * 100 + myIi +1 }}</span>
                                     </td>
 
                                     <td class="py-2 idwidth englishFont text-center font-w-500">
                                         <span>{{ item.employeeId }}</span>
                                     </td>
 
-                                    <td class="py-2 arabicFont name-Width personTd">
+                                    <td class="py-2 arabicFont w-auto w-100-mobile">
                                         <div class="d-flex justify-content-start align-items-center">
                                             <div class="greenDot px-1 me-2"></div>
                                             <span class="px-1 empcolor  {{ 'lang-arabic' | translate}} ">{{
@@ -897,31 +940,31 @@
                                                 }}</span>
                                         </div>
                                     </td>
-                                    <td class="py-2 font-w-500 englishFont text-center date-Width">
+                                    <td class="py-2 font-w-500 englishFont text-center w-auto">
                                         <span>{{ item.jobNameAr }}</span>
                                     </td>
 
-                                    <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                    <td class="py-2 font-w-500 englishFont text-center w-auto">
                                         <span>{{ item.companyNameAr}}</span>
                                     </td>
 
-                                    <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                    <td class="py-2 font-w-500 englishFont text-center w-auto">
                                         <span>{{ item.branchNameAr}}</span>
                                     </td>
 
-                                    <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                    <td class="py-2 font-w-500 englishFont text-center w-auto">
                                         <span>
                                             {{ item.age }}
                                         </span>
                                     </td>
 
-                                    <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                    <td class="py-2 font-w-500 englishFont text-center w-auto">
                                         <span>
                                             {{ item.nationNameAr }}
                                         </span>
                                     </td>
 
-                                    <td class="py-2 font-w-500 englishFont text-center time-Width">
+                                    <td class="py-2 font-w-500 englishFont text-center w-auto">
                                         <span *ngIf=" item.gender == 0">
                                             رجل
                                         </span>
@@ -954,11 +997,14 @@
                             <button (click)="firstPage('details')" [disabled]="currentPageDetails === 1">الأولى</button>
                             <button (click)="prevPage('details')" [disabled]="currentPageDetails === 1">السابقة</button>
 
-                            <button class="activePage" *ngFor="let page of pagesArrayDetails" (click)="goToPage(page , 'details')"
+                            <button class="activePage" *ngFor="let page of pagesArrayDetails"
+                                (click)="goToPage(page , 'details')"
                                 [disabled]="currentPageDetails === page">{{page}}</button>
 
-                            <button (click)="nextPage('details')" [disabled]="currentPageDetails === totalPagesDetails">التالية</button>
-                            <button (click)="lastPage('details')" [disabled]="currentPageDetails === totalPagesDetails">الأخيرة</button>
+                            <button (click)="nextPage('details')"
+                                [disabled]="currentPageDetails === totalPagesDetails">التالية</button>
+                            <button (click)="lastPage('details')"
+                                [disabled]="currentPageDetails === totalPagesDetails">الأخيرة</button>
                         </div>
                         <p class="small mt-1 fw-semibold">
                             page {{currentPageDetails}} of {{totalPagesDetails}}
@@ -1345,3 +1391,42 @@
     </p>
 </div>
 <!-- ==========================   end pagination   ========================== -->
+
+
+
+
+<!-- start form send to excel -->
+<form [formGroup]="searchingForm">
+    <div *ngIf="excelModal"
+        class="vh-100 full-flex bg-black-opacity position-fixed top-0 start-0 end-0 bottom-0 overflow-hidden">
+        <div class="w-50 img-Modal min-h-50 bg-white rounded-2 position-relative z-1 {{ 'direction' | translate }}">
+            <p class=" text-center py-3 fs-3 englishFont">save as Excel</p>
+            <div class="w-75 mx-auto min-h-60 d-flex justify-content-center flex-column">
+
+                <label for="excelNameInput" class="py-3 justify-content-start  fs-5 ">
+                    ادخل اسم الملف : </label>
+
+                <input formControlName="excelNameInput" class="form-control form-control-lg" type="text"
+                    name="excelNameInput" id="excelNameInput">
+
+
+
+
+                <div *ngIf="searchingForm.get('excelNameInput')?.getError('required') && searchingForm.get('excelNameInput')?.touched"
+                    class="text-center">
+                    <p class="text-danger  py-3 ">
+                        يجب ادخال اسم الملف
+                    </p>
+                </div>
+                <button class="btn btn-primary px-5 py-2 my-3 d-block me-auto" (click)="sendToExcel()">
+                    {{ 'page.حفظ' | translate }}
+                </button>
+
+            </div>
+            <span (click)="closeExcelForm()">
+                <i class="fa-solid fa-xmark fa-2x closeBtn"></i>
+            </span>
+        </div>
+    </div>
+</form>
+<!-- end form send to excel -->

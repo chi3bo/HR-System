@@ -4,3 +4,9 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="square-jelly-box" [fullScreen]="true">
     <p class=" w-100  loading-text"> Loading.. </p>
 </ngx-spinner>
+
+<div *ngIf="screenDown" (click)="scrollUP()" class="goUp-button" >
+    <span class="shadow-sm rounded-circle">
+        <i class="fa-solid fa-circle-arrow-up icon-up fa-3x"></i>
+    </span>
+</div>
