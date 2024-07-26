@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from 'src/app/shared/services/dashboard.service';
 import { Response } from 'src/app/shared/interfaces/response';
@@ -20,6 +20,7 @@ export class DashboardComponent {
     searchInput: [null]
   })
 
+
   // ================= flags =================
   showEmpModal: boolean = false
   showGroubModal: boolean = false
@@ -31,7 +32,8 @@ export class DashboardComponent {
   showBranch: boolean = false
   displayRows: boolean = false
   displayCards: boolean = true
-  assignedWork: boolean = false
+  dataArrivedRow: boolean = false
+  assignedWork: boolean = false  // ==================== علي رأس العمل =========
 
   acvtiveFilterJob: any = null
   acvtiveFilterCompany: any = null
@@ -40,6 +42,7 @@ export class DashboardComponent {
   acvtiveFilterAge: any = null
   acvtiveFilterGender: any = null
   theKey: any = null
+  detailsRow: boolean = false
   // ================= flags =================
 
 
@@ -47,6 +50,7 @@ export class DashboardComponent {
   originalEmployeeList: employeeDetails[] = []
   employeeList: employeeDetails[] = []
   groubEmployeeList: employeeDetails[] = []
+  employeeListRow: employeeDetails[] = []
   randomColor: any[] = []
   managementList: oneManage[] = []
   originalBranchList: branch[] = []
@@ -56,6 +60,7 @@ export class DashboardComponent {
   groubNameKey: string = ''
   OneGroupName: string = 'مجموعة'
   employeeFullData: empFullDetails = {} as empFullDetails
+  @ViewChild('rowDetails') rowDetailsDiv!: ElementRef
 
   JobList: any
   CompanyList: any
@@ -73,6 +78,9 @@ export class DashboardComponent {
     this.getAllMangements()
     this.getAllData()
     this.searching()
+
+
+
   }
 
   // =======================  start filtering function   =======================
@@ -83,34 +91,39 @@ export class DashboardComponent {
     this.genderList = new Set(this.employeeList.map(item => { return item.gender }))
     this.ageList = new Set(this.employeeList.map(item => { return item.age }))
     this.ageList = Array.from(this.ageList).slice().sort((a, b) => Number(a) - Number(b))
-    console.log(this.ageList);
-    
     this.nationalityList = new Set(this.employeeList.map(item => { return item.nationNameAr }))
-    console.log(this.CompanyList);
   }
 
   JobFilter(list: employeeDetails[], key: any) {
-    console.log(key, 'llllllll');
+    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return item.jobNameAr == key })
   }
 
   companyFilter(list: employeeDetails[], key: any) {
+    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return item.companyNameAr == key })
   }
 
   BranchFilter(list: employeeDetails[], key: any) {
+    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return item.branchNameAr == key })
   }
 
   GenderFilter(list: employeeDetails[], key: any) {
+    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return item.gender == key })
   }
 
   nationaltyFilter(list: employeeDetails[], key: any) {
+    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
+    if (key == 'non-Saudi') {
+      return list.filter((item) => { return item.nationNameAr != key && item.nationNameAr != 'بدون جنسية' })
+    }
     return list.filter((item) => { return item.nationNameAr == key })
   }
 
   ageFilter(list: employeeDetails[], key: any) {
+    this.assignedWork ? list = list.filter((item) => { return item.state == 0 }) : ''
     return list.filter((item) => { return item.age == key })
   }
 
@@ -118,6 +131,9 @@ export class DashboardComponent {
   avctiveFilter(type: any, event: any) {
 
     this.theKey = event.target.value
+    type = type.toLowerCase()
+
+    console.log(event.target.value);
 
     if (type == 'job') {
       if (this.acvtiveFilterJob) {
@@ -219,8 +235,8 @@ export class DashboardComponent {
 
     }
 
-    console.log(this.theKey, 'active filter');
-    // this.getAllData()
+    console.log('the key : ', this.theKey);
+    console.log('type : ', type);
 
     this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
     this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch) : ''
@@ -228,15 +244,71 @@ export class DashboardComponent {
     this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
     this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
     this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
-    console.log(this.acvtiveFilterJob, 'active filter job');
-    console.log(this.acvtiveFilterCompany, 'active filter Company');
-    console.log(this.acvtiveFilterBranch, 'active filter Branch');
-    console.log(this.acvtiveFilterAge, 'active filter Age');
-    console.log(this.acvtiveFilterNation, 'active filter Nation');
-    console.log(this.acvtiveFilterGender, 'active filter Gender');
+    console.log('active filter job : ', this.acvtiveFilterJob);
+    console.log('active filter Company : ', this.acvtiveFilterCompany);
+    console.log('active filter Branch : ', this.acvtiveFilterBranch);
+    console.log('active filter Age : ', this.acvtiveFilterAge);
+    console.log('active filter Nation : ', this.acvtiveFilterNation);
+    console.log('active filter Gender : ', this.acvtiveFilterGender);
 
     this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
     this.currentPage = 1
+  }
+
+  counterRowPageFilter(type: any, event: any) {
+    this.theKey = event.target.value
+    this.OneGroupName = this.theKey
+    type = type.toLowerCase()
+    console.log('the value : ', event.target.value);
+    console.log('the key : ', this.theKey);
+    console.log('type : ', type);
+
+
+    if (type == 'job') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterJob = this.theKey
+      this.employeeListRow = this.JobFilter(this.employeeList, this.acvtiveFilterJob)
+    }
+
+    if (type == 'company') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterCompany = this.theKey
+      this.employeeListRow = this.companyFilter(this.employeeList, this.acvtiveFilterCompany)
+    }
+
+    if (type == 'branch') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterBranch = this.theKey
+      this.employeeListRow = this.BranchFilter(this.employeeList, this.acvtiveFilterBranch)
+    }
+
+    if (type == 'nation') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterNation = this.theKey
+      this.employeeListRow = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation)
+    }
+
+    if (type == 'gender') {
+      this.employeeList = this.originalEmployeeList
+      this.acvtiveFilterGender = this.theKey
+      this.employeeListRow = this.GenderFilter(this.employeeList, this.acvtiveFilterGender)
+    }
+
+    console.log('active filter job : ', this.acvtiveFilterJob);
+    console.log('active filter Company : ', this.acvtiveFilterCompany);
+    console.log('active filter Branch : ', this.acvtiveFilterBranch);
+    console.log('active filter Age : ', this.acvtiveFilterAge);
+    console.log('active filter Nation : ', this.acvtiveFilterNation);
+    console.log('active filter Gender : ', this.acvtiveFilterGender);
+
+
+
+    this.totalPagesDetails = Math.ceil(this.employeeListRow.length / this.itemsPerPage);
+    this.currentPageDetails = 1
+    setTimeout(() => {
+      this.scrollDown()
+    }, 100);
+  
   }
   // =======================  end filtering function   =======================
 
@@ -247,40 +319,27 @@ export class DashboardComponent {
     this.employeeList = []
     let body = { "manageId": id }
     this.loadingData = true
+    this._spinner.show()
     this.searchCategory = 'موظف'
     this.searchKey = 'الاسم'
     this._DashboardService.getAllDataSmall(body).subscribe({
       next: (data) => {
         console.log(data);
-        this.loadingData = false
         this.originalEmployeeList = data.employees
         this.employeeList = this.originalEmployeeList.slice().sort((a, b) => Number(a.employeeId) - Number(b.employeeId))
         this.assignedWork ? this.employeeList = this.employeeList.filter((item) => { return item.state == 0 }) : ''
+        this.loadingData = false
+        this._spinner.hide()
         this.listOfHeaders()
-
-
-        // ======== filtering ==========
-
-        // this.employeeList = this.BranchFilter(this.employeeList , '7000' )
-        // this.acvtiveFilterCompany ? this.employeeList = this.companyFilter(this.employeeList, this.acvtiveFilterCompany) : ''
-        // this.acvtiveFilterBranch ? this.employeeList = this.BranchFilter(this.employeeList,this.acvtiveFilterBranch) : ''
-        // this.acvtiveFilterJob ? this.employeeList = this.JobFilter(this.employeeList, this.acvtiveFilterJob) : ''
-        // this.acvtiveFilterAge ? this.employeeList = this.ageFilter(this.employeeList, this.acvtiveFilterAge) : ''
-        // this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
-        // this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList,this.acvtiveFilterGender) : ''
-        // console.log(this.acvtiveFilterCompany , 'get all data');
-
-
-        // ======== filtering ==========
-
-
         console.log(this.employeeList);
 
         this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
         this.currentPage = 1
       },
+
       error: (err) => {
         this.loadingData = false
+        this._spinner.hide()
         this.noEmplyeFound = true
         console.log(err);
       }
@@ -392,9 +451,16 @@ export class DashboardComponent {
     if (key == 'موظف') {
       this.branchesList = []
       this.getAllData()
+      this.acvtiveFilterCompany = null
+      this.acvtiveFilterBranch = null
+      this.acvtiveFilterJob = null
+      this.acvtiveFilterAge = null
+      this.acvtiveFilterNation = null
+      this.acvtiveFilterGender = null
     }
     else if (key == 'فرع') {
       this.employeeList = []
+      this.detailsRow = false
       this.getAllGroupOf(groub)
     }
   }
@@ -481,13 +547,27 @@ export class DashboardComponent {
     }, 100)
   }
 
-  tableView(){
+  scrollDown() {
+    let div = this.rowDetailsDiv.nativeElement as HTMLElement
+    let divheit = div.offsetTop
+    console.log(divheit);
+    window.scrollTo(0, divheit)
+
+
+  }
+
+  tableView() {
     this.displayCards = false
     this.displayRows = true
   }
-  cardsView(){
+  cardsView() {
     this.displayCards = true
     this.displayRows = false
+  }
+
+  RowDetailsOpenClose() {
+    this.detailsRow = true
+
   }
   // ==========================    end moving and (open-close)    ======================
 
@@ -503,10 +583,13 @@ export class DashboardComponent {
 
 
   // ==========================   start pagination   ==========================
-  currentPage = 1;
   itemsPerPage = 100; // عدد العناصر لكل صفحة
+  currentPage = 1;
   totalPages = 0;
   maxPagesToShow = 5; // الحد الأقصى لعدد أزرار الصفحات 
+
+  currentPageDetails = 1;
+  totalPagesDetails = 0;
 
   get paginatedResults() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
@@ -518,38 +601,76 @@ export class DashboardComponent {
     const end = start + this.itemsPerPage;
     return this.branchesList.slice(start, end);
   }
-  goToPage(page: number) {
-    this.currentPage = page;
+  get paginatedDetails() {
+    const start = (this.currentPageDetails - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.employeeListRow.slice(start, end);
+  }
+
+
+  goToPage(page: number, useFor: any) {
+    useFor == 'normal' ? this.currentPage = page : ''
+    useFor == 'details' ? this.currentPageDetails = page : ''
     this.scrollUp()
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.scrollUp()
+  nextPage(useFor: any) {
+    if (useFor == 'normal') {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.scrollUp()
+      }
+    }
+    else if (useFor == 'details') {
+      if (this.currentPageDetails < this.totalPagesDetails) {
+        this.currentPageDetails++;
+        this.scrollUp()
+      }
+    }
+
+  }
+
+  prevPage(useFor: any) {
+    if (useFor == 'normal') {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.scrollUp()
+      }
+    }
+    else if (useFor == 'details') {
+      if (this.currentPageDetails > 1) {
+        this.currentPageDetails--;
+        this.scrollUp()
+      }
     }
   }
 
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.scrollUp()
-    }
-  }
-
-  firstPage() {
-    this.currentPage = 1;
+  firstPage(useFor: any) {
+    useFor == 'normal' ? this.currentPage = 1 : ''
+    useFor == 'details' ? this.currentPageDetails = 1 : ''
     this.scrollUp()
   }
 
-  lastPage() {
-    this.currentPage = this.totalPages;
+  lastPage(useFor: any) {
+    useFor == 'normal' ? this.currentPage = this.totalPages : ''
+    useFor == 'details' ? this.currentPageDetails = this.totalPagesDetails : ''
     this.scrollUp()
   }
 
   get pagesArray() {
     const startPage = Math.max(1, this.currentPage - Math.floor(this.maxPagesToShow / 2));
     const endPage = Math.min(this.totalPages, startPage + this.maxPagesToShow - 1);
+
+    const pages = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+
+  get pagesArrayDetails() {
+    const startPage = Math.max(1, this.currentPageDetails - Math.floor(this.maxPagesToShow / 2));
+    const endPage = Math.min(this.totalPagesDetails, startPage + this.maxPagesToShow - 1);
 
     const pages = [];
     for (let i = startPage; i <= endPage; i++) {
