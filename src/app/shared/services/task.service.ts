@@ -24,8 +24,12 @@ export class TaskService {
     return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/RequestJobMission', body, this.setHeadrs())
   }
 
-  getAdminRequests(name: string = '', abroveStatus: string = ''):Observable<any> {
-   return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetAdminRequestJobMissions?Search=${name}&ApproveStatus=${abroveStatus}`, this.setHeadrs())
+  getAdminRequests(name: string = '', abroveStatus: string = ''): Observable<any> {
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetAdminRequestJobMissions?Search=${name}&ApproveStatus=${abroveStatus}`, this.setHeadrs())
+  }
+
+  sendResponse(body: any): Observable<any> {
+    return this._HttpClient.post('https://hrapp.runasp.net/Api/Admin/DecisionOfJobMission', body, this.setHeadrs())
   }
 
 

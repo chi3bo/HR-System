@@ -1,23 +1,33 @@
-<section class="vh-80 bg-secondary-subtle d-flex justify-content-center flex-column align-items-center ">
+<section [ngClass]="{'d-none': !showTaskDetails}"
+    class="vh-80 min-vh-100 bg-secondary-subtle d-flex justify-content-center flex-column align-items-center ">
     <h1 class="text-center py-5 fw-bolder {{ 'admin_vacation.حجم_الخط_إدارة_الطلبات' | translate }}">ادارة مهمات العمل
     </h1>
-    <div class="row w-100 arabicList g-4 py-3 text-center container">
+    <div class="row w-100 arabicList g-3 py-3 pb-5 text-center container">
 
-        <div *ngFor="let item of taskList" class="col-md-4 ">
-            <div class="bg-white rounded-5 myItem mycustomItem h-auto bg-info shadow p-3">
+        <div *ngFor="let item of taskList" class="col-md-12 ">
+            <div class="bg-white rounded-5 myItem mycustomItem h-auto shadow py-3 px-2">
 
-                <div class="myVector  w-75 mx-auto">
-                    <p>#{{item.id}}</p>
-                    <p>{{item.employeeNameAr}} </p>
-                    <p>{{item.direction}}</p>
-                    <p>{{item.duration}}</p>
-                    <p>{{item.createDate | date :'dd/MM/yyyy'}}</p>
+                <div class="myVector full-flex row w-100 mx-auto">
+                    <span class="col-md-1">
+                        <p class="my-1">#{{item.id}}</p>
+                    </span>
+                    <span class="col-md-4">
+                        <p class="my-1">{{item.employeeNameAr}} </p>
+                    </span>
+                    <span class="col-md-3">
+                        <p class="my-1">{{item.direction}}</p>
+                    </span>
+                    <span class="col-md-2 col-xxl-3">
+                        <p class="my-1">{{item.createDate | date :'dd/MM/yyyy'}}</p>
+                    </span>
+                    <span class="col-md-2 col-xxl-1">
+                        <button (click)="getOneTask(item)"
+                            class="btn btn-dark rounded-4 py-3 my-1 w-100 fw-bolder">مراجعة
+                        </button>
+
+                    </span>
                 </div>
-                <div class="buttons w-100">
-                    <button class="btn btn-outline-dark rounded-4 w-100 py-3 my-1 fw-bolder">مراجعة
-                    </button>
 
-                </div>
 
             </div>
         </div>
@@ -26,43 +36,55 @@
     </div>
 </section>
 
-<section class="vh-80 bg-dark-subtle d-flex justify-content-center flex-column align-items-center p-5">
-    <div class="bg-white w-100 ">
+<section [ngClass]="{'d-none': !showTaskDetails}" class=" bg-dark-subtle p-sm-5 task-Div ">
+    <div class="bg-white w-100 position-relative">
         <p class="fs-2 my-1 text-center">
-            مهمة عمل رقم 25
+            مهمة عمل رقم {{oneTask.id}}
         </p>
         <div class="arabicList row p-5">
             <div class=" col-md-6 ">
-                <p class="w-50 w-100-mobile mx-auto fw-bolder">اسم الموظف : <span class="fw-bold"> محمود سيد عبد الكريم
-                    </span> </p>
-                <p class="w-50 w-100-mobile mx-auto  fw-bolder">كود الموظف : <span class="fw-bold"> 1305 </span> </p>
-                <p class="w-50 w-100-mobile mx-auto fw-bolder">المسمي الوظيفي : <span class="fw-bold"> مبرمج كومبيوتر
-                    </span> </p>
+                <p class="w-100 pe-5  w-100-mobile fw-bolder">اسم الموظف :
+                    <span class="fw-bold {{ 'lang-arabic' | translate }} "> {{oneTask.employeeNameAr}}</span>
+                    <span class="fw-normal {{ 'lang-english' | translate }} "> {{oneTask.employeeNameEn}}</span>
+                </p>
+                <p class="w-100 pe-5 w-100-mobile  fw-bolder">كود الموظف : <span
+                        class="fw-normal">{{oneTask.employeeId}}</span> </p>
+                <p class="w-100 pe-5 w-100-mobile fw-bolder">المسمي الوظيفي :
+                    <span class="fw-bold  {{ 'lang-arabic' | translate }}  "> {{oneTask.jobNameAr}}</span>
+                    <span class="fw-normal  {{ 'lang-english' | translate }}  "> {{oneTask.jobNameEn}}</span>
+                </p>
 
             </div>
             <div class=" col-md-6 ">
-                <p class="w-50 w-100-mobile  fw-bolder"> تاريخ الطلب : <span class="fw-bold"> 22/7/2024 </span> </p>
-                <p class="w-50 w-100-mobile  fw-bolder">الادارة : <span class="fw-bold"> الدعم الفني </span> </p>
-                <p class="w-50 w-100-mobile  fw-bolder">القسم : <span class="fw-bold"> تكنولوجيا </span> </p>
+                <p class="  fw-bolder"> تاريخ الطلب : <span class="fw-bold"> {{oneTask.createDate | date : 'dd/MM/yyyy'}}</span> </p>
+                <p class="  fw-bolder">الادارة : 
+                    <span class="fw-bold   {{ 'lang-arabic' | translate }} "> {{oneTask.manageNameAr}}</span> 
+                    <span class="fw-normal   {{ 'lang-english' | translate }} "> {{oneTask.manageNameEn}}</span> 
+                </p>
+                <p class="  fw-bolder">القسم :
+                    <span class="fw-bold   {{ 'lang-arabic' | translate }} "> {{oneTask.departmentNameAr}}</span> 
+                    <span class="fw-normal   {{ 'lang-english' | translate }} "> {{oneTask.departmentNameEn}}</span> 
+                    </p>
             </div>
-            <hr/>
+            <hr />
             <div class="arabicList row py-3 mx-0">
                 <p class="fs-4  mx-0 py-3 mb-3  bg-secondary-subtle  text-center"> بيانات المهمة </p>
                 <div class="col-md-6">
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder">جهة مهمة العمل :
-                        <span class="fw-bold px-3"> الشركة الالمانية </span>
+                        <span class="fw-bold px-3"> {{oneTask.direction}}</span>
                     </p>
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder">مدة المهمة :
-                        <span class="fw-bold px-3"> 3 ايام</span>
+                        <span *ngIf="oneTask.duration == 1" class="fw-bold px-3"> {{oneTask.duration}} يوم </span>
+                        <span *ngIf="oneTask.duration != 1" class="fw-bold px-3"> {{oneTask.duration}} ايام </span>
                     </p>
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder">اعتباراً من :
-                        <span class="fw-bold px-3"> 24/7/2024 </span>
+                        <span class="fw-normal px-3"> {{oneTask.fromDate | date : 'dd/MM/yyyy'}}</span>
                     </p>
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder"> حتى تاريخ :
-                        <span class="fw-bold px-3"> 26/6/2024 </span>
+                        <span class="fw-normal px-3">{{oneTask.toDate | date : 'dd/MM/yyyy'}}</span>
                     </p>
                 </div>
-                <div class="task-details">
+                <div class="task-details mb-5 ">
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder"> بيان المهمة :
                     </p>
                     <p class="text-muted fw-bold px-5">
@@ -79,22 +101,83 @@
                         أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.
                     </p>
                 </div>
-                <hr/>
+                <hr>
                 <p class="fs-4  mx-0 py-3  mb-3 bg-secondary-subtle text-center"> تكاليف المهمة </p>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-5">
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder">سلفة مصاريف بمبلغ :
-                        <span class="fw-bold px-3"> 2500 ريال</span>
+                        <span class="fw-normal px-3"> {{oneTask.cost}}</span>
                     </p>
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder">تذكرة سفر خط سير :
-                        <span class="fw-bold px-3 w-100"> 4000 ريال </span>
+                        <span class="fw-normal px-3 w-100"> {{oneTask.travelTicket}}</span>
                     </p>
                     <p class=" mx-auto w-100-mobile fs-5 fw-bolder"> التأشيرات :
-                        <span class="fw-bold px-3"> 14001233 // 14006742 </span>
+                        <span *ngFor="let visa of visasArray " class="fw-bold px-3 border"> {{visa}} </span>
                     </p>
                 </div>
 
+                <hr>
+                <p class="fs-4  mx-0 py-3  mb-3 bg-secondary-subtle text-center"> قرار الادارة </p>
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <div class="">
+                            <p class="fw-bolder">السيد /
+                                <span class="fw-bold  {{ 'lang-arabic' | translate }}"> {{nameAr}} </span>
+                                <span class="fw-normal  {{ 'lang-english' | translate }} "> {{nameEN}} </span>
+                            </p>
+                        </div>
+                        <div class="">
+                            <p class="fw-bolder">رقم التعريف :
+                                <span class="fw-bold">{{empId}}</span>
+                            </p>
+                        </div>
+                        <div class="">
+                            <p class="fw-bolder">اليوم الموافق :
+                                <span class="fw-normal">{{todayDate | date : 'dd/MM/yyyy' }}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-md-6 py-3">
+                        <label for="ivReadAll" class="fs-4 fw-bolder">
+                            قرأت بعناية كافة التفاصيل الخاصة بالمهمة
+                        </label>
+                        <input id="ivReadAll" type="checkbox"
+                            class="form-check-input form-check form-check-inline border-dark mx-2 ">
+                    </div>
+                    <div class="">
+                        <label for="decisionDetails" class="fs-5 fw-bolder">
+                            ملاحظات :
+                        </label>
+                        <textarea name="decisionDetails" id="decisionDetails" rows="4"
+                            class="decisionDetails form-control "
+                            placeholder="اضف ملاحظاتك حول المهمة او القرار الاداري . . "></textarea>
+                    </div>
+
+                </div>
+                <div class="buttons my-5 text-center">
+                    <button class="btn  submit-Button px-5 py-3 ms-auto rounded-3 ">
+                        <span class="px-1">
+                            قبول
+                        </span>
+                        <i class="fa-solid fa-check-double fa-xl "></i>
+                    </button>
+                    <button class="btn  reject-Button px-5 py-3 ms-auto rounded-3 ">
+                        <span class="px-1">
+                            رفض
+                        </span>
+                        <i class="fa-solid fa-xmark fa-xl "></i>
+                    </button>
+                    <!-- نضيف ايكونز هنا -->
+                </div>
             </div>
         </div>
 
+        <span (click)="taskDetailsHideShow()">
+            <i class="fa-solid fa-xmark fa-2x closeBtn"></i>
+        </span>
+
+
     </div>
+    <div class="py-5"></div>
+
 </section>

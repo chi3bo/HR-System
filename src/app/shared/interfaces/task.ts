@@ -8,7 +8,7 @@ export interface TaskDetails {
         details: any
         cost: any
         travelTicket: any
-        visas: any
+        visas: string
         uploadFileId: any
         employeeId: string
         employeeNameAr: string
