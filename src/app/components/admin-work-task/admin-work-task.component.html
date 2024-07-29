@@ -1,1 +1,100 @@
-<p>admin-work-task works!</p>
+<section class="vh-80 bg-secondary-subtle d-flex justify-content-center flex-column align-items-center ">
+    <h1 class="text-center py-5 fw-bolder {{ 'admin_vacation.حجم_الخط_إدارة_الطلبات' | translate }}">ادارة مهمات العمل
+    </h1>
+    <div class="row w-100 arabicList g-4 py-3 text-center container">
+
+        <div *ngFor="let item of taskList" class="col-md-4 ">
+            <div class="bg-white rounded-5 myItem mycustomItem h-auto bg-info shadow p-3">
+
+                <div class="myVector  w-75 mx-auto">
+                    <p>#{{item.id}}</p>
+                    <p>{{item.employeeNameAr}} </p>
+                    <p>{{item.direction}}</p>
+                    <p>{{item.duration}}</p>
+                    <p>{{item.createDate | date :'dd/MM/yyyy'}}</p>
+                </div>
+                <div class="buttons w-100">
+                    <button class="btn btn-outline-dark rounded-4 w-100 py-3 my-1 fw-bolder">مراجعة
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<section class="vh-80 bg-dark-subtle d-flex justify-content-center flex-column align-items-center p-5">
+    <div class="bg-white w-100 ">
+        <p class="fs-2 my-1 text-center">
+            مهمة عمل رقم 25
+        </p>
+        <div class="arabicList row p-5">
+            <div class=" col-md-6 ">
+                <p class="w-50 w-100-mobile mx-auto fw-bolder">اسم الموظف : <span class="fw-bold"> محمود سيد عبد الكريم
+                    </span> </p>
+                <p class="w-50 w-100-mobile mx-auto  fw-bolder">كود الموظف : <span class="fw-bold"> 1305 </span> </p>
+                <p class="w-50 w-100-mobile mx-auto fw-bolder">المسمي الوظيفي : <span class="fw-bold"> مبرمج كومبيوتر
+                    </span> </p>
+
+            </div>
+            <div class=" col-md-6 ">
+                <p class="w-50 w-100-mobile  fw-bolder"> تاريخ الطلب : <span class="fw-bold"> 22/7/2024 </span> </p>
+                <p class="w-50 w-100-mobile  fw-bolder">الادارة : <span class="fw-bold"> الدعم الفني </span> </p>
+                <p class="w-50 w-100-mobile  fw-bolder">القسم : <span class="fw-bold"> تكنولوجيا </span> </p>
+            </div>
+            <hr/>
+            <div class="arabicList row py-3 mx-0">
+                <p class="fs-4  mx-0 py-3 mb-3  bg-secondary-subtle  text-center"> بيانات المهمة </p>
+                <div class="col-md-6">
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder">جهة مهمة العمل :
+                        <span class="fw-bold px-3"> الشركة الالمانية </span>
+                    </p>
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder">مدة المهمة :
+                        <span class="fw-bold px-3"> 3 ايام</span>
+                    </p>
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder">اعتباراً من :
+                        <span class="fw-bold px-3"> 24/7/2024 </span>
+                    </p>
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder"> حتى تاريخ :
+                        <span class="fw-bold px-3"> 26/6/2024 </span>
+                    </p>
+                </div>
+                <div class="task-details">
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder"> بيان المهمة :
+                    </p>
+                    <p class="text-muted fw-bold px-5">
+                        هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،
+                        حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
+                        التطبيق.
+                        إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص
+                        لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث
+                        يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.
+                        ومن هنا وجب على المصمم أن يضع نصوصا مؤقتة على التصميم ليظهر للعميل الشكل كاملاً،دور مولد النص
+                        العربى أن يوفر على المصمم عناء البحث عن نص بديل لا علاقة له بالموضوع الذى يتحدث عنه التصميم
+                        فيظهر بشكل لا يليق.
+                        هذا النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم، غير منسق،
+                        أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.
+                    </p>
+                </div>
+                <hr/>
+                <p class="fs-4  mx-0 py-3  mb-3 bg-secondary-subtle text-center"> تكاليف المهمة </p>
+                <div class="col-md-6">
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder">سلفة مصاريف بمبلغ :
+                        <span class="fw-bold px-3"> 2500 ريال</span>
+                    </p>
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder">تذكرة سفر خط سير :
+                        <span class="fw-bold px-3 w-100"> 4000 ريال </span>
+                    </p>
+                    <p class=" mx-auto w-100-mobile fs-5 fw-bolder"> التأشيرات :
+                        <span class="fw-bold px-3"> 14001233 // 14006742 </span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

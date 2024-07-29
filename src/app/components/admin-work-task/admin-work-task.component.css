@@ -1,0 +1,13 @@
+.mycustomItem{
+   
+        min-height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        transition: scale .7s, box-shadow .3s;
+    
+        &:hover {
+            scale: 1.05;
+    }
+}

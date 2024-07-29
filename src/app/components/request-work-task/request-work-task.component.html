@@ -4,7 +4,7 @@
     </div>
 </section> -->
 <section class="my-5 CardOne" [ngClass]="{'slideIn': true}">
-    <form [formGroup]="taskForm">
+    <form [formGroup]="taskForm" (submit)="requestTask()">
         <div class="loanDetails arabicList bg-white rounded-4 w-100 overflow-hidden shadow-lg">
             <div class="row">
                 <div class="col-md-7 col-lg-6">
@@ -40,8 +40,9 @@
                                 <input type="text" formControlName="directionName" id="directionName"
                                     class="form-control" placeholder="اسم جهة مهمة العمل">
 
-                                    <!-- directed to error -->
-                                <p *ngIf="directionNameInput?.errors && directionNameInput?.touched" class="my-0 pt-2 small text-danger text-center"> يجب ادخال اسم
+                                <!-- directed to error -->
+                                <p *ngIf="directionNameInput?.errors && directionNameInput?.touched"
+                                    class="my-0 pt-2 small text-danger text-center"> يجب ادخال اسم
                                     الجهة المقصودة </p>
                             </div>
 
@@ -59,17 +60,19 @@
 
                                 </div>
                                 <div class="w-50 p-2">
-                                    <label for="taskDuration"> المدة : </label>
-                                    <input formControlName="taskDuration" type="text" id="taskDuration"
+                                    <label for="taskDuration"> المدة بالأيام: </label>
+                                    <input formControlName="taskDuration" type="number" id="taskDuration"
                                         class="form-control" placeholder="المدة المطلوبة للمهمة">
                                 </div>
                             </div>
 
                             <!-- type + duration error -->
                             <div class="w-100 text-center full-flex">
-                                <p *ngIf="taskTypeInput?.errors && taskTypeInput?.touched" class="my-0 pt-1 small text-danger w-50">
+                                <p *ngIf="taskTypeInput?.errors && taskTypeInput?.touched"
+                                    class="my-0 pt-1 small text-danger w-50">
                                     يجب اختيار نوع المهمة </p>
-                                <p *ngIf="taskDurationInput?.errors && taskDurationInput?.touched" class="my-0 pt-1 small text-danger w-50">
+                                <p *ngIf="taskDurationInput?.errors && taskDurationInput?.touched"
+                                    class="my-0 pt-1 small text-danger w-50">
                                     يجب ادخال المدة
                                 </p>
                             </div>
@@ -78,22 +81,25 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="w-50 p-2">
                                     <label for="startingDate">اعتباراً من :</label>
-                                    <input type="date" id="startingDate" formControlName="startingDate"
+                                    <input #startDate type="date" id="startingDate" formControlName="startingDate"
                                         class="form-control w-100" placeholder="{{ 'loan.تاريخ_البدء' | translate }}"
                                         [min]="todayDate">
                                 </div>
                                 <div class="w-50 p-2">
                                     <label for="EndingDate"> حتى تاريخ :</label>
-                                    <input formControlName="EndingDate" type="date" id="EndingDate"
-                                        class="form-control w-100" placeholder="تاريخ الانتهاء">
+                                    <input [min]="taskForm.get('startingDate')?.value" formControlName="EndingDate"
+                                        type="date" id="EndingDate" class="form-control w-100"
+                                        placeholder="تاريخ الانتهاء">
                                 </div>
                             </div>
 
                             <!-- date errors -->
                             <div class="w-100 text-center full-flex">
-                                <p *ngIf="startingDateInput?.errors && startingDateInput?.touched" class="my-0 pt-1 small text-danger w-50">
+                                <p *ngIf="startingDateInput?.errors && startingDateInput?.touched"
+                                    class="my-0 pt-1 small text-danger w-50">
                                     يجب ادخال تاريخ البدء</p>
-                                <p *ngIf="EndingDateInput?.errors && EndingDateInput?.touched" class="my-0 pt-1 small text-danger w-50">
+                                <p *ngIf="EndingDateInput?.errors && EndingDateInput?.touched"
+                                    class="my-0 pt-1 small text-danger w-50">
                                     يجب ادخال تاريخ الانتهاء
                                 </p>
                             </div>
@@ -103,11 +109,13 @@
                         <div *ngIf="page2" class="w-100 mt-5">
                             <div class="w-100 p-2">
                                 <label for="taskDetails">بيان مهمة العمل:</label>
-                                <textarea formControlName="taskDetails" name="taskDetails" id="taskDetails" class="form-text form-control taskDetails"
-                                    rows="3" placeholder="ادخل تفاصيل المهمة . . "></textarea>
-                                    <p *ngIf="taskDetailsInput?.errors && taskDetailsInput?.touched" class="my-0 pt-2 small text-danger text-center"> 
-                                    يجب ادخال تفاصيل المهمة    
-                                    </p>
+                                <textarea formControlName="taskDetails" name="taskDetails" id="taskDetails"
+                                    class="form-text form-control taskDetails" rows="3"
+                                    placeholder="ادخل تفاصيل المهمة . . "></textarea>
+                                <p *ngIf="taskDetailsInput?.errors && taskDetailsInput?.touched"
+                                    class="my-0 pt-2 small text-danger text-center">
+                                    يجب ادخال تفاصيل المهمة
+                                </p>
                             </div>
                             <div class="w-100 p-2">
                                 <label for="TaskLoan">سلفة مصاريف بمبلغ :</label>
@@ -178,9 +186,13 @@
                         </div>
 
                         <div *ngIf="page2" class="mt-2 ms-auto ">
-                            <button (submit)="requestTask()" class="btn  submit-Button px-5 py-2 ms-auto rounded-5 ">
-
-                                <i class="fa-solid fa-circle-check fa-xl px-2 position-absolute start-0"></i>
+                            <button type="submit" class="btn  submit-Button px-5 py-2 ms-auto rounded-5 ">
+                                <span *ngIf="!loadButton">
+                                    <i class="fa-solid fa-circle-check fa-xl px-2 position-absolute start-0"></i>
+                                </span>
+                                <span *ngIf="loadButton">
+                                    <i class="fa-solid fa-spinner fa-spin fa-xl px-2 position-absolute start-0"></i>
+                                </span>
 
                                 <span class="ps-3">
                                     ارسال
