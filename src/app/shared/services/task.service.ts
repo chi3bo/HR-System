@@ -32,5 +32,7 @@ export class TaskService {
     return this._HttpClient.post('https://hrapp.runasp.net/Api/Admin/DecisionOfJobMission', body, this.setHeadrs())
   }
 
-
+  getAllEmpTasks(): Observable<any> {
+    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeeJobMissions', this.setHeadrs())
+  }
 }

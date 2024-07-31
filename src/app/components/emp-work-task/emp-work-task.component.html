@@ -1,1 +1,311 @@
-<p>emp-work-task works!</p>
+<section class="w-100 bg-body-secondary arabicList rounded-bottom-3">
+    <div class="w-100 p-sm-5 px-2">
+        <div *ngFor="let order of ordersList" class="hover-scale">
+            <div class="w-100 {{ 'direction' | translate }}">
+                <p class="orderNumber my-0 d-inline-block bg-white px-2 rounded {{ 'fixOrderNumber' | translate }}">
+                    {{ 'my_order_vac.رقم_الطلب' | translate }} : {{order.id}}
+                </p>
+            </div>
+            <div
+                class="parentOfOrders my-2 {{ 'direction' | translate }} mx-0 w-100 bg-white shadow rounded-3 border row d-flex justify-content-center align-items-center overflow-hidden">
+                <div class="col-md-3">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
+                        <p class="my-0 fw-bolder">
+                            جهة المهمة :
+                            <span class="fw-bold">
+                                {{order.direction}}
+                            </span>
+                        </p>
+                        <p class="my-0 fw-bolder">
+                            {{ 'my_order_loan.التاريخ' | translate }}:
+                            <span class="fw-bold">
+                                {{order.createDate| date : 'yyyy/MM/dd'}}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="w-100 {{'admin_vacation.border' | translate}} noBorder-mobile">
+                        <p class="my-0 fw-bolder">
+                            يبدأ من:
+                            <span class="fw-bold">
+                                 {{order.fromDate | date : 'yyyy/MM/dd'}}
+                            </span>
+                        </p>
+                        <p class="my-0 fw-bolder">
+                            حتي تاريخ: 
+                            <span class="fw-bold">
+                                {{order.toDate | date : 'yyyy/MM/dd'}}
+                            </span>    
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="w-100 noBorder-mobile">
+                        <p class="my-0 fw-bolder">
+                            نوع المهمة :
+                            <span *ngIf=" order.kind == 'Local'" class="fw-bold"> داخلي </span>
+                            <span *ngIf=" order.kind == 'International'" class="fw-bold"> خارجي </span>
+
+                        </p>
+                        <p *ngIf="order.approveStatus == 'Approved'" class="my-0 fw-bolder">
+                            {{ 'my_order_loan.حالة_الطلب' | translate }}:
+                            <span class="status-Msg-confirmed fw-bold">{{ 'my_order_loan.تمت_الموافقة' | translate }}</span>
+                        </p>
+                        <p *ngIf="order.approveStatus == 'NotApproved'" class="my-0 fw-bolder">
+                            {{ 'my_order_loan.حالة_الطلب' | translate }}:
+                            <span class="status-Msg-rejected fw-bold">{{ 'my_order_loan.تم_رفض_الطلب' | translate }}</span>
+                        </p>
+                        <p *ngIf="order.approveStatus == 'Pinding'" class="my-0 fw-bolder">
+                            {{ 'my_order_loan.حالة_الطلب' | translate }}:
+                            <span class="status-Msg-pendding fw-bold">{{ 'my_order_loan.جاري_مراجعة_الطلب' | translate }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-2 statusImg {{ 'fixStatusImg' | translate }} ">
+                    <div class="w-100 mx-auto p-2 text-center">
+                        <img *ngIf="order.approveStatus == 'Approved'"
+                            src="./assets/images/compressed-images/wepb/accepted.png" alt="Approved"
+                            class="w-50 ">
+                        <img *ngIf="order.approveStatus == 'Pinding'"
+                            src="./assets/images/compressed-images/wepb/pending_3388322.png" alt="Pending"
+                            class="w-50 ">
+                        <img *ngIf="order.approveStatus == 'NotApproved'"
+                            src="./assets/images/compressed-images/wepb/delete_2808336.png" alt="NotApproved"
+                            class="w-50 ">
+                    </div>
+
+
+                </div>
+                <div *ngIf="order.approveStatus != 'Pinding'" class="row">
+
+                    <span class=" px-3">
+                        <hr class="my-0">
+                    </span>
+
+                    <div class="col-md-10 ">
+                        <div class="w-100 noBorder-mobile ">
+                            <p class="my-0">
+                                ملاحظات :
+                            </p>
+                            <!-- <p class="text-muted fw-bold px-sm-5 ">
+                                هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص
+                                العربى،
+                                حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف
+                                التى يولدها
+                            </p> -->
+                            <p *ngIf="order.details" class="text-muted fw-bold px-sm-5 "> {{order.details}}</p>
+                            <p *ngIf=" order.details == null " class="text-muted fw-bold px-sm-5 "> لا يوجد ملاحظات </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 ">
+                        <div class="w-100  full-flex justify-content-center h-100">
+                            <button (click)="downloadPDF(order)"
+                                class="btn btn-dark rounded-4  py-sm-3 my-1  fw-bolder ">تنزيل PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<div id="content" style="display: none;" class="  w-100 position-relative ">
+
+    <div class="w-100">
+        <img src="./assets/images/compressed-images/custom_header.jpg" alt="" class="w-100">
+    </div>
+    <p class="fs-5 pt-1 mb-2 text-center testo">
+        مهمة عمل رقم {{oneTask.id}}
+    </p>
+    <div class="arabicList row px-1 py-2">
+        <div class=" col-6 ">
+            <p class="w-100 pe-sm-5 fs-14 my-0  fw-bolder">اسم الموظف :
+                <span *ngIf="currentLang == 'ar'" class="fw-bold "> {{nameAr}}</span>
+                <span *ngIf="currentLang == 'en' " class="fw-normal "> {{nameEN}}</span>
+            </p>
+            <p class="w-100 fs-14 pe-sm-5 my-0    fw-bolder">كود الموظف : <span
+                    class="fw-normal">{{empId}}</span> </p>
+            <p class="w-100 fs-14 pe-sm-5 my-0   fw-bolder">المسمي الوظيفي :
+                <span *ngIf="currentLang == 'ar' && mypersonalDetails.jobNameAr" class="fw-bold ">
+                    {{mypersonalDetails.jobNameAr}}</span>
+                <span *ngIf="currentLang == 'en' && mypersonalDetails.jobNameEn" class="fw-normal ">
+                    {{mypersonalDetails.jobNameEn}}</span>
+                <span *ngIf="currentLang == 'ar' && mypersonalDetails.jobNameAr == null " class="fw-bold "> غير متوفر
+                </span>
+                <span *ngIf="currentLang == 'en' && mypersonalDetails.jobNameEn == null " class="fw-normal "> not data
+                </span>
+            </p>
+
+        </div>
+        <div class=" col-6 fs-14">
+            <p class="  fw-bolder my-0 "> تاريخ الطلب : <span class="fw-bold"> {{oneTask.createDate | date :
+                    'dd/MM/yyyy'}}</span> </p>
+            <p class="  fw-bolder my-0 ">الادارة :
+                <span *ngIf="currentLang == 'ar' && mypersonalDetails.manageNameAr" class="fw-bold    ">
+                    {{mypersonalDetails.manageNameAr}} </span>
+                <span *ngIf="currentLang == 'en' && mypersonalDetails.manageNameEn" class="fw-normal    ">
+                    {{mypersonalDetails.manageNameEn}} </span>
+                <span *ngIf="currentLang == 'ar' && mypersonalDetails.manageNameAr == null " class="fw-bold"> غير متوفر
+                </span>
+                <span *ngIf="currentLang == 'en' && mypersonalDetails.manageNameEn == null " class="fw-normal"> not data
+                </span>
+            </p>
+            <p class="  fw-bolder my-0 ">القسم :
+                <span *ngIf="currentLang == 'ar' && mypersonalDetails.departmentNameAr" class="fw-bold    ">
+                    {{mypersonalDetails.departmentNameAr}}</span>
+                <span *ngIf="currentLang == 'en' && mypersonalDetails.departmentNameEn" class="fw-normal    ">
+                    {{mypersonalDetails.departmentNameEn}}</span>
+                <span *ngIf="currentLang == 'ar' && mypersonalDetails.departmentNameAr == null " class="fw-bold    ">
+                    غير
+                    متوفر </span>
+                <span *ngIf="currentLang == 'en' && mypersonalDetails.departmentNameEn == null " class="fw-normal    ">
+                    not
+                    data </span>
+            </p>
+        </div>
+        <div class="arabicList  row pt-3 mx-0">
+            <p class="fs-6  mx-0 py-1 mb-3  bg-secondary-subtle  text-center"> بيانات المهمة </p>
+            <div class="col-md-12">
+                <div class="d-flex align-items-center ">
+                    <p class="fs-14 my-0 py-0 fw-bolder ">جهة مهمة العمل :
+                    </p>
+                    <p class="fw-semibold my-0 pt-2 px-3 lh-1"> {{oneTask.direction}} </p>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <p class="  fs-14   my-0   fw-bolder">مدة المهمة :
+                    </p>
+                    <p *ngIf="oneTask.duration == 1" class="fw-semibold fs-14 my-0 pt-2 px-3"> {{oneTask.duration}} يوم
+                    </p>
+                    <p *ngIf="oneTask.duration != 1" class="fw-semibold fs-14 my-0 pt-2 px-3"> {{oneTask.duration}} ايام
+                    </p>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <p class=" fs-14  my-0  fw-bolder">اعتباراً من :
+                    </p>
+                    <p class="fw-semibold fs-14 px-3 my-0 pt-2"> {{oneTask.fromDate | date : 'dd/MM/yyyy'}}</p>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <p class="  fs-14 my-0   fw-bolder"> حتى تاريخ :
+                    </p>
+                    <p class="fw-semibold fs-14 px-3 my-0 pt-2">{{oneTask.toDate | date : 'dd/MM/yyyy'}}</p>
+                </div>
+            </div>
+
+            <div class="task-details my-0 ">
+                <p class=" mx-auto fs-14  mb-1 fw-bolder"> بيان المهمة :
+                </p>
+                <p class="text-muted fs-12 fw-bold px-sm-5 ">
+                    هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،
+                    حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
+                    التطبيق.
+                </p>
+                <!-- <p *ngIf="oneTask.details" class="text-muted fs-12 fw-bold px-sm-5 "> {{oneTask.details}}</p>
+                <p *ngIf=" oneTask.details == null " class="text-muted fs-12 fw-bold px-sm-5 "> غير متوفر </p> -->
+            </div>
+
+
+
+            <p class="fs-6 mx-0 py-1  mb-2 bg-secondary-subtle text-center"> تكاليف المهمة </p>
+            <div class="col-md-12 mb-3">
+                <div class="d-flex align-items-center">
+                    <p class="   fs-14 mb-0  fw-bolder">سلفة مصاريف بمبلغ :
+                    </p>
+                    <p *ngIf="oneTask.cost" class="fw-semibold fs-14 mb-0 pt-2 px-3"> {{oneTask.cost}}</p>
+                    <p *ngIf=" oneTask.cost == null " class="fw-semibold fs-14 px-2 pt-2 mb-0"> لا توجد سلفة مصاريف</p>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <p class="   fs-14 mb-0 fw-bolder">تذكرة سفر خط سير :
+                    </p>
+                    <p *ngIf="oneTask.travelTicket != 'null' && oneTask.travelTicket "
+                        class="fw-semibold px-3  fs-14 mb-0 pt-2">
+                        {{oneTask.travelTicket}}</p>
+                    <p *ngIf=" ( oneTask.travelTicket == null || oneTask.travelTicket == 'null' )  "
+                        class="fw-semibold px-2 fs-14  mb-0 pt-2">
+                        لا توجد تذكرة سفر</p>
+                </div>
+                <div class="d-flex align-items-center">
+                    <p class="  fs-14 mb-0 fw-bolder "> التأشيرات :
+                    </p>
+                    <p *ngFor="let visa of visasArray " class="fw-semibold mb-0 fs-14 pt-2  px-3 border"> {{visa}} </p>
+                    <p *ngIf=" visasArray.length == 0 " class="fw-semibold mb-0 fs-14 pt-2  px-2"> لا توجد تأشيرات</p>
+                </div>
+            </div>
+            <p class="fs-6  mx-0 py-1  mb-3 bg-secondary-subtle text-center"> قرار الادارة </p>
+            <div class="row mb-3">
+                <div class="col-md-12 mb-1">
+                    <div class="d-flex align-items-center">
+                        <p class="fw-bolder my-0 fs-14 ">السيد /
+                        </p>
+                        <p *ngIf="currentLang == 'ar'" class="fw-semibold my-0 fs-14 pt-1 px-2"> محمود عبد الله
+                            عبدالكريم </p>
+                        <!-- <p *ngIf="currentLang == 'ar'" class="fw-semibold my-0 fs-14 pt-1 px-2"> {{nameAr}} </p>
+                        <p *ngIf="currentLang == 'en'" class="fw-light  my-0 fs-14 pt-1  px-2"> {{nameEN}} </p> -->
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <p class="fw-bolder fs-14 my-0 ">رقم التعريف :
+                        </p>
+                        <p class="fw-bold my-0  fs-14 pt-2  px-2">1305</p>
+                        <!-- <p class="fw-bold my-0  fs-14 pt-2  px-2">{{empId}}</p> -->
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <p class="fw-bolder fs-14 my-0">اليوم الموافق :
+                        </p>
+                        <p class="fw-normal my-0  fs-14 px-2 ">30/7/2024</p>
+                        <!-- <p class="fw-normal my-0  fs-14 ">تاريخ قبول او رفض الطلب</p> -->
+                    </div>
+                </div>
+                <hr>
+                <div class="col-md-12 py-0">
+                    <div class=" d-flex align-items-center flex-wrap">
+
+                        <div class="d-flex justify-content-center align-items-center py-0">
+                            <span class=" fs-14  font-14-mobile my-0 py-1 fw-bolder  d-inline-block">
+                                قرأت بعناية كافة التفاصيل الخاصة بالمهمة
+                            </span>
+                            <input checked id="ivReadAll" type="checkbox"
+                                class="form-check-input form-check form-check-inline mx-2 ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100">
+                    <label for="decisionDetails" class=" fs-14 font-14-mobile fw-bolder">
+                        ملاحظات :
+                    </label>
+                    <p class="text-muted fs-12 fw-bold px-sm-5 ">
+                        هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،
+                        حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
+                        التطبيق.
+                    </p>
+                </div>
+                <div class="w-100 px-5 py-0 my-0 ">
+                    <hr>
+                </div>
+
+
+                <div class="w-100   d-flex ">
+                    <div class="w-50 full-flex align-items-center    h-100">
+                        <p *ngIf="oneTask.approveStatus=='Approved'" class=" my-0 fs-4"> تم قبول الطلب </p>
+                        <p *ngIf="oneTask.approveStatus=='NotApproved'" class=" my-0 fs-4"> تم رفض الطلب </p>
+                    </div>
+                    <div class="w-25 me-auto">
+                        <img *ngIf="oneTask.approveStatus=='Approved'" src="./assets/images/non-compressed/approved.webp" class="w-100" alt="">
+                        <img *ngIf="oneTask.approveStatus=='NotApproved'" src="./assets/images/non-compressed/rejected.webp" class="w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

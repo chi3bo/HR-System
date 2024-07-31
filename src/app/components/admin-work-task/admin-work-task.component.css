@@ -17,10 +17,13 @@
     max-height: 100px;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .submit-Button {
-    margin-inline: 10px;
-
     position: relative;
     overflow: hidden;
     background: linear-gradient(90deg, #1B2E35 50%, #00da53 70%);
@@ -37,7 +40,6 @@
 
 
 .reject-Button {
-    margin-inline: 10px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(90deg, #ffee00 50%, #ff2819 70%);
@@ -75,4 +77,21 @@
     &:hover {
         color: #000000;
     }
+}
+
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+
+@media print {
+    @page {
+        margin: 0;
+    }
+
 }
