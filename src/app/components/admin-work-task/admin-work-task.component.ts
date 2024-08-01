@@ -122,11 +122,11 @@ export class AdminWorkTaskComponent implements OnInit {
 
   confirmSuccsesAlert(abrovment: any) {
     Swal.fire({
-      title: abrovment ? 'تمت الموافقة' : 'تم ارسال الرفض ',
-      text: abrovment ? 'تم قبول طلب المهمة بنجاح' : 'تم رفض طلب المهمة بنجاح ',
+      title: abrovment ? (this.currentLang == 'ar' ? 'تمت الموافقة' : 'Approved') : (this.currentLang == 'ar' ? 'تم ارسال الرفض' : 'Rejection sent'),
+      text: abrovment ? (this.currentLang == 'ar' ? 'تم قبول طلب المهمة بنجاح' : 'request has been accepted successfully') : (this.currentLang == 'ar' ? 'تم رفض طلب المهمة بنجاح ' : 'request has been rejected successfully'),
       icon: abrovment ? 'success' : "info",
       confirmButtonColor: '#1a3036',
-      confirmButtonText: 'موافق',
+      confirmButtonText: this.currentLang == 'ar' ? 'موافق' : 'ok',
       customClass: {
         confirmButton: 'btn btn-dark p-3 px-4 mx-0 btn-on-mobile rounded-3 text-white '
       },
@@ -137,10 +137,10 @@ export class AdminWorkTaskComponent implements OnInit {
 
   failedAlert() {
     Swal.fire({
-      title: 'خطأ !',
-      text: 'ربما يكون هناك خطأ برجاء المحاولة لاحقا',
+      title: this.currentLang == 'ar' ? 'خطأ !' : 'Error',
+      text: this.currentLang == 'ar' ? 'ربما يكون هناك خطأ برجاء المحاولة لاحقا' : 'There may be an error, please try again later',
       icon: 'error',
-      confirmButtonText: "موافق",
+      confirmButtonText: this.currentLang == 'ar' ? 'موافق' : 'ok',
       confirmButtonColor: '#1a3036'
     });
   }

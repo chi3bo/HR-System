@@ -14,12 +14,14 @@ body {
     font-style: normal;
     /* background-position: center; */
 }
+
 .full-flex {
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
+
 .englishBody {
     font-family: "Be Vietnam Pro", sans-serif !important;
     font-weight: 700 !important;
@@ -41,9 +43,10 @@ body {
 }
 
 
-.download-button{
-    text-decoration: underline ;
+.download-button {
+    text-decoration: underline;
 }
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -72,6 +75,8 @@ body {
         scale: 1.05;
     }
 }
+
+
 
 .arabicList {
     direction: rtl;
@@ -316,7 +321,7 @@ body {
 
 /* ==============  animate order   ===================== */
 
-.loading-text{
+.loading-text {
     font-size: 30px;
     color: rgb(255, 255, 255);
     /* filter: drop-shadow( white 0 0 2px); */
@@ -339,6 +344,13 @@ body {
 }
 
 /* =====================    end  animation of sections       ===================  */
+.hover-scale {
+    transition: all .4s;
+}
+
+.hover-scale:hover {
+    scale: 1.03;
+}
 
 
 
@@ -359,8 +371,7 @@ body {
     }
 
     .ordersButton {
-        font-size: 14px !important;
-        height: 35px;
+        font-size: 12px !important;
     }
 
     .bg-confirmed {
@@ -515,6 +526,10 @@ body {
         font-size: 14px !important;
     }
 
+    .p-3-mobile {
+        padding-inline: 30px !important;
+    }
+
     .hide-on-mobile {
         display: none;
     }
@@ -539,7 +554,7 @@ body {
     /* ============= end   useful mobile media query classes   */
 
     .ordersButton {
-        font-size: 12px !important;
+        font-size: 10px !important;
         padding: 7px 7px !important;
     }
 

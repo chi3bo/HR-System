@@ -12,6 +12,11 @@
     opacity: 1;
 }
 
+.ordersButton{
+    font-size: 13px !important;
+}
+
+
 @media screen and (max-width:576px) {
     .vacationBtn-mobile{
         font-size: 10px !important;

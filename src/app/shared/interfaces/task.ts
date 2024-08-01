@@ -32,14 +32,18 @@ export interface empOrderTaskInterface {
         duration: number
         fromDate: string
         toDate: string
-        details: any
-        cost: any
-        travelTicket: any
-        visas: any
+        details: string
+        cost: number
+        travelTicket: string
+        visas: string
         createDate: string
         approveStatus: string
-        approveDetails: any
-        uploadFileId: any
+        approveDetails: string
+        uploadFileId: string
+        approveById: string
+        approveByNameAr: string
+        approveByNameEn: string
+        approveDate: string
 }
 
 

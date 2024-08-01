@@ -45,7 +45,6 @@
     border-bottom: solid transparent 3px;
     border-top: solid transparent 3px;
     border-radius: 2px;
-    position: relative;
     transition: all .2s;
 }
 

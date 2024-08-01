@@ -3,6 +3,7 @@ import { FormBuilder, FormControlOptions, FormGroup, Validators } from '@angular
 import { Router } from '@angular/router';
 import { TaskService } from './../../shared/services/task.service';
 import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./request-work-task.component.css']
 })
 export class RequestWorkTaskComponent {
-  constructor(private _FormBuilder: FormBuilder, private _router: Router, private _TaskService: TaskService) { }
+  constructor(private _FormBuilder: FormBuilder, private _router: Router, private _TaskService: TaskService , private _TranslateService:TranslateService) { }
   todayDate: any = new Date().toISOString().split('T')[0]
   nameAr: any = localStorage.getItem('employeeNameAR')
   nameEN: any = localStorage.getItem('employeeNameEN')
@@ -57,6 +58,11 @@ export class RequestWorkTaskComponent {
   get taskDetailsInput() {
     return this.taskForm.get('taskDetails')
   }
+
+  get currentLang() {
+    return this._TranslateService.currentLang
+  }
+
   setMissionRequest() {
     let data: FormData = new FormData()
     data.append('Kind', this.taskTypeInput?.value)
@@ -64,6 +70,7 @@ export class RequestWorkTaskComponent {
     data.append('Duration', this.taskDurationInput?.value)
     data.append('FromDate', this.startingDateInput?.value)
     data.append('ToDate', this.EndingDateInput?.value)
+    data.append('Details', this.taskDetailsInput?.value)
     data.append('Cost', this.taskForm.get('TaskLoan')?.value)
     data.append('TravelTicket', this.taskForm.get('tickit')?.value)
     data.append('Visas', this.getAllVisas())
@@ -166,13 +173,13 @@ export class RequestWorkTaskComponent {
 
   succsesAlert() {
     Swal.fire({
-      title: 'تم ارسال الطلب بنجاح',
-      text: 'يمكنك تفقد حالة الطلب من قسم طلباتي ',
+      title: this.currentLang == 'ar' ? 'تم ارسال الطلب بنجاح' : 'request has been sent successfully',
+      text: this.currentLang == 'ar' ? 'يمكنك تفقد حالة الطلب من قسم طلباتي ' : 'check the status of the request in the Requests section',
       icon: 'success',
       confirmButtonColor: '#5ae3a7',
-      confirmButtonText: 'طلباتي',
+      confirmButtonText:this.currentLang == 'ar' ? 'طلباتي' : 'Requests',
       showCancelButton: true,
-      cancelButtonText: 'الرئيسية',
+      cancelButtonText:this.currentLang == 'ar' ? 'الرئيسية' : 'Home',
       cancelButtonColor: '#1a3036',
       didOpen: () => {
         setTimeout(() => {
@@ -197,13 +204,13 @@ export class RequestWorkTaskComponent {
     })
   }
 
-  failedAlert(){
+  failedAlert() {
     Swal.fire({
-      title: 'خطأ !',
-      text: 'ربما يكون هناك خطأ برجاء المحاولة لاحقا',
+      title: this.currentLang == 'ar' ? 'خطأ !' : 'Error',
+      text: this.currentLang == 'ar' ? 'ربما يكون هناك خطأ برجاء المحاولة لاحقا' : 'There may be an error, please try again later',
       icon: 'error',
-      confirmButtonText: "موافق",
-      confirmButtonColor : '#1a3036'
+      confirmButtonText: this.currentLang == 'ar' ? 'موافق' : 'ok',
+      confirmButtonColor: '#1a3036'
     });
   }
 }
