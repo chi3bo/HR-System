@@ -12,7 +12,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./request-work-task.component.css']
 })
 export class RequestWorkTaskComponent {
-  constructor(private _FormBuilder: FormBuilder, private _router: Router, private _TaskService: TaskService , private _TranslateService:TranslateService) { }
+  constructor(private _FormBuilder: FormBuilder, private _router: Router, private _TaskService: TaskService, private _TranslateService: TranslateService) { }
+  pageOpenOne: boolean = false
   todayDate: any = new Date().toISOString().split('T')[0]
   nameAr: any = localStorage.getItem('employeeNameAR')
   nameEN: any = localStorage.getItem('employeeNameEN')
@@ -22,7 +23,7 @@ export class RequestWorkTaskComponent {
   page1: boolean = true
   page2: boolean = false
   moreVisa: boolean = false
-  loadButton:boolean = false
+  loadButton: boolean = false
   // ==============   end flags   =================
 
   taskForm: FormGroup = this._FormBuilder.group({
@@ -93,6 +94,7 @@ export class RequestWorkTaskComponent {
   // ==================  end  request prepare ==================
 
   ngOnInit(): void {
+    setTimeout(() => { this.pageOpenOne = true }, 100);
     this._TaskService.getBasicData().subscribe({
       next: (Response) => {
         this.nameAr = Response.nameAr
@@ -177,9 +179,9 @@ export class RequestWorkTaskComponent {
       text: this.currentLang == 'ar' ? 'يمكنك تفقد حالة الطلب من قسم طلباتي ' : 'check the status of the request in the Requests section',
       icon: 'success',
       confirmButtonColor: '#5ae3a7',
-      confirmButtonText:this.currentLang == 'ar' ? 'طلباتي' : 'Requests',
+      confirmButtonText: this.currentLang == 'ar' ? 'طلباتي' : 'Requests',
       showCancelButton: true,
-      cancelButtonText:this.currentLang == 'ar' ? 'الرئيسية' : 'Home',
+      cancelButtonText: this.currentLang == 'ar' ? 'الرئيسية' : 'Home',
       cancelButtonColor: '#1a3036',
       didOpen: () => {
         setTimeout(() => {
