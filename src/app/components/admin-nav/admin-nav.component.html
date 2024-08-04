@@ -27,15 +27,17 @@
                     <li class="nav-item dropdown mx-2">
                         <span class="nav-link d-flex justify-content-center align-items-center" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            الطلبات<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
+                            {{ 'admin_nav.الطلبات' | translate }}
+                            <i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
                         </span>
                         <ul class="dropdown-menu text-center">
-                            <li><a class="dropdown-item " routerLink="admin-vacation">طلبات الاجازة</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-loan">طلبات السلفة</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-assets">طلبات العهدة</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-permissions">طلبات الاذن</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-letters"> الخطابات</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-worktask">مهمة عمل</a></li>
+
+                            <li><a class="dropdown-item " routerLink="admin-vacation">{{ 'admin_nav.طلبات_الاجازات' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-loan">{{ 'admin_nav.طلبات_السلفة' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-assets">{{ 'admin_nav.طلبات_العهدة' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-permissions">{{ 'admin_nav.طلبات_الاذن' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-letters"> {{ 'admin_nav.الخطابات' | translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-worktask">{{ 'admin_nav.مهمة_عمل' | translate }}</a></li>
                         </ul>
                     </li>
 
@@ -155,15 +157,16 @@
                 <li class="nav-item dropdown w-75 px-3 text-center mx-auto z-3">
                     <span class="nav-link d-flex justify-content-center align-items-center {{ 'direction' | translate}}"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        الطلبات<i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
+                        {{ 'admin_nav.الطلبات' | translate }}
+                        <i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
                     </span>
                     <ul class="dropdown-menu sidedown text-center">
-                            <li class="text-centerw-100 px-0"><span class="dropdown-item px-5" routerLink="admin-vacation">طلبات الاجازة</span></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-loan">طلبات السلفة</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-assets">طلبات العهدة</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-permissions">طلبات الاذن</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-letters"> الخطابات</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-worktask">مهمة عمل</a></li>
+                            <li class="text-centerw-100 px-0"><span class="dropdown-item px-5" routerLink="admin-vacation">{{ 'admin_nav.طلبات_الاجازات' | translate }}</span></li>
+                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-loan">{{ 'admin_nav.طلبات_السلفة' | translate }}</a></li>
+                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-assets">{{ 'admin_nav.طلبات_العهدة' | translate }}</a></li>
+                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-permissions">{{ 'admin_nav.طلبات_الاذن' | translate }}</a></li>
+                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-letters"> {{ 'admin_nav.الخطابات' | translate }}</a></li>
+                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-worktask">{{ 'admin_nav.مهمة_عمل' | translate }}</a></li>
                         </ul>
                 </li>
 

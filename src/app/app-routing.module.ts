@@ -37,6 +37,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmpWorkTaskComponent } from './components/emp-work-task/emp-work-task.component';
 import { RequestWorkTaskComponent } from './components/request-work-task/request-work-task.component';
 import { AdminWorkTaskComponent } from './components/admin-work-task/admin-work-task.component';
+import { EmpUpdateComponent } from './components/emp-update/emp-update.component';
 
 const routes: Routes = [
 
@@ -90,6 +91,7 @@ const routes: Routes = [
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
       { path: 'admin-worktask', component: AdminWorkTaskComponent, title: 'work Task orders' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
+      { path: 'employee-update', component: EmpUpdateComponent, title: 'employee Update' },
       { path: 'admin-dashboard', component: DashboardComponent, title: 'dashboard' },
       { path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet' ,children:[
         { path: 'display', component: DisplayTimesheetComponent, title: 'display' },

@@ -1,0 +1,90 @@
+<section>
+    <form [formGroup]="searchingForm" class="w-100">
+        <div class=" w-100 rounded text-center py-3 full-flex  flex-column row mx-0 ">
+            <div class="full-flex col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 px-0  position-relative">
+                <div class="input-group my-1 ">
+                    <input type="search" formControlName="searchInput" class="form-control" placeholder="Username"
+                        aria-label="Username" aria-describedby="basic-addon1">
+                    <span class="input-group-text bg-primary border-2 border-start-0 border-primary px-3"
+                        id="basic-addon1">
+                        <i class="fa-solid fa-magnifying-glass text-white fa-1x"></i>
+                    </span>
+                </div>
+                <div *ngIf="employeeList.length > 0 && isValue"
+                    class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee">
+                    <div *ngFor="let employee of employeeList"
+                        class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative">
+                        {{employee.nameAr}}
+                        <span class="px-2 position-absolute start-0 ps-3 fw-light small"> {{employee.employeeId}} - </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+    <div class="w-100 py-5 px-2">
+        <div class=" rounded-2 bg-body-tertiary ">
+            <table class=" w-100">
+                <tbody>
+                    <tr class="row w-100">
+                        <td class=" col-3 py-1 text-center  align-content-center">
+                            <p class="my-0 ps-sm-5 fw-light ">Full Name : </p>
+                        </td>
+                        <td class=" col-6 py-1">
+                            <input type="text" value="محمود عبد الكريم" class="form-control ">
+                        </td>
+                        <td class=" col-3 py-1 ">
+                            <span></span>
+                        </td>
+                    </tr>
+                    <tr class="row w-100">
+                        <td class=" col-3 py-1 text-center align-content-center">
+                            <p class="my-0 ps-sm-5 fw-light ">Jop title  : </p>
+                        </td>
+                        <td class=" col-6 py-1">
+                            <input type="text" value="مبرمج حاسب الي" class="form-control ">
+                        </td>
+                        <td class=" col-3 py-1">
+                            <span></span>
+                        </td>
+                    </tr>
+                    <tr class="row w-100">
+                        <td class=" col-3 py-1 text-center align-content-center">
+                            <p class="my-0 ps-sm-5 fw-light ">Company : </p>
+                        </td>
+                        <td class=" col-6 py-1 ">
+                            <input type="text" value=" الشركة السعودية لألواح الفورميكا " class="form-control ">
+                        </td>
+                        <td class=" col-3 py-1 ">
+                            <span>sdasd</span>
+                        </td>
+                    </tr>
+                    <tr class="row w-100">
+                        <td class="col-3 py-1 text-center align-content-center">
+                            <p class="my-0 ps-sm-5 fw-light ">الادارة : </p>
+                        </td>
+                        <td class="col-6 py-1">
+                            <input type="text" value="تكنولوجيا المعلومات" class="form-control ">
+                        </td>
+                        <td class="col-3 py-1">
+                            <span></span>
+                        </td>
+                    </tr>
+                    <tr class="row w-100">
+                        <td class=" col-3 py-1 text-center align-content-center">
+                            <p class="my-0 ps-sm-5 fw-light "> الفرع : </p>
+                        </td>
+                        <td class=" col-6 py-1">
+                            <input type="text" value="فرع الدمام" class="form-control ">
+                        </td>
+                        <td class=" col-3 py-1">
+                            <span></span>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

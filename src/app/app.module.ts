@@ -60,6 +60,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { EmpWorkTaskComponent } from "./components/emp-work-task/emp-work-task.component";
 import { AdminWorkTaskComponent } from "./components/admin-work-task/admin-work-task.component";
 import { RequestWorkTaskComponent } from './components/request-work-task/request-work-task.component';
+import { EmpUpdateComponent } from './components/emp-update/emp-update.component';
 
 
 
@@ -117,7 +118,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DashboardComponent,
     EmpWorkTaskComponent,
     AdminWorkTaskComponent,
-    RequestWorkTaskComponent
+    RequestWorkTaskComponent,
+    EmpUpdateComponent
   ],
   imports: [
     BrowserModule,
