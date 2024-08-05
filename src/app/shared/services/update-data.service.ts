@@ -19,5 +19,9 @@ export class UpdateDataService {
     return this._HttpClient.get(`https://hrapp.runasp.net/Api/Employee/GetSearch?searchKey=${searchKey}`, this.setHeadrs())
   }
 
+  getEmpFullData(id: any): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/Dashboard/GetEmployeeTreeById?employeeId=${id}`,'', this.setHeadrs())
+  }
+
 
 }
