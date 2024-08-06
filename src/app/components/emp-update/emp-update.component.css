@@ -41,3 +41,26 @@
 .save-Button {
     display: none;
 }
+
+
+
+.sections{
+position: fixed;
+height: 100vh;
+left: 0;
+top: 0;
+
+}
+
+.fakeHeight{
+    height: 90px !important;
+}
+
+.sections-Hover{
+    transition: all .1s;
+
+    &:hover {
+        background-color:#fff;
+        color:  #0d6efd;
+    }
+}

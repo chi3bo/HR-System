@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router, Event } from '@angular/router';
 import { debounceTime } from 'rxjs';
@@ -12,7 +12,7 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./emp-update.component.css']
 })
 export class EmpUpdateComponent implements OnInit {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
 
   searchingForm: FormGroup = this._FormBuilder.group({
     searchInput: [null]
@@ -31,6 +31,7 @@ export class EmpUpdateComponent implements OnInit {
   employeeList: oneEmployee[] = []
   oneEmplyee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
+  showData:boolean = false
 
 
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class EmpUpdateComponent implements OnInit {
         console.log(value, 'there is value');
         this.searchEmp(value)
         this.showList = true
+        this.showData = false
       }
       else {
         console.log(value, 'there is no value');
@@ -69,6 +71,8 @@ export class EmpUpdateComponent implements OnInit {
         console.log(data);
         this.oneEmplyee = data
         this.showList = false
+        this.showData= true
+        
       },
       error: (err) => {
         console.log(err);
@@ -78,17 +82,25 @@ export class EmpUpdateComponent implements OnInit {
 
   editSingleRow(element: any, target: any) {
     let x = this.employeeData.get(element)?.enable()
+
     const button = target as HTMLElement
     let updateButton = button.parentElement?.children[0] as HTMLElement
     let saveButton = button.parentElement?.children[1] as HTMLElement
     let cancelButton = button.parentElement?.children[2] as HTMLElement
+
     updateButton.style.display = 'none'
     saveButton.style.display = 'flex'
     cancelButton.style.display = 'flex'
   }
 
-  closeEdittingInput(element: any , target: any ) {
-    let x = this.employeeData.get(element)?.disable()
+  closeEdittingInput(formCntrolName: any, target: any, originalValue: any, action: string) {
+    let input = this.employeeData.get(formCntrolName)
+
+    action == 'cancel' ? input?.setValue(originalValue) : ''
+
+    input?.disable()
+    // input?.value != originalValue ? this._Renderer2.addClass(input , 'is-valid') : '' مش هينفع عشان ده فورم كنترول وليس انبوت
+
     const button = target as HTMLElement
     let updateButton = button.parentElement?.children[0] as HTMLElement
     let saveButton = button.parentElement?.children[1] as HTMLElement
@@ -96,7 +108,9 @@ export class EmpUpdateComponent implements OnInit {
     updateButton.style.display = 'flex'
     saveButton.style.display = 'none'
     cancelButton.style.display = 'none'
+
   }
+
 
 
 }

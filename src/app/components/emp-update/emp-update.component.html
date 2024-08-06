@@ -24,17 +24,35 @@
         </div>
     </form>
 
-    <div class="w-100 py-5 px-2" [formGroup]="employeeData">
-        <div class=" rounded-2 bg-body-tertiary ">
-            <table class=" w-100">
+    <div class="w-100 py-5 px-2 row mx-0" [formGroup]="employeeData">
+        <div class="col-md-2 bg-primary text-white sections">
+
+            <div class="fakeHeight"></div>
+            <div>
+                <p class="fs-3 text-center my-3">الاقسام</p>
+            </div>
+
+            <div class="text-start  fw-semibold">
+                <p class="sections-Hover my-0 py-2 ps-4 rounded">معلومات شخصية</p>
+                <p class="sections-Hover my-0 py-2 ps-4 rounded " > الوثائق </p>
+                <p class="sections-Hover my-0 py-2 ps-4 rounded " > مستندات </p>
+                <p class="sections-Hover my-0 py-2 ps-4 rounded " > معلومات الراتب  </p>
+                <p class="sections-Hover my-0 py-2 ps-4 rounded " >معلومات التأمينات </p>
+                <p class="sections-Hover my-0 py-2 ps-4 rounded " > معلومات اخرى </p>
+            </div>
+
+        </div>
+        <div class="col-md-2 fake-col"></div>
+        <div class="col-md-10 rounded-2 ">
+            <table class=" w-100 "  [ngClass]="{ 'd-none' : !showData }">
                 <tbody>
 
 
                     <tr class="row w-100">
-                        <td class=" col-3 py-1 text-center  align-content-center">
+                        <td class=" col-2 py-1 text-center  align-content-center">
                             <p class="my-0 ps-sm-5 fw-light ">Full Name : </p>
                         </td>
-                        <td class=" col-6 py-1">
+                        <td class=" col-7 py-1">
                             <input formControlName="empName" type="text" [value]=" oneEmplyee.employeeNameAr "
                                 class="form-control">
                         </td>
@@ -46,11 +64,13 @@
                                 تعديل
                             </button>
                             <button
+                                (click)="closeEdittingInput('empName' , empName ,  oneEmplyee.employeeNameAr , 'cancel')"
                                 class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-xmark "></i>
                                 <span class="px-1 "> الغاء </span>
                             </button>
-                            <button (click)="closeEdittingInput('empName' , empName)"
+                            <button
+                                (click)="closeEdittingInput('empName' , empName ,  oneEmplyee.employeeNameAr , 'save')"
                                 class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-user-check "></i>
                                 <span class="px-1 "> حفظ </span>
@@ -59,14 +79,11 @@
                         </td>
                     </tr>
 
-
-
-
                     <tr class="row w-100">
-                        <td class=" col-3 py-1 text-center align-content-center">
+                        <td class=" col-2 py-1 text-center align-content-center">
                             <p class="my-0 ps-sm-5 fw-light ">Jop title : </p>
                         </td>
-                        <td class=" col-6 py-1">
+                        <td class=" col-7 py-1">
                             <input formControlName="empJob" #jobInput type="text" [value]=" oneEmplyee.jobNameAr "
                                 class="form-control ">
                         </td>
@@ -77,12 +94,12 @@
                                 <i class="fa-regular fa-pen-to-square px-1"></i>
                                 تعديل
                             </button>
-                            <button
+                            <button (click)="closeEdittingInput('empJob' , empJob ,  oneEmplyee.jobNameAr , 'cancel')"
                                 class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-xmark "></i>
                                 <span class="px-1 "> الغاء </span>
                             </button>
-                            <button (click)="closeEdittingInput('empJob' , empJob)"
+                            <button (click)="closeEdittingInput('empJob' , empJob ,  oneEmplyee.jobNameAr , 'save')"
                                 class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-user-check "></i>
                                 <span class="px-1 "> حفظ </span>
@@ -90,11 +107,12 @@
 
                         </td>
                     </tr>
+
                     <tr class="row w-100">
-                        <td class=" col-3 py-1 text-center align-content-center">
+                        <td class=" col-2 py-1 text-center align-content-center">
                             <p class="my-0 ps-sm-5 fw-light ">Company : </p>
                         </td>
-                        <td class=" col-6 py-1 ">
+                        <td class=" col-7 py-1 ">
                             <input formControlName="empCompany" type="text" [value]=" oneEmplyee.companyNameAr "
                                 class="form-control ">
                         </td>
@@ -106,11 +124,13 @@
                                 تعديل
                             </button>
                             <button
+                                (click)="closeEdittingInput('empCompany' , empCompany ,  oneEmplyee.companyNameAr , 'cancel')"
                                 class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-xmark "></i>
                                 <span class="px-1 "> الغاء </span>
                             </button>
-                            <button (click)="closeEdittingInput('empCompany' ,empCompany)"
+                            <button
+                                (click)="closeEdittingInput('empCompany' , empCompany ,  oneEmplyee.companyNameAr , 'save')"
                                 class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-user-check "></i>
                                 <span class="px-1 "> حفظ </span>
@@ -118,12 +138,14 @@
 
                         </td>
                     </tr>
+
                     <tr class="row w-100">
-                        <td class="col-3 py-1 text-center align-content-center">
+                        <td class="col-2 py-1 text-center align-content-center">
                             <p class="my-0 ps-sm-5 fw-light ">الادارة : </p>
                         </td>
-                        <td class="col-6 py-1">
-                            <input formControlName="empManage" type="text" [value]=" oneEmplyee.manageNameAr " class="form-control ">
+                        <td class="col-7 py-1">
+                            <input formControlName="empManage" type="text" [value]=" oneEmplyee.manageNameAr "
+                                class="form-control ">
                         </td>
                         <td class=" col-3 py-1  align-content-center  px-0 d-flex">
 
@@ -133,11 +155,13 @@
                                 تعديل
                             </button>
                             <button
+                                (click)="closeEdittingInput('empManage' , empManage ,  oneEmplyee.manageNameAr , 'cancel')"
                                 class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-xmark "></i>
                                 <span class="px-1 "> الغاء </span>
                             </button>
-                            <button  (click)="closeEdittingInput('empManage' , empManage)"
+                            <button
+                                (click)="closeEdittingInput('empManage' , empManage ,  oneEmplyee.manageNameAr , 'save')"
                                 class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-user-check "></i>
                                 <span class="px-1 "> حفظ </span>
@@ -145,12 +169,15 @@
 
                         </td>
                     </tr>
+
                     <tr class="row w-100">
-                        <td class=" col-3 py-1 text-center align-content-center">
+                        <td class=" col-2 py-1 text-center align-content-center">
                             <p class="my-0 ps-sm-5 fw-light "> الفرع : </p>
                         </td>
-                        <td class=" col-6 py-1">
-                            <input formControlName="empBranch" type="text" [value]=" oneEmplyee.branchNameAr " class="form-control ">
+                        <td class=" col-7 py-1">
+                            <input #branchInput formControlName="empBranch" type="text"
+                                [value]=" oneEmplyee.branchNameAr " class="form-control "
+                                [ngClass]="{ 'is-valid' : oneEmplyee.branchNameAr != branchInput.value }">
                         </td>
                         <td class=" col-3 py-1  align-content-center  px-0 d-flex">
 
@@ -160,12 +187,14 @@
                                 تعديل
                             </button>
                             <button
+                                (click)="closeEdittingInput('empBranch' , empBranch ,  oneEmplyee.branchNameAr , 'cancel')"
                                 class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                                 <i class="fa-solid fa-xmark "></i>
                                 <span class="px-1 "> الغاء </span>
                             </button>
-                            <button  (click)="closeEdittingInput('empBranch' , empBranch)"
-                                class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                            <button
+                                (click)="closeEdittingInput('empBranch' , empBranch ,  oneEmplyee.branchNameAr , 'save')"
+                                class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center ">
                                 <i class="fa-solid fa-user-check "></i>
                                 <span class="px-1 "> حفظ </span>
                             </button>
