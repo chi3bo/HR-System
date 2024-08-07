@@ -24,7 +24,7 @@
         </div>
     </form>
 
-    <div class="w-100 py-5 px-2 row mx-0" [formGroup]="employeeData">
+    <div class="w-100 py-5 px-2 row mx-0" >
         <div class="col-md-2 bg-primary text-white sections">
 
             <div class="fakeHeight"></div>
@@ -43,167 +43,11 @@
 
         </div>
         <div class="col-md-2 fake-col"></div>
+        
         <div class="col-md-10 rounded-2 ">
-            <table class=" w-100 "  [ngClass]="{ 'd-none' : !showData }">
-                <tbody>
-
-
-                    <tr class="row w-100">
-                        <td class=" col-2 py-1 text-center  align-content-center">
-                            <p class="my-0 ps-sm-5 fw-light ">Full Name : </p>
-                        </td>
-                        <td class=" col-7 py-1">
-                            <input formControlName="empName" type="text" [value]=" oneEmplyee.employeeNameAr "
-                                class="form-control">
-                        </td>
-                        <td class=" col-3 py-1  align-content-center  px-0 d-flex">
-
-                            <button #empName (click)="editSingleRow('empName' , empName)"
-                                class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                                <i class="fa-regular fa-pen-to-square px-1"></i>
-                                تعديل
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empName' , empName ,  oneEmplyee.employeeNameAr , 'cancel')"
-                                class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-xmark "></i>
-                                <span class="px-1 "> الغاء </span>
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empName' , empName ,  oneEmplyee.employeeNameAr , 'save')"
-                                class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-user-check "></i>
-                                <span class="px-1 "> حفظ </span>
-                            </button>
-
-                        </td>
-                    </tr>
-
-                    <tr class="row w-100">
-                        <td class=" col-2 py-1 text-center align-content-center">
-                            <p class="my-0 ps-sm-5 fw-light ">Jop title : </p>
-                        </td>
-                        <td class=" col-7 py-1">
-                            <input formControlName="empJob" #jobInput type="text" [value]=" oneEmplyee.jobNameAr "
-                                class="form-control ">
-                        </td>
-                        <td class=" col-3 py-1  align-content-center  px-0 d-flex">
-
-                            <button #empJob (click)="editSingleRow('empJob' , empJob)"
-                                class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                                <i class="fa-regular fa-pen-to-square px-1"></i>
-                                تعديل
-                            </button>
-                            <button (click)="closeEdittingInput('empJob' , empJob ,  oneEmplyee.jobNameAr , 'cancel')"
-                                class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-xmark "></i>
-                                <span class="px-1 "> الغاء </span>
-                            </button>
-                            <button (click)="closeEdittingInput('empJob' , empJob ,  oneEmplyee.jobNameAr , 'save')"
-                                class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-user-check "></i>
-                                <span class="px-1 "> حفظ </span>
-                            </button>
-
-                        </td>
-                    </tr>
-
-                    <tr class="row w-100">
-                        <td class=" col-2 py-1 text-center align-content-center">
-                            <p class="my-0 ps-sm-5 fw-light ">Company : </p>
-                        </td>
-                        <td class=" col-7 py-1 ">
-                            <input formControlName="empCompany" type="text" [value]=" oneEmplyee.companyNameAr "
-                                class="form-control ">
-                        </td>
-                        <td class=" col-3 py-1  align-content-center  px-0 d-flex">
-
-                            <button #empCompany (click)="editSingleRow('empCompany' , empCompany)"
-                                class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                                <i class="fa-regular fa-pen-to-square px-1"></i>
-                                تعديل
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empCompany' , empCompany ,  oneEmplyee.companyNameAr , 'cancel')"
-                                class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-xmark "></i>
-                                <span class="px-1 "> الغاء </span>
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empCompany' , empCompany ,  oneEmplyee.companyNameAr , 'save')"
-                                class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-user-check "></i>
-                                <span class="px-1 "> حفظ </span>
-                            </button>
-
-                        </td>
-                    </tr>
-
-                    <tr class="row w-100">
-                        <td class="col-2 py-1 text-center align-content-center">
-                            <p class="my-0 ps-sm-5 fw-light ">الادارة : </p>
-                        </td>
-                        <td class="col-7 py-1">
-                            <input formControlName="empManage" type="text" [value]=" oneEmplyee.manageNameAr "
-                                class="form-control ">
-                        </td>
-                        <td class=" col-3 py-1  align-content-center  px-0 d-flex">
-
-                            <button #empManage (click)="editSingleRow('empManage' , empManage)"
-                                class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                                <i class="fa-regular fa-pen-to-square px-1"></i>
-                                تعديل
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empManage' , empManage ,  oneEmplyee.manageNameAr , 'cancel')"
-                                class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-xmark "></i>
-                                <span class="px-1 "> الغاء </span>
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empManage' , empManage ,  oneEmplyee.manageNameAr , 'save')"
-                                class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-user-check "></i>
-                                <span class="px-1 "> حفظ </span>
-                            </button>
-
-                        </td>
-                    </tr>
-
-                    <tr class="row w-100">
-                        <td class=" col-2 py-1 text-center align-content-center">
-                            <p class="my-0 ps-sm-5 fw-light "> الفرع : </p>
-                        </td>
-                        <td class=" col-7 py-1">
-                            <input #branchInput formControlName="empBranch" type="text"
-                                [value]=" oneEmplyee.branchNameAr " class="form-control "
-                                [ngClass]="{ 'is-valid' : oneEmplyee.branchNameAr != branchInput.value }">
-                        </td>
-                        <td class=" col-3 py-1  align-content-center  px-0 d-flex">
-
-                            <button #empBranch (click)="editSingleRow('empBranch' , empBranch)"
-                                class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                                <i class="fa-regular fa-pen-to-square px-1"></i>
-                                تعديل
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empBranch' , empBranch ,  oneEmplyee.branchNameAr , 'cancel')"
-                                class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                                <i class="fa-solid fa-xmark "></i>
-                                <span class="px-1 "> الغاء </span>
-                            </button>
-                            <button
-                                (click)="closeEdittingInput('empBranch' , empBranch ,  oneEmplyee.branchNameAr , 'save')"
-                                class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center ">
-                                <i class="fa-solid fa-user-check "></i>
-                                <span class="px-1 "> حفظ </span>
-                            </button>
-
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
+            <div  class="w-100" [ngClass]="{ 'd-none' : !showData }">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
 </section>

@@ -1,0 +1,667 @@
+<table class=" w-100 " [formGroup]="employeeData">
+    <tbody>
+
+
+
+
+        
+<!-- ===========================================    start main    ========================================= -->
+<!-- ===========================================    start main    ========================================= -->
+<!-- ===========================================    start main    ========================================= -->
+
+        <!-- arabic name -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center  align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">Arabic Name : </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="empNameAR" type="text" [value]=" oneEmplyee.employeeNameAr "
+                    class="form-control">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #empNameARBtn (click)="editSingleRow('empNameAR' ,empNameARBtn)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empNameAR' ,empNameARBtn ,  oneEmplyee.employeeNameAr , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empNameAR' ,empNameARBtn ,  oneEmplyee.employeeNameAr , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- english name -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center  align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">English Name : </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="empNameEN" type="text" [value]=" oneEmplyee.employeeNameEn "
+                    class="form-control">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #empNameEnBtn (click)="editSingleRow('empNameEN' , empNameEnBtn)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empNameEN' , empNameEnBtn ,  oneEmplyee.employeeNameAr , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empNameEN' , empNameEnBtn ,  oneEmplyee.employeeNameAr , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- employee ID -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center  align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">employee Id: </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="empID" type="text" [value]=" oneEmplyee.employeeId " class="form-control">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #empidButton (click)="editSingleRow('empID' , empidButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empID' , empidButton ,  oneEmplyee.employeeId , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empID' , empidButton ,  oneEmplyee.employeeId , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- employee personalID -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center  align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">personal Id :</p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="empPersonalID" type="text" [value]=" oneEmplyee.employeePersonId "
+                    class="form-control">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #personalIDButton (click)="editSingleRow('empPersonalID' , personalIDButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('empPersonalID' , personalIDButton ,  oneEmplyee.employeePersonId , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('empPersonalID' , personalIDButton ,  oneEmplyee.employeePersonId , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- employee personalID Expire Date -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center  align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">personal Id Expire:</p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="empPersonalIDExpireDate" type="text" [value]=" oneEmplyee.employeePersonId "
+                    class="form-control">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #personalIDExpireButton
+                    (click)="editSingleRow('empPersonalIDExpireDate' ,personalIDExpireButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('empPersonalIDExpireDate' ,personalIDExpireButton ,  oneEmplyee.employeePersonExpireDate , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('empPersonalIDExpireDate' ,personalIDExpireButton ,  oneEmplyee.employeePersonExpireDate , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- Birth Date -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center  align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">Birth Date : </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="empBirthDate" type="text" [value]=" oneEmplyee.birthDate " class="form-control">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #birthDateButton (click)="editSingleRow('empBirthDate' ,birthDateButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empBirthDate' ,birthDateButton ,  oneEmplyee.birthDate , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empBirthDate' ,birthDateButton ,  oneEmplyee.birthDate , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- Birth Place -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center  align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">Birth Place : </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="empBirthBlace" type="text" [value]=" oneEmplyee.birthPlace "
+                    class="form-control">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #birthPlaceButton (click)="editSingleRow('empBirthBlace' , birthPlaceButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('empBirthBlace' , birthPlaceButton ,  oneEmplyee.birthPlace , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('empBirthBlace' , birthPlaceButton ,  oneEmplyee.birthPlace , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- employee Age -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Age :</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="empAge" type="text" [value]="oneEmplyee.age" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #ageButton (click)="editSingleRow('empAge', ageButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empAge', ageButton, oneEmplyee.age, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empAge', ageButton, oneEmplyee.age, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Mother Name -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Mother Name :</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="empMotherName" type="text" [value]="oneEmplyee.motherName" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #motherNameButton (click)="editSingleRow('empMotherName', motherNameButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empMotherName', motherNameButton, oneEmplyee.motherName, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empMotherName', motherNameButton, oneEmplyee.motherName, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Gender -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Gender :</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="empJender" type="text" [value]="oneEmplyee.gender" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #genderButton (click)="editSingleRow('empJender', genderButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empJender', genderButton, oneEmplyee.gender, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empJender', genderButton, oneEmplyee.gender, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Marriage Status -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Marriage Status :</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="empMarrige" type="text" [value]="oneEmplyee.marrige" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #marrigeButton (click)="editSingleRow('empMarrige', marrigeButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('empMarrige', marrigeButton, oneEmplyee.marrige, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('empMarrige', marrigeButton, oneEmplyee.marrige, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+<!-- ===========================================    end main    ========================================= -->
+
+
+
+<!-- =========================================== start cminucate ========================================= -->
+<!-- =========================================== start cminucate ========================================= -->
+<!-- =========================================== start cminucate ========================================= -->
+
+<!-- employee Mobile -->
+<tr class="row w-100">
+    <td class="col-2 py-1 text-center align-content-center">
+        <p class="my-0 ps-sm-5 fw-light">Mobile :</p>
+    </td>
+    <td class="col-7 py-1">
+        <input formControlName="mobile" type="text" [value]="oneEmplyee.mobile" class="form-control">
+    </td>
+    <td class="col-3 py-1 align-content-center px-0 d-flex">
+        <button #mobileButton (click)="editSingleRow('mobile', mobileButton)" class="btn btn-outline-dark update-Button fw-semibold fs-14">
+            <i class="fa-regular fa-pen-to-square px-1"></i>
+            تعديل
+        </button>
+        <button (click)="closeEdittingInput('mobile', mobileButton, oneEmplyee.mobile, 'cancel')" class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+            <i class="fa-solid fa-xmark"></i>
+            <span class="px-1"> الغاء </span>
+        </button>
+        <button (click)="closeEdittingInput('mobile', mobileButton, oneEmplyee.mobile, 'save')" class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+            <i class="fa-solid fa-user-check"></i>
+            <span class="px-1"> موافق </span>
+        </button>
+    </td>
+</tr>
+
+<!-- employee Mobile Emergency -->
+<tr class="row w-100">
+    <td class="col-2 py-1 text-center align-content-center">
+        <p class="my-0 ps-sm-5 fw-light">Mobile Emergency :</p>
+    </td>
+    <td class="col-7 py-1">
+        <input formControlName="mobileEmergency" type="text" [value]="oneEmplyee.mobileEmergency" class="form-control">
+    </td>
+    <td class="col-3 py-1 align-content-center px-0 d-flex">
+        <button #mobileEmergencyButton (click)="editSingleRow('mobileEmergency', mobileEmergencyButton)" class="btn btn-outline-dark update-Button fw-semibold fs-14">
+            <i class="fa-regular fa-pen-to-square px-1"></i>
+            تعديل
+        </button>
+        <button (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmplyee.mobileEmergency, 'cancel')" class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+            <i class="fa-solid fa-xmark"></i>
+            <span class="px-1"> الغاء </span>
+        </button>
+        <button (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmplyee.mobileEmergency, 'save')" class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+            <i class="fa-solid fa-user-check"></i>
+            <span class="px-1"> موافق </span>
+        </button>
+    </td>
+</tr>
+
+<!-- =========================================== end cminucate ========================================= -->
+
+
+
+
+
+
+
+<!-- =========================================== start company ========================================= -->
+<!-- =========================================== start company ========================================= -->
+<!-- =========================================== start company ========================================= -->
+        <!-- Company ID -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Company ID:</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="companyId" type="text" [value]="oneEmplyee.companyId" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #companyId (click)="editSingleRow('companyId', companyId)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('companyId', companyId, oneEmplyee.companyId, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('companyId', companyId, oneEmplyee.companyId, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- Company En -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Company En:</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="companyNameEn" type="text" [value]="oneEmplyee.companyNameEn" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #companyEnButton (click)="editSingleRow('companyNameEn', companyEnButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('companyNameEn', companyEnButton, oneEmplyee.companyNameEn, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('companyNameEn', companyEnButton, oneEmplyee.companyNameEn, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- Company Ar -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Company Ar:</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="companyNameAr" type="text" [value]="oneEmplyee.companyNameAr" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #companyNameAr (click)="editSingleRow('companyNameAr', companyNameAr)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('companyNameAr', companyNameAr, oneEmplyee.companyNameAr, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('companyNameAr', companyNameAr, oneEmplyee.companyNameAr, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+<!-- =========================================== end company ========================================= -->
+
+
+
+
+<!-- ===========================================     START Branches and manages  ========================================= -->
+<!-- ===========================================     START Branches and manages  ========================================= -->
+<!-- ===========================================     START Branches and manages  ========================================= -->
+        <!-- employee Branch ID -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Branch ID :</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="branchId" type="text" [value]="oneEmplyee.branchId" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #branchId (click)="editSingleRow('branchId', branchId)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('branchId', branchId, oneEmplyee.branchId, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('branchId', branchId, oneEmplyee.branchId, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Branch Ar -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Branch Ar :</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="branchNameAr" type="text" [value]="oneEmplyee.branchNameAr" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #branchNameAr (click)="editSingleRow('branchNameAr', branchNameAr)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('branchNameAr', branchNameAr, oneEmplyee.branchNameAr, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('branchNameAr', branchNameAr, oneEmplyee.branchNameAr, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Branch En -->
+        <tr class="row w-100">
+            <td class="col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light">Branch En :</p>
+            </td>
+            <td class="col-7 py-1">
+                <input formControlName="branchNameEn" type="text" [value]="oneEmplyee.branchNameEn" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #branchNameEn (click)="editSingleRow('branchNameEn', branchNameEn)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('branchNameEn', branchNameEn, oneEmplyee.branchNameEn, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('branchNameEn', branchNameEn, oneEmplyee.branchNameEn, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+
+
+
+
+        <!-- emp Job ID -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">Jop ID: </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="jobId"  type="text" [value]=" oneEmplyee.jobId "
+                    class="form-control ">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #jobId (click)="editSingleRow('jobId' , jobId)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('jobId' , jobId ,  oneEmplyee.jobId , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('jobId' , jobId ,  oneEmplyee.jobId , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- emp Job AR -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">Jop title Ar: </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="jobNameAr"  type="text" [value]=" oneEmplyee.jobNameAr "
+                    class="form-control ">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #empJobAr (click)="editSingleRow('jobNameAr' , empJobAr)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('jobNameAr' , empJobAr ,  oneEmplyee.jobNameAr , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('jobNameAr' , empJobAr ,  oneEmplyee.jobNameAr , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+        <!-- emp Job EN -->
+        <tr class="row w-100">
+            <td class=" col-2 py-1 text-center align-content-center">
+                <p class="my-0 ps-sm-5 fw-light ">Jop title En: </p>
+            </td>
+            <td class=" col-7 py-1">
+                <input formControlName="jobNameEn"  type="text" [value]=" oneEmplyee.jobNameEn "
+                    class="form-control ">
+            </td>
+            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
+
+                <button #empJobEn (click)="editSingleRow('jobNameEn' , empJobEn)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('jobNameEn' , empJobEn ,  oneEmplyee.jobNameEn , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 "> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('jobNameEn' , empJobEn ,  oneEmplyee.jobNameEn , 'save')"
+                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check "></i>
+                    <span class="px-1 "> موافق </span>
+                </button>
+
+            </td>
+        </tr>
+
+
+
+    </tbody>
+</table>

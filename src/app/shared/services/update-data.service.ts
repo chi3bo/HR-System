@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { empFullDetails } from '../interfaces/dashboard';
 
 
 @Injectable({
@@ -9,11 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class UpdateDataService {
 
-  constructor(private _HttpClient: HttpClient, private _Router: Router) { }
+  constructor(private _HttpClient: HttpClient, private _Router: Router , private _FormBuilder: FormBuilder) { }
+  employeeData:BehaviorSubject<empFullDetails> = new BehaviorSubject({} as empFullDetails)
+
+
+  // searchingForm: FormGroup = this._FormBuilder.group({
+  //   searchInput: [null]
+  // })
+
   setHeadrs(): any {
     return { headers: { 'Authorization': localStorage.getItem('userToken') } }
   }
-
 
   searchEmployee(searchKey: string): Observable<any> {
     return this._HttpClient.get(`https://hrapp.runasp.net/Api/Employee/GetSearch?searchKey=${searchKey}`, this.setHeadrs())

@@ -69,6 +69,7 @@ export class EmpUpdateComponent implements OnInit {
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {
         console.log(data);
+        this._UpdateDataService.employeeData.next(data)
         this.oneEmplyee = data
         this.showList = false
         this.showData= true

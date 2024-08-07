@@ -38,6 +38,8 @@ import { EmpWorkTaskComponent } from './components/emp-work-task/emp-work-task.c
 import { RequestWorkTaskComponent } from './components/request-work-task/request-work-task.component';
 import { AdminWorkTaskComponent } from './components/admin-work-task/admin-work-task.component';
 import { EmpUpdateComponent } from './components/emp-update/emp-update.component';
+import { MainSectionDataComponent } from './components/main-section-data/main-section-data.component';
+import { PersonalSectionDataComponent } from './components/personal-section-data/personal-section-data.component';
 
 const routes: Routes = [
 
@@ -72,7 +74,8 @@ const routes: Routes = [
   { path: 'help', component: HelpComponent, title: 'help' },
 
   {
-    path: 'my-profile', component: ProfileComponent, title: 'my Profile'},
+    path: 'my-profile', component: ProfileComponent, title: 'my Profile'
+  },
 
   {
     path: '', component: AuthComponent, title: 'auth', children: [
@@ -91,12 +94,20 @@ const routes: Routes = [
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
       { path: 'admin-worktask', component: AdminWorkTaskComponent, title: 'work Task orders' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
-      { path: 'employee-update', component: EmpUpdateComponent, title: 'employee Update' },
+      {
+        path: 'employee-update', component: EmpUpdateComponent, title: 'employee Update', children: [
+          { path: '', redirectTo:'main' ,pathMatch:'full' },
+          { path: 'main', component: MainSectionDataComponent, title: 'update Employee main data' },
+          { path: 'personal', component: PersonalSectionDataComponent, title: 'update Employee personal data' },
+        ]
+      },
       { path: 'admin-dashboard', component: DashboardComponent, title: 'dashboard' },
-      { path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet' ,children:[
-        { path: 'display', component: DisplayTimesheetComponent, title: 'display' },
-        { path: 'new', component: SendTimesheetComponent, title: 'new' },
-      ] },
+      {
+        path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet', children: [
+          { path: 'display', component: DisplayTimesheetComponent, title: 'display' },
+          { path: 'new', component: SendTimesheetComponent, title: 'new' },
+        ]
+      },
 
     ]
   },

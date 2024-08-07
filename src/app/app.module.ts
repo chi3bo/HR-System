@@ -61,6 +61,8 @@ import { EmpWorkTaskComponent } from "./components/emp-work-task/emp-work-task.c
 import { AdminWorkTaskComponent } from "./components/admin-work-task/admin-work-task.component";
 import { RequestWorkTaskComponent } from './components/request-work-task/request-work-task.component';
 import { EmpUpdateComponent } from './components/emp-update/emp-update.component';
+import { MainSectionDataComponent } from './components/main-section-data/main-section-data.component';
+import { PersonalSectionDataComponent } from './components/personal-section-data/personal-section-data.component';
 
 
 
@@ -119,7 +121,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     EmpWorkTaskComponent,
     AdminWorkTaskComponent,
     RequestWorkTaskComponent,
-    EmpUpdateComponent
+    EmpUpdateComponent,
+    MainSectionDataComponent,
+    PersonalSectionDataComponent
   ],
   imports: [
     BrowserModule,
