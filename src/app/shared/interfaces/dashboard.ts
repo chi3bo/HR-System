@@ -64,52 +64,64 @@ export interface empFullDetails {
     employeeId: string
     employeeNameAr: string
     employeeNameEn: string
-    blood: any
-    employeePersonId: any
-    employeePersonExpireDate: any
-    mobile: any
-    mobileEmergency: any
+    blood: string
+    employeePersonId: string
+    employeePersonExpireDate: string
+    mobile: string
+    mobileEmergency: string
     companyId: string
-    companyNameAr: any
-    companyNameEn: any
+    companyNameAr: string
+    companyNameEn: string
     branchId: string
-    branchNameAr: any
-    branchNameEn: any
+    branchNameAr: string
+    branchNameEn: string
     manageId: string
-    manageNameAr: any
-    manageNameEn: any
+    manageNameAr: string
+    manageNameEn: string
     nationId: string
-    nationNameAr: any
-    nationNameEn: any
-    departmentId: any
-    departmentNameAr: any
-    departmentNameEn: any
+    nationNameAr: string
+    nationNameEn: string
+    departmentId: string
+    departmentNameAr: string
+    departmentNameEn: string
     jobId: string
     jobNameAr: string
     jobNameEn: string
     kafilId: string
-    kafilNameAr: any
-    kafilNameEn: any
+    kafilNameAr: string
+    kafilNameEn: string
     state: number
     birthDate: string
-    birthPlace: any
+    birthPlace: string
     age: string
-    motherName: any
+    motherName: string
     gender: number
     marrige: number
-    healthId: any
-    healthDate: any
-    healthExpired: any
-    healthPlace: any
+    healthId: string
+    healthDate: string
+    healthExpired: string
+    healthPlace: string
     passportId: string
     passportDate: string
-    passportPlace: any
+    passportPlace: string
     passportExpired: string
-    insuranceId: any
-    insuranceRecordNo: any
+    insuranceId: string
+    insuranceRecordNo: string
     insuranceValue: number
     insurancePer: number
-}
+    insuranceCompany: number
+    insuranceSalary: number
+    insuranceDangGP: number
+    insuranceDate: string
+    insuranceDateE: string
+    employeeCategoryId: string
+    employeeCategoryNameAr: string
+    employeeCategoryNameEn: string
+    cardId: string
+    cardDate: string
+    cardPlace: string
+    cardExpired: string
+  }
 
 
 export interface branch {
