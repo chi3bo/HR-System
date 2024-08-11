@@ -290,7 +290,7 @@ body {
     top: 0;
     left: 0px;
     right: 0px;
-    transition: all 1s;
+    /* transition: all 1s; */
 }
 
 .beSmallAndHideR {
