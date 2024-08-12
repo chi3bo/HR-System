@@ -45,12 +45,14 @@
     border-bottom: solid transparent 3px;
     border-top: solid transparent 3px;
     border-radius: 2px;
+    position: relative;
     transition: all .2s;
 }
 
 .nav-item :hover::after {
     width: 100%;
 }
+
 
 .active-menu {
     border-bottom: #ffffff solid 3px;

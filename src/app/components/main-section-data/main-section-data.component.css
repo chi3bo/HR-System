@@ -18,3 +18,30 @@
     display: none;
 }
 
+.emp-Hover {
+    transition: all .1s;
+
+    &:hover {
+        background-color: #0d6efd;
+        color: #FFF;
+    }
+}
+
+.listOfEmployee {
+    width: 100% !important;
+    position: absolute;
+    top: 100%;
+    background-color: #ff4040;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-top: 0 !important;
+    max-height: 245px !important;
+    overflow: auto;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+    border-radius: 15px;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}

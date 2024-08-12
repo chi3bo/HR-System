@@ -31,5 +31,8 @@ export class UpdateDataService {
     return this._HttpClient.post(`https://hrapp.runasp.net/Api/Dashboard/GetEmployeeTreeById?employeeId=${id}`,'', this.setHeadrs())
   }
 
+  getAllGroubOf(groubName: string): Observable<any> {
+    return this._HttpClient.post(`https://hrapp.runasp.net/Api/${groubName}/GetAll`, '', this.setHeadrs())
+  }
 
 }

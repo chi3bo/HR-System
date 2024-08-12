@@ -12,6 +12,7 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 export class MainSectionDataComponent {
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
   oneEmplyee: empFullDetails = {} as empFullDetails
+  itemsList: any[] = []
   enableEdit: boolean = false
   showData: boolean = false
 
@@ -119,6 +120,28 @@ export class MainSectionDataComponent {
     )
 
   }
+
+
+
+
+  editJobs(key: string) {
+    this._UpdateDataService.getAllGroubOf(key).subscribe({
+      next: (Response) => {
+        console.log(Response, 'get all group of');
+        this.itemsList = Response
+        this.itemsList = this.itemsList.sort((a, b) => Number(a.id) - Number(b.id))
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+
+  }
+
+
+
+
+
 
 
 
