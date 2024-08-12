@@ -42,6 +42,8 @@ export class AdminAssetsComponent {
     })
 
   }
+
+  
   actionRequest(orderId: number, action: boolean, details: string, oneItem: HTMLElement) {
     if (localStorage.getItem('userToken') == (null || undefined)) {
       this._router.navigate(['login'])
