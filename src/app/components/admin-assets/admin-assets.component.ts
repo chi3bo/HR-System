@@ -29,6 +29,7 @@ export class AdminAssetsComponent {
       next: (data) => {
         this.ordersCount = data.count
         this.AssetsList = data.requestCustodies
+        this.AssetsList = this.AssetsList.reverse()
         console.log(this.ordersCount);
         console.log(this.AssetsList);
       },
@@ -43,7 +44,7 @@ export class AdminAssetsComponent {
 
   }
 
-  
+
   actionRequest(orderId: number, action: boolean, details: string, oneItem: HTMLElement) {
     if (localStorage.getItem('userToken') == (null || undefined)) {
       this._router.navigate(['login'])

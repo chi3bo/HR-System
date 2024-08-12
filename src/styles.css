@@ -285,7 +285,7 @@ body {
     transition: height 1s !important;
 }
 
-#oneItem {
+.oneItem {
     position: relative;
     top: 0;
     left: 0px;

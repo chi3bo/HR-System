@@ -26,6 +26,7 @@ export class AdminLeaveComponent {
       next: (data) => {
         this.ordersCount = data.count
         this.PermissionList = data.requestPermissions
+        this.PermissionList = this.PermissionList.reverse()
         console.log(this.ordersCount);
         console.log(this.PermissionList);
       },

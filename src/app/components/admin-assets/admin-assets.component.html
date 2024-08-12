@@ -31,7 +31,7 @@
         <div class="accordion {{  'direction' | translate }} overflow-hidden" id="accordionExample">
 
             <!-- one employee -->
-            <div id="oneItem" #oneItem class="accordion-item rounded-0" *ngFor="let order of AssetsList">
+            <div  #oneItem class="accordion-item rounded-0 oneItem" *ngFor="let order of AssetsList">
                 <h2 class="accordion-header">
                     <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         [attr.data-bs-target]="'#'+order.id" aria-expanded="false" [attr.aria-controls]="order.id">

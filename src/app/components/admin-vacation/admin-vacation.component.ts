@@ -11,17 +11,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./admin-vacation.component.css']
 })
 export class AdminVacationComponent implements OnInit {
-  constructor(private _AdminService: AdminService, private _router: Router , private _ToastrService:ToastrService) { }
+  constructor(private _AdminService: AdminService, private _router: Router, private _ToastrService: ToastrService) { }
 
   ordersCount: number = 0
   vacationOrdersList: adminOrderVacation[] = []
   slideAndHide: boolean = false
-  pageOpenOne:boolean = false
+  pageOpenOne: boolean = false
 
 
 
   ngOnInit(): void {
-    if(localStorage.getItem('userToken') == (null || undefined)){
+    if (localStorage.getItem('userToken') == (null || undefined)) {
       this._router.navigate(['login'])
     }
     setTimeout(() => { this.pageOpenOne = true }, 100);
@@ -30,8 +30,7 @@ export class AdminVacationComponent implements OnInit {
       next: (data) => {
         this.ordersCount = data.count
         this.vacationOrdersList = data.requestVacations
-        console.log(this.ordersCount);
-        console.log(this.vacationOrdersList);
+        this.vacationOrdersList = this.vacationOrdersList.reverse()
       },
       error: (err) => {
         console.log(err);
@@ -52,7 +51,7 @@ export class AdminVacationComponent implements OnInit {
       next: (Response) => {
         if (Response == true) {// هنا تعني انه تم القبول او تم الرفض بدون مشاكل
           console.log(Response);
-          
+
           if (action == true) { // هنا لو كان الزرار قبول يحرك العنصر يمين 
             this._ToastrService.success('تم قبول الطلب بنجاح ')
             oneItem.classList.add('beSmallAndHideR')
@@ -70,8 +69,8 @@ export class AdminVacationComponent implements OnInit {
 
       error: (err) => {
         console.log(err);
-        if(err.error.message == 'Total Allowance Days : 21 , Employee 1061 took 21 Before' ){
-          this._ToastrService.warning( 'استهلك الموظف كامل رصيده من الاجازات المستحقة' ,' لا يوجد رصيد اجازات متاح' )
+        if (err.error.message == 'Total Allowance Days : 21 , Employee 1061 took 21 Before') {
+          this._ToastrService.warning('استهلك الموظف كامل رصيده من الاجازات المستحقة', ' لا يوجد رصيد اجازات متاح')
         }
       }
     })

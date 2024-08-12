@@ -25,8 +25,7 @@ export class AdminLettersComponent {
       next: (data) => {
         this.ordersCount = data.count
         this.LettersList = data.requestLetters
-        console.log(this.ordersCount);
-        console.log(this.LettersList);
+        this.LettersList = this.LettersList.reverse()
       },
       error: (err) => {
         console.log(err);

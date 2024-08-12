@@ -27,6 +27,7 @@ export class AdminLoanComponent {
       next: (data) => {
         this.ordersCount = data.count
         this.LoanordersList = data.requestAdvancePayments
+        this.LoanordersList = this.LoanordersList.reverse()
         console.log(this.ordersCount);
         console.log(this.LoanordersList);
       },
