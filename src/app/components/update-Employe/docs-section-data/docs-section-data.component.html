@@ -1,0 +1,381 @@
+<table class=" w-100 {{ 'direction' | translate }}" [formGroup]="DocsFormData">
+    <tbody>
+        <!-- ===========================================      START card     ========================================= -->
+        <!-- ===========================================      START card     ========================================= -->
+
+        <!-- employee Card Id -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardId' | translate }} : </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="cardId" type="text" [value]="oneEmplyee.cardId" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #cardIdButton (click)="editSingleRow('cardId', cardIdButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmplyee.cardId, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmplyee.cardId, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Card Date -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardDate' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="cardDate" type="text" [value]="oneEmplyee.cardDate" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #cardDateButton (click)="editSingleRow('cardDate', cardDateButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmplyee.cardDate, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmplyee.cardDate, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Card Place -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardPlace' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="cardPlace" type="text" [value]="oneEmplyee.cardPlace" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #cardPlaceButton (click)="editSingleRow('cardPlace', cardPlaceButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmplyee.cardPlace, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmplyee.cardPlace, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Card Expired -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardExpired' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="cardExpired" type="text" [value]="oneEmplyee.cardExpired" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #cardExpiredButton (click)="editSingleRow('cardExpired', cardExpiredButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmplyee.cardExpired, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmplyee.cardExpired, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- ===========================================       END card      ========================================= -->
+
+
+
+
+
+
+
+
+        <!-- ===========================================      START health     ========================================= -->
+        <!-- ===========================================      START health     ========================================= -->
+        <!-- ===========================================      START health     ========================================= -->
+
+        <!-- employee Health Id -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthId' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="healthId" type="text" [value]="oneEmplyee.healthId" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #healthIdButton (click)="editSingleRow('healthId', healthIdButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmplyee.healthId, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmplyee.healthId, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Health Date -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthDate' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="healthDate" type="text" [value]="oneEmplyee.healthDate" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #healthDateButton (click)="editSingleRow('healthDate', healthDateButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmplyee.healthDate, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmplyee.healthDate, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Health Date Expired -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthDateExpired' |
+                    translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="healthExpired" type="text" [value]="oneEmplyee.healthExpired"
+                    class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #healthExpiredButton (click)="editSingleRow('healthExpired', healthExpiredButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmplyee.healthExpired, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmplyee.healthExpired, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Health Place -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthPlace' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="healthPlace" type="text" [value]="oneEmplyee.healthPlace" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #healthPlaceButton (click)="editSingleRow('healthPlace', healthPlaceButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmplyee.healthPlace, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmplyee.healthPlace, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- ===========================================       END health      ========================================= -->
+
+
+
+
+
+
+        <!-- ===========================================      START passport     ========================================= -->
+        <!-- ===========================================      START passport     ========================================= -->
+        <!-- ===========================================      START passport     ========================================= -->
+
+        <!-- employee Passport Id -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportId' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="passportId" type="text" [value]="oneEmplyee.passportId" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #passportIdButton (click)="editSingleRow('passportId', passportIdButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmplyee.passportId, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmplyee.passportId, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Passport Date -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportDate' | translate }}
+                    : </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="passportDate" type="text" [value]="oneEmplyee.passportDate"
+                    class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #passportDateButton (click)="editSingleRow('passportDate', passportDateButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmplyee.passportDate, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmplyee.passportDate, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Passport Place -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportPlace' | translate }}
+                    : </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="passportPlace" type="text" [value]="oneEmplyee.passportPlace"
+                    class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #passportPlaceButton (click)="editSingleRow('passportPlace', passportPlaceButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmplyee.passportPlace, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmplyee.passportPlace, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- employee Passport Expired -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportExpired' | translate
+                    }} : </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="passportExpired" type="text" [value]="oneEmplyee.passportExpired"
+                    class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #passportExpiredButton (click)="editSingleRow('passportExpired', passportExpiredButton)"
+                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmplyee.passportExpired, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmplyee.passportExpired, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- ===========================================       END passport      ========================================= -->
+
+    </tbody>
+</table>

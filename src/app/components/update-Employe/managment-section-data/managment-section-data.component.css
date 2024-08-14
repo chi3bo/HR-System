@@ -1,0 +1,19 @@
+.fs-14 {
+    font-size: 14px !important;
+}
+
+.update-Button {
+    width: 90px !important;
+    min-width: 80px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancel-Button {
+    display: none;
+}
+
+.save-Button {
+    display: none;
+}

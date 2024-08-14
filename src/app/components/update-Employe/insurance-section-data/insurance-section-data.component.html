@@ -1,0 +1,297 @@
+<table class=" w-100 {{ 'direction' | translate }}" [formGroup]="InsuranceFormData">
+        <tbody>
+
+            <!-- ===========================================      START insurance     ========================================= -->
+            <!-- ===========================================      START insurance     ========================================= -->
+            <!-- ===========================================      START insurance     ========================================= -->
+
+            <!-- employee Insurance Id -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceId' | translate }}
+                        :
+                    </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceId" type="text" [value]="oneEmplyee.insuranceId"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceIdButton (click)="editSingleRow('insuranceId', insuranceIdButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmplyee.insuranceId, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmplyee.insuranceId, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Record No -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceRecordNo' |
+                        translate }} :
+                    </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceRecordNo" type="text" [value]="oneEmplyee.insuranceRecordNo"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceRecordNoButton
+                        (click)="editSingleRow('insuranceRecordNo', insuranceRecordNoButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmplyee.insuranceRecordNo, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmplyee.insuranceRecordNo, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Value -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceValue' | translate
+                        }} : </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceValue" type="text" [value]="oneEmplyee.insuranceValue"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceValueButton (click)="editSingleRow('insuranceValue', insuranceValueButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmplyee.insuranceValue, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmplyee.insuranceValue, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Per -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsurancePer' | translate
+                        }}
+                        : </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insurancePer" type="text" [value]="oneEmplyee.insurancePer"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insurancePerButton (click)="editSingleRow('insurancePer', insurancePerButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmplyee.insurancePer, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmplyee.insurancePer, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Company -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceCompany' |
+                        translate
+                        }} : </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceCompany" type="text" [value]="oneEmplyee.insuranceCompany"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceCompanyButton (click)="editSingleRow('insuranceCompany', insuranceCompanyButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmplyee.insuranceCompany, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmplyee.insuranceCompany, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Salary -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceSalary' |
+                        translate
+                        }} : </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceSalary" type="text" [value]="oneEmplyee.insuranceSalary"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceSalaryButton (click)="editSingleRow('insuranceSalary', insuranceSalaryButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmplyee.insuranceSalary, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmplyee.insuranceSalary, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Dang GP -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDangGP' |
+                        translate
+                        }} : </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceDangGP" type="text" [value]="oneEmplyee.insuranceDangGP"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceDangGPButton (click)="editSingleRow('insuranceDangGP', insuranceDangGPButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmplyee.insuranceDangGP, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmplyee.insuranceDangGP, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Date -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDate' | translate
+                        }}
+                        : </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceDate" type="text" [value]="oneEmplyee.insuranceDate"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceDateButton (click)="editSingleRow('insuranceDate', insuranceDateButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmplyee.insuranceDate, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmplyee.insuranceDate, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- employee Insurance Date Expired -->
+            <tr class="row w-100">
+                <td class="col-3 py-1  align-content-center">
+                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDateExpired' |
+                        translate }} :
+                    </p>
+                </td>
+                <td class="col-6 py-1">
+                    <input formControlName="insuranceDateE" type="text" [value]="oneEmplyee.insuranceDateE"
+                        class="form-control">
+                </td>
+                <td class="col-3 py-1 align-content-center px-0 d-flex">
+                    <button #insuranceDateEButton (click)="editSingleRow('insuranceDateE', insuranceDateEButton)"
+                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                        <i class="fa-regular fa-pen-to-square px-1"></i>
+                        تعديل
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmplyee.insuranceDateE, 'cancel')"
+                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span class="px-1"> الغاء </span>
+                    </button>
+                    <button
+                        (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmplyee.insuranceDateE, 'save')"
+                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="px-1"> موافق </span>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- ===========================================       END insurance      ========================================= -->
+        </tbody>

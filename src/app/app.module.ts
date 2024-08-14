@@ -60,9 +60,12 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { EmpWorkTaskComponent } from "./components/emp-work-task/emp-work-task.component";
 import { AdminWorkTaskComponent } from "./components/admin-work-task/admin-work-task.component";
 import { RequestWorkTaskComponent } from './components/request-work-task/request-work-task.component';
-import { EmpUpdateComponent } from './components/emp-update/emp-update.component';
-import { MainSectionDataComponent } from './components/main-section-data/main-section-data.component';
-import { PersonalSectionDataComponent } from './components/personal-section-data/personal-section-data.component';
+import { EmpUpdateComponent } from './components/update-Employe/emp-update/emp-update.component';
+import { MainSectionDataComponent } from './components/update-Employe/main-section-data/main-section-data.component';
+import { PersonalSectionDataComponent } from './components/update-Employe/personal-section-data/personal-section-data.component';
+import { ManagmentSectionDataComponent } from './components/update-Employe/managment-section-data/managment-section-data.component';
+import { DocsSectionDataComponent } from './components/update-Employe/docs-section-data/docs-section-data.component';
+import { InsuranceSectionDataComponent } from './components/update-Employe/insurance-section-data/insurance-section-data.component';
 
 
 
@@ -123,7 +126,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     RequestWorkTaskComponent,
     EmpUpdateComponent,
     MainSectionDataComponent,
-    PersonalSectionDataComponent
+    PersonalSectionDataComponent,
+    ManagmentSectionDataComponent,
+    DocsSectionDataComponent,
+    InsuranceSectionDataComponent
   ],
   imports: [
     BrowserModule,

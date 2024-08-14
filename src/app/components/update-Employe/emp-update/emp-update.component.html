@@ -24,7 +24,7 @@
         </div>
     </form>
 
-    <div class="w-100 py-5 px-2 row mx-0" >
+    <div class="w-100 py-5 px-2 row mx-0">
         <div class="col-md-2 bg-primary text-white sections">
 
             <div class="fakeHeight"></div>
@@ -33,19 +33,18 @@
             </div>
 
             <div class="text-start  fw-semibold">
-                <p class="sections-Hover my-0 py-2 ps-4 rounded">معلومات شخصية</p>
-                <p class="sections-Hover my-0 py-2 ps-4 rounded " > الوثائق </p>
-                <p class="sections-Hover my-0 py-2 ps-4 rounded " > مستندات </p>
-                <p class="sections-Hover my-0 py-2 ps-4 rounded " > معلومات الراتب  </p>
-                <p class="sections-Hover my-0 py-2 ps-4 rounded " >معلومات التأمينات </p>
-                <p class="sections-Hover my-0 py-2 ps-4 rounded " > معلومات اخرى </p>
+                <p routerLink="./main" class="sections-Hover my-0 py-2 ps-4 rounded "> بيانات أساسية </p>
+                <p routerLink="./personal" class="sections-Hover my-0 py-2 ps-4 rounded"> معلومات شخصية </p>
+                <p routerLink="./management" class="sections-Hover my-0 py-2 ps-4 rounded "> الفروع و الادارة </p>
+                <p routerLink="./insurance" class="sections-Hover my-0 py-2 ps-4 rounded ">معلومات التأمينات </p>
+                <p routerLink="./docs" class="sections-Hover my-0 py-2 ps-4 rounded "> الوثائق </p>
             </div>
 
         </div>
         <div class="col-md-2 fake-col"></div>
-        
+
         <div class="col-md-10 rounded-2 ">
-            <div  class="w-100" [ngClass]="{ 'd-none' : !showData }">
+            <div class="w-100" [ngClass]="{ 'd-none' : !showData }">
                 <router-outlet></router-outlet>
             </div>
         </div>
