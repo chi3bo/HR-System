@@ -352,7 +352,9 @@ body {
     scale: 1.03;
 }
 
-
+.margin-100{
+    margin-bottom: 150px;
+}
 
 /* =====================    start  media query       ===================  */
 /* =====================    start  media query       ===================  */

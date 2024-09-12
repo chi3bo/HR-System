@@ -588,14 +588,6 @@ export class DashboardComponent {
     }
     else if (this.searchCategory == 'فرع') {
 
-
-      // already here 
-      // already here 
-      // already here 
-      // already here  '' is a value
-      // already here 
-      // already here 
-      // already here 
       this.branchesList = this.originalBranchList.filter((item) => { return item.nameAr.includes(value) || String(item.nameEn).toLowerCase().includes(value.toLowerCase()) })
       this.totalPages = Math.ceil(this.branchesList.length / this.itemsPerPage);
       this.currentPage = 1

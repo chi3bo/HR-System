@@ -31,7 +31,8 @@
     width: 100% !important;
     position: absolute;
     top: 100%;
-    background-color: #ff4040;
+    /* background-color: #e4e4e4; */
+    border: 7px solid #2e2e2e;
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
     border-top: 0 !important;
@@ -42,3 +43,32 @@
     border-radius: 15px;
 }
 
+@media screen and (max-width:576px) {
+    .w-75-mobile {
+        width: 75% !important;
+
+    }
+
+    .w-25-mobile {
+        width: 25% !important;
+    }
+
+    .cancel-Button {
+        width: 50px !important;
+        min-width: 50px !important;
+    }
+
+    .save-Button {
+        width: 50px !important;
+        min-width: 50px !important;
+    }
+
+    .py-2-mobile {
+        padding-block: 10px !important;
+    }
+
+    .font-18-mobile {
+        font-size: 18px !important;
+    }
+
+}

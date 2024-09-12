@@ -1,8 +1,11 @@
 import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
+import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
+import { modifiedEmployee } from './../../../shared/interfaces/update-data';
+import { oneEmployee } from 'src/app/shared/interfaces/update-data';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-main-section-data',
@@ -11,14 +14,19 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 })
 export class MainSectionDataComponent {
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
-  oneEmplyee: empFullDetails = {} as empFullDetails
+  oneEmpolyee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
   enableEdit: boolean = false
   showData: boolean = false
+  modifiedEmployee: modifiedEmployee = this._UpdateDataService.newEmpData;
+  originalAllGroups: branch[] = []
+  allgroups: branch[] = []
+  enableEditName: string = ''
 
 
-  employeeData: FormGroup = this._FormBuilder.group({
 
+
+  mainEmployeeData: FormGroup = this._FormBuilder.group({
     employeeNameAr: [{ value: null, disabled: true }],
     employeeNameEn: [{ value: null, disabled: true }],
     employeeId: [{ value: null, disabled: true }],
@@ -30,8 +38,7 @@ export class MainSectionDataComponent {
     motherName: [{ value: null, disabled: true }],
     gender: [{ value: null, disabled: true }],
     marrige: [{ value: null, disabled: true }],
-    
-    
+
     // معلومات الكفيل
     kafilId: [{ value: null, disabled: true }],
     kafilNameAr: [{ value: null, disabled: true }],
@@ -41,8 +48,8 @@ export class MainSectionDataComponent {
     companyId: [{ value: null, disabled: true }],
     companyNameAr: [{ value: null, disabled: true }],
     companyNameEn: [{ value: null, disabled: true }],
-
   })
+
 
 
   ngOnInit(): void {
@@ -50,29 +57,59 @@ export class MainSectionDataComponent {
   }
 
 
+  equalizeData() {
+    // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
+    const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
+      .filter(key => key in this.oneEmpolyee)
+      .map(key => ({ [key]: this.oneEmpolyee[key as keyof empFullDetails] })));
+    this.modifiedEmployee = updatedObject
+  }
+
 
   getEmpData() {
     this._UpdateDataService.employeeData.subscribe(
       (value) => {
         console.log(value);
-        this.oneEmplyee = value
-        this.employeeData.patchValue(this.oneEmplyee)
-
+        this.oneEmpolyee = value
+        this.mainEmployeeData.patchValue(this.oneEmpolyee)
       }
     )
 
   }
 
 
+  getAllGroubOf(key: string) {
+    this._UpdateDataService.getAllGroubOf(key).subscribe({
+      next: (response) => {
+        this.allgroups = response
+        this.originalAllGroups = this.allgroups
+        console.log(response);
+        this.groubSearching()
+        this.enableEditName = key
+        // بديله اسم الخانة اللي بيتم التعديل عليها و دي اللي هيظهر الليست تحتها
+      }
+    })
+  }
+
+  groubSearching() {
+    this.mainEmployeeData.get('kafilNameEn')?.valueChanges
+      .pipe(debounceTime(300)).subscribe(value => {  // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
+        this.searchByName(value)
+        // this.searchKey == 'الرقم التعريفي' ? this.searchById(value) : ''
+        // this.searchKey == 'الوظيفة' ? this.searchByJob(value) : ''
+      });
+  }
+
+  searchByName(value: any) {
+    this.allgroups = this.originalAllGroups.filter((item) => { return item.nameAr.includes(value) || String(item.nameEn).toLowerCase().includes(value.toLowerCase()) })
+    console.log(this.allgroups);
 
 
-
-
-
+  }
 
 
   editSingleRow(element: any, target: any) {
-    let x = this.employeeData.get(element)?.enable()
+    let x = this.mainEmployeeData.get(element)?.enable()
 
     const button = target as HTMLElement
     let updateButton = button.parentElement?.children[0] as HTMLElement
@@ -85,7 +122,7 @@ export class MainSectionDataComponent {
   }
 
   closeEdittingInput(formCntrolName: any, target: any, originalValue: any, action: string) {
-    let input = this.employeeData.get(formCntrolName)
+    let input = this.mainEmployeeData.get(formCntrolName)
 
     action == 'cancel' ? input?.setValue(originalValue) : ''
 
@@ -100,19 +137,29 @@ export class MainSectionDataComponent {
     saveButton.style.display = 'none'
     cancelButton.style.display = 'none'
 
+    this.enableEditName = ''
   }
 
+  setUpdates() {
+    this.equalizeData()
+    this.modifiedEmployee.employeeNameAr = this.mainEmployeeData.get('employeeNameAr')?.value
+    this.modifiedEmployee.employeeNameEn = this.mainEmployeeData.get('employeeNameEn')?.value
+    this.modifiedEmployee.employeeId = this.mainEmployeeData.get('employeeId')?.value
+    this.modifiedEmployee.employeePersonId = this.mainEmployeeData.get('employeePersonId')?.value
+    this.modifiedEmployee.employeePersonExpireDate = this.mainEmployeeData.get('employeePersonExpireDate')?.value
+    this.modifiedEmployee.birthDate = this.mainEmployeeData.get('birthDate')?.value
+    this.modifiedEmployee.birthPlace = this.mainEmployeeData.get('birthPlace')?.value
+    this.modifiedEmployee.motherName = this.mainEmployeeData.get('motherName')?.value
+    this.modifiedEmployee.gender = this.mainEmployeeData.get('gender')?.value
+    this.modifiedEmployee.marrige = this.mainEmployeeData.get('marrige')?.value
+    this.modifiedEmployee.kafilId = this.mainEmployeeData.get('kafilId')?.value
+    this.modifiedEmployee.companyId = this.mainEmployeeData.get('companyId')?.value
+  }
 
-  sendTest(any: any) {
-    this.oneEmplyee.employeeNameAr = this.employeeData.get('empNameAR')?.value
-    console.log(this.oneEmplyee);
+  sendUpdates() {
+    this.setUpdates()
+    console.log(this.modifiedEmployee);
 
-    //  عند الضغط علي الزر تكون الخطوة النهائية هي  ارسال الاوبجيكت الاساسي بعد تعديله
-    //  يتم التعديل حسب الانبوت الذي تغيرت قيمته فقط
-    // اي ان اللي قيمته اتغيرت في الفورم عن القيمة الاساسية في الاوبجيكت ده اللي هنعدله 
-    // الان نرسل الاوبجيكت الي الapi
-    // يمكن ايضا ان نأخذ نسخة جديدة من الاوبجيكت الاساسي ثم نعدل عليها العناصر المطلوبة ثم نرسلها 
-    //  بحيث نحتفظ بالقيم الاساسية للأوبجيكت الاساسي
   }
 
 }

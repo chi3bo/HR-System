@@ -44,23 +44,40 @@
 
 
 
-.sections{
-position: fixed;
-height: 100vh;
-left: 0;
-top: 0;
-
+.sections {
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
 }
 
-.fakeHeight{
+.fakeHeight {
     height: 90px !important;
 }
 
-.sections-Hover{
+.sections-Hover {
     transition: all .1s;
 
     &:hover {
-        background-color:#fff;
-        color:  #0d6efd;
+        background-color: #fff;
+        color: #0d6efd;
     }
+}
+
+
+@media screen and (max-width:576px) {
+    .sections {
+        position: static;
+        height: auto;
+    }
+
+    .fakeHeight {
+        height: 0px !important;
+    }
+
+    .w-80-mobile {
+        width: 75% !important;
+    }
+
+
 }

@@ -41,7 +41,6 @@ export class InsuranceSectionDataComponent {
         console.log(value);
         this.oneEmplyee = value
         this.InsuranceFormData.patchValue(this.oneEmplyee)
-
       }
     )
 

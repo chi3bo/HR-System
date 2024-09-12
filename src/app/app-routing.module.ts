@@ -97,8 +97,7 @@ const routes: Routes = [
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
       { path: 'admin-worktask', component: AdminWorkTaskComponent, title: 'work Task orders' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
-      {
-        path: 'employee-update', component: EmpUpdateComponent, title: 'employee Update', children: [
+      { path: 'employee-update', component: EmpUpdateComponent, title: 'employee Update', children: [
           { path: '', redirectTo:'main' ,pathMatch:'full' },
           { path: 'main', component: MainSectionDataComponent, title: 'update  main data' },
           { path: 'personal', component: PersonalSectionDataComponent, title: 'update  personal data' },
