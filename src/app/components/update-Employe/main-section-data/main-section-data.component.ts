@@ -1,5 +1,5 @@
 import { Component, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
@@ -22,6 +22,8 @@ export class MainSectionDataComponent {
   originalAllGroups: branch[] = []
   allgroups: branch[] = []
   enableEditName: string = ''
+  branchChosen : boolean = true
+
 
 
 
@@ -78,34 +80,60 @@ export class MainSectionDataComponent {
   }
 
 
-  getAllGroubOf(key: string) {
+// =========================== start ===========================
+// تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
+  getAllGroubOf(key: string , control:string) {
     this._UpdateDataService.getAllGroubOf(key).subscribe({
       next: (response) => {
         this.allgroups = response
         this.originalAllGroups = this.allgroups
         console.log(response);
-        this.groubSearching()
-        this.enableEditName = key
+        this.groubSearching(control)
+        this.enableEditName = control
         // بديله اسم الخانة اللي بيتم التعديل عليها و دي اللي هيظهر الليست تحتها
       }
     })
   }
 
-  groubSearching() {
-    this.mainEmployeeData.get('kafilNameEn')?.valueChanges
+  groubSearching(control:string) {
+    this.mainEmployeeData.get(control)?.valueChanges
       .pipe(debounceTime(300)).subscribe(value => {  // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
         this.searchByName(value)
         // this.searchKey == 'الرقم التعريفي' ? this.searchById(value) : ''
         // this.searchKey == 'الوظيفة' ? this.searchByJob(value) : ''
+        this.branchChosen = false
       });
   }
 
-  searchByName(value: any) {
-    this.allgroups = this.originalAllGroups.filter((item) => { return item.nameAr.includes(value) || String(item.nameEn).toLowerCase().includes(value.toLowerCase()) })
+  searchByName(value: string) {
+    this.allgroups = this.originalAllGroups.filter((item) => { return item.nameAr.includes(value) || (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) || item.id.includes(value) })
     console.log(this.allgroups);
 
 
   }
+
+  setChosenValue(item:branch , ControlNameAr:string , ControlNameEn:string , ControlID:string , target: any , thisControl:string){
+    this.mainEmployeeData.get(ControlNameAr)?.setValue(item.nameAr);
+    this.mainEmployeeData.get(ControlNameEn)?.setValue(item.nameEn);
+    this.mainEmployeeData.get(ControlID)?.setValue(item.id);
+    this.enableEditName = ''
+    this.branchChosen = true
+
+   this.closeEdittingInput(thisControl , target , '' , 'save')
+    // this.mainEmployeeData.get(ControlNameAR)?.disable();
+    // this.mainEmployeeData.get(ControlNameEN)?.disable();
+    // this.mainEmployeeData.get(ControlID)?.disable();
+    console.log( item );
+    
+  }
+  // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
+// =========================== end ===========================
+
+
+thereis(item:branch){
+this.branchChosen = false
+}
+
 
 
   editSingleRow(element: any, target: any) {
