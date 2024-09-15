@@ -1,4 +1,9 @@
-<table class=" w-100 {{ 'direction' | translate }}" [formGroup]="ManagementFormData">
+<div class="w-100 text-center ">
+    <button (click)="sendUpdates()" class="btn btn-success px-5 py-3 mx-auto">ارسال</button>
+</div>
+
+
+<table class=" w-100 {{ 'direction' | translate }} margin-100" [formGroup]="ManagementFormData">
     <tbody>
 
         <!-- ===========================================     START Branches and manages  ========================================= -->
@@ -11,23 +16,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="branchId" type="text" [value]="oneEmplyee.branchId" class="form-control">
+                <input formControlName="branchId" type="text" [value]="oneEmployee.branchId" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #branchId (click)="editSingleRow('branchId', branchId)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
-                </button>
-                <button (click)="closeEdittingInput('branchId', branchId, oneEmplyee.branchId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1"> الغاء </span>
-                </button>
-                <button (click)="closeEdittingInput('branchId', branchId, oneEmplyee.branchId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1"> موافق </span>
                 </button>
             </td>
         </tr>
@@ -39,21 +33,36 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="branchNameAr" type="text" [value]="oneEmplyee.branchNameAr"
-                    class="form-control">
+                <div class="position-relative">
+                    <input formControlName="branchNameAr" type="text" [value]="oneEmployee.branchNameAr"
+                        class="form-control">
+                    <div *ngIf="enableEditName=='branchNameAr'"
+                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item , 'branchNameAr' , 'branchNameEn' , 'branchId',branchNameAr , 'branchNameAr')"
+                            *ngFor="let item of allgroups"
+                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">
+                                {{item.nameAr}}
+                            </span>
+                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #branchNameAr (click)="editSingleRow('branchNameAr', branchNameAr)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button (click)="getAllGroubOf('branch' , 'branchNameAr')" #branchNameAr
+                    (click)="editSingleRow('branchNameAr', branchNameAr)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('branchNameAr', branchNameAr, oneEmplyee.branchNameAr, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                <button (click)="closeEdittingInput('branchNameAr', branchNameAr, oneEmployee.branchNameAr, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('branchNameAr', branchNameAr, oneEmplyee.branchNameAr, 'save')"
+                <button (click)="closeEdittingInput('branchNameAr', branchNameAr, oneEmployee.branchNameAr, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -68,21 +77,36 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="branchNameEn" type="text" [value]="oneEmplyee.branchNameEn"
-                    class="form-control">
+                <div class="position-relative">
+                    <input formControlName="branchNameEn" type="text" [value]="oneEmployee.branchNameEn"
+                        class="form-control">
+                    <div *ngIf="enableEditName=='branchNameEn'"
+                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item , 'branchNameAr' , 'branchNameEn' , 'branchId',branchNameEn , 'branchNameEn')"
+                            *ngFor="let item of allgroups"
+                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">
+                                {{item.nameEn}}
+                            </span>
+                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #branchNameEn (click)="editSingleRow('branchNameEn', branchNameEn)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button (click)="getAllGroubOf('branch' , 'branchNameEn')" #branchNameEn
+                    (click)="editSingleRow('branchNameEn', branchNameEn)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('branchNameEn', branchNameEn, oneEmplyee.branchNameEn, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                <button (click)="closeEdittingInput('branchNameEn', branchNameEn, oneEmployee.branchNameEn, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('branchNameEn', branchNameEn, oneEmplyee.branchNameEn, 'save')"
+                <button (click)="closeEdittingInput('branchNameEn', branchNameEn, oneEmployee.branchNameEn, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -96,26 +120,13 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.JobId' | translate }} : </p>
             </td>
             <td class=" col-6 py-1">
-                <input formControlName="jobId" type="text" [value]=" oneEmplyee.jobId " class="form-control ">
+                <input formControlName="jobId" type="text" [value]=" oneEmployee.jobId " class="form-control ">
             </td>
-            <td class=" col-3 py-1  align-content-center  px-0 d-flex">
-
-                <button #jobId (click)="editSingleRow('jobId' , jobId)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('jobId' , jobId ,  oneEmplyee.jobId , 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 "> الغاء </span>
-                </button>
-                <button (click)="closeEdittingInput('jobId' , jobId ,  oneEmplyee.jobId , 'save')"
-                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1 "> موافق </span>
-                </button>
-
             </td>
         </tr>
 
@@ -125,28 +136,38 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.JobTitleAr' | translate }} :
                 </p>
             </td>
-            <td class=" col-6 py-1 position-relative">
-                <input formControlName="jobNameAr" type="text" [value]=" oneEmplyee.jobNameAr " class="form-control ">
-                <!-- <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-            </td> -->
+            <td class=" col-6 py-1 ">
+                <div class="position-relative">
+                    <input formControlName="jobNameAr" type="text" [value]="oneEmployee.jobNameAr" class="form-control">
+                    <div *ngIf="enableEditName=='jobNameAr'"
+                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item , 'jobNameAr' , 'jobNameEn' , 'jobId', empJobAr , 'jobNameAr')"
+                            *ngFor="let item of allgroups"
+                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">
+                                {{item.nameAr}}
+                            </span>
+                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
             <td class=" col-3 py-1  align-content-center  px-0 d-flex">
 
-                <button (click)="editJobs('Job')" #empJobAr (click)="editSingleRow('jobNameAr' , empJobAr)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button (click)="getAllGroubOf('job' , 'jobNameAr')" (click)="editJobs('Job')" #empJobAr
+                    (click)="editSingleRow('jobNameAr' , empJobAr)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('jobNameAr' , empJobAr ,  oneEmplyee.jobNameAr , 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                <button (click)="closeEdittingInput('jobNameAr' , empJobAr ,  oneEmployee.jobNameAr , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark "></i>
                     <span class="px-1 "> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('jobNameAr' , empJobAr ,  oneEmplyee.jobNameAr , 'save')"
+                <button (click)="closeEdittingInput('jobNameAr' , empJobAr ,  oneEmployee.jobNameAr , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
                     <span class="px-1 "> موافق </span>
@@ -161,22 +182,36 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.JobTitleEn' | translate }} :
                 </p>
             </td>
-            <td class=" col-6 py-1">
-                <input formControlName="jobNameEn" type="text" [value]=" oneEmplyee.jobNameEn " class="form-control ">
+            <td class=" col-6 py-1 ">
+                <div class="position-relative">
+                    <input formControlName="jobNameEn" type="text" [value]="oneEmployee.jobNameEn" class="form-control">
+                    <div *ngIf="enableEditName=='jobNameEn'"
+                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item , 'jobNameAr' , 'jobNameEn' , 'jobId', empJobEn , 'jobNameEn')"
+                            *ngFor="let item of allgroups"
+                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">
+                                {{item.nameEn}}
+                            </span>
+                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </td>
             <td class=" col-3 py-1  align-content-center  px-0 d-flex">
 
-                <button #empJobEn (click)="editSingleRow('jobNameEn' , empJobEn)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button  (click)="getAllGroubOf('job' , 'jobNameEn')"  #empJobEn (click)="editSingleRow('jobNameEn' , empJobEn)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('jobNameEn' , empJobEn ,  oneEmplyee.jobNameEn , 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                <button (click)="closeEdittingInput('jobNameEn' , empJobEn ,  oneEmployee.jobNameEn , 'cancel')"
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark "></i>
                     <span class="px-1 "> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('jobNameEn' , empJobEn ,  oneEmplyee.jobNameEn , 'save')"
+                <button (click)="closeEdittingInput('jobNameEn' , empJobEn ,  oneEmployee.jobNameEn , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
                     <span class="px-1 "> موافق </span>
@@ -192,23 +227,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="manageId" type="text" [value]="oneEmplyee.manageId" class="form-control">
+                <input formControlName="manageId" type="text" [value]="oneEmployee.manageId" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #manageIdButton (click)="editSingleRow('manageId', manageIdButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
-                </button>
-                <button (click)="closeEdittingInput('manageId', manageIdButton, oneEmplyee.manageId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1"> الغاء </span>
-                </button>
-                <button (click)="closeEdittingInput('manageId', manageIdButton, oneEmplyee.manageId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1"> موافق </span>
                 </button>
             </td>
         </tr>
@@ -219,24 +243,35 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.ManageNameAr' | translate }}
                     : </p>
             </td>
-            <td class="col-6 py-1">
-                <input formControlName="manageNameAr" type="text" [value]="oneEmplyee.manageNameAr"
-                    class="form-control">
+            <td class=" col-6 py-1 ">
+                <div class="position-relative">
+                    <input formControlName="manageNameAr" type="text" [value]="oneEmployee.manageNameAr" class="form-control">
+                    <div *ngIf="enableEditName=='manageNameAr'"
+                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item , 'manageNameAr' , 'manageNameEn' , 'manageId', manageNameArButton , 'manageNameAr')"
+                            *ngFor="let item of allgroups"
+                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">
+                                {{item.nameAr}}
+                            </span>
+                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #manageNameArButton (click)="editSingleRow('manageNameAr', manageNameArButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button (click)="getAllGroubOf('manage' , 'manageNameAr')" #manageNameArButton (click)="editSingleRow('manageNameAr', manageNameArButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('manageNameAr', manageNameArButton, oneEmplyee.manageNameAr, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
+                    class="d-none">
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('manageNameAr', manageNameArButton, oneEmplyee.manageNameAr, 'save')"
+                    (click)="closeEdittingInput('manageNameAr', manageNameArButton, oneEmployee.manageNameAr, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -250,24 +285,35 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.ManageNameEn' | translate }}
                     : </p>
             </td>
-            <td class="col-6 py-1">
-                <input formControlName="manageNameEn" type="text" [value]="oneEmplyee.manageNameEn"
-                    class="form-control">
+            <td class=" col-6 py-1 ">
+                <div class="position-relative">
+                    <input formControlName="manageNameEn" type="text" [value]="oneEmployee.manageNameEn" class="form-control">
+                    <div *ngIf="enableEditName=='manageNameEn'"
+                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item , 'manageNameAr' , 'manageNameEn' , 'manageId', manageNameEnButton , 'manageNameEn')"
+                            *ngFor="let item of allgroups"
+                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">
+                                {{item.nameEn}}
+                            </span>
+                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #manageNameEnButton (click)="editSingleRow('manageNameEn', manageNameEnButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button (click)="getAllGroubOf('manage' , 'manageNameEn')" #manageNameEnButton (click)="editSingleRow('manageNameEn', manageNameEnButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('manageNameEn', manageNameEnButton, oneEmplyee.manageNameEn, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
+                    class=" d-none">
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('manageNameEn', manageNameEnButton, oneEmplyee.manageNameEn, 'save')"
+                    (click)="closeEdittingInput('manageNameEn', manageNameEnButton, oneEmployee.manageNameEn, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -282,26 +328,13 @@
                     : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="departmentId" type="text" [value]="oneEmplyee.departmentId"
+                <input formControlName="departmentId" type="text" [value]="oneEmployee.departmentId"
                     class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #departmentIdButton (click)="editSingleRow('departmentId', departmentIdButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
-                </button>
-                <button
-                    (click)="closeEdittingInput('departmentId', departmentIdButton, oneEmplyee.departmentId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1"> الغاء </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('departmentId', departmentIdButton, oneEmplyee.departmentId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1"> موافق </span>
                 </button>
             </td>
         </tr>
@@ -312,24 +345,36 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.DepartmentNameAr' | translate
                     }} : </p>
             </td>
-            <td class="col-6 py-1">
-                <input formControlName="departmentNameAr" type="text" [value]="oneEmplyee.departmentNameAr"
-                    class="form-control">
+            <td class=" col-6 py-1 ">
+                <div class="position-relative">
+                    <input formControlName="departmentNameAr" type="text" [value]="oneEmployee.departmentNameAr" class="form-control">
+                    <div *ngIf="enableEditName=='departmentNameAr'"
+                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item , 'departmentNameAr' , 'departmentNameEn' , 'departmentId', departmentNameArButton , 'departmentNameAr')"
+                            *ngFor="let item of allgroups"
+                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">
+                                {{item.nameAr}}
+                            </span>
+                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #departmentNameArButton (click)="editSingleRow('departmentNameAr', departmentNameArButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button  (click)="getAllGroubOf('Department' , 'departmentNameAr')"
+                #departmentNameArButton (click)="editSingleRow('departmentNameAr', departmentNameArButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('departmentNameAr', departmentNameArButton, oneEmplyee.departmentNameAr, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
+                    class="d-none">
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('departmentNameAr', departmentNameArButton, oneEmplyee.departmentNameAr, 'save')"
+                    (click)="closeEdittingInput('departmentNameAr', departmentNameArButton, oneEmployee.departmentNameAr, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -343,24 +388,36 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.DepartmentNameEn' | translate
                     }} : </p>
             </td>
-            <td class="col-6 py-1">
-                <input formControlName="departmentNameEn" type="text" [value]="oneEmplyee.departmentNameEn"
-                    class="form-control">
+            <td class=" col-6 py-1 ">
+
+            <div class="position-relative">
+                <input formControlName="departmentNameEn" type="text" [value]="oneEmployee.departmentNameEn" class="form-control">
+                <div *ngIf="enableEditName=='departmentNameEn'"
+                    class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                    <div (click)="setChosenValue(item , 'departmentNameAr' , 'departmentNameEn' , 'departmentId', departmentNameEnButton , 'departmentNameEn')"
+                        *ngFor="let item of allgroups"
+                        class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                        <span class="px-2">
+                            {{item.nameEn}}
+                        </span>
+                        <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                        </span>
+                    </div>
+                </div>
+            </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #departmentNameEnButton (click)="editSingleRow('departmentNameEn', departmentNameEnButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button (click)="getAllGroubOf('Department' , 'departmentNameEn')" #departmentNameEnButton (click)="editSingleRow('departmentNameEn', departmentNameEnButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('departmentNameEn', departmentNameEnButton, oneEmplyee.departmentNameEn, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
+                    class="d-none">
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('departmentNameEn', departmentNameEnButton, oneEmplyee.departmentNameEn, 'save')"
+                    (click)="closeEdittingInput('departmentNameEn', departmentNameEnButton, oneEmployee.departmentNameEn, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -375,26 +432,13 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="empCategoryId" type="text" [value]="oneEmplyee.employeeCategoryId"
+                <input formControlName="employeeCategoryId" type="text" [value]="oneEmployee.employeeCategoryId"
                     class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #empCategoryIdButton (click)="editSingleRow('empCategoryId', empCategoryIdButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
-                </button>
-                <button
-                    (click)="closeEdittingInput('empCategoryId', empCategoryIdButton, oneEmplyee.employeeCategoryId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1"> الغاء </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('empCategoryId', empCategoryIdButton, oneEmplyee.employeeCategoryId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1"> موافق </span>
                 </button>
             </td>
         </tr>
@@ -406,23 +450,34 @@
                     }} : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="empCategoryNameAr" type="text" [value]="oneEmplyee.employeeCategoryNameAr"
-                    class="form-control">
+                    <div class="position-relative">
+                        <input formControlName="employeeCategoryNameAr" type="text" [value]="oneEmployee.employeeCategoryNameAr" class="form-control">
+                        <div *ngIf="enableEditName=='employeeCategoryNameAr'"
+                            class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                            <div (click)="setChosenValue(item , 'employeeCategoryNameAr' , 'employeeCategoryNameEn' , 'employeeCategoryId', empCategoryNameArButton , 'employeeCategoryNameAr')"
+                                *ngFor="let item of allgroups"
+                                class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                                <span class="px-2">
+                                    {{item.nameAr}}
+                                </span>
+                                <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #empCategoryNameArButton (click)="editSingleRow('empCategoryNameAr', empCategoryNameArButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button  (click)="getAllGroubOf('EmployeeCategory' , 'employeeCategoryNameAr')" #empCategoryNameArButton (click)="editSingleRow('employeeCategoryNameAr', empCategoryNameArButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('empCategoryNameAr', empCategoryNameArButton, oneEmplyee.employeeCategoryNameAr, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
+                    class=" d-none">
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('empCategoryNameAr', empCategoryNameArButton, oneEmplyee.employeeCategoryNameAr, 'save')"
+                    (click)="closeEdittingInput('employeeCategoryNameAr', empCategoryNameArButton, oneEmployee.employeeCategoryNameAr, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -437,23 +492,34 @@
                     }} : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="empCategoryNameEn" type="text" [value]="oneEmplyee.employeeCategoryNameEn"
-                    class="form-control">
+                    <div class="position-relative">
+                        <input formControlName="employeeCategoryNameEn" type="text" [value]="oneEmployee.employeeCategoryNameEn" class="form-control">
+                        <div *ngIf="enableEditName=='employeeCategoryNameEn'"
+                            class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                            <div (click)="setChosenValue(item , 'employeeCategoryNameAr' , 'employeeCategoryNameEn' , 'employeeCategoryId', empCategoryNameEnButton , 'employeeCategoryNameEn')"
+                                *ngFor="let item of allgroups"
+                                class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
+                                <span class="px-2">
+                                    {{item.nameEn}}
+                                </span>
+                                <span class="px-2 ps-3 fw-light small"> - {{item.id}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button #empCategoryNameEnButton (click)="editSingleRow('empCategoryNameEn', empCategoryNameEnButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                <button (click)="getAllGroubOf('EmployeeCategory' , 'employeeCategoryNameEn')" #empCategoryNameEnButton (click)="editSingleRow('employeeCategoryNameEn', empCategoryNameEnButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('empCategoryNameEn', empCategoryNameEnButton, oneEmplyee.employeeCategoryNameEn, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
+                    class="d-none">
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('empCategoryNameEn', empCategoryNameEnButton, oneEmplyee.employeeCategoryNameEn, 'save')"
+                    (click)="closeEdittingInput('employeeCategoryNameEn', empCategoryNameEnButton, oneEmployee.employeeCategoryNameEn, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>

@@ -1,236 +1,243 @@
+<div class="w-100 text-center ">
+    <button (click)="sendUpdates()" class="btn btn-success px-5 py-3 mx-auto">ارسال</button>
+</div>
+
 <table class=" w-100 {{ 'direction' | translate }}" [formGroup]="personalDataForm">
-        <tbody>
+    <tbody>
 
-            <!-- =========================================== start cminucate ========================================= -->
-            <!-- =========================================== start cminucate ========================================= -->
-            <!-- =========================================== start cminucate ========================================= -->
+        <!-- =========================================== start cminucate ========================================= -->
+        <!-- =========================================== start cminucate ========================================= -->
+        <!-- =========================================== start cminucate ========================================= -->
 
-            <!-- employee Mobile -->
-            <tr class="row w-100">
-                <td class="col-3 py-1  align-content-center">
-                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.Mobile' | translate }} :
-                    </p>
-                </td>
-                <td class="col-6 py-1">
-                    <input formControlName="mobile" type="text" [value]="oneEmplyee.mobile" class="form-control">
-                </td>
-                <td class="col-3 py-1 align-content-center px-0 d-flex">
-                    <button #mobileButton (click)="editSingleRow('mobile', mobileButton)"
-                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                        <i class="fa-regular fa-pen-to-square px-1"></i>
-                        تعديل
-                    </button>
-                    <button (click)="closeEdittingInput('mobile', mobileButton, oneEmplyee.mobile, 'cancel')"
-                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-xmark"></i>
-                        <span class="px-1"> الغاء </span>
-                    </button>
-                    <button (click)="closeEdittingInput('mobile', mobileButton, oneEmplyee.mobile, 'save')"
-                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-user-check"></i>
-                        <span class="px-1"> موافق </span>
-                    </button>
-                </td>
-            </tr>
+        <!-- employee Mobile -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.Mobile' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="mobile" type="number" [value]="oneEmpolyee.mobile" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #mobileButton (click)="editSingleRow('mobile', mobileButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('mobile', mobileButton, oneEmpolyee.mobile, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('mobile', mobileButton, oneEmpolyee.mobile, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
 
-            <!-- employee Mobile Emergency -->
-            <tr class="row w-100">
-                <td class="col-3 py-1  align-content-center">
-                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.MobileEmergency' |
-                        translate
-                        }} : </p>
-                </td>
-                <td class="col-6 py-1">
-                    <input formControlName="mobileEmergency" type="text" [value]="oneEmplyee.mobileEmergency"
-                        class="form-control">
-                </td>
-                <td class="col-3 py-1 align-content-center px-0 d-flex">
-                    <button #mobileEmergencyButton (click)="editSingleRow('mobileEmergency', mobileEmergencyButton)"
-                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                        <i class="fa-regular fa-pen-to-square px-1"></i>
-                        تعديل
-                    </button>
-                    <button
-                        (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmplyee.mobileEmergency, 'cancel')"
-                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-xmark"></i>
-                        <span class="px-1"> الغاء </span>
-                    </button>
-                    <button
-                        (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmplyee.mobileEmergency, 'save')"
-                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-user-check"></i>
-                        <span class="px-1"> موافق </span>
-                    </button>
-                </td>
-            </tr>
+        <!-- employee Mobile Emergency -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.MobileEmergency' |
+                    translate
+                    }} : </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="mobileEmergency" type="number" [value]="oneEmpolyee.mobileEmergency"
+                    class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #mobileEmergencyButton (click)="editSingleRow('mobileEmergency', mobileEmergencyButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmpolyee.mobileEmergency, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmpolyee.mobileEmergency, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
 
-            <!-- =========================================== end cminucate ========================================= -->
+        <!-- =========================================== end cminucate ========================================= -->
 
 
-            <!-- ===========================================      START nationality     ========================================= -->
-            <!-- ===========================================      START nationality     ========================================= -->
-            <!-- ===========================================      START nationality     ========================================= -->
+        <!-- ===========================================      START nationality     ========================================= -->
+        <!-- ===========================================      START nationality     ========================================= -->
+        <!-- ===========================================      START nationality     ========================================= -->
 
-            <!-- employee Nation Id -->
-            <tr class="row w-100">
-                <td class="col-3 py-1  align-content-center">
-                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationId' | translate }} :
-                    </p>
-                </td>
-                <td class="col-6 py-1">
-                    <input formControlName="nationId" type="text" [value]="oneEmplyee.nationId" class="form-control">
-                </td>
-                <td class="col-3 py-1 align-content-center px-0 d-flex">
-                    <button #nationIdButton (click)="editSingleRow('nationId', nationIdButton)"
-                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                        <i class="fa-regular fa-pen-to-square px-1"></i>
-                        تعديل
-                    </button>
-                    <button (click)="closeEdittingInput('nationId', nationIdButton, oneEmplyee.nationId, 'cancel')"
-                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-xmark"></i>
-                        <span class="px-1"> الغاء </span>
-                    </button>
-                    <button (click)="closeEdittingInput('nationId', nationIdButton, oneEmplyee.nationId, 'save')"
-                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-user-check"></i>
-                        <span class="px-1"> موافق </span>
-                    </button>
-                </td>
-            </tr>
+        <!-- employee Nation Id -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationId' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="nationId" type="text" [value]="oneEmpolyee.nationId" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button disabled #nationIdButton class="btn btn-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+            </td>
+        </tr>
 
-            <!-- employee Nation Name (Arabic) -->
-            <tr class="row w-100">
-                <td class="col-3 py-1  align-content-center">
-                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationNameAr' | translate
-                        }}
-                        : </p>
-                </td>
-                <td class="col-6 py-1">
-                    <input formControlName="nationNameAr" type="text" [value]="oneEmplyee.nationNameAr"
-                        class="form-control">
-                </td>
-                <td class="col-3 py-1 align-content-center px-0 d-flex">
-                    <button #nationNameArButton (click)="editSingleRow('nationNameAr', nationNameArButton)"
-                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                        <i class="fa-regular fa-pen-to-square px-1"></i>
-                        تعديل
-                    </button>
-                    <button
-                        (click)="closeEdittingInput('nationNameAr', nationNameArButton, oneEmplyee.nationNameAr, 'cancel')"
-                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-xmark"></i>
-                        <span class="px-1"> الغاء </span>
-                    </button>
-                    <button
-                        (click)="closeEdittingInput('nationNameAr', nationNameArButton, oneEmplyee.nationNameAr, 'save')"
-                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-user-check"></i>
-                        <span class="px-1"> موافق </span>
-                    </button>
-                </td>
-            </tr>
+        <!-- employee Nation Name (Arabic) -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationNameAr' | translate
+                    }}
+                    : </p>
+            </td>
+            <td class="col-6 py-1">
+                <!-- <input formControlName="nationNameAr" type="text" [value]="oneEmpolyee.nationNameAr"
+                    class="form-control"> -->
+                <select (change)="setNation('nationNameAr')" formControlName="nationNameAr" name="nationNameAr"
+                    id="nationNameAr" class="form-control">
+                    <option [value]="oneEmpolyee.nationNameAr"> {{oneEmpolyee.nationNameAr}} </option>
+                    <option *ngFor="let item of nationList" [value]="item.nameAr"> {{item.nameAr}} </option>
+                </select>
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #nationNameArButton (click)="editSingleRow('nationNameAr', nationNameArButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('nationNameAr', nationNameArButton, oneEmpolyee.nationNameAr, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('nationNameAr', nationNameArButton, oneEmpolyee.nationNameAr, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
 
-            <!-- employee Nation Name (English) -->
-            <tr class="row w-100">
-                <td class="col-3 py-1  align-content-center">
-                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationNameEn' | translate
-                        }}
-                        : </p>
-                </td>
-                <td class="col-6 py-1">
-                    <input formControlName="nationNameEn" type="text" [value]="oneEmplyee.nationNameEn"
-                        class="form-control">
-                </td>
-                <td class="col-3 py-1 align-content-center px-0 d-flex">
-                    <button #nationNameEnButton (click)="editSingleRow('nationNameEn', nationNameEnButton)"
-                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                        <i class="fa-regular fa-pen-to-square px-1"></i>
-                        تعديل
-                    </button>
-                    <button
-                        (click)="closeEdittingInput('nationNameEn', nationNameEnButton, oneEmplyee.nationNameEn, 'cancel')"
-                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-xmark"></i>
-                        <span class="px-1"> الغاء </span>
-                    </button>
-                    <button
-                        (click)="closeEdittingInput('nationNameEn', nationNameEnButton, oneEmplyee.nationNameEn, 'save')"
-                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-user-check"></i>
-                        <span class="px-1"> موافق </span>
-                    </button>
-                </td>
-            </tr>
+        <!-- employee Nation Name (English) -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationNameEn' | translate
+                    }}
+                    : </p>
+            </td>
+            <td class="col-6 py-1">
+                <select (change)="setNation('nationNameEn')" formControlName="nationNameEn" name="nationNameEn"
+                    id="nationNameEn" class="form-control">
+                    <option [value]="oneEmpolyee.nationNameEn"> {{oneEmpolyee.nationNameEn}} </option>
+                    <option *ngFor="let item of nationList" [value]="item.nameEn"> {{item.nameEn}} </option>
+                </select>
+                <!-- <input formControlName="nationNameEn" type="text" [value]="oneEmpolyee.nationNameEn"
+                    class="form-control"> -->
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #nationNameEnButton (click)="editSingleRow('nationNameEn', nationNameEnButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button
+                    (click)="closeEdittingInput('nationNameEn', nationNameEnButton, oneEmpolyee.nationNameEn, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button
+                    (click)="closeEdittingInput('nationNameEn', nationNameEnButton, oneEmpolyee.nationNameEn, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
 
-            <!-- ===========================================       END nationality      ========================================= -->
-
+        <!-- ===========================================       END nationality      ========================================= -->
 
 
 
 
 
 
-            <!-- ===========================================      START Blood and state     ========================================= -->
-            <!-- ===========================================      START Blood and state     ========================================= -->
-            <!-- ===========================================      START Blood and state     ========================================= -->
 
-            <!-- employee State -->
-            <tr class="row w-100">
-                <td class="col-3 py-1  align-content-center">
-                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.State' | translate }} :
-                    </p>
-                </td>
-                <td class="col-6 py-1">
-                    <input formControlName="state" type="text" [value]="oneEmplyee.state" class="form-control">
-                </td>
-                <td class="col-3 py-1 align-content-center px-0 d-flex">
-                    <button #stateButton (click)="editSingleRow('state', stateButton)"
-                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                        <i class="fa-regular fa-pen-to-square px-1"></i>
-                        تعديل
-                    </button>
-                    <button (click)="closeEdittingInput('state', stateButton, oneEmplyee.state, 'cancel')"
-                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-xmark"></i>
-                        <span class="px-1"> الغاء </span>
-                    </button>
-                    <button (click)="closeEdittingInput('state', stateButton, oneEmplyee.state, 'save')"
-                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-user-check"></i>
-                        <span class="px-1"> موافق </span>
-                    </button>
-                </td>
-            </tr>
+        <!-- ===========================================      START Blood and state     ========================================= -->
+        <!-- ===========================================      START Blood and state     ========================================= -->
+        <!-- ===========================================      START Blood and state     ========================================= -->
 
-            <!-- employee Blood Type -->
-            <tr class="row w-100">
-                <td class="col-3 py-1  align-content-center">
-                    <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.BloodType' | translate }} :
-                    </p>
-                </td>
-                <td class="col-6 py-1">
-                    <input formControlName="blood" type="text" [value]="oneEmplyee.blood" class="form-control">
-                </td>
-                <td class="col-3 py-1 align-content-center px-0 d-flex">
-                    <button #bloodButton (click)="editSingleRow('blood', bloodButton)"
-                        class="btn btn-outline-dark update-Button fw-semibold fs-14">
-                        <i class="fa-regular fa-pen-to-square px-1"></i>
-                        تعديل
-                    </button>
-                    <button (click)="closeEdittingInput('blood', bloodButton, oneEmplyee.blood, 'cancel')"
-                        class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-xmark"></i>
-                        <span class="px-1"> الغاء </span>
-                    </button>
-                    <button (click)="closeEdittingInput('blood', bloodButton, oneEmplyee.blood, 'save')"
-                        class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                        <i class="fa-solid fa-user-check"></i>
-                        <span class="px-1"> موافق </span>
-                    </button>
-                </td>
-            </tr>
+        <!-- employee State -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.State' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <select formControlName="state" name="state" id="state" class="form-control">
+                    <option [value]="2 || 1"> منفصل عن العمل </option>
+                    <option value="0"> علي رأس العمل </option>
+                </select>
+                <!-- <input formControlName="state" type="text" [value]="oneEmpolyee.state" class="form-control"> -->
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button  #stateButton (click)="editSingleRow('state', stateButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('state', stateButton, oneEmpolyee.state, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('state', stateButton, oneEmpolyee.state, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
 
-            <!-- ===========================================       END Blood and state      ========================================= -->
-        </tbody>
+        <!-- employee Blood Type -->
+        <tr class="row w-100">
+            <td class="col-3 py-1  align-content-center">
+                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.BloodType' | translate }} :
+                </p>
+            </td>
+            <td class="col-6 py-1">
+                <input formControlName="blood" type="text" [value]="oneEmpolyee.blood" class="form-control">
+            </td>
+            <td class="col-3 py-1 align-content-center px-0 d-flex">
+                <button #bloodButton (click)="editSingleRow('blood', bloodButton)"
+                    class="btn btn-dark update-Button fw-semibold fs-14">
+                    <i class="fa-regular fa-pen-to-square px-1"></i>
+                    تعديل
+                </button>
+                <button (click)="closeEdittingInput('blood', bloodButton, oneEmpolyee.blood, 'cancel')"
+                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="px-1"> الغاء </span>
+                </button>
+                <button (click)="closeEdittingInput('blood', bloodButton, oneEmpolyee.blood, 'save')"
+                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1"> موافق </span>
+                </button>
+            </td>
+        </tr>
+
+        <!-- ===========================================       END Blood and state      ========================================= -->
+    </tbody>
