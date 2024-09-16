@@ -90,27 +90,6 @@ export class PersonalSectionDataComponent {
 
   }
 
-  equalizeData() {
-    // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
-    const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
-      .filter(key => key in this.oneEmpolyee)
-      .map(key => ({ [key]: this.oneEmpolyee[key as keyof empFullDetails] })));
-    this.modifiedEmployee = updatedObject
-  }
-
-  setUpdates() {
-    this.equalizeData()
-    this.modifiedEmployee.mobile = this.personalDataForm.get('mobile')?.value
-    this.modifiedEmployee.mobileEmergency = this.personalDataForm.get('mobileEmergency')?.value
-    this.modifiedEmployee.nationId = this.personalDataForm.get('nationId')?.value
-    this.modifiedEmployee.state = this.personalDataForm.get('state')?.value
-    this.modifiedEmployee.blood = this.personalDataForm.get('blood')?.value
-  }
-
-  sendUpdates() {
-    this.setUpdates()
-    console.log(this.modifiedEmployee);
-  }
 
   // =========================== start ===========================
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
@@ -178,5 +157,33 @@ export class PersonalSectionDataComponent {
     this.enableEditName = ''
     this.branchChosen = true
 
+  }
+
+  
+  equalizeData() {
+    // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
+    const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
+      .filter(key => key in this.oneEmpolyee)
+      .map(key => ({ [key]: this.oneEmpolyee[key as keyof empFullDetails] })));
+    this.modifiedEmployee = updatedObject
+  }
+
+  setUpdates() {
+    this.equalizeData()
+    this.modifiedEmployee.mobile = this.personalDataForm.get('mobile')?.value
+    this.modifiedEmployee.mobileEmergency = this.personalDataForm.get('mobileEmergency')?.value
+    this.modifiedEmployee.nationId = this.personalDataForm.get('nationId')?.value
+    this.modifiedEmployee.state = this.personalDataForm.get('state')?.value
+    this.modifiedEmployee.blood = this.personalDataForm.get('blood')?.value
+  }
+
+  sendUpdates() {
+    this.setUpdates()
+    console.log(this.modifiedEmployee);
+
+    this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>{console.log(err)}
+    })
   }
 }

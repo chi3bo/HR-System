@@ -1,3 +1,7 @@
+<div class="w-100 text-center ">
+    <button (click)="sendUpdates()" class="btn btn-success px-5 py-3 mx-auto">ارسال</button>
+</div>
+
 <table class=" w-100 {{ 'direction' | translate }}" [formGroup]="InsuranceFormData">
         <tbody>
 
@@ -13,7 +17,7 @@
                     </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceId" type="text" [value]="oneEmplyee.insuranceId"
+                    <input formControlName="insuranceId" type="number" [value]="oneEmployee.insuranceId"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -23,13 +27,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmplyee.insuranceId, 'cancel')"
+                        (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmployee.insuranceId, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmplyee.insuranceId, 'save')"
+                        (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmployee.insuranceId, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -45,7 +49,7 @@
                     </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceRecordNo" type="text" [value]="oneEmplyee.insuranceRecordNo"
+                    <input formControlName="insuranceRecordNo" type="number" [value]="oneEmployee.insuranceRecordNo"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -56,13 +60,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmplyee.insuranceRecordNo, 'cancel')"
+                        (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmployee.insuranceRecordNo, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmplyee.insuranceRecordNo, 'save')"
+                        (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmployee.insuranceRecordNo, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -77,7 +81,7 @@
                         }} : </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceValue" type="text" [value]="oneEmplyee.insuranceValue"
+                    <input formControlName="insuranceValue" type="number" [value]="oneEmployee.insuranceValue"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -87,13 +91,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmplyee.insuranceValue, 'cancel')"
+                        (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmployee.insuranceValue, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmplyee.insuranceValue, 'save')"
+                        (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmployee.insuranceValue, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -109,7 +113,7 @@
                         : </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insurancePer" type="text" [value]="oneEmplyee.insurancePer"
+                    <input formControlName="insurancePer" type="number" [value]="oneEmployee.insurancePer"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -119,13 +123,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmplyee.insurancePer, 'cancel')"
+                        (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmployee.insurancePer, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmplyee.insurancePer, 'save')"
+                        (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmployee.insurancePer, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -141,7 +145,7 @@
                         }} : </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceCompany" type="text" [value]="oneEmplyee.insuranceCompany"
+                    <input formControlName="insuranceCompany" type="text" [value]="oneEmployee.insuranceCompany"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -151,13 +155,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmplyee.insuranceCompany, 'cancel')"
+                        (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmployee.insuranceCompany, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmplyee.insuranceCompany, 'save')"
+                        (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmployee.insuranceCompany, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -173,7 +177,7 @@
                         }} : </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceSalary" type="text" [value]="oneEmplyee.insuranceSalary"
+                    <input formControlName="insuranceSalary" type="number" [value]="oneEmployee.insuranceSalary"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -183,13 +187,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmplyee.insuranceSalary, 'cancel')"
+                        (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmployee.insuranceSalary, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmplyee.insuranceSalary, 'save')"
+                        (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmployee.insuranceSalary, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -205,7 +209,7 @@
                         }} : </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceDangGP" type="text" [value]="oneEmplyee.insuranceDangGP"
+                    <input formControlName="insuranceDangGP" type="text" [value]="oneEmployee.insuranceDangGP"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -215,13 +219,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmplyee.insuranceDangGP, 'cancel')"
+                        (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmployee.insuranceDangGP, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmplyee.insuranceDangGP, 'save')"
+                        (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmployee.insuranceDangGP, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -237,7 +241,7 @@
                         : </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceDate" type="text" [value]="oneEmplyee.insuranceDate"
+                    <input formControlName="insuranceDate" type="date" [value]="oneEmployee.insuranceDate"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -247,13 +251,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmplyee.insuranceDate, 'cancel')"
+                        (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmployee.insuranceDate, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmplyee.insuranceDate, 'save')"
+                        (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmployee.insuranceDate, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>
@@ -269,7 +273,7 @@
                     </p>
                 </td>
                 <td class="col-6 py-1">
-                    <input formControlName="insuranceDateE" type="text" [value]="oneEmplyee.insuranceDateE"
+                    <input formControlName="insuranceDateE" type="date" [min]="oneEmployee.insuranceDate" [value]="oneEmployee.insuranceDateE"
                         class="form-control">
                 </td>
                 <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -279,13 +283,13 @@
                         تعديل
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmplyee.insuranceDateE, 'cancel')"
+                        (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmployee.insuranceDateE, 'cancel')"
                         class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-xmark"></i>
                         <span class="px-1"> الغاء </span>
                     </button>
                     <button
-                        (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmplyee.insuranceDateE, 'save')"
+                        (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmployee.insuranceDateE, 'save')"
                         class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                         <i class="fa-solid fa-user-check"></i>
                         <span class="px-1"> موافق </span>

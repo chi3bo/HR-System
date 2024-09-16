@@ -109,7 +109,7 @@ export class MainSectionDataComponent {
   }
 
   searchByName(value: string) {
-    this.allgroups = this.originalAllGroups.filter((item) => { return item.nameAr.includes(value) || (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) :'')|| item.id.includes(value) })
+    this.allgroups = this.originalAllGroups.filter((item) => { return (item.nameAr ? (item.nameAr).includes(value):'')|| (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) :'')|| item.id.includes(value) })
     console.log(this.allgroups);
 
 

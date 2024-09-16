@@ -2,6 +2,7 @@ import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
+import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 
 @Component({
@@ -11,9 +12,11 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 })
 export class DocsSectionDataComponent {
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
-  oneEmplyee: empFullDetails = {} as empFullDetails
+  oneEmployee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
+  modifiedEmployee: modifiedEmployee = this._UpdateDataService.newEmpData;
+
 
   DocsFormData:FormGroup = this._FormBuilder.group({
     // معلومات الهوية الشخصية
@@ -48,8 +51,14 @@ export class DocsSectionDataComponent {
     this._UpdateDataService.employeeData.subscribe(
       (value) => {
         console.log(value);
-        this.oneEmplyee = value
-        this.DocsFormData.patchValue(this.oneEmplyee)
+        this.oneEmployee = value
+        this.DocsFormData.patchValue(this.oneEmployee)
+        this.oneEmployee.cardDate && this.oneEmployee.cardDate.includes('0') ? this.oneEmployee.cardDate = new Date(this.oneEmployee.cardDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.cardExpired && this.oneEmployee.cardExpired.includes('0') ? this.oneEmployee.cardExpired = new Date(this.oneEmployee.cardExpired).toISOString().substring(0, 10) : ''
+        this.oneEmployee.passportDate && this.oneEmployee.passportDate.includes('0') ? this.oneEmployee.passportDate = new Date(this.oneEmployee.passportDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.passportExpired && this.oneEmployee.passportExpired.includes('0') ? this.oneEmployee.passportExpired = new Date(this.oneEmployee.passportExpired).toISOString().substring(0, 10) : ''
+        this.oneEmployee.healthDate && this.oneEmployee.healthDate.includes('0') ? this.oneEmployee.healthDate = new Date(this.oneEmployee.healthDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.healthExpired && this.oneEmployee.healthExpired.includes('0') ? this.oneEmployee.healthExpired = new Date(this.oneEmployee.healthExpired).toISOString().substring(0, 10) : ''
       }
     )
 
@@ -89,4 +98,33 @@ export class DocsSectionDataComponent {
   }
 
 
+  equalizeData() {
+    // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
+    const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
+      .filter(key => key in this.oneEmployee)
+      .map(key => ({ [key]: this.oneEmployee[key as keyof empFullDetails] })));
+    this.modifiedEmployee = updatedObject
+  }
+
+  setUpdates() {
+    this.equalizeData()
+
+    this.modifiedEmployee.cardId = this.DocsFormData.get('cardId')?.value
+    this.modifiedEmployee.cardDate = this.DocsFormData.get('cardDate')?.value
+    this.modifiedEmployee.cardPlace = this.DocsFormData.get('cardPlace')?.value
+    this.modifiedEmployee.cardExpired = this.DocsFormData.get('cardExpired')?.value
+    this.modifiedEmployee.passportId = this.DocsFormData.get('passportId')?.value
+    this.modifiedEmployee.passportDate = this.DocsFormData.get('passportDate')?.value
+    this.modifiedEmployee.passportPlace = this.DocsFormData.get('passportPlace')?.value
+    this.modifiedEmployee.passportExpired = this.DocsFormData.get('passportExpired')?.value
+    this.modifiedEmployee.healthId = this.DocsFormData.get('healthId')?.value
+    this.modifiedEmployee.healthDate = this.DocsFormData.get('healthDate')?.value
+    this.modifiedEmployee.healthExpired = this.DocsFormData.get('healthExpired')?.value
+    this.modifiedEmployee.healthPlace = this.DocsFormData.get('healthPlace')?.value
+  }
+
+  sendUpdates() {
+    this.setUpdates()
+    console.log(this.modifiedEmployee);
+  }
 }

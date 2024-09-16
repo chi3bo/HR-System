@@ -1,3 +1,7 @@
+<div class="w-100 text-center ">
+    <button (click)="sendUpdates()" class="btn btn-success px-5 py-3 mx-auto">ارسال</button>
+</div>
+
 <table class=" w-100 {{ 'direction' | translate }}" [formGroup]="DocsFormData">
     <tbody>
         <!-- ===========================================      START card     ========================================= -->
@@ -9,7 +13,7 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardId' | translate }} : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="cardId" type="text" [value]="oneEmplyee.cardId" class="form-control">
+                <input formControlName="cardId" type="number" [value]="oneEmployee.cardId" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #cardIdButton (click)="editSingleRow('cardId', cardIdButton)"
@@ -17,12 +21,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmplyee.cardId, 'cancel')"
+                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmployee.cardId, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmplyee.cardId, 'save')"
+                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmployee.cardId, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -37,7 +41,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="cardDate" type="text" [value]="oneEmplyee.cardDate" class="form-control">
+                <input formControlName="cardDate" type="date" [value]="oneEmployee.cardDate" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #cardDateButton (click)="editSingleRow('cardDate', cardDateButton)"
@@ -45,12 +49,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmplyee.cardDate, 'cancel')"
+                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmployee.cardDate, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmplyee.cardDate, 'save')"
+                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmployee.cardDate, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -65,7 +69,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="cardPlace" type="text" [value]="oneEmplyee.cardPlace" class="form-control">
+                <input formControlName="cardPlace" type="text" [value]="oneEmployee.cardPlace" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #cardPlaceButton (click)="editSingleRow('cardPlace', cardPlaceButton)"
@@ -73,12 +77,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmplyee.cardPlace, 'cancel')"
+                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmployee.cardPlace, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmplyee.cardPlace, 'save')"
+                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmployee.cardPlace, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -93,7 +97,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="cardExpired" type="text" [value]="oneEmplyee.cardExpired" class="form-control">
+                <input formControlName="cardExpired" type="date" [value]="oneEmployee.cardExpired" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #cardExpiredButton (click)="editSingleRow('cardExpired', cardExpiredButton)"
@@ -101,12 +105,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmplyee.cardExpired, 'cancel')"
+                <button (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmployee.cardExpired, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmplyee.cardExpired, 'save')"
+                <button (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmployee.cardExpired, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -134,7 +138,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="healthId" type="text" [value]="oneEmplyee.healthId" class="form-control">
+                <input formControlName="healthId" type="number" [value]="oneEmployee.healthId" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #healthIdButton (click)="editSingleRow('healthId', healthIdButton)"
@@ -142,12 +146,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmplyee.healthId, 'cancel')"
+                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmployee.healthId, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmplyee.healthId, 'save')"
+                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmployee.healthId, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -162,7 +166,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="healthDate" type="text" [value]="oneEmplyee.healthDate" class="form-control">
+                <input formControlName="healthDate" type="date" [value]="oneEmployee.healthDate" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #healthDateButton (click)="editSingleRow('healthDate', healthDateButton)"
@@ -170,12 +174,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmplyee.healthDate, 'cancel')"
+                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmployee.healthDate, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmplyee.healthDate, 'save')"
+                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmployee.healthDate, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -191,7 +195,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="healthExpired" type="text" [value]="oneEmplyee.healthExpired"
+                <input formControlName="healthExpired" type="date" [value]="oneEmployee.healthExpired"
                     class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -201,13 +205,13 @@
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmplyee.healthExpired, 'cancel')"
+                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmployee.healthExpired, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmplyee.healthExpired, 'save')"
+                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmployee.healthExpired, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -222,7 +226,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="healthPlace" type="text" [value]="oneEmplyee.healthPlace" class="form-control">
+                <input formControlName="healthPlace" type="text" [value]="oneEmployee.healthPlace" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #healthPlaceButton (click)="editSingleRow('healthPlace', healthPlaceButton)"
@@ -230,12 +234,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmplyee.healthPlace, 'cancel')"
+                <button (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmployee.healthPlace, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmplyee.healthPlace, 'save')"
+                <button (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmployee.healthPlace, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -261,7 +265,7 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="passportId" type="text" [value]="oneEmplyee.passportId" class="form-control">
+                <input formControlName="passportId" type="number" [value]="oneEmployee.passportId" class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #passportIdButton (click)="editSingleRow('passportId', passportIdButton)"
@@ -269,12 +273,12 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmplyee.passportId, 'cancel')"
+                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmployee.passportId, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
-                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmplyee.passportId, 'save')"
+                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmployee.passportId, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -289,7 +293,7 @@
                     : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="passportDate" type="text" [value]="oneEmplyee.passportDate"
+                <input formControlName="passportDate" type="date" [value]="oneEmployee.passportDate"
                     class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -299,13 +303,13 @@
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmplyee.passportDate, 'cancel')"
+                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmployee.passportDate, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmplyee.passportDate, 'save')"
+                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmployee.passportDate, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -320,7 +324,7 @@
                     : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="passportPlace" type="text" [value]="oneEmplyee.passportPlace"
+                <input formControlName="passportPlace" type="text" [value]="oneEmployee.passportPlace"
                     class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -330,13 +334,13 @@
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmplyee.passportPlace, 'cancel')"
+                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmployee.passportPlace, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmplyee.passportPlace, 'save')"
+                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmployee.passportPlace, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>
@@ -351,7 +355,7 @@
                     }} : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="passportExpired" type="text" [value]="oneEmplyee.passportExpired"
+                <input formControlName="passportExpired" type="date" [value]="oneEmployee.passportExpired"
                     class="form-control">
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
@@ -361,13 +365,13 @@
                     تعديل
                 </button>
                 <button
-                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmplyee.passportExpired, 'cancel')"
+                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmployee.passportExpired, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
                     <span class="px-1"> الغاء </span>
                 </button>
                 <button
-                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmplyee.passportExpired, 'save')"
+                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmployee.passportExpired, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1"> موافق </span>

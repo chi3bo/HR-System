@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
+import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
 @Component({
   selector: 'app-insurance-section-data',
   templateUrl: './insurance-section-data.component.html',
@@ -10,12 +11,14 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 })
 export class InsuranceSectionDataComponent {
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
-  oneEmplyee: empFullDetails = {} as empFullDetails
+  oneEmployee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
+  modifiedEmployee: modifiedEmployee = this._UpdateDataService.newEmpData;
 
 
-  InsuranceFormData:FormGroup = this._FormBuilder.group({
+
+  InsuranceFormData: FormGroup = this._FormBuilder.group({
     // معلومات التأمين
     insuranceId: [{ value: null, disabled: true }],
     insuranceRecordNo: [{ value: null, disabled: true }],
@@ -33,20 +36,23 @@ export class InsuranceSectionDataComponent {
     this.getEmpData()
   }
 
-  
+
 
   getEmpData() {
     this._UpdateDataService.employeeData.subscribe(
       (value) => {
         console.log(value);
-        this.oneEmplyee = value
-        this.InsuranceFormData.patchValue(this.oneEmplyee)
+        this.oneEmployee = value
+        this.InsuranceFormData.patchValue(this.oneEmployee)
+        // يوجد في البيانات بعض التواريخ مسجلة كنص كتابي من نوع سترينج علي شكل اندرسكور -___\__\__ عشان كدة لازم نتأكد انه رقم
+        this.oneEmployee.insuranceDate && this.oneEmployee.insuranceDate.includes('0') ? this.oneEmployee.insuranceDate = new Date(this.oneEmployee.insuranceDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.insuranceDateE && this.oneEmployee.insuranceDateE.includes('0') ? this.oneEmployee.insuranceDateE = new Date(this.oneEmployee.insuranceDateE).toISOString().substring(0, 10) : ''
       }
     )
 
   }
 
-  
+
 
 
   editSingleRow(element: any, target: any) {
@@ -80,5 +86,29 @@ export class InsuranceSectionDataComponent {
 
   }
 
+  equalizeData() {
+    // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
+    const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
+      .filter(key => key in this.oneEmployee)
+      .map(key => ({ [key]: this.oneEmployee[key as keyof empFullDetails] })));
+    this.modifiedEmployee = updatedObject
+  }
 
+  setUpdates() {
+    this.equalizeData()
+    this.modifiedEmployee.insuranceId = this.InsuranceFormData.get('insuranceId')?.value
+    this.modifiedEmployee.insuranceRecordNo = this.InsuranceFormData.get('insuranceRecordNo')?.value
+    this.modifiedEmployee.insuranceValue = this.InsuranceFormData.get('insuranceValue')?.value
+    this.modifiedEmployee.insurancePer = this.InsuranceFormData.get('insurancePer')?.value
+    this.modifiedEmployee.insuranceCompany = this.InsuranceFormData.get('insuranceCompany')?.value
+    this.modifiedEmployee.insuranceSalary = this.InsuranceFormData.get('insuranceSalary')?.value
+    this.modifiedEmployee.insuranceDangGP = this.InsuranceFormData.get('insuranceDangGP')?.value
+    this.modifiedEmployee.insuranceDate = this.InsuranceFormData.get('insuranceDate')?.value
+    this.modifiedEmployee.insuranceDateE = this.InsuranceFormData.get('insuranceDateE')?.value
+  }
+
+  sendUpdates() {
+    this.setUpdates()
+    console.log(this.modifiedEmployee);
+  }
 }
