@@ -53,3 +53,8 @@ export interface oneEmployee {
     cardExpired: string
   }
   
+  export interface addedEmployeeInterface {
+    employeeNameAr:string
+    employeeNameEn:string
+    employeeId:string
+  }

@@ -178,7 +178,10 @@ export class ManagmentSectionDataComponent {
     this.setUpdates()
     console.log(this.modifiedEmployee);
 
+    this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>{console.log(err)}
+    })
   }
-
 
 }

@@ -96,12 +96,12 @@ export class InsuranceSectionDataComponent {
 
   setUpdates() {
     this.equalizeData()
-    this.modifiedEmployee.insuranceId = this.InsuranceFormData.get('insuranceId')?.value
-    this.modifiedEmployee.insuranceRecordNo = this.InsuranceFormData.get('insuranceRecordNo')?.value
-    this.modifiedEmployee.insuranceValue = this.InsuranceFormData.get('insuranceValue')?.value
-    this.modifiedEmployee.insurancePer = this.InsuranceFormData.get('insurancePer')?.value
+    this.modifiedEmployee.insuranceId = this.ifValueSetString( this.InsuranceFormData.get('insuranceId')?.value)
+    this.modifiedEmployee.insuranceRecordNo =  this.ifValueSetString(this.InsuranceFormData.get('insuranceRecordNo')?.value)
+    this.modifiedEmployee.insuranceValue = this.ifValueSetString( this.InsuranceFormData.get('insuranceValue')?.value)
+    this.modifiedEmployee.insurancePer = this.ifValueSetString( this.InsuranceFormData.get('insurancePer')?.value)
     this.modifiedEmployee.insuranceCompany = this.InsuranceFormData.get('insuranceCompany')?.value
-    this.modifiedEmployee.insuranceSalary = this.InsuranceFormData.get('insuranceSalary')?.value
+    this.modifiedEmployee.insuranceSalary = this.ifValueSetString( this.InsuranceFormData.get('insuranceSalary')?.value)
     this.modifiedEmployee.insuranceDangGP = this.InsuranceFormData.get('insuranceDangGP')?.value
     this.modifiedEmployee.insuranceDate = this.InsuranceFormData.get('insuranceDate')?.value
     this.modifiedEmployee.insuranceDateE = this.InsuranceFormData.get('insuranceDateE')?.value
@@ -110,5 +110,22 @@ export class InsuranceSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
+    
+    this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>{console.log(err)}
+    })
   }
+
+  
+  ifValueSetString(value: any) {
+    if (value) {
+      return String(value)
+    }
+    else {
+      return value
+    }
+  }
+
+
 }

@@ -116,7 +116,7 @@ export class PersonalSectionDataComponent {
   }
 
   searchByName(value: string) {
-    this.allgroups = this.originalAllGroups.filter((item) => { return item.nameAr.includes(value) || (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) :'') || item.id.includes(value) })
+    this.allgroups = this.originalAllGroups.filter((item) => { return item.nameAr.includes(value) || (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) : '') || item.id.includes(value) })
     console.log(this.allgroups);
   }
 
@@ -147,7 +147,7 @@ export class PersonalSectionDataComponent {
   // =========================== end ===========================
 
 
-  setNation(controlName:string) {
+  setNation(controlName: string) {
     let nationName: string = this.personalDataForm.get(controlName)?.value
     let myNation = this.nationList.filter((item) => { return item.nameAr == nationName || item.nameEn == nationName })
 
@@ -159,7 +159,7 @@ export class PersonalSectionDataComponent {
 
   }
 
-  
+
   equalizeData() {
     // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
     const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
@@ -170,8 +170,8 @@ export class PersonalSectionDataComponent {
 
   setUpdates() {
     this.equalizeData()
-    this.modifiedEmployee.mobile = this.personalDataForm.get('mobile')?.value
-    this.modifiedEmployee.mobileEmergency = this.personalDataForm.get('mobileEmergency')?.value
+    this.modifiedEmployee.mobile = this.ifValueSetString(this.personalDataForm.get('mobile')?.value)
+    this.modifiedEmployee.mobileEmergency =  this.ifValueSetString( this.personalDataForm.get('mobileEmergency')?.value )
     this.modifiedEmployee.nationId = this.personalDataForm.get('nationId')?.value
     this.modifiedEmployee.state = this.personalDataForm.get('state')?.value
     this.modifiedEmployee.blood = this.personalDataForm.get('blood')?.value
@@ -182,8 +182,19 @@ export class PersonalSectionDataComponent {
     console.log(this.modifiedEmployee);
 
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next:(res)=>{console.log(res)},
-      error:(err)=>{console.log(err)}
+      next: (res) => { console.log(res) },
+      error: (err) => { console.log(err) }
     })
   }
+
+  ifValueSetString(value: any) {
+    if (value) {
+     return String(value)
+    }
+    else{
+      return value
+    }
+  }
 }
+
+

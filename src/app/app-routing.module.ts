@@ -43,6 +43,8 @@ import { PersonalSectionDataComponent } from './components/update-Employe/person
 import { DocsSectionDataComponent } from './components/update-Employe/docs-section-data/docs-section-data.component';
 import { InsuranceSectionDataComponent } from './components/update-Employe/insurance-section-data/insurance-section-data.component';
 import { ManagmentSectionDataComponent } from './components/update-Employe/managment-section-data/managment-section-data.component';
+import { HomeDashboardComponent } from './components/home-dashboard/home-dashboard.component';
+import { AddEmployeeComponent } from './components/update-Employe/add-employee/add-employee.component';
 
 const routes: Routes = [
 
@@ -97,6 +99,7 @@ const routes: Routes = [
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
       { path: 'admin-worktask', component: AdminWorkTaskComponent, title: 'work Task orders' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
+      { path: 'new-emp', component: AddEmployeeComponent, title: 'add new employee' },
       { path: 'employee-update', component: EmpUpdateComponent, title: 'employee Update', children: [
           { path: '', redirectTo:'main' ,pathMatch:'full' },
           { path: 'main', component: MainSectionDataComponent, title: 'update  main data' },
@@ -106,7 +109,8 @@ const routes: Routes = [
           { path: 'management', component: ManagmentSectionDataComponent, title: 'update  management data' },
         ]
       },
-      { path: 'admin-dashboard', component: DashboardComponent, title: 'dashboard' },
+      { path: 'home-dashboard', component: HomeDashboardComponent, title: 'Dashboard' },
+      { path: 'admin-dashboard', component: DashboardComponent, title: 'Admin dashboard' },
       {
         path: 'admin-timesheet', component: TimeSheetComponent, title: 'Time Sheet', children: [
           { path: 'display', component: DisplayTimesheetComponent, title: 'display' },

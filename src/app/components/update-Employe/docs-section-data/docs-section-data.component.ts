@@ -109,15 +109,15 @@ export class DocsSectionDataComponent {
   setUpdates() {
     this.equalizeData()
 
-    this.modifiedEmployee.cardId = this.DocsFormData.get('cardId')?.value
+    this.modifiedEmployee.cardId = this.ifValueSetString( this.DocsFormData.get('cardId')?.value)
     this.modifiedEmployee.cardDate = this.DocsFormData.get('cardDate')?.value
     this.modifiedEmployee.cardPlace = this.DocsFormData.get('cardPlace')?.value
     this.modifiedEmployee.cardExpired = this.DocsFormData.get('cardExpired')?.value
-    this.modifiedEmployee.passportId = this.DocsFormData.get('passportId')?.value
+    this.modifiedEmployee.passportId =  this.ifValueSetString( this.DocsFormData.get('passportId')?.value)
     this.modifiedEmployee.passportDate = this.DocsFormData.get('passportDate')?.value
     this.modifiedEmployee.passportPlace = this.DocsFormData.get('passportPlace')?.value
     this.modifiedEmployee.passportExpired = this.DocsFormData.get('passportExpired')?.value
-    this.modifiedEmployee.healthId = this.DocsFormData.get('healthId')?.value
+    this.modifiedEmployee.healthId =  this.ifValueSetString( this.DocsFormData.get('healthId')?.value)
     this.modifiedEmployee.healthDate = this.DocsFormData.get('healthDate')?.value
     this.modifiedEmployee.healthExpired = this.DocsFormData.get('healthExpired')?.value
     this.modifiedEmployee.healthPlace = this.DocsFormData.get('healthPlace')?.value
@@ -126,5 +126,20 @@ export class DocsSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
+    
+    this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>{console.log(err)}
+    })
+  }
+
+    
+  ifValueSetString(value: any) {
+    if (value) {
+      return String(value)
+    }
+    else {
+      return value
+    }
   }
 }

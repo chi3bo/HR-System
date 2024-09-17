@@ -22,7 +22,7 @@ export class MainSectionDataComponent {
   originalAllGroups: branch[] = []
   allgroups: branch[] = []
   enableEditName: string = ''
-  branchChosen : boolean = true
+  branchChosen: boolean = true
 
 
 
@@ -76,17 +76,17 @@ export class MainSectionDataComponent {
         this.oneEmployee = value
         this.mainEmployeeData.patchValue(this.oneEmployee)
 
-      this.oneEmployee.birthDate ? this.oneEmployee.birthDate = new Date(this.oneEmployee.birthDate).toISOString().substring(0, 10) : ''
-      this.oneEmployee.employeePersonExpireDate ? this.oneEmployee.employeePersonExpireDate = new Date(this.oneEmployee.employeePersonExpireDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.birthDate ? this.oneEmployee.birthDate = new Date(this.oneEmployee.birthDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.employeePersonExpireDate ? this.oneEmployee.employeePersonExpireDate = new Date(this.oneEmployee.employeePersonExpireDate).toISOString().substring(0, 10) : ''
       }
     )
 
   }
 
 
-// =========================== start ===========================
-// تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
-  getAllGroubOf(key: string , control:string) {
+  // =========================== start ===========================
+  // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
+  getAllGroubOf(key: string, control: string) {
     this._UpdateDataService.getAllGroubOf(key).subscribe({
       next: (response) => {
         this.allgroups = response
@@ -100,7 +100,7 @@ export class MainSectionDataComponent {
     })
   }
 
-  groubSearching(control:string) {
+  groubSearching(control: string) {
     this.mainEmployeeData.get(control)?.valueChanges
       .pipe(debounceTime(300)).subscribe(value => {  // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
         this.searchByName(value)
@@ -109,28 +109,28 @@ export class MainSectionDataComponent {
   }
 
   searchByName(value: string) {
-    this.allgroups = this.originalAllGroups.filter((item) => { return (item.nameAr ? (item.nameAr).includes(value):'')|| (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) :'')|| item.id.includes(value) })
+    this.allgroups = this.originalAllGroups.filter((item) => { return (item.nameAr ? (item.nameAr).includes(value) : '') || (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) : '') || item.id.includes(value) })
     console.log(this.allgroups);
 
 
   }
 
-  setChosenValue(item:branch , ControlNameAr:string , ControlNameEn:string , ControlID:string , target: any , thisControl:string){
+  setChosenValue(item: branch, ControlNameAr: string, ControlNameEn: string, ControlID: string, target: any, thisControl: string) {
     this.mainEmployeeData.get(ControlNameAr)?.setValue(item.nameAr);
     this.mainEmployeeData.get(ControlNameEn)?.setValue(item.nameEn);
     this.mainEmployeeData.get(ControlID)?.setValue(item.id);
     this.enableEditName = ''
     this.branchChosen = true
 
-   this.closeEdittingInput(thisControl , target , '' , 'save')
+    this.closeEdittingInput(thisControl, target, '', 'save')
     // this.mainEmployeeData.get(ControlNameAR)?.disable();
     // this.mainEmployeeData.get(ControlNameEN)?.disable();
     // this.mainEmployeeData.get(ControlID)?.disable();
-    console.log( item );
-    
+    console.log(item);
+
   }
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
-// =========================== end ===========================
+  // =========================== end ===========================
 
 
 
@@ -173,7 +173,7 @@ export class MainSectionDataComponent {
     this.modifiedEmployee.employeeNameAr = this.mainEmployeeData.get('employeeNameAr')?.value
     this.modifiedEmployee.employeeNameEn = this.mainEmployeeData.get('employeeNameEn')?.value
     this.modifiedEmployee.employeeId = this.mainEmployeeData.get('employeeId')?.value
-    this.modifiedEmployee.employeePersonId = this.mainEmployeeData.get('employeePersonId')?.value
+    this.modifiedEmployee.employeePersonId = this.ifValueSetString(this.mainEmployeeData.get('employeePersonId')?.value)
     this.modifiedEmployee.employeePersonExpireDate = this.mainEmployeeData.get('employeePersonExpireDate')?.value
     this.modifiedEmployee.birthDate = this.mainEmployeeData.get('birthDate')?.value
     this.modifiedEmployee.birthPlace = this.mainEmployeeData.get('birthPlace')?.value
@@ -188,6 +188,19 @@ export class MainSectionDataComponent {
     this.setUpdates()
     console.log(this.modifiedEmployee);
 
+    this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+      next: (res) => { console.log(res) },
+      error: (err) => { console.log(err) }
+    })
+  }
+
+  ifValueSetString(value: any) {
+    if (value) {
+      return String(value)
+    }
+    else {
+      return value
+    }
   }
 
 }
