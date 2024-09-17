@@ -59,7 +59,6 @@ export class DashboardComponent {
   groubEmployeeList: employeeDetails[] = []
   originalEmployeeListRow: employeeDetails[] = []
   employeeListRow: employeeDetails[] = []
-  randomColor: any[] = []
   managementList: oneManage[] = []
   originalBranchList: branch[] = []
   branchesList: branch[] = []
@@ -83,17 +82,9 @@ export class DashboardComponent {
   ageList: any
 
   ngOnInit(): void {
-    // make a temp array of random color 
-    for (let i = 0; i < this.employeeList.length; i++) {
-      this.randomColor.push(this.getRandomColor())
-    }
-
     this.getAllMangements()
     this.getAllData()
     this.searching()
-
-
-
   }
 
   // =======================  start filtering function   =======================
@@ -297,13 +288,13 @@ export class DashboardComponent {
     this.acvtiveFilterNation ? this.employeeList = this.nationaltyFilter(this.employeeList, this.acvtiveFilterNation) : ''
     this.acvtiveFilterGender ? this.employeeList = this.GenderFilter(this.employeeList, this.acvtiveFilterGender) : ''
     this.acvtiveFilterKafil ? this.employeeList = this.kafilFilter(this.employeeList, this.acvtiveFilterKafil) : ''
-    console.log('active filter job : ', this.acvtiveFilterJob);
-    console.log('active filter Company : ', this.acvtiveFilterCompany);
-    console.log('active filter Branch : ', this.acvtiveFilterBranch);
-    console.log('active filter Age : ', this.acvtiveFilterAge);
-    console.log('active filter Nation : ', this.acvtiveFilterNation);
-    console.log('active filter Gender : ', this.acvtiveFilterGender);
-    console.log('active filter Kafil : ', this.acvtiveFilterKafil);
+    // console.log('active filter job : ', this.acvtiveFilterJob);
+    // console.log('active filter Company : ', this.acvtiveFilterCompany);
+    // console.log('active filter Branch : ', this.acvtiveFilterBranch);
+    // console.log('active filter Age : ', this.acvtiveFilterAge);
+    // console.log('active filter Nation : ', this.acvtiveFilterNation);
+    // console.log('active filter Gender : ', this.acvtiveFilterGender);
+    // console.log('active filter Kafil : ', this.acvtiveFilterKafil);
 
     this.totalPages = Math.ceil(this.employeeList.length / this.itemsPerPage);
     this.currentPage = 1
@@ -948,6 +939,10 @@ export class DashboardComponent {
   // ==========================   end pagination   ==========================
 
 
-
+  ngOnDestroy(): void {
+    this.employeeList = []
+    this.loadingData = false
+    this._spinner.hide()
+  }
 
 }

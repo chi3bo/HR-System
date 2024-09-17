@@ -1,8 +1,4 @@
-<div class="w-100 text-center ">
-    <button (click)="sendUpdates()" class="btn btn-success px-5 py-3 mx-auto">ارسال</button>
-</div>
-
-<table class=" w-100 margin-100 {{ 'direction' | translate }}" [formGroup]="mainEmployeeData">
+<table class=" w-100  {{ 'direction' | translate }}" [formGroup]="mainEmployeeData">
     <tbody>
 
 
@@ -140,7 +136,7 @@
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
                 <input formControlName="employeePersonExpireDate" type="date"
-                    [value]=" oneEmployee.employeePersonExpireDate " class="form-control">
+                    [value]=" oneEmployee.employeePersonExpireDate " class="form-control text-center">
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #personalIDExpireButton
@@ -172,7 +168,8 @@
                 </p>
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
-                <input formControlName="birthDate" type="date" [value]=" oneEmployee.birthDate " class="form-control">
+                <input formControlName="birthDate" type="date" [value]=" oneEmployee.birthDate "
+                    class="form-control text-center">
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #birthDateButton (click)="editSingleRow('birthDate' ,birthDateButton)"
@@ -374,16 +371,7 @@
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
                 </button>
-                <!-- <button (click)="closeEdittingInput('companyId', companyId, oneEmployee.companyId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
-                </button>
-                <button (click)="closeEdittingInput('companyId', companyId, oneEmployee.companyId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
-                </button> -->
+
             </td>
         </tr>
 
@@ -398,6 +386,8 @@
                 <div class="position-relative">
                     <input formControlName="companyNameAr" type="text" [value]="oneEmployee.companyNameAr"
                         class="form-control">
+                        <span *ngIf="oneEmployee.companyNameAr != mainEmployeeData.get('companyNameAr')?.value" class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+
                     <div *ngIf="enableEditName=='companyNameAr'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'companyNameAr' , 'companyNameEn' , 'companyId', companyNameAr , 'companyNameAr')"
@@ -445,6 +435,8 @@
                 <div class="position-relative">
                     <input formControlName="companyNameEn" type="text" [value]="oneEmployee.companyNameEn"
                         class="form-control">
+                        <span *ngIf="oneEmployee.companyNameEn != mainEmployeeData.get('companyNameEn')?.value" class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+
                     <div *ngIf="enableEditName=='companyNameEn'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'companyNameAr' , 'companyNameEn' , 'companyId',companyEnButton , 'companyNameEn')"
@@ -536,6 +528,9 @@
                 <div class="position-relative">
                     <input formControlName="kafilNameAr" type="text" [value]="oneEmployee.kafilNameAr"
                         class="form-control">
+                    <span *ngIf="oneEmployee.kafilNameAr != mainEmployeeData.get('kafilNameAr')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+
                     <div *ngIf="enableEditName=='kafilNameAr'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'kafilNameAr' , 'kafilNameEn' , 'kafilId',kafilNameArButton , 'kafilNameAr')"
@@ -580,7 +575,10 @@
             <td class=" col-md-6 w-75-mobile  py-sm-1 ">
                 <div class="position-relative">
                     <input formControlName="kafilNameEn" type="text" [value]="oneEmployee.kafilNameEn"
-                        class="form-control">
+                        class="form-control "
+                        [ngClass]="{'border-success': oneEmployee.kafilNameEn != mainEmployeeData.get('kafilNameEn')?.value }">
+                    <span *ngIf="oneEmployee.kafilNameEn != mainEmployeeData.get('kafilNameEn')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
                     <div *ngIf="enableEditName=='kafilNameEn'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee">
                         <div (click)="setChosenValue(item , 'kafilNameAr' , 'kafilNameEn'  , 'kafilId',kafilNameEnButton , 'kafilNameEn' )"
@@ -623,3 +621,6 @@
 
     </tbody>
 </table>
+<div class="w-100 text-center margin-100">
+    <button (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
+</div>

@@ -1,6 +1,4 @@
-<div class="w-100 text-center ">
-    <button (click)="sendUpdates()" class="btn btn-success px-5 py-3 mx-auto">ارسال</button>
-</div>
+
 
 <table class=" w-100 {{ 'direction' | translate }}" [formGroup]="DocsFormData">
     <tbody>
@@ -383,3 +381,7 @@
 
     </tbody>
 </table>
+
+<div class="w-100 text-center margin-100">
+    <button (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
+</div>

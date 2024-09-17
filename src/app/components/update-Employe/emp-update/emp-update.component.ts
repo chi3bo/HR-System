@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router, Event } from '@angular/router';
 import { debounceTime } from 'rxjs';
@@ -11,7 +11,7 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   templateUrl: './emp-update.component.html',
   styleUrls: ['./emp-update.component.css']
 })
-export class EmpUpdateComponent implements OnInit {
+export class EmpUpdateComponent implements OnInit , OnDestroy {
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
 
   searchingForm: FormGroup = this._FormBuilder.group({
@@ -49,6 +49,8 @@ export class EmpUpdateComponent implements OnInit {
       }
 
     })
+
+    this.isNewEmployee()
 
   }
 
@@ -112,6 +114,15 @@ export class EmpUpdateComponent implements OnInit {
 
   }
 
+isNewEmployee(){
+  // مهمة الفانكشن هي اذا كان هذا موظف جديد اي تم توجيهه من صفحة اضافة موظف
+  //  ان ياخذ الاي دي من التخزين المحلي و يجلب بياناته و يجعله جاهز للتعديل
+  if (localStorage.getItem('createdEmpID')) {
+    this.getEmployeeDetails(localStorage.getItem('createdEmpID')!)
+  }
+}
 
-
+ngOnDestroy(): void {
+  localStorage.removeItem('createdEmpID')
+}
 }

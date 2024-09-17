@@ -26,8 +26,6 @@ export class MainSectionDataComponent {
 
 
 
-
-
   mainEmployeeData: FormGroup = this._FormBuilder.group({
     employeeNameAr: [{ value: null, disabled: true }],
     employeeNameEn: [{ value: null, disabled: true }],

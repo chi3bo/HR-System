@@ -1,9 +1,7 @@
-<div class="w-100 text-center ">
-    <button (click)="sendUpdates()" class="btn btn-success px-5 py-3 mx-auto">ارسال</button>
-</div>
 
 
-<table class=" w-100 {{ 'direction' | translate }} margin-100" [formGroup]="ManagementFormData">
+
+<table class=" w-100 {{ 'direction' | translate }}" [formGroup]="ManagementFormData">
     <tbody>
 
         <!-- ===========================================     START Branches and manages  ========================================= -->
@@ -531,3 +529,7 @@
 
     </tbody>
 </table>
+
+<div class="w-100 text-center margin-100">
+    <button (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
+</div>

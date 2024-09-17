@@ -353,7 +353,18 @@ body {
 }
 
 .margin-100{
-    margin-bottom: 150px;
+    margin-block: 100px;
+}
+
+.edited-mark{
+    /* position-absolute top-50  text-white bg-success px-1 rounded-circle */
+    position: absolute;
+    top: 20%;
+    left: 5px;
+    color: white;
+    background-color: #198754 ;
+    padding: 0 4px;
+    border-radius: 50%;
 }
 
 /* =====================    start  media query       ===================  */
