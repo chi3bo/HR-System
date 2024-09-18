@@ -6,6 +6,7 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 import { modifiedEmployee } from './../../../shared/interfaces/update-data';
 import { oneEmployee } from 'src/app/shared/interfaces/update-data';
 import { debounceTime } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-main-section-data',
@@ -13,7 +14,7 @@ import { debounceTime } from 'rxjs';
   styleUrls: ['./main-section-data.component.css']
 })
 export class MainSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,  private _toaster: ToastrService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
   enableEdit: boolean = false
@@ -195,10 +196,18 @@ export class MainSectionDataComponent {
 
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
       next: (res) => {
+        if (res.isSuccess == true) {
+          this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+          this._toaster.success('تم تحديث بيانات الموظف بنجاح' , "تم التعديل", {positionClass: 'toast-bottom-right'})
+        }
+        else{
+          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
+        }
         console.log(res)
-        this.getEmployeeDetails(this.modifiedEmployee.employeeId)
       },
-      error: (err) => { console.log(err) }
+      error: (err) => { 
+        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
+        console.log(err) }
     })
   }
 

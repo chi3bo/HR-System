@@ -17,3 +17,33 @@
 .save-Button {
     display: none;
 }
+
+@media screen and (max-width:576px) {
+    .w-75-mobile {
+        width: 75% !important;
+
+    }
+
+    .w-25-mobile {
+        width: 25% !important;
+    }
+
+    .cancel-Button {
+        width: 50px !important;
+        min-width: 50px !important;
+    }
+
+    .save-Button {
+        width: 50px !important;
+        min-width: 50px !important;
+    }
+
+    .py-2-mobile {
+        padding-block: 10px !important;
+    }
+
+    .font-18-mobile {
+        font-size: 18px !important;
+    }
+
+}

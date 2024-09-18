@@ -27,7 +27,7 @@
                             class="edited-mark"><i class="fa-solid fa-marker"></i></span>
                     </div>
             </td>
-            <td class=" col-md-3 w-25-mobile py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
+            <td class=" col-md-3 w-25-mobile py-sm-1 align-content-center  px-0 d-flex">
                 <button #empNameARBtn (click)="editSingleRow('employeeNameAr' ,empNameARBtn)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -666,6 +666,6 @@
 
     </tbody>
 </table>
-<div class="w-100 text-center margin-100">
+<div class="w-100 text-center margin-100 z-0">
     <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
 </div>

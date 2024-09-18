@@ -1,6 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
@@ -11,7 +12,7 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./docs-section-data.component.css']
 })
 export class DocsSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,  private _toaster: ToastrService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
@@ -130,9 +131,19 @@ export class DocsSectionDataComponent {
     console.log(this.modifiedEmployee);
 
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next: (res) => { console.log(res) 
-      this.getEmployeeDetails(this.modifiedEmployee.employeeId)},
-      error: (err) => { console.log(err) }
+      next: (res) => {
+        if (res.isSuccess == true) {
+          this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+          this._toaster.success('تم تحديث بيانات الموظف بنجاح' , "تم التعديل", {positionClass: 'toast-bottom-right'})
+        }
+        else{
+          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
+        }
+        console.log(res)
+      },
+      error: (err) => { 
+        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
+        console.log(err) }
     })
   }
 

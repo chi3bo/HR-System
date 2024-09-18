@@ -41,6 +41,8 @@
     margin-inline: auto !important;
     padding-inline: 0 !important;
     border-radius: 15px;
+    z-index: 5 !important;
+
 }
 
 @media screen and (max-width:576px) {

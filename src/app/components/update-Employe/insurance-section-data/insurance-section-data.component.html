@@ -6,12 +6,12 @@
         <!-- ===========================================      START insurance     ========================================= -->
 
         <!-- employee Insurance Id -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceId' | translate }} :
                 </p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceId" type="number" [value]="oneEmployee.insuranceId"
                         class="form-control">
@@ -21,30 +21,32 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceIdButton (click)="editSingleRow('insuranceId', insuranceIdButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmployee.insuranceId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmployee.insuranceId, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Record No -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceRecordNo' | translate
                     }} :</p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceRecordNo" type="number" [value]="oneEmployee.insuranceRecordNo"
                         class="form-control">
@@ -54,31 +56,33 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceRecordNoButton (click)="editSingleRow('insuranceRecordNo', insuranceRecordNoButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmployee.insuranceRecordNo, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmployee.insuranceRecordNo, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Value -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceValue' | translate }}
                     :</p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceValue" type="number" [value]="oneEmployee.insuranceValue"
                         class="form-control">
@@ -88,31 +92,33 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceValueButton (click)="editSingleRow('insuranceValue', insuranceValueButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmployee.insuranceValue, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmployee.insuranceValue, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Per -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsurancePer' | translate }} :
                 </p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insurancePer" type="number" [value]="oneEmployee.insurancePer"
                         class="form-control">
@@ -122,31 +128,33 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insurancePerButton (click)="editSingleRow('insurancePer', insurancePerButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmployee.insurancePer, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmployee.insurancePer, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Company -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceCompany' | translate
                     }} :</p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceCompany" type="text" [value]="oneEmployee.insuranceCompany"
                         class="form-control">
@@ -156,31 +164,33 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceCompanyButton (click)="editSingleRow('insuranceCompany', insuranceCompanyButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmployee.insuranceCompany, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmployee.insuranceCompany, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Salary -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceSalary' | translate }}
                     :</p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceSalary" type="number" [value]="oneEmployee.insuranceSalary"
                         class="form-control">
@@ -190,31 +200,33 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceSalaryButton (click)="editSingleRow('insuranceSalary', insuranceSalaryButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmployee.insuranceSalary, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmployee.insuranceSalary, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Dang GP -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDangGP' | translate }}
                     :</p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceDangGP" type="text" [value]="oneEmployee.insuranceDangGP"
                         class="form-control">
@@ -224,31 +236,33 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceDangGPButton (click)="editSingleRow('insuranceDangGP', insuranceDangGPButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmployee.insuranceDangGP, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmployee.insuranceDangGP, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Date -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDate' | translate }} :
                 </p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceDate" type="date" [value]="oneEmployee.insuranceDate"
                         class="form-control text-center">
@@ -258,31 +272,33 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceDateButton (click)="editSingleRow('insuranceDate', insuranceDateButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmployee.insuranceDate, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmployee.insuranceDate, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
 
         <!-- employee Insurance Date Expired -->
-        <tr class="row w-100">
-            <td class="col-3 py-1  align-content-center">
+        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
+            <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDateExpired' |
                     translate }} :</p>
             </td>
-            <td class="col-6 py-1">
+            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceDateE" type="date" [min]="oneEmployee.insuranceDate"
                         [value]="oneEmployee.insuranceDateE" class="form-control text-center ">
@@ -292,20 +308,22 @@
                     </span>
                 </div>
             </td>
-            <td class="col-3 py-1 align-content-center px-0 d-flex">
+            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #insuranceDateEButton (click)="editSingleRow('insuranceDateE', insuranceDateEButton)"
-                    class="btn btn-outline-dark update-Button fw-semibold fs-14">
+                    class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i> تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmployee.insuranceDateE, 'cancel')"
-                    class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark"></i> <span class="px-1"> الغاء </span>
+                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
+                    <i class="fa-solid fa-xmark "></i>
+                    <span class="px-1 hide-on-mobile"> الغاء </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmployee.insuranceDateE, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i> <span class="px-1"> موافق </span>
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="px-1  hide-on-mobile"> موافق </span>
                 </button>
             </td>
         </tr>
