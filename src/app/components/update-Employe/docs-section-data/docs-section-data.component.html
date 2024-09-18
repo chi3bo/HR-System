@@ -383,5 +383,5 @@
 </table>
 
 <div class="w-100 text-center margin-100">
-    <button (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
+    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
 </div>

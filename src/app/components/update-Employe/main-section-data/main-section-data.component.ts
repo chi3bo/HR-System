@@ -23,6 +23,7 @@ export class MainSectionDataComponent {
   allgroups: branch[] = []
   enableEditName: string = ''
   branchChosen: boolean = true
+  isFormChanged: boolean = false;
 
 
 
@@ -55,8 +56,15 @@ export class MainSectionDataComponent {
 
   ngOnInit(): void {
     this.getEmpData()
+    this.monitorFormChanges()
   }
 
+  monitorFormChanges() {
+    this.mainEmployeeData.valueChanges.subscribe(() => {
+      // تحقق إذا تم تعديل النموذج
+      this.isFormChanged = this.mainEmployeeData.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+    });
+  }
 
   equalizeData() {
     // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
@@ -65,7 +73,6 @@ export class MainSectionDataComponent {
       .map(key => ({ [key]: this.oneEmployee[key as keyof empFullDetails] })));
     this.modifiedEmployee = updatedObject
   }
-
 
   getEmpData() {
     this._UpdateDataService.employeeData.subscribe(
@@ -80,7 +87,6 @@ export class MainSectionDataComponent {
     )
 
   }
-
 
   // =========================== start ===========================
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
@@ -117,6 +123,7 @@ export class MainSectionDataComponent {
     this.mainEmployeeData.get(ControlNameAr)?.setValue(item.nameAr);
     this.mainEmployeeData.get(ControlNameEn)?.setValue(item.nameEn);
     this.mainEmployeeData.get(ControlID)?.setValue(item.id);
+    this.mainEmployeeData.markAsDirty()
     this.enableEditName = ''
     this.branchChosen = true
 
@@ -187,7 +194,10 @@ export class MainSectionDataComponent {
     console.log(this.modifiedEmployee);
 
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next: (res) => { console.log(res) },
+      next: (res) => {
+        console.log(res)
+        this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+      },
       error: (err) => { console.log(err) }
     })
   }
@@ -199,6 +209,18 @@ export class MainSectionDataComponent {
     else {
       return value
     }
+  }
+
+
+  getEmployeeDetails(empID: string) {
+    this._UpdateDataService.getEmpFullData(empID).subscribe({
+      next: (data) => {
+        this._UpdateDataService.employeeData.next(data)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 }

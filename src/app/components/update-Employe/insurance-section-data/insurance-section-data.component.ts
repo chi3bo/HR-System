@@ -15,6 +15,7 @@ export class InsuranceSectionDataComponent {
   enableEdit: boolean = false
   showData: boolean = false
   modifiedEmployee: modifiedEmployee = this._UpdateDataService.newEmpData;
+  isFormChanged: boolean = false;
 
 
 
@@ -34,9 +35,15 @@ export class InsuranceSectionDataComponent {
 
   ngOnInit(): void {
     this.getEmpData()
+    this.monitorFormChanges()
   }
 
-
+  monitorFormChanges() {
+    this.InsuranceFormData.valueChanges.subscribe(() => {
+      // تحقق إذا تم تعديل النموذج
+      this.isFormChanged = this.InsuranceFormData.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+    });
+  }
 
   getEmpData() {
     this._UpdateDataService.employeeData.subscribe(
@@ -112,7 +119,9 @@ export class InsuranceSectionDataComponent {
     console.log(this.modifiedEmployee);
     
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next:(res)=>{console.log(res)},
+      next:(res)=>{console.log(res)
+      this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+      },
       error:(err)=>{console.log(err)}
     })
   }
@@ -125,6 +134,18 @@ export class InsuranceSectionDataComponent {
     else {
       return value
     }
+  }
+
+  
+  getEmployeeDetails(empID: string) {
+    this._UpdateDataService.getEmpFullData(empID).subscribe({
+      next: (data) => {
+        this._UpdateDataService.employeeData.next(data)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 

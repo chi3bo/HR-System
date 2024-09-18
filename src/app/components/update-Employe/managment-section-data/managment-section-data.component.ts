@@ -22,6 +22,8 @@ export class ManagmentSectionDataComponent {
   allgroups: branch[] = []
   enableEditName: string = ''
   branchChosen: boolean = true
+  isFormChanged: boolean = false;
+
 
   ManagementFormData: FormGroup = this._FormBuilder.group({
     // معلومات الفروع والإدارة
@@ -40,16 +42,19 @@ export class ManagmentSectionDataComponent {
     employeeCategoryId: [{ value: null, disabled: true }],
     employeeCategoryNameAr: [{ value: null, disabled: true }],
     employeeCategoryNameEn: [{ value: null, disabled: true }],
-
   })
-
-
 
   ngOnInit(): void {
     this.getEmpData()
+    this.monitorFormChanges()
   }
 
-
+  monitorFormChanges() {
+    this.ManagementFormData.valueChanges.subscribe(() => {
+      // تحقق إذا تم تعديل النموذج
+      this.isFormChanged = this.ManagementFormData.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+    });
+  }
 
   getEmpData() {
     this._UpdateDataService.employeeData.subscribe(
@@ -154,6 +159,7 @@ export class ManagmentSectionDataComponent {
     this.ManagementFormData.get(ControlNameAr)?.setValue(item.nameAr);
     this.ManagementFormData.get(ControlNameEn)?.setValue(item.nameEn);
     this.ManagementFormData.get(ControlID)?.setValue(item.id);
+    this.ManagementFormData.markAsDirty()
     this.enableEditName = ''
     this.branchChosen = true
 
@@ -179,9 +185,23 @@ export class ManagmentSectionDataComponent {
     console.log(this.modifiedEmployee);
 
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next:(res)=>{console.log(res)},
-      error:(err)=>{console.log(err)}
+      next: (res) => { console.log(res) 
+      this.getEmployeeDetails(this.modifiedEmployee.employeeId)},
+      error: (err) => { console.log(err) }
     })
   }
+
+  
+  getEmployeeDetails(empID: string) {
+    this._UpdateDataService.getEmpFullData(empID).subscribe({
+      next: (data) => {
+        this._UpdateDataService.employeeData.next(data)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
 
 }

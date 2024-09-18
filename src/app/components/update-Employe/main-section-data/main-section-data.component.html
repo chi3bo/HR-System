@@ -20,8 +20,12 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  "> {{ 'Update.ArabicName' | translate }}
                     : </p>
             <td class=" col-md-6 w-75-mobile py-sm-1 ">
+                <div class="position-relative">
                 <input formControlName="employeeNameAr" type="text" [value]=" oneEmployee.employeeNameAr "
                     class="form-control">
+                        <span *ngIf="oneEmployee.employeeNameAr != mainEmployeeData.get('employeeNameAr')?.value"
+                            class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    </div>
             </td>
             <td class=" col-md-3 w-25-mobile py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #empNameARBtn (click)="editSingleRow('employeeNameAr' ,empNameARBtn)"
@@ -52,8 +56,12 @@
                     : </p>
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <input formControlName="employeeNameEn" type="text" [value]=" oneEmployee.employeeNameEn "
                     class="form-control">
+                        <span *ngIf="oneEmployee.employeeNameEn != mainEmployeeData.get('employeeNameEn')?.value"
+                            class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    </div>
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #employeeNameEnBtn (click)="editSingleRow('employeeNameEn' , employeeNameEnBtn)"
@@ -85,7 +93,11 @@
                 </p>
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <input formControlName="employeeId" type="text" [value]=" oneEmployee.employeeId " class="form-control">
+                    <span *ngIf="oneEmployee.employeeId != mainEmployeeData.get('employeeId')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button disabled #employeeIdButton class="btn btn-dark update-Button fw-semibold fs-14">
@@ -102,8 +114,12 @@
                 </p>
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <input formControlName="employeePersonId" type="number" [value]="oneEmployee.employeePersonId "
                     class="form-control">
+                        <span *ngIf="oneEmployee.employeePersonId != mainEmployeeData.get('employeePersonId')?.value"
+                            class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    </div>
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #personalIDButton (click)="editSingleRow('employeePersonId' , personalIDButton)"
@@ -137,6 +153,7 @@
             <td class="  col-md-6 w-75-mobile  py-sm-1">
                 <input formControlName="employeePersonExpireDate" type="date"
                     [value]=" oneEmployee.employeePersonExpireDate " class="form-control text-center">
+
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #personalIDExpireButton
@@ -198,7 +215,11 @@
                 </p>
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <input formControlName="birthPlace" type="text" [value]=" oneEmployee.birthPlace " class="form-control">
+                    <span *ngIf="oneEmployee.birthPlace != mainEmployeeData.get('birthPlace')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #birthPlaceButton (click)="editSingleRow('birthPlace' , birthPlaceButton)"
@@ -227,7 +248,11 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.Age' | translate }} : </p>
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <input formControlName="age" type="number" max="99" [value]="oneEmployee.age" class="form-control">
+                    <span *ngIf="oneEmployee.age != mainEmployeeData.get('age')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button disabled #ageButton (click)="editSingleRow('age', ageButton)"
@@ -258,7 +283,11 @@
                 </p>
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <input formControlName="motherName" type="text" [value]="oneEmployee.motherName" class="form-control">
+                    <span *ngIf="oneEmployee.motherName != mainEmployeeData.get('motherName')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #motherNameButton (click)="editSingleRow('motherName', motherNameButton)"
@@ -287,11 +316,15 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.Gender' | translate }} : </p>
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <select formControlName="gender" name="gender" id="gender" [value]="oneEmployee.gender"
                     class="form-control">
                     <option value="0">رجل</option>
                     <option value="1">امرأة</option>
                 </select>
+                    <span *ngIf="oneEmployee.gender != mainEmployeeData.get('gender')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #genderButton (click)="editSingleRow('gender', genderButton)"
@@ -319,11 +352,15 @@
                     }} : </p>
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <select formControlName="marrige" name="marrige" id="marrige" [value]="oneEmployee.marrige"
                     class="form-control">
                     <option value="0">اعزب</option>
                     <option value="1">متزوج</option>
                 </select>
+                    <span *ngIf="oneEmployee.marrige != mainEmployeeData.get('marrige')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #marrigeButton (click)="editSingleRow('marrige', marrigeButton)"
@@ -364,7 +401,11 @@
                 </p>
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
+                <div class="position-relative">
                 <input formControlName="companyId" type="text" [value]="oneEmployee.companyId" class="form-control">
+                    <span *ngIf="oneEmployee.companyId != mainEmployeeData.get('companyId')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #companyId disabled class="btn btn-dark update-Button fw-semibold fs-14">
@@ -497,7 +538,11 @@
                 </p>
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
-                <input formControlName="kafilId" type="text" [value]="oneEmployee.kafilId" class="form-control">
+                <div class="position-relative">
+                    <input formControlName="kafilId" type="text" [value]="oneEmployee.kafilId" class="form-control">
+                    <span *ngIf="oneEmployee.kafilId != mainEmployeeData.get('kafilId')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #kafilIdButton (click)="editSingleRow('kafilId', kafilIdButton)" disabled
@@ -622,5 +667,5 @@
     </tbody>
 </table>
 <div class="w-100 text-center margin-100">
-    <button (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
+    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
 </div>

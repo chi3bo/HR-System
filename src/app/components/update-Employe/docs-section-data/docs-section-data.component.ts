@@ -16,15 +16,16 @@ export class DocsSectionDataComponent {
   enableEdit: boolean = false
   showData: boolean = false
   modifiedEmployee: modifiedEmployee = this._UpdateDataService.newEmpData;
+  isFormChanged: boolean = false;
 
 
-  DocsFormData:FormGroup = this._FormBuilder.group({
+  DocsFormData: FormGroup = this._FormBuilder.group({
     // معلومات الهوية الشخصية
     cardId: [{ value: null, disabled: true }],
     cardDate: [{ value: null, disabled: true }],
     cardPlace: [{ value: null, disabled: true }],
     cardExpired: [{ value: null, disabled: true }],
-    
+
     // معلومات الجواز
     passportId: [{ value: null, disabled: true }],
     passportDate: [{ value: null, disabled: true }],
@@ -41,11 +42,15 @@ export class DocsSectionDataComponent {
 
   ngOnInit(): void {
     this.getEmpData()
-
+    this.monitorFormChanges()
   }
-  
 
-  
+  monitorFormChanges() {
+    this.DocsFormData.valueChanges.subscribe(() => {
+      // تحقق إذا تم تعديل النموذج
+      this.isFormChanged = this.DocsFormData.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+    });
+  }
 
   getEmpData() {
     this._UpdateDataService.employeeData.subscribe(
@@ -63,8 +68,6 @@ export class DocsSectionDataComponent {
     )
 
   }
-
-
 
   editSingleRow(element: any, target: any) {
     let x = this.DocsFormData.get(element)?.enable()
@@ -97,7 +100,6 @@ export class DocsSectionDataComponent {
 
   }
 
-
   equalizeData() {
     // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
     const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
@@ -109,15 +111,15 @@ export class DocsSectionDataComponent {
   setUpdates() {
     this.equalizeData()
 
-    this.modifiedEmployee.cardId = this.ifValueSetString( this.DocsFormData.get('cardId')?.value)
+    this.modifiedEmployee.cardId = this.ifValueSetString(this.DocsFormData.get('cardId')?.value)
     this.modifiedEmployee.cardDate = this.DocsFormData.get('cardDate')?.value
     this.modifiedEmployee.cardPlace = this.DocsFormData.get('cardPlace')?.value
     this.modifiedEmployee.cardExpired = this.DocsFormData.get('cardExpired')?.value
-    this.modifiedEmployee.passportId =  this.ifValueSetString( this.DocsFormData.get('passportId')?.value)
+    this.modifiedEmployee.passportId = this.ifValueSetString(this.DocsFormData.get('passportId')?.value)
     this.modifiedEmployee.passportDate = this.DocsFormData.get('passportDate')?.value
     this.modifiedEmployee.passportPlace = this.DocsFormData.get('passportPlace')?.value
     this.modifiedEmployee.passportExpired = this.DocsFormData.get('passportExpired')?.value
-    this.modifiedEmployee.healthId =  this.ifValueSetString( this.DocsFormData.get('healthId')?.value)
+    this.modifiedEmployee.healthId = this.ifValueSetString(this.DocsFormData.get('healthId')?.value)
     this.modifiedEmployee.healthDate = this.DocsFormData.get('healthDate')?.value
     this.modifiedEmployee.healthExpired = this.DocsFormData.get('healthExpired')?.value
     this.modifiedEmployee.healthPlace = this.DocsFormData.get('healthPlace')?.value
@@ -126,14 +128,15 @@ export class DocsSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
-    
+
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next:(res)=>{console.log(res)},
-      error:(err)=>{console.log(err)}
+      next: (res) => { console.log(res) 
+      this.getEmployeeDetails(this.modifiedEmployee.employeeId)},
+      error: (err) => { console.log(err) }
     })
   }
 
-    
+
   ifValueSetString(value: any) {
     if (value) {
       return String(value)
@@ -142,4 +145,17 @@ export class DocsSectionDataComponent {
       return value
     }
   }
+
+  
+  getEmployeeDetails(empID: string) {
+    this._UpdateDataService.getEmpFullData(empID).subscribe({
+      next: (data) => {
+        this._UpdateDataService.employeeData.next(data)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
 }

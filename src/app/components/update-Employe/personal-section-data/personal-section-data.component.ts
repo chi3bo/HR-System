@@ -23,6 +23,7 @@ export class PersonalSectionDataComponent {
   nationList: branch[] = []
   enableEditName: string = ''
   branchChosen: boolean = true
+  isFormChanged: boolean = false;
 
 
   personalDataForm: FormGroup = this._FormBuilder.group({
@@ -73,9 +74,28 @@ export class PersonalSectionDataComponent {
     this.enableEditName = ''
   }
 
+
+
+
+
+
+
+
+
+
+
+
   ngOnInit(): void {
     this.getEmpData()
     this.getAllNations()
+    this.monitorFormChanges()
+  }
+
+  monitorFormChanges() {
+    this.personalDataForm.valueChanges.subscribe(() => {
+      // تحقق إذا تم تعديل النموذج
+      this.isFormChanged = this.personalDataForm.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+    });
   }
 
   getEmpData() {
@@ -89,7 +109,6 @@ export class PersonalSectionDataComponent {
     )
 
   }
-
 
   // =========================== start ===========================
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
@@ -154,9 +173,10 @@ export class PersonalSectionDataComponent {
     this.personalDataForm.get('nationNameAr')?.setValue(myNation[0].nameAr)
     this.personalDataForm.get('nationNameEn')?.setValue(myNation[0].nameEn)
     this.personalDataForm.get('nationId')?.setValue(myNation[0].id)
+    this.personalDataForm.markAsDirty()
+
     this.enableEditName = ''
     this.branchChosen = true
-
   }
 
 
@@ -182,7 +202,9 @@ export class PersonalSectionDataComponent {
     console.log(this.modifiedEmployee);
 
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next: (res) => { console.log(res) },
+      next: (res) => { console.log(res)
+        this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+    },
       error: (err) => { console.log(err) }
     })
   }
@@ -195,6 +217,20 @@ export class PersonalSectionDataComponent {
       return value
     }
   }
+
+
+  getEmployeeDetails(empID: string) {
+    this._UpdateDataService.getEmpFullData(empID).subscribe({
+      next: (data) => {
+        this._UpdateDataService.employeeData.next(data)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+
 }
 
 

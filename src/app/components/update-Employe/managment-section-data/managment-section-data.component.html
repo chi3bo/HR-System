@@ -14,7 +14,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="branchId" type="text" [value]="oneEmployee.branchId" class="form-control">
+                <div class="position-relative">
+                    <input formControlName="branchId" type="text" [value]="oneEmployee.branchId" class="form-control">
+                    <span *ngIf="oneEmployee.branchId != ManagementFormData.get('branchId')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
@@ -32,18 +37,16 @@
             </td>
             <td class="col-6 py-1">
                 <div class="position-relative">
-                    <input formControlName="branchNameAr" type="text" [value]="oneEmployee.branchNameAr"
-                        class="form-control">
-                    <div *ngIf="enableEditName=='branchNameAr'"
-                        class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
-                        <div (click)="setChosenValue(item , 'branchNameAr' , 'branchNameEn' , 'branchId',branchNameAr , 'branchNameAr')"
+                    <input formControlName="branchNameAr" type="text" [value]="oneEmployee.branchNameAr" class="form-control">
+                    <span *ngIf="oneEmployee.branchNameAr != ManagementFormData.get('branchNameAr')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                    <div *ngIf="enableEditName == 'branchNameAr'" class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
+                        <div (click)="setChosenValue(item, 'branchNameAr', 'branchNameEn', 'branchId', branchNameAr, 'branchNameAr')"
                             *ngFor="let item of allgroups"
-                            class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative d-flex justify-content-between">
-                            <span class="px-2">
-                                {{item.nameAr}}
-                            </span>
-                            <span class="px-2 ps-3 fw-light small"> - {{item.id}}
-                            </span>
+                            class="emp-Hover w-100 border-bottom py-2 cursor-pointer position-relative d-flex justify-content-between">
+                            <span class="px-2">{{ item.nameAr }}</span>
+                            <span class="px-2 ps-3 fw-light small"> - {{ item.id }}</span>
                         </div>
                     </div>
                 </div>
@@ -78,6 +81,9 @@
                 <div class="position-relative">
                     <input formControlName="branchNameEn" type="text" [value]="oneEmployee.branchNameEn"
                         class="form-control">
+                        <span *ngIf="oneEmployee.branchNameEn != ManagementFormData.get('branchNameEn')?.value" class="edited-mark">
+                            <i class="fa-solid fa-marker"></i>
+                        </span>
                     <div *ngIf="enableEditName=='branchNameEn'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'branchNameAr' , 'branchNameEn' , 'branchId',branchNameEn , 'branchNameEn')"
@@ -118,7 +124,12 @@
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.JobId' | translate }} : </p>
             </td>
             <td class=" col-6 py-1">
-                <input formControlName="jobId" type="text" [value]=" oneEmployee.jobId " class="form-control ">
+                <div class="position-relative">
+                    <input formControlName="jobId" type="text" [value]="oneEmployee.jobId" class="form-control">
+                    <span *ngIf="oneEmployee.jobId != ManagementFormData.get('jobId')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
@@ -137,6 +148,9 @@
             <td class=" col-6 py-1 ">
                 <div class="position-relative">
                     <input formControlName="jobNameAr" type="text" [value]="oneEmployee.jobNameAr" class="form-control">
+                    <span *ngIf="oneEmployee.jobNameAr != ManagementFormData.get('jobNameAr')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
                     <div *ngIf="enableEditName=='jobNameAr'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'jobNameAr' , 'jobNameEn' , 'jobId', empJobAr , 'jobNameAr')"
@@ -183,6 +197,9 @@
             <td class=" col-6 py-1 ">
                 <div class="position-relative">
                     <input formControlName="jobNameEn" type="text" [value]="oneEmployee.jobNameEn" class="form-control">
+                    <span *ngIf="oneEmployee.jobNameEn != ManagementFormData.get('jobNameEn')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
                     <div *ngIf="enableEditName=='jobNameEn'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'jobNameAr' , 'jobNameEn' , 'jobId', empJobEn , 'jobNameEn')"
@@ -225,7 +242,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="manageId" type="text" [value]="oneEmployee.manageId" class="form-control">
+                <div class="position-relative">
+                    <input formControlName="manageId" type="text" [value]="oneEmployee.manageId" class="form-control">
+                    <span *ngIf="oneEmployee.manageId != ManagementFormData.get('manageId')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
@@ -235,6 +257,8 @@
             </td>
         </tr>
 
+
+        <!-- ---------------------------------------------------------------- -->
         <!-- employee Manage Name (Arabic) -->
         <tr class="row w-100">
             <td class="col-3 py-1  align-content-center">
@@ -244,6 +268,9 @@
             <td class=" col-6 py-1 ">
                 <div class="position-relative">
                     <input formControlName="manageNameAr" type="text" [value]="oneEmployee.manageNameAr" class="form-control">
+                    <span *ngIf="oneEmployee.manageNameAr != ManagementFormData.get('manageNameAr')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
                     <div *ngIf="enableEditName=='manageNameAr'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'manageNameAr' , 'manageNameEn' , 'manageId', manageNameArButton , 'manageNameAr')"
@@ -286,6 +313,9 @@
             <td class=" col-6 py-1 ">
                 <div class="position-relative">
                     <input formControlName="manageNameEn" type="text" [value]="oneEmployee.manageNameEn" class="form-control">
+                    <span *ngIf="oneEmployee.manageNameEn != ManagementFormData.get('manageNameEn')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
                     <div *ngIf="enableEditName=='manageNameEn'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'manageNameAr' , 'manageNameEn' , 'manageId', manageNameEnButton , 'manageNameEn')"
@@ -326,8 +356,12 @@
                     : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="departmentId" type="text" [value]="oneEmployee.departmentId"
-                    class="form-control">
+                <div class="position-relative">
+                    <input formControlName="departmentId" type="text" [value]="oneEmployee.departmentId" class="form-control">
+                    <span *ngIf="oneEmployee.departmentId != ManagementFormData.get('departmentId')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
@@ -346,6 +380,9 @@
             <td class=" col-6 py-1 ">
                 <div class="position-relative">
                     <input formControlName="departmentNameAr" type="text" [value]="oneEmployee.departmentNameAr" class="form-control">
+                    <span *ngIf="oneEmployee.departmentNameAr != ManagementFormData.get('departmentNameAr')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
                     <div *ngIf="enableEditName=='departmentNameAr'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                         <div (click)="setChosenValue(item , 'departmentNameAr' , 'departmentNameEn' , 'departmentId', departmentNameArButton , 'departmentNameAr')"
@@ -390,6 +427,9 @@
 
             <div class="position-relative">
                 <input formControlName="departmentNameEn" type="text" [value]="oneEmployee.departmentNameEn" class="form-control">
+                <span *ngIf="oneEmployee.departmentNameEn != ManagementFormData.get('departmentNameEn')?.value" class="edited-mark">
+                    <i class="fa-solid fa-marker"></i>
+                </span>
                 <div *ngIf="enableEditName=='departmentNameEn'"
                     class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                     <div (click)="setChosenValue(item , 'departmentNameAr' , 'departmentNameEn' , 'departmentId', departmentNameEnButton , 'departmentNameEn')"
@@ -430,8 +470,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="employeeCategoryId" type="text" [value]="oneEmployee.employeeCategoryId"
-                    class="form-control">
+                <div class="position-relative">
+                    <input formControlName="employeeCategoryId" type="text" [value]="oneEmployee.employeeCategoryId" class="form-control">
+                    <span *ngIf="oneEmployee.employeeCategoryId != ManagementFormData.get('employeeCategoryId')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button disabled #branchId class="btn btn-dark update-Button fw-semibold fs-14">
@@ -450,6 +494,9 @@
             <td class="col-6 py-1">
                     <div class="position-relative">
                         <input formControlName="employeeCategoryNameAr" type="text" [value]="oneEmployee.employeeCategoryNameAr" class="form-control">
+                        <span *ngIf="oneEmployee.employeeCategoryNameAr != ManagementFormData.get('employeeCategoryNameAr')?.value" class="edited-mark">
+                            <i class="fa-solid fa-marker"></i>
+                        </span>
                         <div *ngIf="enableEditName=='employeeCategoryNameAr'"
                             class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                             <div (click)="setChosenValue(item , 'employeeCategoryNameAr' , 'employeeCategoryNameEn' , 'employeeCategoryId', empCategoryNameArButton , 'employeeCategoryNameAr')"
@@ -492,6 +539,9 @@
             <td class="col-6 py-1">
                     <div class="position-relative">
                         <input formControlName="employeeCategoryNameEn" type="text" [value]="oneEmployee.employeeCategoryNameEn" class="form-control">
+                        <span *ngIf="oneEmployee.employeeCategoryNameEn != ManagementFormData.get('employeeCategoryNameEn')?.value" class="edited-mark">
+                            <i class="fa-solid fa-marker"></i>
+                        </span>
                         <div *ngIf="enableEditName=='employeeCategoryNameEn'"
                             class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
                             <div (click)="setChosenValue(item , 'employeeCategoryNameAr' , 'employeeCategoryNameEn' , 'employeeCategoryId', empCategoryNameEnButton , 'employeeCategoryNameEn')"
@@ -531,5 +581,5 @@
 </table>
 
 <div class="w-100 text-center margin-100">
-    <button (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
+    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
 </div>

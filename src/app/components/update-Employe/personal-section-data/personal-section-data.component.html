@@ -1,4 +1,3 @@
-
 <table class=" w-100 {{ 'direction' | translate }}" [formGroup]="personalDataForm">
     <tbody>
 
@@ -13,7 +12,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="mobile" type="number" [value]="oneEmpolyee.mobile" class="form-control">
+                <div class="position-relative">
+                    <input formControlName="mobile" type="number" [value]="oneEmpolyee.mobile" class="form-control">
+                    <span *ngIf="oneEmpolyee.mobile != personalDataForm.get('mobile')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #mobileButton (click)="editSingleRow('mobile', mobileButton)"
@@ -42,8 +46,14 @@
                     }} : </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="mobileEmergency" type="number" [value]="oneEmpolyee.mobileEmergency"
-                    class="form-control">
+                <div class="position-relative">
+                    <input formControlName="mobileEmergency" type="number" [value]="oneEmpolyee.mobileEmergency"
+                        class="form-control">
+                    <span *ngIf="oneEmpolyee.mobileEmergency != personalDataForm.get('mobileEmergency')?.value"
+                        class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #mobileEmergencyButton (click)="editSingleRow('mobileEmergency', mobileEmergencyButton)"
@@ -80,7 +90,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="nationId" type="text" [value]="oneEmpolyee.nationId" class="form-control">
+                <div class="position-relative">
+                    <input formControlName="nationId" type="text" [value]="oneEmpolyee.nationId" class="form-control">
+                    <span *ngIf="oneEmpolyee.nationId != personalDataForm.get('nationId')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button disabled #nationIdButton class="btn btn-dark update-Button fw-semibold fs-14">
@@ -100,11 +115,17 @@
             <td class="col-6 py-1">
                 <!-- <input formControlName="nationNameAr" type="text" [value]="oneEmpolyee.nationNameAr"
                     class="form-control"> -->
-                <select (change)="setNation('nationNameAr')" formControlName="nationNameAr" name="nationNameAr"
-                    id="nationNameAr" class="form-control">
-                    <option [value]="oneEmpolyee.nationNameAr"> {{oneEmpolyee.nationNameAr}} </option>
-                    <option *ngFor="let item of nationList" [value]="item.nameAr"> {{item.nameAr}} </option>
-                </select>
+                <div class="position-relative">
+                    <select (change)="setNation('nationNameAr')" formControlName="nationNameAr" name="nationNameAr"
+                        id="nationNameAr" class="form-control">
+                        <option [value]="oneEmpolyee.nationNameAr">{{oneEmpolyee.nationNameAr}}</option>
+                        <option *ngFor="let item of nationList" [value]="item.nameAr">{{item.nameAr}}</option>
+                    </select>
+                    <span *ngIf="oneEmpolyee.nationNameAr != personalDataForm.get('nationNameAr')?.value"
+                        class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #nationNameArButton (click)="editSingleRow('nationNameAr', nationNameArButton)"
@@ -135,11 +156,17 @@
                     : </p>
             </td>
             <td class="col-6 py-1">
-                <select (change)="setNation('nationNameEn')" formControlName="nationNameEn" name="nationNameEn"
-                    id="nationNameEn" class="form-control">
-                    <option [value]="oneEmpolyee.nationNameEn"> {{oneEmpolyee.nationNameEn}} </option>
-                    <option *ngFor="let item of nationList" [value]="item.nameEn"> {{item.nameEn}} </option>
-                </select>
+                <div class="position-relative">
+                    <select (change)="setNation('nationNameEn')" formControlName="nationNameEn" name="nationNameEn"
+                        id="nationNameEn" class="form-control">
+                        <option [value]="oneEmpolyee.nationNameEn">{{oneEmpolyee.nationNameEn}}</option>
+                        <option *ngFor="let item of nationList" [value]="item.nameEn">{{item.nameEn}}</option>
+                    </select>
+                    <span *ngIf="oneEmpolyee.nationNameEn != personalDataForm.get('nationNameEn')?.value"
+                        class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
                 <!-- <input formControlName="nationNameEn" type="text" [value]="oneEmpolyee.nationNameEn"
                     class="form-control"> -->
             </td>
@@ -183,14 +210,18 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <select formControlName="state" name="state" id="state" class="form-control">
-                    <option [value]="2 || 1"> منفصل عن العمل </option>
-                    <option value="0"> علي رأس العمل </option>
-                </select>
-                <!-- <input formControlName="state" type="text" [value]="oneEmpolyee.state" class="form-control"> -->
+                <div class="position-relative">
+                    <select formControlName="state" name="state" id="state" class="form-control">
+                        <option [value]="2 || 1">منفصل عن العمل</option>
+                        <option value="0">علي رأس العمل</option>
+                    </select>
+                    <span *ngIf="oneEmpolyee.state != personalDataForm.get('state')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
-                <button  #stateButton (click)="editSingleRow('state', stateButton)"
+                <button #stateButton (click)="editSingleRow('state', stateButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     <i class="fa-regular fa-pen-to-square px-1"></i>
                     تعديل
@@ -215,7 +246,12 @@
                 </p>
             </td>
             <td class="col-6 py-1">
-                <input formControlName="blood" type="text" [value]="oneEmpolyee.blood" class="form-control">
+                <div class="position-relative">
+                    <input formControlName="blood" type="text" [value]="oneEmpolyee.blood" class="form-control">
+                    <span *ngIf="oneEmpolyee.blood != personalDataForm.get('blood')?.value" class="edited-mark">
+                        <i class="fa-solid fa-marker"></i>
+                    </span>
+                </div>
             </td>
             <td class="col-3 py-1 align-content-center px-0 d-flex">
                 <button #bloodButton (click)="editSingleRow('blood', bloodButton)"
@@ -240,6 +276,7 @@
     </tbody>
 </table>
 
-    <div class="w-100 text-center margin-100">
-        <button (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
-    </div>
+<div class="w-100 sending-button text-center margin-100">
+    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و
+        ارسال</button>
+</div>
