@@ -1,6 +1,8 @@
 <table class=" w-100 {{ 'direction' | translate }}" [formGroup]="personalDataForm">
     <tbody>
-
+        {{'edit' | translate}}
+        {{'Cancel' | translate}}
+        {{'OK' | translate}}
         <!-- =========================================== start cminucate ========================================= -->
         <!-- =========================================== start cminucate ========================================= -->
         <!-- =========================================== start cminucate ========================================= -->
@@ -22,18 +24,18 @@
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
                 <button #mobileButton (click)="editSingleRow('mobile', mobileButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('mobile', mobileButton, oneEmpolyee.mobile, 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> الغاء </span>
+                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('mobile', mobileButton, oneEmpolyee.mobile, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -58,20 +60,20 @@
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
                 <button #mobileEmergencyButton (click)="editSingleRow('mobileEmergency', mobileEmergencyButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmpolyee.mobileEmergency, 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> الغاء </span>
+                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('mobileEmergency', mobileEmergencyButton, oneEmpolyee.mobileEmergency, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -99,8 +101,8 @@
             </td>
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
                 <button disabled #nationIdButton class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
             </td>
         </tr>
@@ -129,18 +131,17 @@
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
                 <button #nationNameArButton (click)="editSingleRow('nationNameAr', nationNameArButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
-                <button
-                    class="d-none">
-                    <span class="px-1 hide-on-mobile   "> الغاء </span>
+                <button class="d-none">
+                    <span class="px-1 hide-on-mobile   "> {{'Cancel' | translate}} </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('nationNameAr', nationNameArButton, oneEmpolyee.nationNameAr, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -170,18 +171,17 @@
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
                 <button #nationNameEnButton (click)="editSingleRow('nationNameEn', nationNameEnButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
-                <button
-                    class="d-none">
-                    <span class="px-1"> الغاء </span>
+                <button class="d-none">
+                    <span class="px-1"> {{'Cancel' | translate}} </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('nationNameEn', nationNameEnButton, oneEmpolyee.nationNameEn, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -218,17 +218,16 @@
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
                 <button #stateButton (click)="editSingleRow('state', stateButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
-                <button 
-                    class=" d-none">
-                    <span class="px-1"> الغاء </span>
+                <button class=" d-none">
+                    <span class="px-1"> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('state', stateButton, oneEmpolyee.state, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -250,18 +249,18 @@
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
                 <button #bloodButton (click)="editSingleRow('blood', bloodButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('blood', bloodButton, oneEmpolyee.blood, 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile   "> الغاء </span>
+                    <span class="px-1 hide-on-mobile   "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('blood', bloodButton, oneEmpolyee.blood, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -271,6 +270,7 @@
 </table>
 
 <div class="w-100 sending-button text-center margin-100">
-    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و
-        ارسال</button>
+    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">
+        {{ 'save_send' | translate }}
+    </button>
 </div>

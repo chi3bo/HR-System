@@ -696,5 +696,35 @@
         "HealthPlace": "Health Place",
         "State": "State",
         "BloodType": "Blood Type"
-    }
+    },
+    "home_Dashboard": {
+        "لوحة_تحكم_المدير": "Manager Dashboard",
+        "اضافة_موظف": "Add Employee",
+        "تعديل_موظف": "Edit Employee",
+        "بحث_و_احصاء_الموظفين": "Search & Statistics"
+    },
+    "add_employee": "Add New Employee",
+    "employee_name_ar": "Name in Arabic:",
+    "employee_name_en": "Name in English:",
+    "employee_code": "Employee Code is:",
+    "arabic_name_required": "Name in Arabic is required",
+    "english_name_required": "Name in English is required",
+    "unknown_error": "An unknown error occurred. Please try again later.",
+    "unstored_request": "Data was not stored... Please check the input data",
+    "create": "Create",
+    "next": "Next",
+    "search": {
+        "username_placeholder": "Username",
+        "sections": "Sections",
+        "basic_info": "Basic Information",
+        "personal_info": "Personal Information",
+        "branches_management": "Branches & Management",
+        "insurance_info": "Insurance Information",
+        "documents": "Documents"
+    },
+    "edit":"Edit",
+    "OK":"OK",
+    "Cancel":"Cancel",
+    "save_send":"save & Update"
+
 }

@@ -21,29 +21,29 @@
                     : </p>
             <td class=" col-md-6 w-75-mobile py-sm-1 ">
                 <div class="position-relative">
-                <input formControlName="employeeNameAr" type="text" [value]=" oneEmployee.employeeNameAr "
-                    class="form-control">
-                        <span *ngIf="oneEmployee.employeeNameAr != mainEmployeeData.get('employeeNameAr')?.value"
-                            class="edited-mark"><i class="fa-solid fa-marker"></i></span>
-                    </div>
+                    <input formControlName="employeeNameAr" type="text" [value]=" oneEmployee.employeeNameAr "
+                        class="form-control">
+                    <span *ngIf="oneEmployee.employeeNameAr != mainEmployeeData.get('employeeNameAr')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class=" col-md-3 w-25-mobile py-sm-1 align-content-center  px-0 d-flex">
                 <button #empNameARBtn (click)="editSingleRow('employeeNameAr' ,empNameARBtn)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('employeeNameAr' ,empNameARBtn ,  oneEmployee.employeeNameAr , 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile   "> الغاء </span>
+                    <span class="px-1 hide-on-mobile   "> {{'Cancel' | translate}} </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('employeeNameAr' ,empNameARBtn ,  oneEmployee.employeeNameAr , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1  hide-on-mobile "> موافق </span>
+                    <span class="px-1  hide-on-mobile "> {{'OK' | translate}} </span>
                 </button>
 
             </td>
@@ -57,29 +57,29 @@
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <input formControlName="employeeNameEn" type="text" [value]=" oneEmployee.employeeNameEn "
-                    class="form-control">
-                        <span *ngIf="oneEmployee.employeeNameEn != mainEmployeeData.get('employeeNameEn')?.value"
-                            class="edited-mark"><i class="fa-solid fa-marker"></i></span>
-                    </div>
+                    <input formControlName="employeeNameEn" type="text" [value]=" oneEmployee.employeeNameEn "
+                        class="form-control">
+                    <span *ngIf="oneEmployee.employeeNameEn != mainEmployeeData.get('employeeNameEn')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #employeeNameEnBtn (click)="editSingleRow('employeeNameEn' , employeeNameEnBtn)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('employeeNameEn' , employeeNameEnBtn ,  oneEmployee.employeeNameEn , 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1  hide-on-mobile  "> الغاء </span>
+                    <span class="px-1  hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('employeeNameEn' , employeeNameEnBtn ,  oneEmployee.employeeNameEn , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1  hide-on-mobile "> موافق </span>
+                    <span class="px-1  hide-on-mobile "> {{'OK' | translate}} </span>
                 </button>
 
             </td>
@@ -94,15 +94,16 @@
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <input formControlName="employeeId" type="text" [value]=" oneEmployee.employeeId " class="form-control">
+                    <input formControlName="employeeId" type="text" [value]=" oneEmployee.employeeId "
+                        class="form-control">
                     <span *ngIf="oneEmployee.employeeId != mainEmployeeData.get('employeeId')?.value"
                         class="edited-mark"><i class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button disabled #employeeIdButton class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
             </td>
         </tr>
@@ -115,29 +116,29 @@
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <input formControlName="employeePersonId" type="number" [value]="oneEmployee.employeePersonId "
-                    class="form-control">
-                        <span *ngIf="oneEmployee.employeePersonId != mainEmployeeData.get('employeePersonId')?.value"
-                            class="edited-mark"><i class="fa-solid fa-marker"></i></span>
-                    </div>
+                    <input formControlName="employeePersonId" type="number" [value]="oneEmployee.employeePersonId "
+                        class="form-control">
+                    <span *ngIf="oneEmployee.employeePersonId != mainEmployeeData.get('employeePersonId')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #personalIDButton (click)="editSingleRow('employeePersonId' , personalIDButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('employeePersonId' , personalIDButton ,  oneEmployee.employeePersonId , 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1  hide-on-mobile  "> الغاء </span>
+                    <span class="px-1  hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('employeePersonId' , personalIDButton ,  oneEmployee.employeePersonId , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1  hide-on-mobile "> موافق </span>
+                    <span class="px-1  hide-on-mobile "> {{'OK' | translate}} </span>
                 </button>
 
             </td>
@@ -159,20 +160,20 @@
                 <button #personalIDExpireButton
                     (click)="editSingleRow('employeePersonExpireDate' ,personalIDExpireButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('employeePersonExpireDate' ,personalIDExpireButton ,  oneEmployee.employeePersonExpireDate , 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1  hide-on-mobile  "> الغاء </span>
+                    <span class="px-1  hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button
                     (click)="closeEdittingInput('employeePersonExpireDate' ,personalIDExpireButton ,  oneEmployee.employeePersonExpireDate , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1  hide-on-mobile "> موافق </span>
+                    <span class="px-1  hide-on-mobile "> {{'OK' | translate}} </span>
                 </button>
 
             </td>
@@ -191,18 +192,18 @@
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #birthDateButton (click)="editSingleRow('birthDate' ,birthDateButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('birthDate' ,birthDateButton ,  oneEmployee.birthDate , 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1  hide-on-mobile  "> الغاء </span>
+                    <span class="px-1  hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('birthDate' ,birthDateButton ,  oneEmployee.birthDate , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1  hide-on-mobile "> موافق </span>
+                    <span class="px-1  hide-on-mobile "> {{'OK' | translate}} </span>
                 </button>
 
             </td>
@@ -216,7 +217,8 @@
             </td>
             <td class="  col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <input formControlName="birthPlace" type="text" [value]=" oneEmployee.birthPlace " class="form-control">
+                    <input formControlName="birthPlace" type="text" [value]=" oneEmployee.birthPlace "
+                        class="form-control">
                     <span *ngIf="oneEmployee.birthPlace != mainEmployeeData.get('birthPlace')?.value"
                         class="edited-mark"><i class="fa-solid fa-marker"></i></span>
                 </div>
@@ -224,19 +226,19 @@
             <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
                 <button #birthPlaceButton (click)="editSingleRow('birthPlace' , birthPlaceButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('birthPlace' , birthPlaceButton ,  oneEmployee.birthPlace , 'cancel')"
                     class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1  hide-on-mobile  "> الغاء </span>
+                    <span class="px-1  hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('birthPlace' , birthPlaceButton ,  oneEmployee.birthPlace , 'save')"
                     class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1  hide-on-mobile "> موافق </span>
+                    <span class="px-1  hide-on-mobile "> {{'OK' | translate}} </span>
                 </button>
 
             </td>
@@ -249,26 +251,26 @@
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <input formControlName="age" type="number" max="99" [value]="oneEmployee.age" class="form-control">
-                    <span *ngIf="oneEmployee.age != mainEmployeeData.get('age')?.value"
-                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    <input formControlName="age" type="number" max="99" [value]="oneEmployee.age" class="form-control">
+                    <span *ngIf="oneEmployee.age != mainEmployeeData.get('age')?.value" class="edited-mark"><i
+                            class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button disabled #ageButton (click)="editSingleRow('age', ageButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('age', ageButton, oneEmployee.age, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('age', ageButton, oneEmployee.age, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
             <span class="small text-danger text-center" *ngIf="mainEmployeeData.get('age')?.errors">ادخل رقم حقيقي بين
@@ -284,7 +286,8 @@
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <input formControlName="motherName" type="text" [value]="oneEmployee.motherName" class="form-control">
+                    <input formControlName="motherName" type="text" [value]="oneEmployee.motherName"
+                        class="form-control">
                     <span *ngIf="oneEmployee.motherName != mainEmployeeData.get('motherName')?.value"
                         class="edited-mark"><i class="fa-solid fa-marker"></i></span>
                 </div>
@@ -292,18 +295,18 @@
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #motherNameButton (click)="editSingleRow('motherName', motherNameButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('motherName', motherNameButton, oneEmployee.motherName, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('motherName', motherNameButton, oneEmployee.motherName, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -317,30 +320,30 @@
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <select formControlName="gender" name="gender" id="gender" [value]="oneEmployee.gender"
-                    class="form-control">
-                    <option value="0">رجل</option>
-                    <option value="1">امرأة</option>
-                </select>
-                    <span *ngIf="oneEmployee.gender != mainEmployeeData.get('gender')?.value"
-                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    <select formControlName="gender" name="gender" id="gender" [value]="oneEmployee.gender"
+                        class="form-control">
+                        <option value="0">رجل</option>
+                        <option value="1">امرأة</option>
+                    </select>
+                    <span *ngIf="oneEmployee.gender != mainEmployeeData.get('gender')?.value" class="edited-mark"><i
+                            class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #genderButton (click)="editSingleRow('gender', genderButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('gender', genderButton, oneEmployee.gender, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('gender', genderButton, oneEmployee.gender, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -353,30 +356,30 @@
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <select formControlName="marrige" name="marrige" id="marrige" [value]="oneEmployee.marrige"
-                    class="form-control">
-                    <option value="0">اعزب</option>
-                    <option value="1">متزوج</option>
-                </select>
-                    <span *ngIf="oneEmployee.marrige != mainEmployeeData.get('marrige')?.value"
-                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    <select formControlName="marrige" name="marrige" id="marrige" [value]="oneEmployee.marrige"
+                        class="form-control">
+                        <option value="0">اعزب</option>
+                        <option value="1">متزوج</option>
+                    </select>
+                    <span *ngIf="oneEmployee.marrige != mainEmployeeData.get('marrige')?.value" class="edited-mark"><i
+                            class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #marrigeButton (click)="editSingleRow('marrige', marrigeButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('marrige', marrigeButton, oneEmployee.marrige, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('marrige', marrigeButton, oneEmployee.marrige, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -402,15 +405,15 @@
             </td>
             <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
-                <input formControlName="companyId" type="text" [value]="oneEmployee.companyId" class="form-control">
+                    <input formControlName="companyId" type="text" [value]="oneEmployee.companyId" class="form-control">
                     <span *ngIf="oneEmployee.companyId != mainEmployeeData.get('companyId')?.value"
                         class="edited-mark"><i class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #companyId disabled class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
 
             </td>
@@ -427,7 +430,8 @@
                 <div class="position-relative">
                     <input formControlName="companyNameAr" type="text" [value]="oneEmployee.companyNameAr"
                         class="form-control">
-                        <span *ngIf="oneEmployee.companyNameAr != mainEmployeeData.get('companyNameAr')?.value" class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    <span *ngIf="oneEmployee.companyNameAr != mainEmployeeData.get('companyNameAr')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
 
                     <div *ngIf="enableEditName=='companyNameAr'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
@@ -447,20 +451,20 @@
                 <button (click)="getAllGroubOf('Company' , 'companyNameAr')" #companyNameAr
                     (click)="editSingleRow('companyNameAr', companyNameAr)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('companyNameAr', companyNameAr, oneEmployee.companyNameAr, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button [disabled]="!branchChosen &&  enableEditName=='companyNameAr' "
                     (click)="closeEdittingInput('companyNameAr', companyNameAr, oneEmployee.companyNameAr, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center ">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -476,7 +480,8 @@
                 <div class="position-relative">
                     <input formControlName="companyNameEn" type="text" [value]="oneEmployee.companyNameEn"
                         class="form-control">
-                        <span *ngIf="oneEmployee.companyNameEn != mainEmployeeData.get('companyNameEn')?.value" class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    <span *ngIf="oneEmployee.companyNameEn != mainEmployeeData.get('companyNameEn')?.value"
+                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
 
                     <div *ngIf="enableEditName=='companyNameEn'"
                         class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee z-3">
@@ -496,20 +501,20 @@
                 <button (click)="getAllGroubOf('Company' , 'companyNameEn')" #companyEnButton
                     (click)="editSingleRow('companyNameEn', companyEnButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('companyNameEn', companyEnButton, oneEmployee.companyNameEn, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button [disabled]="!branchChosen &&  enableEditName=='companyNameEn' "
                     (click)="closeEdittingInput('companyNameEn', companyEnButton, oneEmployee.companyNameEn, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -540,25 +545,25 @@
             <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative">
                     <input formControlName="kafilId" type="text" [value]="oneEmployee.kafilId" class="form-control">
-                    <span *ngIf="oneEmployee.kafilId != mainEmployeeData.get('kafilId')?.value"
-                        class="edited-mark"><i class="fa-solid fa-marker"></i></span>
+                    <span *ngIf="oneEmployee.kafilId != mainEmployeeData.get('kafilId')?.value" class="edited-mark"><i
+                            class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
             <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
                 <button #kafilIdButton (click)="editSingleRow('kafilId', kafilIdButton)" disabled
                     class="btn btn-dark update-Button fw-semibold fs-14 ">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('kafilId', kafilIdButton, oneEmployee.kafilId, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button (click)="closeEdittingInput('kafilId', kafilIdButton, oneEmployee.kafilId, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -594,19 +599,19 @@
                 <button (click)="getAllGroubOf('kafil' , 'kafilNameAr')" #kafilNameArButton
                     (click)="editSingleRow('kafilNameAr', kafilNameArButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button (click)="closeEdittingInput('kafilNameAr', kafilNameArButton, oneEmployee.kafilNameAr, 'save')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button [disabled]="!branchChosen &&  enableEditName=='kafilNameAr' "
                     (click)="closeEdittingInput('kafilNameAr', kafilNameArButton, oneEmployee.kafilNameAr, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -643,20 +648,20 @@
                 <button #kafilNameEnButton (click)="getAllGroubOf('kafil' , 'kafilNameEn')"
                     (click)="editSingleRow('kafilNameEn', kafilNameEnButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
+                    {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                    تعديل
                 </button>
                 <button
                     (click)="closeEdittingInput('kafilNameEn', kafilNameEnButton, oneEmployee.kafilNameEn, 'cancel')"
                     class="btn btn-danger save-Button update-Button fw-semibold fs-14 mx-1 align-content-center d-none">
                     <i class="fa-solid fa-xmark"></i>
-                    <span class="px-1 hide-on-mobile  "> الغاء </span>
+                    <span class="px-1 hide-on-mobile  "> {{'Cancel' | translate}} </span>
                 </button>
                 <button [disabled]="!branchChosen &&  enableEditName=='kafilNameEn' "
                     (click)="closeEdittingInput('kafilNameEn', kafilNameEnButton, oneEmployee.kafilNameEn, 'save')"
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> موافق </span>
+                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
                 </button>
             </td>
         </tr>
@@ -667,5 +672,7 @@
     </tbody>
 </table>
 <div class="w-100 text-center margin-100 z-0">
-    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">حفظ و ارسال</button>
+    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">
+        {{ 'save_send' | translate }}
+    </button>
 </div>

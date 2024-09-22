@@ -1,10 +1,11 @@
 <section>
     <form [formGroup]="searchingForm" class="w-100">
-        <div class=" w-100 rounded text-center py-3 full-flex  flex-column row mx-0 ">
-            <div class="full-flex col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 px-0  position-relative">
+        <div class="w-100 rounded text-center py-3 full-flex flex-column row mx-0">
+            <div class="full-flex col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 px-0 position-relative">
                 <div class="input-group my-1 w-80-mobile">
-                    <input type="search" formControlName="searchInput" class="form-control" placeholder="Username"
-                        aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="search" formControlName="searchInput" class="form-control"
+                        placeholder="{{ 'search.username_placeholder' | translate }}" aria-label="Username"
+                        aria-describedby="basic-addon1">
                     <span class="input-group-text bg-primary border-2 border-start-0 border-primary px-3"
                         id="basic-addon1">
                         <i class="fa-solid fa-magnifying-glass text-white fa-1x"></i>
@@ -13,38 +14,46 @@
                 <div *ngIf="employeeList.length > 0 && showList"
                     class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 border listOfEmployee">
                     <div *ngFor="let employee of employeeList" (click)="getEmployeeDetails(employee.employeeId)"
-                        class=" emp-Hover w-100 border-bottom  py-2 cursor-pointer position-relative">
-                        {{employee.nameAr}}
-                        <span class="px-2 position-absolute start-0 ps-3 fw-light small"> {{employee.employeeId}} -
-                        </span>
+                        class="emp-Hover w-100 border-bottom py-2 cursor-pointer position-relative">
+                        {{ employee.nameAr }}
+                        <span class="px-2 position-absolute start-0 ps-3 fw-light small">{{ employee.employeeId }}
+                            -</span>
                     </div>
                 </div>
             </div>
-
         </div>
     </form>
 
-    <div class="w-100 py-5  px-2 row mx-0">
+    <div class="w-100 py-5 px-2 row mx-0">
         <div class="col-md-2 bg-primary text-white sections">
-
             <div class="fakeHeight"></div>
             <div>
-                <p class="fs-3 text-center my-3">الاقسام</p>
+                <p class="fs-3 text-center my-3">{{ 'search.sections' | translate }}</p>
             </div>
-
-            <div class="text-start  fw-semibold">
-                <p routerLink="./main"  routerLinkActive="activeSection"  class="sections-Hover my-0 py-2 ps-4 rounded "> بيانات أساسية </p>
-                <p routerLink="./personal"  routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded"> معلومات شخصية </p>
-                <p routerLink="./management"  routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded "> الفروع و الادارة </p>
-                <p routerLink="./insurance"  routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded ">معلومات التأمينات </p>
-                <p routerLink="./docs"  routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded "> الوثائق </p>
+            <div class="text-start fw-semibold">
+                <p routerLink="./main" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded">
+                    {{ 'search.basic_info' | translate }}
+                </p>
+                <p routerLink="./personal" routerLinkActive="activeSection"
+                    class="sections-Hover my-0 py-2 ps-4 rounded">
+                    {{ 'search.personal_info' | translate }}
+                </p>
+                <p routerLink="./management" routerLinkActive="activeSection"
+                    class="sections-Hover my-0 py-2 ps-4 rounded">
+                    {{ 'search.branches_management' | translate }}
+                </p>
+                <p routerLink="./insurance" routerLinkActive="activeSection"
+                    class="sections-Hover my-0 py-2 ps-4 rounded">
+                    {{ 'search.insurance_info' | translate }}
+                </p>
+                <p routerLink="./docs" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded">
+                    {{ 'search.documents' | translate }}
+                </p>
             </div>
-
         </div>
         <div class="col-md-2 fake-col"></div>
-
-        <div class="col-md-10 rounded-2 ">
-            <div class="w-100 py-5" [ngClass]="{ 'd-none' : !showData }">
+        <div class="col-md-10 rounded-2">
+            <div class="w-100 py-5" [ngClass]="{ 'd-none': !showData }">
                 <router-outlet></router-outlet>
             </div>
         </div>
