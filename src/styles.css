@@ -366,6 +366,10 @@ body {
     padding: 0 4px;
     border-radius: 50%;
 }
+.edited-mark-en{
+    left: unset !important;
+    right: 5px !important;
+}
 
 /* =====================    start  media query       ===================  */
 /* =====================    start  media query       ===================  */

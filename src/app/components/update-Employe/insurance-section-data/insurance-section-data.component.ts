@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./insurance-section-data.component.css']
 })
 export class InsuranceSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,  private _toaster: ToastrService) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _toaster: ToastrService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
@@ -22,15 +22,15 @@ export class InsuranceSectionDataComponent {
 
   InsuranceFormData: FormGroup = this._FormBuilder.group({
     // معلومات التأمين
-    insuranceId: [{ value: null, disabled: true }],
-    insuranceRecordNo: [{ value: null, disabled: true }],
-    insuranceValue: [{ value: null, disabled: true }],
-    insurancePer: [{ value: null, disabled: true }],
-    insuranceCompany: [{ value: null, disabled: true }],
-    insuranceSalary: [{ value: null, disabled: true }],
-    insuranceDangGP: [{ value: null, disabled: true }],
-    insuranceDate: [{ value: null, disabled: true }],
-    insuranceDateE: [{ value: null, disabled: true }],
+    insuranceId: [null],
+    insuranceRecordNo: [null],
+    insuranceValue: [null],
+    insurancePer: [null],
+    insuranceCompany: [null],
+    insuranceSalary: [null],
+    insuranceDangGP: [null],
+    insuranceDate: [null],
+    insuranceDateE: [null],
   })
 
 
@@ -104,12 +104,12 @@ export class InsuranceSectionDataComponent {
 
   setUpdates() {
     this.equalizeData()
-    this.modifiedEmployee.insuranceId = this.ifValueSetString( this.InsuranceFormData.get('insuranceId')?.value)
-    this.modifiedEmployee.insuranceRecordNo =  this.ifValueSetString(this.InsuranceFormData.get('insuranceRecordNo')?.value)
-    this.modifiedEmployee.insuranceValue = this.ifValueSetString( this.InsuranceFormData.get('insuranceValue')?.value)
-    this.modifiedEmployee.insurancePer = this.ifValueSetString( this.InsuranceFormData.get('insurancePer')?.value)
+    this.modifiedEmployee.insuranceId = this.ifValueSetString(this.InsuranceFormData.get('insuranceId')?.value)
+    this.modifiedEmployee.insuranceRecordNo = this.ifValueSetString(this.InsuranceFormData.get('insuranceRecordNo')?.value)
+    this.modifiedEmployee.insuranceValue = this.ifValueSetString(this.InsuranceFormData.get('insuranceValue')?.value)
+    this.modifiedEmployee.insurancePer = this.ifValueSetString(this.InsuranceFormData.get('insurancePer')?.value)
     this.modifiedEmployee.insuranceCompany = this.InsuranceFormData.get('insuranceCompany')?.value
-    this.modifiedEmployee.insuranceSalary = this.ifValueSetString( this.InsuranceFormData.get('insuranceSalary')?.value)
+    this.modifiedEmployee.insuranceSalary = this.ifValueSetString(this.InsuranceFormData.get('insuranceSalary')?.value)
     this.modifiedEmployee.insuranceDangGP = this.InsuranceFormData.get('insuranceDangGP')?.value
     this.modifiedEmployee.insuranceDate = this.InsuranceFormData.get('insuranceDate')?.value
     this.modifiedEmployee.insuranceDateE = this.InsuranceFormData.get('insuranceDateE')?.value
@@ -118,25 +118,26 @@ export class InsuranceSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
-    
+
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
       next: (res) => {
         if (res.isSuccess == true) {
           this.getEmployeeDetails(this.modifiedEmployee.employeeId)
-          this._toaster.success('تم تحديث بيانات الموظف بنجاح' , "تم التعديل", {positionClass: 'toast-bottom-right'})
+          this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
         }
-        else{
-          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
+        else {
+          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
         }
         console.log(res)
       },
-      error: (err) => { 
-        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
-        console.log(err) }
+      error: (err) => {
+        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+        console.log(err)
+      }
     })
   }
 
-  
+
   ifValueSetString(value: any) {
     if (value) {
       return String(value)
@@ -146,7 +147,7 @@ export class InsuranceSectionDataComponent {
     }
   }
 
-  
+
   getEmployeeDetails(empID: string) {
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {

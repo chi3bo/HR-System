@@ -1,6 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
@@ -13,7 +14,8 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./personal-section-data.component.css']
 })
 export class PersonalSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,  private _toaster: ToastrService) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
+      private _Router: Router,  private _toaster: ToastrService , private _TranslateService: TranslateService) { }
   oneEmpolyee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
   enableEdit: boolean = false
@@ -29,18 +31,20 @@ export class PersonalSectionDataComponent {
 
   personalDataForm: FormGroup = this._FormBuilder.group({
     // معلومات الاتصال
-    mobile: [{ value: null, disabled: true }],
-    mobileEmergency: [{ value: null, disabled: true }],
+    mobile: [null],
+    mobileEmergency: [null],
     // معلومات الجنسية
     nationId: [{ value: null, disabled: true }],
-    nationNameAr: [{ value: null, disabled: true }],
-    nationNameEn: [{ value: null, disabled: true }],
+    nationNameAr: [null],
+    nationNameEn: [null],
     // الحالة
-    state: [{ value: null, disabled: true }],
-    blood: [{ value: null, disabled: true }],
+    state: [null],
+    blood: [null],
   })
 
-
+  get currentLang() {
+    return this._TranslateService.currentLang
+  }
 
 
   editSingleRow(element: any, target: any) {

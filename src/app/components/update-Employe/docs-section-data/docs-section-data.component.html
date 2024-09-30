@@ -10,14 +10,14 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
-                    <input formControlName="cardId" type="number" [value]="oneEmployee.cardId" class="form-control">
+                    <input formControlName="cardId" type="number" [value]="oneEmployee.cardId" class="form-control bg-body-tertiary">
                     <span *ngIf="oneEmployee.cardId != DocsFormData.get('cardId')?.value" class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #cardIdButton (click)="editSingleRow('cardId', cardIdButton)"
+                <!-- <button #cardIdButton (click)="editSingleRow('cardId', cardIdButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -31,7 +31,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -43,10 +43,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <input formControlName="cardDate" type="date" [value]="oneEmployee.cardDate"
-                    class="form-control text-center">
+                    class="form-control text-center bg-body-tertiary">
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #cardDateButton (click)="editSingleRow('cardDate', cardDateButton)"
+                <!-- <button #cardDateButton (click)="editSingleRow('cardDate', cardDateButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -60,7 +60,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -72,14 +72,14 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
-                    <input formControlName="cardPlace" type="text" [value]="oneEmployee.cardPlace" class="form-control">
+                    <input formControlName="cardPlace" type="text" [value]="oneEmployee.cardPlace" class="form-control bg-body-tertiary">
                     <span *ngIf="oneEmployee.cardPlace != DocsFormData.get('cardPlace')?.value" class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #cardPlaceButton (click)="editSingleRow('cardPlace', cardPlaceButton)"
+                <!-- <button #cardPlaceButton (click)="editSingleRow('cardPlace', cardPlaceButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -93,7 +93,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -105,10 +105,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <input formControlName="cardExpired" type="date" [value]="oneEmployee.cardExpired"
-                    class="form-control text-center">
+                    class="form-control text-center bg-body-tertiary">
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #cardExpiredButton (click)="editSingleRow('cardExpired', cardExpiredButton)"
+                <!-- <button #cardExpiredButton (click)="editSingleRow('cardExpired', cardExpiredButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -123,7 +123,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -148,14 +148,14 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
-                    <input formControlName="healthId" type="number" [value]="oneEmployee.healthId" class="form-control">
+                    <input formControlName="healthId" type="number" [value]="oneEmployee.healthId" class="form-control bg-body-tertiary">
                     <span *ngIf="oneEmployee.healthId != DocsFormData.get('healthId')?.value" class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #healthIdButton (click)="editSingleRow('healthId', healthIdButton)"
+                <!-- <button #healthIdButton (click)="editSingleRow('healthId', healthIdButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -169,7 +169,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -181,10 +181,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <input formControlName="healthDate" type="date" [value]="oneEmployee.healthDate"
-                    class="form-control text-center">
+                    class="form-control text-center bg-body-tertiary">
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #healthDateButton (click)="editSingleRow('healthDate', healthDateButton)"
+                <!-- <button #healthDateButton (click)="editSingleRow('healthDate', healthDateButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -198,7 +198,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -211,10 +211,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <input formControlName="healthExpired" type="date" [value]="oneEmployee.healthExpired"
-                    class="form-control text-center">
+                    class="form-control text-center bg-body-tertiary">
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #healthExpiredButton (click)="editSingleRow('healthExpired', healthExpiredButton)"
+                <!-- <button #healthExpiredButton (click)="editSingleRow('healthExpired', healthExpiredButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -230,7 +230,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -243,14 +243,14 @@
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="healthPlace" type="text" [value]="oneEmployee.healthPlace"
-                        class="form-control">
+                        class="form-control bg-body-tertiary">
                     <span *ngIf="oneEmployee.healthPlace != DocsFormData.get('healthPlace')?.value" class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #healthPlaceButton (click)="editSingleRow('healthPlace', healthPlaceButton)"
+                <!-- <button #healthPlaceButton (click)="editSingleRow('healthPlace', healthPlaceButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -265,7 +265,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -289,14 +289,14 @@
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="passportId" type="number" [value]="oneEmployee.passportId"
-                        class="form-control">
+                        class="form-control bg-body-tertiary">
                     <span *ngIf="oneEmployee.passportId != DocsFormData.get('passportId')?.value" class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #passportIdButton (click)="editSingleRow('passportId', passportIdButton)"
+                <!-- <button #passportIdButton (click)="editSingleRow('passportId', passportIdButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -310,7 +310,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -322,10 +322,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <input formControlName="passportDate" type="date" [value]="oneEmployee.passportDate"
-                    class="form-control text-center">
+                    class="form-control text-center bg-body-tertiary">
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #passportDateButton (click)="editSingleRow('passportDate', passportDateButton)"
+                <!-- <button #passportDateButton (click)="editSingleRow('passportDate', passportDateButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -341,7 +341,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -354,7 +354,7 @@
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="passportPlace" type="text" [value]="oneEmployee.passportPlace"
-                        class="form-control">
+                        class="form-control bg-body-tertiary">
                     <span *ngIf="oneEmployee.passportPlace != DocsFormData.get('passportPlace')?.value"
                         class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
@@ -362,7 +362,7 @@
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #passportPlaceButton (click)="editSingleRow('passportPlace', passportPlaceButton)"
+                <!-- <button #passportPlaceButton (click)="editSingleRow('passportPlace', passportPlaceButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -378,7 +378,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -390,10 +390,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <input formControlName="passportExpired" type="date" [value]="oneEmployee.passportExpired"
-                    class="form-control text-center">
+                    class="form-control text-center bg-body-tertiary">
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #passportExpiredButton (click)="editSingleRow('passportExpired', passportExpiredButton)"
+                <!-- <button #passportExpiredButton (click)="editSingleRow('passportExpired', passportExpiredButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -409,7 +409,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 

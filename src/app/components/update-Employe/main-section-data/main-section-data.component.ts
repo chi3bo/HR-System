@@ -7,6 +7,7 @@ import { modifiedEmployee } from './../../../shared/interfaces/update-data';
 import { oneEmployee } from 'src/app/shared/interfaces/update-data';
 import { debounceTime } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main-section-data',
@@ -14,7 +15,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./main-section-data.component.css']
 })
 export class MainSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,  private _toaster: ToastrService) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
+    private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
   enableEdit: boolean = false
@@ -54,6 +56,9 @@ export class MainSectionDataComponent {
   })
 
 
+  get currentLang() {
+    return this._TranslateService.currentLang
+  }
 
   ngOnInit(): void {
     this.getEmpData()
@@ -198,16 +203,17 @@ export class MainSectionDataComponent {
       next: (res) => {
         if (res.isSuccess == true) {
           this.getEmployeeDetails(this.modifiedEmployee.employeeId)
-          this._toaster.success('تم تحديث بيانات الموظف بنجاح' , "تم التعديل", {positionClass: 'toast-bottom-right'})
+          this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
         }
-        else{
-          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
+        else {
+          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
         }
         console.log(res)
       },
-      error: (err) => { 
-        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
-        console.log(err) }
+      error: (err) => {
+        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+        console.log(err)
+      }
     })
   }
 

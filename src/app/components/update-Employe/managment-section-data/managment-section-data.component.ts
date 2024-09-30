@@ -1,6 +1,7 @@
-import { Component, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, HostListener, Renderer2 } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
@@ -13,7 +14,8 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./managment-section-data.component.css']
 })
 export class ManagmentSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,  private _toaster: ToastrService) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
+    private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
   enableEdit: boolean = false
@@ -22,32 +24,37 @@ export class ManagmentSectionDataComponent {
   originalAllGroups: branch[] = []
   allgroups: branch[] = []
   enableEditName: string = ''
-  branchChosen: boolean = true
   isFormChanged: boolean = false;
+  categoryList: branch[] = []
 
 
   ManagementFormData: FormGroup = this._FormBuilder.group({
     // معلومات الفروع والإدارة
-    branchId: [{ value: null, disabled: true }],
-    branchNameAr: [{ value: null, disabled: true }],
-    branchNameEn: [{ value: null, disabled: true }],
-    jobId: [{ value: null, disabled: true }],
-    jobNameAr: [{ value: null, disabled: true }],
-    jobNameEn: [{ value: null, disabled: true }],
-    manageId: [{ value: null, disabled: true }],
-    manageNameAr: [{ value: null, disabled: true }],
-    manageNameEn: [{ value: null, disabled: true }],
-    departmentId: [{ value: null, disabled: true }],
-    departmentNameAr: [{ value: null, disabled: true }],
-    departmentNameEn: [{ value: null, disabled: true }],
-    employeeCategoryId: [{ value: null, disabled: true }],
-    employeeCategoryNameAr: [{ value: null, disabled: true }],
-    employeeCategoryNameEn: [{ value: null, disabled: true }],
+    branchId: [{ value: null, disabled: true }, Validators.required],
+    branchNameAr: [null],
+    branchNameEn: [null],
+    jobId: [{ value: null, disabled: true }, Validators.required],
+    jobNameAr: [null],
+    jobNameEn: [null],
+    manageId: [{ value: null, disabled: true }, Validators.required],
+    manageNameAr: [null],
+    manageNameEn: [null],
+    departmentId: [{ value: null, disabled: true }, Validators.required],
+    departmentNameAr: [null],
+    departmentNameEn: [null],
+    employeeCategoryId: [{ value: null, disabled: true }, Validators.required],
+    employeeCategoryNameAr: [null],
+    employeeCategoryNameEn: [null],
   })
+
+  get currentLang() {
+    return this._TranslateService.currentLang
+  }
 
   ngOnInit(): void {
     this.getEmpData()
     this.monitorFormChanges()
+    this.getAllCategory()
   }
 
   monitorFormChanges() {
@@ -130,45 +137,53 @@ export class ManagmentSectionDataComponent {
 
   // =========================== start ===========================
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
-  getAllGroubOf(key: string, control: string) {
+  getAllGroubOf(key: string, control: string , controlID: string ) {
+    this.enableEditName = control
+    this.allgroups = []
     this._UpdateDataService.getAllGroubOf(key).subscribe({
       next: (response) => {
         this.allgroups = response
         this.allgroups = this.allgroups.sort((a, b) => Number(a.id) - Number(b.id))
         this.originalAllGroups = this.allgroups
-        this.groubSearching(control)
-        this.enableEditName = control
+        this.groubSearching(control , controlID)
         // بديله اسم الخانة اللي بيتم التعديل عليها و دي اللي هيظهر الليست تحتها
       }
     })
   }
 
-  groubSearching(control: string) {
+  groubSearching(control: string , controlID: string) {
     this.ManagementFormData.get(control)?.valueChanges
       .pipe(debounceTime(300)).subscribe(value => {  // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
-        this.searchByName(value)
-        this.branchChosen = false
+        if (!value) {
+          this.ManagementFormData.get(controlID)?.disable()
+          this.ManagementFormData.get(control)?.setValue(null , { emitEvent: false })
+          this.searchByName('')
+        }
+        else{
+          this.searchByName(value)
+        }
       });
   }
 
   searchByName(value: string) {
     this.allgroups = this.originalAllGroups.filter((item) => { return ((item.nameAr ? (item.nameAr).includes(value) : '') || (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) : '') || item.id.includes(value)) })
-    console.log(this.allgroups);
   }
 
-  setChosenValue(item: branch, ControlNameAr: string, ControlNameEn: string, ControlID: string, target: any, thisControl: string) {
+  setChosenValue(item: branch, ControlNameAr: string, ControlNameEn: string, ControlID: string, thisControl: string) {
     this.ManagementFormData.get(ControlNameAr)?.setValue(item.nameAr);
     this.ManagementFormData.get(ControlNameEn)?.setValue(item.nameEn);
     this.ManagementFormData.get(ControlID)?.setValue(item.id);
     this.ManagementFormData.markAsDirty()
+    this.ManagementFormData.get(ControlID)?.disable();
     this.enableEditName = ''
-    this.branchChosen = true
 
-    this.closeEdittingInput(thisControl, target, '', 'save')
+    // this.closeEdittingInput(thisControl, target, '', 'save')
 
     console.log(item);
 
   }
+
+
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
   // =========================== end ===========================
 
@@ -184,22 +199,24 @@ export class ManagmentSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
+    console.log(this.ManagementFormData.valid,'is it valid?');
 
-    this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next: (res) => {
-        if (res.isSuccess == true) {
-          this.getEmployeeDetails(this.modifiedEmployee.employeeId)
-          this._toaster.success('تم تحديث بيانات الموظف بنجاح' , "تم التعديل", {positionClass: 'toast-bottom-right'})
-        }
-        else{
-          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
-        }
-        console.log(res)
-      },
-      error: (err) => { 
-        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
-        console.log(err) }
-    })
+    // this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+    //   next: (res) => {
+    //     if (res.isSuccess == true) {
+    //       this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+    //       this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
+    //     }
+    //     else {
+    //       this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+    //     }
+    //     console.log(res)
+    //   },
+    //   error: (err) => {
+    //     this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+    //     console.log(err)
+    //   }
+    // })
   }
 
 
@@ -214,5 +231,53 @@ export class ManagmentSectionDataComponent {
     })
   }
 
+  hideList() {
+    this.enableEditName = ''
+  }
+
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const clickedInside = (event.target as HTMLElement).closest('.my-options-list');
+    if (!clickedInside) {
+      this.hideList()
+    }
+  }
+
+
+  makeItInvalid(ControlID: string) {
+    // if user typing at name ar or name en >> we make id invalid .. why ?
+    // to stop submitting form because it will be invalid
+    this.ManagementFormData.get(ControlID)?.enable();
+    this.ManagementFormData.get(ControlID)?.setValue(null);
+    console.log('invalid');
+  }
+
+
+  getAllCategory() {
+    this._UpdateDataService.getAllGroubOf('EmployeeCategory').subscribe({
+      next: (data) => {
+        this.categoryList = data
+        this.categoryList = this.categoryList.sort((a, b) => Number(a.id) - Number(b.id))
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+
+      }
+    })
+  }
+
+  setCategory(controlName: string) {
+    let categoryName: string = this.ManagementFormData.get(controlName)?.value
+    let myCategory = this.categoryList.filter((item) => { return item.nameAr == categoryName || item.nameEn == categoryName })
+
+    this.ManagementFormData.get('employeeCategoryNameAr')?.setValue(myCategory[0].nameAr)
+    this.ManagementFormData.get('employeeCategoryNameEn')?.setValue(myCategory[0].nameEn)
+    this.ManagementFormData.get('employeeCategoryId')?.setValue(myCategory[0].id)
+    this.ManagementFormData.markAsDirty()
+
+    this.enableEditName = ''
+  }
 
 }

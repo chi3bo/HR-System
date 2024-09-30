@@ -421,7 +421,7 @@
 
 
         <!-- Company Ar -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
+        <tr *ngIf="currentLang == 'ar'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
             <td class=" col-md-3  py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CompanyAr' | translate }} :
                 </p>
@@ -471,7 +471,7 @@
 
 
         <!-- Company En -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
+        <tr *ngIf="currentLang == 'en'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
             <td class=" col-md-3  py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CompanyEn' | translate }} :
                 </p>
@@ -569,7 +569,7 @@
         </tr>
 
         <!-- employee Kafil Name (Arabic) -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
+        <tr *ngIf="currentLang == 'ar'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
             <td class=" col-md-3  py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.KafilNameAr' | translate }} :
                 </p>
@@ -617,7 +617,7 @@
         </tr>
 
         <!-- employee Kafil Name (English) -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
+        <tr *ngIf="currentLang == 'en'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
             <td class=" col-md-3  py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.KafilNameEn' | translate }} :
                 </p>

@@ -22,22 +22,22 @@ export class DocsSectionDataComponent {
 
   DocsFormData: FormGroup = this._FormBuilder.group({
     // معلومات الهوية الشخصية
-    cardId: [{ value: null, disabled: true }],
-    cardDate: [{ value: null, disabled: true }],
-    cardPlace: [{ value: null, disabled: true }],
-    cardExpired: [{ value: null, disabled: true }],
+    cardId: [null],
+    cardDate: [ null],
+    cardPlace: [ null],
+    cardExpired: [ null],
 
     // معلومات الجواز
-    passportId: [{ value: null, disabled: true }],
-    passportDate: [{ value: null, disabled: true }],
-    passportPlace: [{ value: null, disabled: true }],
-    passportExpired: [{ value: null, disabled: true }],
+    passportId: [ null],
+    passportDate: [ null],
+    passportPlace: [ null],
+    passportExpired: [ null],
 
     // معلومات الصحة
-    healthId: [{ value: null, disabled: true }],
-    healthDate: [{ value: null, disabled: true }],
-    healthExpired: [{ value: null, disabled: true }],
-    healthPlace: [{ value: null, disabled: true }],
+    healthId: [ null],
+    healthDate: [ null],
+    healthExpired: [ null],
+    healthPlace: [ null],
   })
 
 

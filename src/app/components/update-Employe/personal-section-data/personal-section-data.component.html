@@ -1,8 +1,6 @@
 <table class=" w-100 {{ 'direction' | translate }}" [formGroup]="personalDataForm">
     <tbody>
-        {{'edit' | translate}}
-        {{'Cancel' | translate}}
-        {{'OK' | translate}}
+
         <!-- =========================================== start cminucate ========================================= -->
         <!-- =========================================== start cminucate ========================================= -->
         <!-- =========================================== start cminucate ========================================= -->
@@ -22,7 +20,7 @@
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <button #mobileButton (click)="editSingleRow('mobile', mobileButton)"
+                <!-- <button #mobileButton (click)="editSingleRow('mobile', mobileButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -36,7 +34,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -58,7 +56,7 @@
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
-                <button #mobileEmergencyButton (click)="editSingleRow('mobileEmergency', mobileEmergencyButton)"
+                <!-- <button #mobileEmergencyButton (click)="editSingleRow('mobileEmergency', mobileEmergencyButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -74,7 +72,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -93,22 +91,22 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
-                    <input formControlName="nationId" type="text" [value]="oneEmpolyee.nationId" class="form-control">
+                    <input readonly formControlName="nationId" type="text" [value]="oneEmpolyee.nationId" class="form-control">
                     <span *ngIf="oneEmpolyee.nationId != personalDataForm.get('nationId')?.value" class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
-                <button disabled #nationIdButton class="btn btn-dark update-Button fw-semibold fs-14">
+                <!-- <button disabled #nationIdButton class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
+                </button> -->
             </td>
         </tr>
 
         <!-- employee Nation Name (Arabic) -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile  ">
+        <tr *ngIf="currentLang == 'ar'" class="row w-100  py-1 py-2-mobile font-18-mobile  ">
             <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationNameAr' | translate}}:
                 </p>
@@ -129,7 +127,7 @@
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
-                <button #nationNameArButton (click)="editSingleRow('nationNameAr', nationNameArButton)"
+                <!-- <button #nationNameArButton (click)="editSingleRow('nationNameAr', nationNameArButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -142,12 +140,12 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
         <!-- employee Nation Name (English) -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile  ">
+        <tr *ngIf="currentLang == 'en'" class="row w-100  py-1 py-2-mobile font-18-mobile  ">
             <td class="col-md-3 py-sm-1  align-content-center">
                 <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.NationNameEn' | translate
                     }}
@@ -169,7 +167,7 @@
                     class="form-control"> -->
             </td>
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
-                <button #nationNameEnButton (click)="editSingleRow('nationNameEn', nationNameEnButton)"
+                <!-- <button #nationNameEnButton (click)="editSingleRow('nationNameEn', nationNameEnButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -182,7 +180,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -216,7 +214,7 @@
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
-                <button #stateButton (click)="editSingleRow('state', stateButton)"
+                <!-- <button #stateButton (click)="editSingleRow('state', stateButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -228,7 +226,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
@@ -247,7 +245,7 @@
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile  py-sm-1 align-content-center px-0 d-flex">
-                <button #bloodButton (click)="editSingleRow('blood', bloodButton)"
+                <!-- <button #bloodButton (click)="editSingleRow('blood', bloodButton)"
                     class="btn btn-dark update-Button fw-semibold fs-14">
                     {{'edit' | translate}}
                     <i class="fa-regular fa-pen-to-square px-1"></i>
@@ -261,7 +259,7 @@
                     class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
                     <i class="fa-solid fa-user-check"></i>
                     <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button>
+                </button> -->
             </td>
         </tr>
 
