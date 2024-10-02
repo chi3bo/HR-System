@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, HostListener, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
@@ -27,32 +27,32 @@ export class MainSectionDataComponent {
   enableEditName: string = ''
   branchChosen: boolean = true
   isFormChanged: boolean = false;
-
+  inValidMsg: boolean = false
 
 
   mainEmployeeData: FormGroup = this._FormBuilder.group({
-    employeeNameAr: [{ value: null, disabled: true }],
-    employeeNameEn: [{ value: null, disabled: true }],
+    employeeNameAr: [null],
+    employeeNameEn: [null],
     employeeId: [{ value: null, disabled: true }],
-    employeePersonId: [{ value: null, disabled: true }],
-    employeePersonExpireDate: [{ value: null, disabled: true }],
-    birthDate: [{ value: null, disabled: true }],
-    birthPlace: [{ value: null, disabled: true }],
-    // age: [{ value: null, disabled: true }, [Validators.max(80) ,Validators.min(18)]],
+    employeePersonId: [null],
+    employeePersonExpireDate: [null],
+    birthDate: [null],
+    birthPlace: [null],
+    // age: [null, [Validators.max(80) ,Validators.min(18)]],
     age: [{ value: null, disabled: true }],
-    motherName: [{ value: null, disabled: true }],
-    gender: [{ value: null, disabled: true }],
-    marrige: [{ value: null, disabled: true }],
+    motherName: [null],
+    gender: [null],
+    marrige: [null],
 
     // معلومات الكفيل
-    kafilId: [{ value: null, disabled: true }],
-    kafilNameAr: [{ value: null, disabled: true }],
-    kafilNameEn: [{ value: null, disabled: true }],
+    kafilId: [{ value: null, disabled: true }, Validators.required],
+    kafilNameAr: [null],
+    kafilNameEn: [null],
 
     // معلومات الشركة
-    companyId: [{ value: null, disabled: true }],
-    companyNameAr: [{ value: null, disabled: true }],
-    companyNameEn: [{ value: null, disabled: true }],
+    companyId: [{ value: null, disabled: true }, Validators.required],
+    companyNameAr: [null],
+    companyNameEn: [null],
   })
 
 
@@ -93,91 +93,60 @@ export class MainSectionDataComponent {
     )
 
   }
-
   // =========================== start ===========================
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
-  getAllGroubOf(key: string, control: string) {
+  getAllGroubOf(key: string, control: string, controlID: string) {
+    this.enableEditName = control
+    this.allgroups = []
     this._UpdateDataService.getAllGroubOf(key).subscribe({
       next: (response) => {
         this.allgroups = response
         this.allgroups = this.allgroups.sort((a, b) => Number(a.id) - Number(b.id))
         this.originalAllGroups = this.allgroups
-        console.log(response);
-        this.groubSearching(control)
-        this.enableEditName = control
+        this.groubSearching(control, controlID)
         // بديله اسم الخانة اللي بيتم التعديل عليها و دي اللي هيظهر الليست تحتها
       }
     })
   }
 
-  groubSearching(control: string) {
+  groubSearching(control: string, controlID: string) {
     this.mainEmployeeData.get(control)?.valueChanges
-      .pipe(debounceTime(300)).subscribe(value => {  // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
-        this.searchByName(value)
-        this.branchChosen = false
+      .pipe(debounceTime(300)).subscribe(value => {
+        // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
+        if (!value) {
+          this.mainEmployeeData.get(controlID)?.disable()
+          this.mainEmployeeData.get(control)?.setValue(null, { emitEvent: false })
+          this.searchByName('')
+          this.inValidMsg = false
+        }
+        else {
+          this.searchByName(value)
+        }
       });
   }
 
   searchByName(value: string) {
-    this.allgroups = this.originalAllGroups.filter((item) => { return (item.nameAr ? (item.nameAr).includes(value) : '') || (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) : '') || item.id.includes(value) })
-    console.log(this.allgroups);
-
-
+    this.allgroups = this.originalAllGroups.filter((item) => { return ((item.nameAr ? (item.nameAr).includes(value) : '') || (item.nameEn ? (item.nameEn).toLocaleLowerCase().includes(value.toLocaleLowerCase()) : '') || item.id.includes(value)) })
   }
 
-  setChosenValue(item: branch, ControlNameAr: string, ControlNameEn: string, ControlID: string, target: any, thisControl: string) {
+  setChosenValue(item: branch, ControlNameAr: string, ControlNameEn: string, ControlID: string) {
     this.mainEmployeeData.get(ControlNameAr)?.setValue(item.nameAr);
     this.mainEmployeeData.get(ControlNameEn)?.setValue(item.nameEn);
     this.mainEmployeeData.get(ControlID)?.setValue(item.id);
     this.mainEmployeeData.markAsDirty()
+    this.mainEmployeeData.get(ControlID)?.disable();
     this.enableEditName = ''
-    this.branchChosen = true
+    this.inValidMsg = false
 
-    this.closeEdittingInput(thisControl, target, '', 'save')
-    // this.mainEmployeeData.get(ControlNameAR)?.disable();
-    // this.mainEmployeeData.get(ControlNameEN)?.disable();
-    // this.mainEmployeeData.get(ControlID)?.disable();
+    // this.closeEdittingInput(thisControl, target, '', 'save')
+
     console.log(item);
 
   }
+
+
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
   // =========================== end ===========================
-
-
-
-
-
-  editSingleRow(element: any, target: any) {
-    let x = this.mainEmployeeData.get(element)?.enable()
-
-    const button = target as HTMLElement
-    let updateButton = button.parentElement?.children[0] as HTMLElement
-    let saveButton = button.parentElement?.children[1] as HTMLElement
-    let cancelButton = button.parentElement?.children[2] as HTMLElement
-
-    updateButton.style.display = 'none'
-    saveButton.style.display = 'flex'
-    cancelButton.style.display = 'flex'
-  }
-
-  closeEdittingInput(formCntrolName: any, target: any, originalValue: any, action: string) {
-    let input = this.mainEmployeeData.get(formCntrolName)
-
-    action == 'cancel' ? input?.setValue(originalValue) : ''
-
-    input?.disable()
-    // input?.value != originalValue ? this._Renderer2.addClass(input , 'is-valid') : '' مش هينفع عشان ده فورم كنترول وليس انبوت
-
-    const button = target as HTMLElement
-    let updateButton = button.parentElement?.children[0] as HTMLElement
-    let saveButton = button.parentElement?.children[1] as HTMLElement
-    let cancelButton = button.parentElement?.children[2] as HTMLElement
-    updateButton.style.display = 'flex'
-    saveButton.style.display = 'none'
-    cancelButton.style.display = 'none'
-
-    this.enableEditName = ''
-  }
 
   setUpdates() {
     this.equalizeData()
@@ -198,24 +167,30 @@ export class MainSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
-
-    this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-      next: (res) => {
-        if (res.isSuccess == true) {
-          this.getEmployeeDetails(this.modifiedEmployee.employeeId)
-          this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
+    console.log(this.mainEmployeeData.valid, 'is it valid?');
+    if (this.mainEmployeeData.valid) {
+      this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+        next: (res) => {
+          if (res.isSuccess == true) {
+            this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+            this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
+          }
+          else {
+            this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+          }
+          console.log(res)
+        },
+        error: (err) => {
+          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+          console.log(err)
         }
-        else {
-          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
-        }
-        console.log(res)
-      },
-      error: (err) => {
-        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
-        console.log(err)
-      }
-    })
+      })
+    }
+    else {
+      this.inValidMsg = true
+    }
   }
+
 
   ifValueSetString(value: any) {
     if (value) {
@@ -231,11 +206,36 @@ export class MainSectionDataComponent {
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
+        this.isFormChanged = false
       },
       error: (err) => {
         console.log(err);
       }
     })
+  }
+
+
+
+  hideList() {
+    this.enableEditName = ''
+  }
+
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const clickedInside = (event.target as HTMLElement).closest('.my-options-list');
+    if (!clickedInside) {
+      this.hideList()
+    }
+  }
+
+
+  makeItInvalid(ControlID: string) {
+    // if user typing at name ar or name en >> we make id invalid .. why ?
+    // to stop submitting form because it will be invalid
+    this.mainEmployeeData.get(ControlID)?.enable();
+    this.mainEmployeeData.get(ControlID)?.setValue(null);
+    console.log('invalid');
   }
 
 }

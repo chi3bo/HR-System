@@ -356,6 +356,10 @@ body {
     margin-block: 100px;
 }
 
+.margin-50{
+    margin-block: 50px;
+}
+
 .edited-mark{
     /* position-absolute top-50  text-white bg-success px-1 rounded-circle */
     position: absolute;
@@ -369,6 +373,10 @@ body {
 .edited-mark-en{
     left: unset !important;
     right: 5px !important;
+}
+
+.fs-14{
+    font-size: 14px;
 }
 
 /* =====================    start  media query       ===================  */
@@ -583,6 +591,9 @@ body {
         left: 0px;
     }
 
+    .text-center-mobile{
+        text-align: center !important;
+    }
 }
 
 /* =====================    end  media query       ===================  */

@@ -1,12 +1,12 @@
 <section>
-    <form [formGroup]="searchingForm" class="w-100">
+    <form [formGroup]="searchingForm" class="w-100 bg-primary">
         <div class="w-100 rounded text-center py-3 full-flex flex-column row mx-0">
             <div class="full-flex col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 px-0 position-relative">
                 <div class="input-group my-1 w-80-mobile">
                     <input type="search" formControlName="searchInput" class="form-control"
                         placeholder="{{ 'search.username_placeholder' | translate }}" aria-label="Username"
                         aria-describedby="basic-addon1">
-                    <span class="input-group-text bg-primary border-2 border-start-0 border-primary px-3"
+                    <span class="input-group-text bg-dark border-2 border-start-0 border-dark px-3"
                         id="basic-addon1">
                         <i class="fa-solid fa-magnifying-glass text-white fa-1x"></i>
                     </span>
@@ -24,35 +24,36 @@
         </div>
     </form>
 
-    <div class="w-100 py-5 px-2 row mx-0">
-        <div class="col-md-2 bg-primary text-white sections">
-            <div class="fakeHeight"></div>
-            <div>
-                <p class="fs-3 text-center my-3">{{ 'search.sections' | translate }}</p>
+    <div class="w-100  row mx-0 ">
+        <div class="w-100 bg-primary text-white sections mx-0">
+            <!-- <div class="fakeHeight"></div> -->
+            <div class="py-3">
+                <!-- <p class="fs-3 text-center my-3">{{ 'search.sections' | translate }}</p> -->
+                <!-- <p class="fs-3 text-center my-3">تعديل بيانات الموظف</p> -->
             </div>
-            <div class="text-start fw-semibold">
-                <p routerLink="./main" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded">
+            <div class="{{ 'direction' | translate }} fw-semibold d-flex">
+                <p routerLink="./main" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.basic_info' | translate }}
                 </p>
                 <p routerLink="./personal" routerLinkActive="activeSection"
-                    class="sections-Hover my-0 py-2 ps-4 rounded">
+                    class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.personal_info' | translate }}
                 </p>
                 <p routerLink="./management" routerLinkActive="activeSection"
-                    class="sections-Hover my-0 py-2 ps-4 rounded">
+                    class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.branches_management' | translate }}
                 </p>
                 <p routerLink="./insurance" routerLinkActive="activeSection"
-                    class="sections-Hover my-0 py-2 ps-4 rounded">
+                    class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.insurance_info' | translate }}
                 </p>
-                <p routerLink="./docs" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 ps-4 rounded">
+                <p routerLink="./docs" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.documents' | translate }}
                 </p>
             </div>
         </div>
-        <div class="col-md-2 fake-col"></div>
-        <div class="col-md-10 rounded-2">
+        <!-- <div class="col-md-2 fake-col"></div> -->
+        <div class="w-100 rounded-2">
             <div class="w-100 py-5" [ngClass]="{ 'd-none': !showData }">
                 <router-outlet></router-outlet>
             </div>

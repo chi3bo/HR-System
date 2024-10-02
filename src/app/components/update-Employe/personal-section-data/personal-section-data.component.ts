@@ -158,6 +158,7 @@ export class PersonalSectionDataComponent {
     this._UpdateDataService.getAllGroubOf('nation').subscribe({
       next: (data) => {
         this.nationList = data
+        this.nationList = this.nationList.sort((a, b) => Number(a.id) - Number(b.id))
         console.log(data);
       },
       error: (err) => {
@@ -236,6 +237,8 @@ export class PersonalSectionDataComponent {
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
+        this.isFormChanged = false
+
       },
       error: (err) => {
         console.log(err);

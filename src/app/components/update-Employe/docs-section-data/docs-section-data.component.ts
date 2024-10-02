@@ -1,6 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
@@ -12,7 +13,8 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./docs-section-data.component.css']
 })
 export class DocsSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,  private _toaster: ToastrService) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,  private _Router: Router,
+      private _toaster: ToastrService , private _TranslateService: TranslateService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
@@ -40,6 +42,9 @@ export class DocsSectionDataComponent {
     healthPlace: [ null],
   })
 
+  get currentLang() {
+    return this._TranslateService.currentLang
+  }
 
   ngOnInit(): void {
     this.getEmpData()

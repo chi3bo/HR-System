@@ -26,7 +26,7 @@ export class ManagmentSectionDataComponent {
   enableEditName: string = ''
   isFormChanged: boolean = false;
   categoryList: branch[] = []
-
+  inValidMsg:boolean = false
 
   ManagementFormData: FormGroup = this._FormBuilder.group({
     // معلومات الفروع والإدارة
@@ -112,21 +112,6 @@ export class ManagmentSectionDataComponent {
 
 
 
-  editJobs(key: string) {
-    this._UpdateDataService.getAllGroubOf(key).subscribe({
-      next: (Response) => {
-        console.log(Response, 'get all group of');
-        this.itemsList = Response
-        this.itemsList = this.itemsList.sort((a, b) => Number(a.id) - Number(b.id))
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
-
-  }
-
-
   equalizeData() {
     // نقوم بجلب الخصائص الموجودة في الـ partialObject فقط
     const updatedObject = Object.assign({}, ...Object.keys(this.modifiedEmployee)
@@ -137,7 +122,7 @@ export class ManagmentSectionDataComponent {
 
   // =========================== start ===========================
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
-  getAllGroubOf(key: string, control: string , controlID: string ) {
+  getAllGroubOf(key: string, control: string, controlID: string) {
     this.enableEditName = control
     this.allgroups = []
     this._UpdateDataService.getAllGroubOf(key).subscribe({
@@ -145,21 +130,23 @@ export class ManagmentSectionDataComponent {
         this.allgroups = response
         this.allgroups = this.allgroups.sort((a, b) => Number(a.id) - Number(b.id))
         this.originalAllGroups = this.allgroups
-        this.groubSearching(control , controlID)
+        this.groubSearching(control, controlID)
         // بديله اسم الخانة اللي بيتم التعديل عليها و دي اللي هيظهر الليست تحتها
       }
     })
   }
 
-  groubSearching(control: string , controlID: string) {
+  groubSearching(control: string, controlID: string) {
     this.ManagementFormData.get(control)?.valueChanges
-      .pipe(debounceTime(300)).subscribe(value => {  // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
+      .pipe(debounceTime(300)).subscribe(value => { 
+         // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
         if (!value) {
           this.ManagementFormData.get(controlID)?.disable()
-          this.ManagementFormData.get(control)?.setValue(null , { emitEvent: false })
+          this.ManagementFormData.get(control)?.setValue(null, { emitEvent: false })
           this.searchByName('')
+          this.inValidMsg = false
         }
-        else{
+        else {
           this.searchByName(value)
         }
       });
@@ -176,6 +163,7 @@ export class ManagmentSectionDataComponent {
     this.ManagementFormData.markAsDirty()
     this.ManagementFormData.get(ControlID)?.disable();
     this.enableEditName = ''
+    this.inValidMsg = false
 
     // this.closeEdittingInput(thisControl, target, '', 'save')
 
@@ -199,24 +187,28 @@ export class ManagmentSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
-    console.log(this.ManagementFormData.valid,'is it valid?');
-
-    // this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess == true) {
-    //       this.getEmployeeDetails(this.modifiedEmployee.employeeId)
-    //       this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
-    //     }
-    //     else {
-    //       this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
-    //     }
-    //     console.log(res)
-    //   },
-    //   error: (err) => {
-    //     this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
-    //     console.log(err)
-    //   }
-    // })
+    console.log(this.ManagementFormData.valid, 'is it valid?');
+    if (this.ManagementFormData.valid) {
+      this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
+        next: (res) => {
+          if (res.isSuccess == true) {
+            this.getEmployeeDetails(this.modifiedEmployee.employeeId)
+            this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
+          }
+          else {
+            this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+          }
+          console.log(res)
+        },
+        error: (err) => {
+          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+          console.log(err)
+        }
+      })
+    }
+    else {
+      this.inValidMsg = true
+    }
   }
 
 
@@ -224,6 +216,8 @@ export class ManagmentSectionDataComponent {
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
+        this.isFormChanged = false
+
       },
       error: (err) => {
         console.log(err);

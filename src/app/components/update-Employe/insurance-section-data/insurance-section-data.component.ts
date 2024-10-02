@@ -5,13 +5,15 @@ import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-insurance-section-data',
   templateUrl: './insurance-section-data.component.html',
   styleUrls: ['./insurance-section-data.component.css']
 })
 export class InsuranceSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _toaster: ToastrService) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
+    private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
@@ -33,6 +35,9 @@ export class InsuranceSectionDataComponent {
     insuranceDateE: [null],
   })
 
+  get currentLang() {
+    return this._TranslateService.currentLang
+  }
 
   ngOnInit(): void {
     this.getEmpData()
@@ -152,6 +157,10 @@ export class InsuranceSectionDataComponent {
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
+        this.isFormChanged = false
+        this.oneEmployee.insuranceDate && this.oneEmployee.insuranceDate.includes('0') ? this.oneEmployee.insuranceDate = new Date(this.oneEmployee.insuranceDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.insuranceDateE && this.oneEmployee.insuranceDateE.includes('0') ? this.oneEmployee.insuranceDateE = new Date(this.oneEmployee.insuranceDateE).toISOString().substring(0, 10) : ''
+
       },
       error: (err) => {
         console.log(err);

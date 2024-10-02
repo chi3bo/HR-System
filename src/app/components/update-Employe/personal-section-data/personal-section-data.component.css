@@ -17,6 +17,19 @@
 .save-Button {
     display: none;
 }
+/* start from here ================== */
+.form-control {
+    padding: 4px 20px;
+    min-width: 250px;
+}
+
+.input-label {
+    width: 150px;
+}
+
+select{
+    cursor: pointer;
+}
 
 @media screen and (max-width:576px) {
     .w-75-mobile {
@@ -44,6 +57,23 @@
 
     .font-18-mobile {
         font-size: 18px !important;
+    }
+/* start from here ================== */
+
+    .input-label {
+        padding-inline:20px;
+        width: 100% !important;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .form-control {
+        padding: 4px 20px;
+        min-width: unset;
+        width: 350px !important;
+        text-align: center !important;
+        font-size: 17px;
+        font-weight: 500 !important;
     }
 
 }

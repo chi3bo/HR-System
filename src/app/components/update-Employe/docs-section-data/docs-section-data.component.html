@@ -10,8 +10,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
-                    <input formControlName="cardId" type="number" [value]="oneEmployee.cardId" class="form-control bg-body-tertiary">
-                    <span *ngIf="oneEmployee.cardId != DocsFormData.get('cardId')?.value" class="edited-mark">
+                    <input formControlName="cardId" type="number" [value]="oneEmployee.cardId"
+                        class="form-control bg-body-tertiary">
+                    <span *ngIf="oneEmployee.cardId != DocsFormData.get('cardId')?.value" class="edited-mark"
+                        [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
@@ -72,8 +74,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
-                    <input formControlName="cardPlace" type="text" [value]="oneEmployee.cardPlace" class="form-control bg-body-tertiary">
-                    <span *ngIf="oneEmployee.cardPlace != DocsFormData.get('cardPlace')?.value" class="edited-mark">
+                    <input formControlName="cardPlace" type="text" [value]="oneEmployee.cardPlace"
+                        class="form-control bg-body-tertiary">
+                    <span *ngIf="oneEmployee.cardPlace != DocsFormData.get('cardPlace')?.value" class="edited-mark"
+                        [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
@@ -148,8 +152,10 @@
             </td>
             <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
-                    <input formControlName="healthId" type="number" [value]="oneEmployee.healthId" class="form-control bg-body-tertiary">
-                    <span *ngIf="oneEmployee.healthId != DocsFormData.get('healthId')?.value" class="edited-mark">
+                    <input formControlName="healthId" type="number" [value]="oneEmployee.healthId"
+                        class="form-control bg-body-tertiary">
+                    <span *ngIf="oneEmployee.healthId != DocsFormData.get('healthId')?.value" class="edited-mark"
+                        [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
@@ -244,7 +250,8 @@
                 <div class="position-relative">
                     <input formControlName="healthPlace" type="text" [value]="oneEmployee.healthPlace"
                         class="form-control bg-body-tertiary">
-                    <span *ngIf="oneEmployee.healthPlace != DocsFormData.get('healthPlace')?.value" class="edited-mark">
+                    <span *ngIf="oneEmployee.healthPlace != DocsFormData.get('healthPlace')?.value" class="edited-mark"
+                        [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
@@ -290,7 +297,8 @@
                 <div class="position-relative">
                     <input formControlName="passportId" type="number" [value]="oneEmployee.passportId"
                         class="form-control bg-body-tertiary">
-                    <span *ngIf="oneEmployee.passportId != DocsFormData.get('passportId')?.value" class="edited-mark">
+                    <span *ngIf="oneEmployee.passportId != DocsFormData.get('passportId')?.value" class="edited-mark"
+                        [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
@@ -356,7 +364,7 @@
                     <input formControlName="passportPlace" type="text" [value]="oneEmployee.passportPlace"
                         class="form-control bg-body-tertiary">
                     <span *ngIf="oneEmployee.passportPlace != DocsFormData.get('passportPlace')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>

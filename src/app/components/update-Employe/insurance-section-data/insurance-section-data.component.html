@@ -16,28 +16,13 @@
                     <input formControlName="insuranceId" type="number" [value]="oneEmployee.insuranceId"
                         class="form-control">
                     <span *ngIf="oneEmployee.insuranceId != InsuranceFormData.get('insuranceId')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceIdButton (click)="editSingleRow('insuranceId', insuranceIdButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmployee.insuranceId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('insuranceId', insuranceIdButton, oneEmployee.insuranceId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+                
             </td>
         </tr>
 
@@ -52,29 +37,13 @@
                     <input formControlName="insuranceRecordNo" type="number" [value]="oneEmployee.insuranceRecordNo"
                         class="form-control">
                     <span *ngIf="oneEmployee.insuranceRecordNo != InsuranceFormData.get('insuranceRecordNo')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceRecordNoButton (click)="editSingleRow('insuranceRecordNo', insuranceRecordNoButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmployee.insuranceRecordNo, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceRecordNo', insuranceRecordNoButton, oneEmployee.insuranceRecordNo, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+                
             </td>
         </tr>
 
@@ -89,29 +58,13 @@
                     <input formControlName="insuranceValue" type="number" [value]="oneEmployee.insuranceValue"
                         class="form-control">
                     <span *ngIf="oneEmployee.insuranceValue != InsuranceFormData.get('insuranceValue')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceValueButton (click)="editSingleRow('insuranceValue', insuranceValueButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmployee.insuranceValue, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceValue', insuranceValueButton, oneEmployee.insuranceValue, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+                
             </td>
         </tr>
 
@@ -126,29 +79,13 @@
                     <input formControlName="insurancePer" type="number" [value]="oneEmployee.insurancePer"
                         class="form-control">
                     <span *ngIf="oneEmployee.insurancePer != InsuranceFormData.get('insurancePer')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insurancePerButton (click)="editSingleRow('insurancePer', insurancePerButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmployee.insurancePer, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insurancePer', insurancePerButton, oneEmployee.insurancePer, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+                
             </td>
         </tr>
 
@@ -163,29 +100,13 @@
                     <input formControlName="insuranceCompany" type="text" [value]="oneEmployee.insuranceCompany"
                         class="form-control">
                     <span *ngIf="oneEmployee.insuranceCompany != InsuranceFormData.get('insuranceCompany')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceCompanyButton (click)="editSingleRow('insuranceCompany', insuranceCompanyButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmployee.insuranceCompany, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceCompany', insuranceCompanyButton, oneEmployee.insuranceCompany, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+               
             </td>
         </tr>
 
@@ -200,29 +121,13 @@
                     <input formControlName="insuranceSalary" type="number" [value]="oneEmployee.insuranceSalary"
                         class="form-control">
                     <span *ngIf="oneEmployee.insuranceSalary != InsuranceFormData.get('insuranceSalary')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceSalaryButton (click)="editSingleRow('insuranceSalary', insuranceSalaryButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmployee.insuranceSalary, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceSalary', insuranceSalaryButton, oneEmployee.insuranceSalary, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+                
             </td>
         </tr>
 
@@ -237,29 +142,13 @@
                     <input formControlName="insuranceDangGP" type="text" [value]="oneEmployee.insuranceDangGP"
                         class="form-control">
                     <span *ngIf="oneEmployee.insuranceDangGP != InsuranceFormData.get('insuranceDangGP')?.value"
-                        class="edited-mark">
+                        class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceDangGPButton (click)="editSingleRow('insuranceDangGP', insuranceDangGPButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmployee.insuranceDangGP, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceDangGP', insuranceDangGPButton, oneEmployee.insuranceDangGP, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+
             </td>
         </tr>
 
@@ -273,30 +162,10 @@
                 <div class="position-relative">
                     <input formControlName="insuranceDate" type="date" [value]="oneEmployee.insuranceDate"
                         class="form-control text-center">
-                    <span *ngIf="oneEmployee.insuranceDate != InsuranceFormData.get('insuranceDate')?.value"
-                        class="edited-mark">
-                        <i class="fa-solid fa-marker"></i>
-                    </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceDateButton (click)="editSingleRow('insuranceDate', insuranceDateButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmployee.insuranceDate, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceDate', insuranceDateButton, oneEmployee.insuranceDate, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+
             </td>
         </tr>
 
@@ -310,30 +179,10 @@
                 <div class="position-relative">
                     <input formControlName="insuranceDateE" type="date" [min]="oneEmployee.insuranceDate"
                         [value]="oneEmployee.insuranceDateE" class="form-control text-center ">
-                    <span *ngIf="oneEmployee.insuranceDateE != InsuranceFormData.get('insuranceDateE')?.value"
-                        class="edited-mark">
-                        <i class="fa-solid fa-marker"></i>
-                    </span>
                 </div>
             </td>
             <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #insuranceDateEButton (click)="editSingleRow('insuranceDateE', insuranceDateEButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmployee.insuranceDateE, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('insuranceDateE', insuranceDateEButton, oneEmployee.insuranceDateE, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+                
             </td>
         </tr>
 

@@ -716,10 +716,10 @@
     "search": {
         "username_placeholder": "Username",
         "sections": "Sections",
-        "basic_info": "Basic Information",
-        "personal_info": "Personal Information",
-        "branches_management": "Branches & Management",
-        "insurance_info": "Insurance Information",
+        "basic_info": "Basic",
+        "personal_info": "Personal",
+        "branches_management": "Branch & Management",
+        "insurance_info": "Insurance",
         "documents": "Documents"
     },
     "edit":"Edit",
