@@ -6,8 +6,7 @@
                     <input type="search" formControlName="searchInput" class="form-control"
                         placeholder="{{ 'search.username_placeholder' | translate }}" aria-label="Username"
                         aria-describedby="basic-addon1">
-                    <span class="input-group-text bg-dark border-2 border-start-0 border-dark px-3"
-                        id="basic-addon1">
+                    <span class="input-group-text bg-dark border-2 border-start-0 border-dark px-3" id="basic-addon1">
                         <i class="fa-solid fa-magnifying-glass text-white fa-1x"></i>
                     </span>
                 </div>
@@ -28,11 +27,10 @@
         <div class="w-100 bg-primary text-white sections mx-0">
             <!-- <div class="fakeHeight"></div> -->
             <div class="py-3">
-                <!-- <p class="fs-3 text-center my-3">{{ 'search.sections' | translate }}</p> -->
-                <!-- <p class="fs-3 text-center my-3">تعديل بيانات الموظف</p> -->
             </div>
-            <div class="{{ 'direction' | translate }} fw-semibold d-flex">
-                <p routerLink="./main" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
+            <div *ngIf="showData" class="{{ 'direction' | translate }} fw-semibold d-flex">
+                <p routerLink="./main" routerLinkActive="activeSection"
+                    class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.basic_info' | translate }}
                 </p>
                 <p routerLink="./personal" routerLinkActive="activeSection"
@@ -47,13 +45,19 @@
                     class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.insurance_info' | translate }}
                 </p>
-                <p routerLink="./docs" routerLinkActive="activeSection" class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
+                <p routerLink="./docs" routerLinkActive="activeSection"
+                    class="sections-Hover my-0 py-2 px-4 rounded rounded-bottom-0">
                     {{ 'search.documents' | translate }}
                 </p>
             </div>
         </div>
         <!-- <div class="col-md-2 fake-col"></div> -->
         <div class="w-100 rounded-2">
+            <div *ngIf="!showData" class="p-5 text-dark d-flex justify-content-center align-items-center {{ 'direction' | translate }} ">
+                <p class="my-0 fs-3 you-can-search">
+                    {{"يمكنك_البحث" | translate }} </p>
+                <i class="fa-solid fa-magnifying-glass fa-2x px-2"></i>
+            </div>
             <div class="w-100 py-5" [ngClass]="{ 'd-none': !showData }">
                 <router-outlet></router-outlet>
             </div>

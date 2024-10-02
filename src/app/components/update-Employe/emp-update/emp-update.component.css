@@ -44,12 +44,12 @@
 
 
 
-.sections {
-    /* position: fixed; */
-    /* height: 100vh; */
-    left: 0;
-    top: 0;
+.sections p {
+cursor: pointer;
+text-align: center;
 }
+
+
 
 .fakeHeight {
     height: 90px !important;
@@ -64,11 +64,20 @@
     }
 }
 
-.activeSection{
+.activeSection {
     background-color: #fff !important;
     color: #0d6efd !important;
 }
 
+@media screen and (max-width:767px) {
+    .sections p {
+        padding: 6px 12px !important ;
+        font-size: 14px ;
+    }
+    .you-can-search{
+        font-size: 20px !important;
+    }
+}
 
 @media screen and (max-width:576px) {
     .sections {
@@ -83,6 +92,8 @@
     .w-80-mobile {
         width: 75% !important;
     }
-
+    .you-can-search{
+        font-size: 18px !important;
+    }
 
 }

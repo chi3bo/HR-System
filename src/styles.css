@@ -576,6 +576,10 @@ body {
         font-size: 16px !important;
     }
 
+
+    .py-0-mobile{
+        padding-block: 0 !important;
+    }
     /* ============= end   useful mobile media query classes   */
 
     .ordersButton {

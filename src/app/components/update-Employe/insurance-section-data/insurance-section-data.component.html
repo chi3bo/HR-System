@@ -5,13 +5,14 @@
         <!-- ===========================================      START insurance     ========================================= -->
         <!-- ===========================================      START insurance     ========================================= -->
 
-        <!-- employee Insurance Id -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceId' | translate }} :
+        <!--  In-Id + In Record Nu  -->
+        <tr class="row w-100  py-md-2 font-18-mobile ">
+
+            <!-- employee Insurance Id -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceId' | translate }} :
                 </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceId" type="number" [value]="oneEmployee.insuranceId"
                         class="form-control">
@@ -21,18 +22,12 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                
-            </td>
-        </tr>
 
-        <!-- employee Insurance Record No -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceRecordNo' | translate
+            <!-- employee Insurance Record No -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceRecordNo' | translate
                     }} :</p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceRecordNo" type="number" [value]="oneEmployee.insuranceRecordNo"
                         class="form-control">
@@ -42,18 +37,19 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                
-            </td>
+
         </tr>
 
-        <!-- employee Insurance Value -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceValue' | translate }}
+
+
+        <!-- Ins Value + perc -->
+        <tr class="row w-100  py-md-2 font-18-mobile ">
+
+            <!-- employee Insurance Value -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceValue' | translate }}
                     :</p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceValue" type="number" [value]="oneEmployee.insuranceValue"
                         class="form-control">
@@ -63,18 +59,12 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                
-            </td>
-        </tr>
 
-        <!-- employee Insurance Per -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsurancePer' | translate }} :
+            <!-- employee Insurance Perc -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsurancePer' | translate }} :
                 </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insurancePer" type="number" [value]="oneEmployee.insurancePer"
                         class="form-control">
@@ -84,18 +74,18 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                
-            </td>
+
         </tr>
 
-        <!-- employee Insurance Company -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceCompany' | translate
+
+        <!--  Ins Company + ins salary -->
+        <tr class="row w-100  py-md-2 font-18-mobile ">
+
+            <!-- employee Insurance Company -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceCompany' | translate
                     }} :</p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceCompany" type="text" [value]="oneEmployee.insuranceCompany"
                         class="form-control">
@@ -105,18 +95,12 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-               
-            </td>
-        </tr>
 
-        <!-- employee Insurance Salary -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceSalary' | translate }}
+            <!-- employee Insurance Salary -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceSalary' | translate }}
                     :</p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceSalary" type="number" [value]="oneEmployee.insuranceSalary"
                         class="form-control">
@@ -126,18 +110,18 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                
-            </td>
+
         </tr>
 
-        <!-- employee Insurance Dang GP -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDangGP' | translate }}
+
+        <!--  Ins Dang GP + Date -->
+        <tr class="row w-100  py-md-2 font-18-mobile ">
+
+            <!-- employee Insurance Dang GP -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceDangGP' | translate }}
                     :</p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceDangGP" type="text" [value]="oneEmployee.insuranceDangGP"
                         class="form-control">
@@ -147,43 +131,34 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
 
-            </td>
-        </tr>
-
-        <!-- employee Insurance Date -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDate' | translate }} :
+            <!-- employee Insurance Date -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceDate' | translate }} :
                 </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceDate" type="date" [value]="oneEmployee.insuranceDate"
                         class="form-control text-center">
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
 
-            </td>
         </tr>
 
+
         <!-- employee Insurance Date Expired -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.InsuranceDateExpired' |
+        <tr class="row w-100  py-md-2 font-18-mobile ">
+
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.InsuranceDateExpired' |
                     translate }} :</p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="insuranceDateE" type="date" [min]="oneEmployee.insuranceDate"
                         [value]="oneEmployee.insuranceDateE" class="form-control text-center ">
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                
-            </td>
+            
         </tr>
 
 
@@ -191,7 +166,7 @@
     </tbody>
 </table>
 
-<div class="w-100 text-center margin-100">
+<div class="w-100 text-center margin-50">
     <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">
         {{ 'save_send' | translate }}
     </button>

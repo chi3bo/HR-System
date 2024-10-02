@@ -1,6 +1,4 @@
-.fs-14 {
-    font-size: 14px !important;
-}
+
 
 .update-Button {
     width: 90px !important;
@@ -21,6 +19,12 @@
 .form-control {
     padding: 4px 20px;
     min-width: 250px;
+    border-radius: 0;
+    border: 0 ;
+    border-bottom: 1px solid #dee2e6;
+}
+.form-control:disabled{
+    background-color: rgba(241, 241, 241, 0.568);
 }
 
 .input-label {
@@ -29,6 +33,21 @@
 
 select{
     cursor: pointer;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}
+
+@media screen and (max-width:767px) {
+    .form-control{
+        /* padding: 4px 20px; */
+        max-width: 400px !important;
+        min-width: 360px !important;
+        /* text-align: center !important; */
+        font-size: 17px;
+        font-weight: 500 !important;
+    }
 }
 
 @media screen and (max-width:576px) {

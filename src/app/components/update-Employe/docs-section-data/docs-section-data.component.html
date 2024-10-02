@@ -3,12 +3,13 @@
         <!-- ===========================================      START card     ========================================= -->
         <!-- ===========================================      START card     ========================================= -->
 
-        <!-- employee Card Id -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardId' | translate }} : </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
+        <!--  id + date -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- employee Card Id -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.CardId' | translate }} : </p>
                 <div class="position-relative">
                     <input formControlName="cardId" type="number" [value]="oneEmployee.cardId"
                         class="form-control bg-body-tertiary">
@@ -18,61 +19,29 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #cardIdButton (click)="editSingleRow('cardId', cardIdButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmployee.cardId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('cardId', cardIdButton, oneEmployee.cardId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+
+            <!-- employee Card Date -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.CardDate' | translate }} :
+                </p>
+                <div class="position-relative">
+                    <input formControlName="cardDate" type="date" [value]="oneEmployee.cardDate"
+                        class="form-control text-center bg-body-tertiary">
+                </div>
             </td>
+
         </tr>
 
-        <!-- employee Card Date -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardDate' | translate }} :
-                </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
-                <input formControlName="cardDate" type="date" [value]="oneEmployee.cardDate"
-                    class="form-control text-center bg-body-tertiary">
-            </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #cardDateButton (click)="editSingleRow('cardDate', cardDateButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmployee.cardDate, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('cardDate', cardDateButton, oneEmployee.cardDate, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
-        </tr>
+        <!--  Place + Expired -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
 
-        <!-- employee Card Place -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardPlace' | translate }} :
+
+            <!-- employee Card Place -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.CardPlace' | translate }} :
                 </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="cardPlace" type="text" [value]="oneEmployee.cardPlace"
                         class="form-control bg-body-tertiary">
@@ -82,53 +51,18 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #cardPlaceButton (click)="editSingleRow('cardPlace', cardPlaceButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmployee.cardPlace, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('cardPlace', cardPlaceButton, oneEmployee.cardPlace, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
-        </tr>
 
-        <!-- employee Card Expired -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CardExpired' | translate }} :
+            <!-- employee Card Expired -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.CardExpired' | translate }} :
                 </p>
+                <div class="position-relative">
+                    <input formControlName="cardExpired" type="date" [value]="oneEmployee.cardExpired"
+                        class="form-control text-center bg-body-tertiary">
+                </div>
             </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
-                <input formControlName="cardExpired" type="date" [value]="oneEmployee.cardExpired"
-                    class="form-control text-center bg-body-tertiary">
-            </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #cardExpiredButton (click)="editSingleRow('cardExpired', cardExpiredButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmployee.cardExpired, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('cardExpired', cardExpiredButton, oneEmployee.cardExpired, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
+
         </tr>
 
         <!-- ===========================================       END card      ========================================= -->
@@ -144,13 +78,14 @@
         <!-- ===========================================      START health     ========================================= -->
         <!-- ===========================================      START health     ========================================= -->
 
-        <!-- employee Health Id -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthId' | translate }} :
+        <!--  Health Id + date -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- employee Health Id -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.HealthId' | translate }} :
                 </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="healthId" type="number" [value]="oneEmployee.healthId"
                         class="form-control bg-body-tertiary">
@@ -160,93 +95,31 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #healthIdButton (click)="editSingleRow('healthId', healthIdButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmployee.healthId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('healthId', healthIdButton, oneEmployee.healthId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+
+            <!-- employee Health Date -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.HealthDate' | translate }} :
+                </p>
+                <div class="position-relative">
+                    <input formControlName="healthDate" type="date" [value]="oneEmployee.healthDate"
+                        class="form-control text-center bg-body-tertiary">
+                </div>
             </td>
+
         </tr>
 
-        <!-- employee Health Date -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthDate' | translate }} :
-                </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
-                <input formControlName="healthDate" type="date" [value]="oneEmployee.healthDate"
-                    class="form-control text-center bg-body-tertiary">
-            </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #healthDateButton (click)="editSingleRow('healthDate', healthDateButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmployee.healthDate, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('healthDate', healthDateButton, oneEmployee.healthDate, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
-        </tr>
 
-        <!-- employee Health Date Expired -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthDateExpired' |
-                    translate }} :
-                </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
-                <input formControlName="healthExpired" type="date" [value]="oneEmployee.healthExpired"
-                    class="form-control text-center bg-body-tertiary">
-            </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #healthExpiredButton (click)="editSingleRow('healthExpired', healthExpiredButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmployee.healthExpired, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('healthExpired', healthExpiredButton, oneEmployee.healthExpired, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
-        </tr>
 
-        <!-- employee Health Place -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.HealthPlace' | translate }} :
+        <!-- Expired + place -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+
+            <!-- employee Health Place -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.HealthPlace' | translate }} :
                 </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="healthPlace" type="text" [value]="oneEmployee.healthPlace"
                         class="form-control bg-body-tertiary">
@@ -256,24 +129,19 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #healthPlaceButton (click)="editSingleRow('healthPlace', healthPlaceButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmployee.healthPlace, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('healthPlace', healthPlaceButton, oneEmployee.healthPlace, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+
+            <!-- employee Health Date Expired -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.HealthDateExpired' |
+                    translate }} :
+                </p>
+                <div class="position-relative">
+                    <input formControlName="healthExpired" type="date" [value]="oneEmployee.healthExpired"
+                        class="form-control text-center bg-body-tertiary">
+                </div>
             </td>
+
         </tr>
 
         <!-- ===========================================       END health      ========================================= -->
@@ -287,13 +155,14 @@
         <!-- ===========================================      START passport     ========================================= -->
         <!-- ===========================================      START passport     ========================================= -->
 
-        <!-- employee Passport Id -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportId' | translate }} :
+        <!--  Pass Id + date -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- employee Passport Id -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.PassportId' | translate }} :
                 </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="passportId" type="number" [value]="oneEmployee.passportId"
                         class="form-control bg-body-tertiary">
@@ -303,63 +172,29 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #passportIdButton (click)="editSingleRow('passportId', passportIdButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmployee.passportId, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button (click)="closeEdittingInput('passportId', passportIdButton, oneEmployee.passportId, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
+
+            <!-- employee Passport Date -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.PassportDate' | translate }}
+                    : </p>
+                <div class="position-relative">
+                    <input formControlName="passportDate" type="date" [value]="oneEmployee.passportDate"
+                        class="form-control text-center bg-body-tertiary">
+                </div>
             </td>
+
         </tr>
 
-        <!-- employee Passport Date -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportDate' | translate }}
-                    : </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
-                <input formControlName="passportDate" type="date" [value]="oneEmployee.passportDate"
-                    class="form-control text-center bg-body-tertiary">
-            </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #passportDateButton (click)="editSingleRow('passportDate', passportDateButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmployee.passportDate, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('passportDate', passportDateButton, oneEmployee.passportDate, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
-        </tr>
 
-        <!-- employee Passport Place -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportPlace' | translate }}
+        <!--  Pass Place + expired -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- employee Passport Place -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.PassportPlace' | translate }}
                     : </p>
-            </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
                 <div class="position-relative">
                     <input formControlName="passportPlace" type="text" [value]="oneEmployee.passportPlace"
                         class="form-control bg-body-tertiary">
@@ -369,56 +204,18 @@
                     </span>
                 </div>
             </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #passportPlaceButton (click)="editSingleRow('passportPlace', passportPlaceButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmployee.passportPlace, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('passportPlace', passportPlaceButton, oneEmployee.passportPlace, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
-        </tr>
 
-        <!-- employee Passport Expired -->
-        <tr class="row w-100  py-1 py-2-mobile font-18-mobile ">
-            <td class="col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.PassportExpired' | translate
+            <!-- employee Passport Expired -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.PassportExpired' | translate
                     }} : </p>
+                <div class="position-relative">
+                    <input formControlName="passportExpired" type="date" [value]="oneEmployee.passportExpired"
+                        class="form-control text-center bg-body-tertiary">
+                </div>
             </td>
-            <td class="col-md-6 w-75-mobile py-sm-1">
-                <input formControlName="passportExpired" type="date" [value]="oneEmployee.passportExpired"
-                    class="form-control text-center bg-body-tertiary">
-            </td>
-            <td class="col-md-3 w-25-mobile py-sm-1 align-content-center px-0 d-flex">
-                <!-- <button #passportExpiredButton (click)="editSingleRow('passportExpired', passportExpiredButton)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmployee.passportExpired, 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile"> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('passportExpired', passportExpiredButton, oneEmployee.passportExpired, 'save')"
-                    class="btn btn-success cancel-Button update-Button fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span class="px-1  hide-on-mobile"> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
+
         </tr>
 
         <!-- ===========================================       END passport      ========================================= -->
@@ -426,7 +223,7 @@
     </tbody>
 </table>
 
-<div class="w-100 text-center margin-100">
+<div class="w-100 text-center margin-50">
     <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">
         {{ 'save_send' | translate }}</button>
 </div>

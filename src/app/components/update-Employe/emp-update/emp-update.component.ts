@@ -51,7 +51,7 @@ export class EmpUpdateComponent implements OnInit , OnDestroy {
     })
 
     this.isNewEmployee()
-    this.getEmployeeDetails("9370")// ====== don't forget to clear it ========================
+    
   }
 
 

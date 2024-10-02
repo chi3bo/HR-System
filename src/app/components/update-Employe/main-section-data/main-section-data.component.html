@@ -13,13 +13,14 @@
 
 
 
-        <!-- arabic name -->
+        <!--  name -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
 
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3 py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  "> {{ 'Update.ArabicName' | translate }}
+            <!-- arabic name -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}"> {{ 'Update.ArabicName' | translate }}
                     : </p>
-            <td class=" col-md-6 w-75-mobile py-sm-1 ">
                 <div class="position-relative ">
                     <input formControlName="employeeNameAr" type="text" [value]=" oneEmployee.employeeNameAr "
                         class="form-control">
@@ -28,34 +29,13 @@
                             class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
-            <td class=" col-md-3 w-25-mobile py-sm-1 align-content-center  px-0 d-flex">
-                <!-- <button #empNameARBtn (click)="editSingleRow('employeeNameAr' ,empNameARBtn)"
-                    class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button>
-                <button
-                    (click)="closeEdittingInput('employeeNameAr' ,empNameARBtn ,  oneEmployee.employeeNameAr , 'cancel')"
-                    class="btn btn-danger save-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-xmark "></i>
-                    <span class="px-1 hide-on-mobile   "> {{'Cancel' | translate}} </span>
-                </button>
-                <button
-                    (click)="closeEdittingInput('employeeNameAr' ,empNameARBtn ,  oneEmployee.employeeNameAr , 'save')"
-                    class="btn btn-success cancel-Button update-Button  fw-semibold fs-14 mx-1 align-content-center">
-                    <i class="fa-solid fa-user-check "></i>
-                    <span class="px-1  hide-on-mobile "> {{'OK' | translate}} </span>
-                </button> -->
-            </td>
-        </tr>
 
-        <!-- english name -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class="  col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.EnglishName' | translate }}
+            <!-- english name -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.EnglishName' | translate }}
                     : </p>
-            </td>
-            <td class="  col-md-6 w-75-mobile  py-sm-1">
+
                 <div class="position-relative ">
                     <input formControlName="employeeNameEn" type="text" [value]=" oneEmployee.employeeNameEn "
                         class="form-control">
@@ -64,20 +44,20 @@
                             class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
-            <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
 
-
-            </td>
         </tr>
 
-        <!-- employee ID -->
 
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class="  col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.EmployeeId' | translate }} :
+
+        <!--  ID  + Age  -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- employee ID -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.EmployeeId' | translate }} :
                 </p>
-            </td>
-            <td class="  col-md-6 w-75-mobile  py-sm-1">
+
                 <div class="position-relative ">
                     <input formControlName="employeeId" type="text" [value]=" oneEmployee.employeeId "
                         class="form-control">
@@ -86,21 +66,31 @@
                             class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
-            <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
-                <!-- <button disabled #employeeIdButton class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button> -->
+
+            <!-- employee Age -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.Age' | translate }} : </p>
+
+                <div class="position-relative ">
+                    <input formControlName="age" type="number" max="99" [value]="oneEmployee.age" class="form-control">
+                    <span [ngClass]="{'edited-mark-en': currentLang == 'en'}" class="edited-mark "
+                        *ngIf="oneEmployee.age != mainEmployeeData.get('age')?.value"><i
+                            class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
+
         </tr>
 
-        <!-- employee personalID -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class="  col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.PersonalId' | translate }} :
+        <!-- personalID  -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- employee personalID -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.PersonalId' | translate }} :
                 </p>
-            </td>
-            <td class="  col-md-6 w-75-mobile  py-sm-1">
+
                 <div class="position-relative ">
                     <input formControlName="employeePersonId" type="number" [value]="oneEmployee.employeePersonId "
                         class="form-control">
@@ -109,53 +99,42 @@
                             class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
-            <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
 
-
+            <!-- employee personalID Expire Date -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">
+                    {{ 'Update.PersonalIdExpire' | translate }} :
+                </p>
+                <div class="position-relative ">
+                    <input formControlName="employeePersonExpireDate" type="date"
+                        [value]=" oneEmployee.employeePersonExpireDate " class="form-control text-center">
+                </div>
             </td>
+
         </tr>
 
-        <!-- employee personalID Expire Date -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class="  col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.PersonalIdExpire' |
-                    translate }} :
+
+        <!-- Birth info -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- Birth Date -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.BirthDate' | translate }} :
                 </p>
+                <div class="position-relative ">
+                    <input formControlName="birthDate" type="date" [value]=" oneEmployee.birthDate "
+                        class="form-control text-center">
+                </div>
             </td>
-            <td class="  col-md-6 w-75-mobile  py-sm-1">
-                <input formControlName="employeePersonExpireDate" type="date"
-                    [value]=" oneEmployee.employeePersonExpireDate " class="form-control text-center">
 
-            </td>
-            <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
- 
-
-            </td>
-        </tr>
-
-        <!-- Birth Date -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class="  col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.BirthDate' | translate }} :
+            <!-- Birth Place -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.BirthPlace' | translate }} :
                 </p>
-            </td>
-            <td class="  col-md-6 w-75-mobile  py-sm-1">
-                <input formControlName="birthDate" type="date" [value]=" oneEmployee.birthDate "
-                    class="form-control text-center">
-            </td>
-            <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
 
-
-            </td>
-        </tr>
-
-        <!-- Birth Place -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class="  col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }}  ">{{ 'Update.BirthPlace' | translate }} :
-                </p>
-            </td>
-            <td class="  col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative ">
                     <input formControlName="birthPlace" type="text" [value]=" oneEmployee.birthPlace "
                         class="form-control">
@@ -164,40 +143,19 @@
                             class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
-            <td class="  col-md-3  py-sm-1   w-25-mobile  align-content-center  px-0 d-flex">
-
-
-            </td>
-        </tr>
-
-        <!-- employee Age -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.Age' | translate }} : </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
-                <div class="position-relative ">
-                    <input formControlName="age" type="number" max="99" [value]="oneEmployee.age" class="form-control">
-                    <span [ngClass]="{'edited-mark-en': currentLang == 'en'}" class="edited-mark "
-                        *ngIf="oneEmployee.age != mainEmployeeData.get('age')?.value"><i
-                            class="fa-solid fa-marker"></i></span>
-                </div>
-            </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
-
-            </td>
-            <span class="small text-danger text-center" *ngIf="mainEmployeeData.get('age')?.errors">ادخل رقم حقيقي بين
-                (18 - 80)</span>
 
         </tr>
 
-        <!-- employee Mother Name -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.MotherName' | translate }} :
+
+        <!--  Mother Name + gender  -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <!-- employee Mother Name -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.MotherName' | translate }} :
                 </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
+
                 <div class="position-relative ">
                     <input formControlName="motherName" type="text" [value]="oneEmployee.motherName"
                         class="form-control">
@@ -206,19 +164,12 @@
                             class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
 
-            </td>
-        </tr>
+            <!-- employee Gender -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.Gender' | translate }} : </p>
 
-        <!-- employee Gender -->
-
-
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.Gender' | translate }} : </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative ">
                     <select formControlName="gender" name="gender" id="gender" [value]="oneEmployee.gender"
                         class="form-control">
@@ -230,32 +181,7 @@
                             class="fa-solid fa-marker"></i></span>
                 </div>
             </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
 
-            </td>
-        </tr>
-
-        <!-- employee Marriage Status -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.MarriageStatus' | translate
-                    }} : </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
-                <div class="position-relative ">
-                    <select formControlName="marrige" name="marrige" id="marrige" [value]="oneEmployee.marrige"
-                        class="form-control">
-                        <option value="0">اعزب</option>
-                        <option value="1">متزوج</option>
-                    </select>
-                    <span [ngClass]="{'edited-mark-en': currentLang == 'en'}" class="edited-mark "
-                        *ngIf="oneEmployee.marrige != mainEmployeeData.get('marrige')?.value"><i
-                            class="fa-solid fa-marker"></i></span>
-                </div>
-            </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
-
-            </td>
         </tr>
         <!-- ===========================================    end main    ========================================= -->
 
@@ -267,43 +193,18 @@
 
 
 
+        <!-- =========================================== start company ========================================= -->
+        <!-- =========================================== start company ========================================= -->
+        <!-- =========================================== start company ========================================= -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
 
-        <!-- =========================================== start company ========================================= -->
-        <!-- =========================================== start company ========================================= -->
-        <!-- =========================================== start company ========================================= -->
-        <!-- Company ID -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CompanyId' | translate }} :
+            <!-- Company Ar -->
+            <td *ngIf="currentLang == 'ar'"
+                class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} ">{{ 'Update.CompanyAr' |
+                    translate }} :
                 </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
-                <div class="position-relative ">
-                    <input formControlName="companyId" type="text" [value]="oneEmployee.companyId" class="form-control"
-                        [ngClass]="{'is-invalid': mainEmployeeData.get('companyId')?.errors}"
-                        [readOnly]="mainEmployeeData.get('companyId')?.errors">
-                    <span class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}" 
-                        *ngIf="oneEmployee.companyId != mainEmployeeData.get('companyId')?.value&& !mainEmployeeData.get('companyId')?.errors">
-                        <i class="fa-solid fa-marker"></i></span>
-                </div>
-            </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
-                <!-- <button #companyId disabled class="btn btn-dark update-Button fw-semibold fs-14">
-                    {{'edit' | translate}}
-                    <i class="fa-regular fa-pen-to-square px-1"></i>
-                </button> -->
 
-            </td>
-        </tr>
-
-
-        <!-- Company Ar -->
-        <tr *ngIf="currentLang == 'ar'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CompanyAr' | translate }} :
-                </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative my-options-list">
                     <input formControlName="companyNameAr" type="text" [value]="oneEmployee.companyNameAr"
                         (keyup)="makeItInvalid('companyId')"
@@ -324,19 +225,14 @@
                     </div>
                 </div>
             </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
 
-            </td>
-        </tr>
-
-
-        <!-- Company En -->
-        <tr *ngIf="currentLang == 'en'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.CompanyEn' | translate }} :
+            <!-- Company En -->
+            <td *ngIf="currentLang == 'en'"
+                class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.CompanyEn' | translate }} :
                 </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
+
                 <div class="position-relative my-options-list">
                     <input formControlName="companyNameEn" type="text" [value]="oneEmployee.companyNameEn"
                         (keyup)="makeItInvalid('companyId')"
@@ -357,12 +253,24 @@
                     </div>
                 </div>
             </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
 
+            <!-- Company ID -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.CompanyId' | translate }} :
+                </p>
+
+                <div class="position-relative ">
+                    <input formControlName="companyId" type="text" [value]="oneEmployee.companyId" class="form-control"
+                        [ngClass]="{'is-invalid': mainEmployeeData.get('companyId')?.errors}"
+                        [readOnly]="mainEmployeeData.get('companyId')?.errors">
+                    <span class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}"
+                        *ngIf="oneEmployee.companyId != mainEmployeeData.get('companyId')?.value&& !mainEmployeeData.get('companyId')?.errors">
+                        <i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
+
         </tr>
-
-
         <!-- =========================================== end company ========================================= -->
 
 
@@ -377,36 +285,16 @@
         <!-- ===========================================      START kafil     ========================================= -->
         <!-- ===========================================      START kafil     ========================================= -->
         <!-- ===========================================      START kafil     ========================================= -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
 
 
-        <!-- employee Kafil Id -->
-        <tr class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.KafilId' | translate }} :
+            <!-- employee Kafil Name (Arabic) -->
+            <td *ngIf="currentLang == 'ar'"
+                class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} ">{{ 'Update.KafilNameAr' |
+                    translate }} :
                 </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
-                <div class="position-relative ">
-                    <input formControlName="kafilId" type="text" [value]="oneEmployee.kafilId" class="form-control"
-                        [ngClass]="{'is-invalid': mainEmployeeData.get('kafilId')?.errors}"
-                        [readOnly]="mainEmployeeData.get('kafilId')?.errors">
-                    <span class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}"
-                        *ngIf="oneEmployee.kafilId != mainEmployeeData.get('kafilId')?.value&& !mainEmployeeData.get('kafilId')?.errors">
-                        <i class="fa-solid fa-marker"></i></span>
-                </div>
-            </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
 
-            </td>
-        </tr>
-
-        <!-- employee Kafil Name (Arabic) -->
-        <tr *ngIf="currentLang == 'ar'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.KafilNameAr' | translate }} :
-                </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1">
                 <div class="position-relative my-options-list">
                     <input formControlName="kafilNameAr" type="text" [value]="oneEmployee.kafilNameAr"
                         (keyup)="makeItInvalid('kafilId')" (focus)="getAllGroubOf('kafil' , 'kafilNameAr' , 'kafilId' )"
@@ -426,18 +314,14 @@
                     </div>
                 </div>
             </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
 
-            </td>
-        </tr>
-
-        <!-- employee Kafil Name (English) -->
-        <tr *ngIf="currentLang == 'en'" class="row w-100 py-1 py-2-mobile font-18-mobile ">
-            <td class=" col-md-3  py-sm-1  align-content-center">
-                <p class="my-0  fw-normal {{  'peAR_Encustom'| translate }} ">{{ 'Update.KafilNameEn' | translate }} :
+            <!-- employee Kafil Name (English) -->
+            <td *ngIf="currentLang == 'en'"
+                class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.KafilNameEn' | translate }} :
                 </p>
-            </td>
-            <td class=" col-md-6 w-75-mobile  py-sm-1 ">
+
                 <div class="position-relative my-options-list">
                     <input formControlName="kafilNameEn" type="text" [value]="oneEmployee.kafilNameEn"
                         (keyup)="makeItInvalid('kafilId')" (focus)="getAllGroubOf('kafil' , 'kafilNameEn' , 'kafilId' )"
@@ -457,17 +341,54 @@
                 </div>
 
             </td>
-            <td class=" col-md-3  py-sm-1   w-25-mobile align-content-center px-0 d-flex">
 
+            <!-- employee Kafil Id -->
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.KafilId' | translate }} :
+                </p>
+
+                <div class="position-relative ">
+                    <input formControlName="kafilId" type="text" [value]="oneEmployee.kafilId" class="form-control"
+                        [ngClass]="{'is-invalid': mainEmployeeData.get('kafilId')?.errors}"
+                        [readOnly]="mainEmployeeData.get('kafilId')?.errors">
+                    <span class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}"
+                        *ngIf="oneEmployee.kafilId != mainEmployeeData.get('kafilId')?.value&& !mainEmployeeData.get('kafilId')?.errors">
+                        <i class="fa-solid fa-marker"></i></span>
+                </div>
             </td>
-        </tr>
 
+        </tr>
         <!-- ===========================================       END kafil      ========================================= -->
 
 
+
+
+        <!-- employee Marriage Status -->
+        <tr class="row w-100  py-md-2 py-2-mobile font-18-mobile ">
+
+            <td class="col-md-6  py-sm-2 d-flex justify-content-center flex-wrap  py-2-mobile ">
+                <p class="my-0  input-label py-sm-1  {{  'peAR_Encustom'| translate }} "
+                    [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.MarriageStatus' | translate
+                    }} : </p>
+
+                <div class="position-relative ">
+                    <select formControlName="marrige" name="marrige" id="marrige" [value]="oneEmployee.marrige"
+                        class="form-control">
+                        <option value="0">اعزب</option>
+                        <option value="1">متزوج</option>
+                    </select>
+                    <span [ngClass]="{'edited-mark-en': currentLang == 'en'}" class="edited-mark "
+                        *ngIf="oneEmployee.marrige != mainEmployeeData.get('marrige')?.value"><i
+                            class="fa-solid fa-marker"></i></span>
+                </div>
+            </td>
+
+        </tr>
+
     </tbody>
 </table>
-<div class="w-100 text-center margin-100 z-0">
+<div class="w-100 text-center margin-50 z-0">
     <p *ngIf="inValidMsg" class="text-danger small my-2">
         قم بملئ المدخلات بطريقة صحيحة (اختر عنصر او اتركها فارغة)
     </p>
