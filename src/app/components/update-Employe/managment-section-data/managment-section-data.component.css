@@ -1,3 +1,10 @@
+/* إعداد الوضع الافتراضي LTR */
+.form-control.is-invalid {
+    padding-right: 2rem;
+    /* لإعطاء مساحة للأيقونة */
+}
+
+
 .fs-14 {
     font-size: 14px !important;
 }
@@ -49,16 +56,16 @@
     padding: 4px 20px;
     min-width: 400px;
     border-radius: 0;
-    border: 0 ;
+    border: 0;
     border-bottom: 1px solid #dee2e6;
 }
 
-.form-control-ID{
+.form-control-ID {
     min-width: unset !important;
     width: 100% !important;
 }
 
-.form-control:disabled{
+.form-control:disabled {
     background-color: rgba(241, 241, 241, 0.568);
 }
 
@@ -78,19 +85,21 @@ select {
     .form-control {
         min-width: 300px;
     }
-    .form-control-ID{
+
+    .form-control-ID {
         min-width: unset !important;
         width: 120px !important;
     }
 }
 
 @media screen and (max-width:767px) {
-    .form-control{
+    .form-control {
         min-width: 360px !important;
         font-size: 17px;
         font-weight: 500 !important;
     }
-    .form-control-ID{
+
+    .form-control-ID {
         min-width: 360px !important;
         font-size: 17px;
         font-weight: 500 !important;
@@ -142,7 +151,8 @@ select {
         font-size: 17px;
         font-weight: 500 !important;
     }
-    .form-control-ID{
+
+    .form-control-ID {
         padding: 4px 20px;
         min-width: unset;
         width: 350px !important;

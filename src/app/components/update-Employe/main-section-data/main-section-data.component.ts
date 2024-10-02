@@ -28,7 +28,7 @@ export class MainSectionDataComponent {
   branchChosen: boolean = true
   isFormChanged: boolean = false;
   inValidMsg: boolean = false
-
+  todayDate: any = new Date().toISOString().split('T')[0]
 
   mainEmployeeData: FormGroup = this._FormBuilder.group({
     employeeNameAr: [null],
@@ -89,10 +89,30 @@ export class MainSectionDataComponent {
 
         this.oneEmployee.birthDate ? this.oneEmployee.birthDate = new Date(this.oneEmployee.birthDate).toISOString().substring(0, 10) : ''
         this.oneEmployee.employeePersonExpireDate ? this.oneEmployee.employeePersonExpireDate = new Date(this.oneEmployee.employeePersonExpireDate).toISOString().substring(0, 10) : ''
+        this.oneEmployee.birthDate ? this.calculateAge() : ''
       }
     )
 
   }
+
+
+  calculateAge(): void {
+    // تحويل تاريخ الميلاد إلى كائن Date
+    const birthDate = new Date(this.oneEmployee.birthDate);
+    // تاريخ اليوم الحالي
+    const today = new Date();
+    // حساب العمر بالسنوات
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    // التحقق من ما إذا كان عيد ميلاده لم يأتي بعد هذه السنة
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    this.oneEmployee.age = `${age}`
+  }
+
+
   // =========================== start ===========================
   // تعديل احد الخانات الاختيارية مثل الشركة او الفرع .. الخ
   getAllGroubOf(key: string, control: string, controlID: string) {
@@ -221,11 +241,11 @@ export class MainSectionDataComponent {
   }
 
 
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event) {
-    const clickedInside = (event.target as HTMLElement).closest('.my-options-list');
+  @HostListener('document:mousedown', ['$event'])
+  onMouseDown(event: Event) {
+    const clickedInside = (event.target as HTMLElement).closest('.my-options-list, input');
     if (!clickedInside) {
-      this.hideList()
+      this.hideList(); // إخفاء القائمة فقط إذا كان النقر خارج العنصر
     }
   }
 

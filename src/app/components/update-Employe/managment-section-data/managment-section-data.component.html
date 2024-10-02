@@ -17,7 +17,7 @@
                         (focus)="getAllGroubOf('branch' , 'branchNameAr' , 'branchId' )" formControlName="branchNameAr"
                         [ngClass]="{'is-invalid': ManagementFormData.get('branchId')?.errors}" class="form-control"
                         type="text" [value]="oneEmployee.branchNameAr">
-                    <span *ngIf="oneEmployee.branchNameAr != ManagementFormData.get('branchNameAr')?.value"
+                    <span *ngIf="oneEmployee.branchNameAr != ManagementFormData.get('branchNameAr')?.value && !ManagementFormData.get('branchId')?.errors"
                         class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
@@ -44,7 +44,7 @@
                         (focus)="getAllGroubOf('branch' , 'branchNameEn' , 'branchId' )"
                         [ngClass]="{'is-invalid': ManagementFormData.get('branchId')?.errors}" class="form-control"
                         formControlName="branchNameEn" type="text" [value]="oneEmployee.branchNameEn">
-                    <span *ngIf="oneEmployee.branchNameEn != ManagementFormData.get('branchNameEn')?.value"
+                    <span *ngIf="oneEmployee.branchNameEn != ManagementFormData.get('branchNameEn')?.value && !ManagementFormData.get('branchId')?.errors"
                         class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
@@ -99,7 +99,7 @@
                     <input formControlName="jobNameAr" type="text" [value]="oneEmployee.jobNameAr" class="form-control"
                         (keyup)="makeItInvalid('jobId')" (focus)="getAllGroubOf('job' , 'jobNameAr' , 'jobId' )"
                         [ngClass]="{'is-invalid': ManagementFormData.get('jobId')?.errors}" class="form-control">
-                    <span *ngIf="oneEmployee.jobNameAr != ManagementFormData.get('jobNameAr')?.value"
+                    <span *ngIf="oneEmployee.jobNameAr != ManagementFormData.get('jobNameAr')?.value && !ManagementFormData.get('jobId')?.errors"
                         class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
@@ -129,7 +129,7 @@
                     <input formControlName="jobNameEn" type="text" [value]="oneEmployee.jobNameEn" class="form-control"
                         (keyup)="makeItInvalid('jobId')" (focus)="getAllGroubOf('job' , 'jobNameEn' , 'jobId' )"
                         [ngClass]="{'is-invalid': ManagementFormData.get('jobId')?.errors}" class="form-control">
-                    <span *ngIf="oneEmployee.jobNameEn != ManagementFormData.get('jobNameEn')?.value"
+                    <span *ngIf="oneEmployee.jobNameEn != ManagementFormData.get('jobNameEn')?.value && !ManagementFormData.get('jobId')?.errors"
                         class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
@@ -156,8 +156,8 @@
                 <div class="position-relative">
                     <input formControlName="jobId" type="text" [value]="oneEmployee.jobId"
                         class="form-control form-control-ID"
-                        [ngClass]="{'is-invalid': ManagementFormData.get('JobId')?.errors}"
-                        [readOnly]="ManagementFormData.get('JobId')?.errors">
+                        [ngClass]="{'is-invalid': ManagementFormData.get('jobId')?.errors}"
+                        [readOnly]="ManagementFormData.get('jobId')?.errors">
                     <span
                         *ngIf="oneEmployee.jobId != ManagementFormData.get('jobId')?.value && !ManagementFormData.get('jobId')?.errors"
                         class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
@@ -183,7 +183,7 @@
                         class="form-control" (keyup)="makeItInvalid('manageId')"
                         (focus)="getAllGroubOf('manage' , 'manageNameAr' , 'manageId' )"
                         [ngClass]="{'is-invalid': ManagementFormData.get('manageId')?.errors}" class="form-control">
-                    <span *ngIf="oneEmployee.manageNameAr != ManagementFormData.get('manageNameAr')?.value"
+                    <span *ngIf="oneEmployee.manageNameAr != ManagementFormData.get('manageNameAr')?.value && !ManagementFormData.get('manageId')?.errors"
                         class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
@@ -214,7 +214,7 @@
                         class="form-control" (keyup)="makeItInvalid('manageId')"
                         (focus)="getAllGroubOf('manage' , 'manageNameEn' , 'manageId' )"
                         [ngClass]="{'is-invalid': ManagementFormData.get('manageId')?.errors}">
-                    <span *ngIf="oneEmployee.manageNameEn != ManagementFormData.get('manageNameEn')?.value"
+                    <span *ngIf="oneEmployee.manageNameEn != ManagementFormData.get('manageNameEn')?.value && !ManagementFormData.get('manageId')?.errors"
                         class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>
@@ -270,7 +270,7 @@
                         [ngClass]="{'is-invalid': ManagementFormData.get('departmentId')?.errors}"
                         formControlName="departmentNameAr" type="text" [value]="oneEmployee.departmentNameAr"
                         class="form-control">
-                    <span *ngIf="oneEmployee.departmentNameAr != ManagementFormData.get('departmentNameAr')?.value"
+                    <span *ngIf="oneEmployee.departmentNameAr != ManagementFormData.get('departmentNameAr')?.value && !ManagementFormData.get('departmentId')?.errors"
                         class="edited-mark">
                         <i class="fa-solid fa-marker"></i>
                     </span>
@@ -302,7 +302,7 @@
                         class="form-control" (keyup)="makeItInvalid('departmentId')"
                         (focus)="getAllGroubOf('department' , 'departmentNameEn' , 'departmentId' )"
                         [ngClass]="{'is-invalid': ManagementFormData.get('departmentId')?.errors}">
-                    <span *ngIf="oneEmployee.departmentNameEn != ManagementFormData.get('departmentNameEn')?.value"
+                    <span *ngIf="oneEmployee.departmentNameEn != ManagementFormData.get('departmentNameEn')?.value && !ManagementFormData.get('departmentId')?.errors"
                         class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
                     </span>

@@ -12,7 +12,7 @@
                     [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.CardId' | translate }} : </p>
                 <div class="position-relative">
                     <input formControlName="cardId" type="number" [value]="oneEmployee.cardId"
-                        class="form-control bg-body-tertiary">
+                        class="form-control ">
                     <span *ngIf="oneEmployee.cardId != DocsFormData.get('cardId')?.value" class="edited-mark"
                         [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
@@ -27,7 +27,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="cardDate" type="date" [value]="oneEmployee.cardDate"
-                        class="form-control text-center bg-body-tertiary">
+                        class="form-control text-center ">
                 </div>
             </td>
 
@@ -44,7 +44,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="cardPlace" type="text" [value]="oneEmployee.cardPlace"
-                        class="form-control bg-body-tertiary">
+                        class="form-control ">
                     <span *ngIf="oneEmployee.cardPlace != DocsFormData.get('cardPlace')?.value" class="edited-mark"
                         [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
@@ -59,7 +59,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="cardExpired" type="date" [value]="oneEmployee.cardExpired"
-                        class="form-control text-center bg-body-tertiary">
+                        class="form-control text-center ">
                 </div>
             </td>
 
@@ -88,7 +88,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="healthId" type="number" [value]="oneEmployee.healthId"
-                        class="form-control bg-body-tertiary">
+                        class="form-control ">
                     <span *ngIf="oneEmployee.healthId != DocsFormData.get('healthId')?.value" class="edited-mark"
                         [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
@@ -103,7 +103,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="healthDate" type="date" [value]="oneEmployee.healthDate"
-                        class="form-control text-center bg-body-tertiary">
+                        class="form-control text-center ">
                 </div>
             </td>
 
@@ -122,7 +122,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="healthPlace" type="text" [value]="oneEmployee.healthPlace"
-                        class="form-control bg-body-tertiary">
+                        class="form-control ">
                     <span *ngIf="oneEmployee.healthPlace != DocsFormData.get('healthPlace')?.value" class="edited-mark"
                         [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
@@ -138,7 +138,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="healthExpired" type="date" [value]="oneEmployee.healthExpired"
-                        class="form-control text-center bg-body-tertiary">
+                        class="form-control text-center ">
                 </div>
             </td>
 
@@ -165,7 +165,7 @@
                 </p>
                 <div class="position-relative">
                     <input formControlName="passportId" type="number" [value]="oneEmployee.passportId"
-                        class="form-control bg-body-tertiary">
+                        class="form-control ">
                     <span *ngIf="oneEmployee.passportId != DocsFormData.get('passportId')?.value" class="edited-mark"
                         [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
@@ -180,7 +180,7 @@
                     : </p>
                 <div class="position-relative">
                     <input formControlName="passportDate" type="date" [value]="oneEmployee.passportDate"
-                        class="form-control text-center bg-body-tertiary">
+                        class="form-control text-center ">
                 </div>
             </td>
 
@@ -197,7 +197,7 @@
                     : </p>
                 <div class="position-relative">
                     <input formControlName="passportPlace" type="text" [value]="oneEmployee.passportPlace"
-                        class="form-control bg-body-tertiary">
+                        class="form-control ">
                     <span *ngIf="oneEmployee.passportPlace != DocsFormData.get('passportPlace')?.value"
                         class="edited-mark" [ngClass]="{'edited-mark-en': currentLang == 'en'}">
                         <i class="fa-solid fa-marker"></i>
@@ -212,7 +212,7 @@
                     }} : </p>
                 <div class="position-relative">
                     <input formControlName="passportExpired" type="date" [value]="oneEmployee.passportExpired"
-                        class="form-control text-center bg-body-tertiary">
+                        class="form-control text-center ">
                 </div>
             </td>
 

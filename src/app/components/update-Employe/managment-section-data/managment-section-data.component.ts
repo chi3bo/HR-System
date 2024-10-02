@@ -26,7 +26,7 @@ export class ManagmentSectionDataComponent {
   enableEditName: string = ''
   isFormChanged: boolean = false;
   categoryList: branch[] = []
-  inValidMsg:boolean = false
+  inValidMsg: boolean = false
 
   ManagementFormData: FormGroup = this._FormBuilder.group({
     // معلومات الفروع والإدارة
@@ -138,8 +138,8 @@ export class ManagmentSectionDataComponent {
 
   groubSearching(control: string, controlID: string) {
     this.ManagementFormData.get(control)?.valueChanges
-      .pipe(debounceTime(300)).subscribe(value => { 
-         // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
+      .pipe(debounceTime(300)).subscribe(value => {
+        // تأخير التنفيذ بـ 300 مللي ثانية لتحسين الأداء
         if (!value) {
           this.ManagementFormData.get(controlID)?.disable()
           this.ManagementFormData.get(control)?.setValue(null, { emitEvent: false })
@@ -230,11 +230,13 @@ export class ManagmentSectionDataComponent {
   }
 
 
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event) {
-    const clickedInside = (event.target as HTMLElement).closest('.my-options-list');
+
+
+  @HostListener('document:mousedown', ['$event'])
+  onMouseDown(event: Event) {
+    const clickedInside = (event.target as HTMLElement).closest('.my-options-list, input');
     if (!clickedInside) {
-      this.hideList()
+      this.hideList(); // إخفاء القائمة فقط إذا كان النقر خارج العنصر
     }
   }
 
@@ -244,6 +246,7 @@ export class ManagmentSectionDataComponent {
     // to stop submitting form because it will be invalid
     this.ManagementFormData.get(ControlID)?.enable();
     this.ManagementFormData.get(ControlID)?.setValue(null);
+    // this.getAllGroubOf('job' , 'jobNameAr' , 'jobId')
     console.log('invalid');
   }
 

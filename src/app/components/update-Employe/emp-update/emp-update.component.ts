@@ -1,19 +1,20 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router, Event } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { oneEmployee } from 'src/app/shared/interfaces/update-data';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
+import { PersonalSectionDataComponent } from './../personal-section-data/personal-section-data.component';
 
 @Component({
   selector: 'app-emp-update',
   templateUrl: './emp-update.component.html',
   styleUrls: ['./emp-update.component.css']
 })
-export class EmpUpdateComponent implements OnInit , OnDestroy {
+export class EmpUpdateComponent implements OnInit, OnDestroy {
+  @ViewChild(PersonalSectionDataComponent) myIbn! : PersonalSectionDataComponent
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
-
   searchingForm: FormGroup = this._FormBuilder.group({
     searchInput: [null]
   })
@@ -31,8 +32,13 @@ export class EmpUpdateComponent implements OnInit , OnDestroy {
   employeeList: oneEmployee[] = []
   oneEmplyee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
-  showData:boolean = false
+  showData: boolean = false
 
+
+  // test(){
+  //  let x = this.myIbn.sayHello()
+  //  console.log(x);
+  // }
 
   ngOnInit(): void {
     this.searchingForm.get('searchInput')?.valueChanges.pipe(debounceTime(300)).subscribe(value => {
@@ -51,7 +57,7 @@ export class EmpUpdateComponent implements OnInit , OnDestroy {
     })
 
     this.isNewEmployee()
-    
+
   }
 
 
@@ -74,8 +80,8 @@ export class EmpUpdateComponent implements OnInit , OnDestroy {
         this._UpdateDataService.employeeData.next(data)
         this.oneEmplyee = data
         this.showList = false
-        this.showData= true
-        
+        this.showData = true
+
       },
       error: (err) => {
         console.log(err);
@@ -114,15 +120,15 @@ export class EmpUpdateComponent implements OnInit , OnDestroy {
 
   }
 
-isNewEmployee(){
-  // مهمة الفانكشن هي اذا كان هذا موظف جديد اي تم توجيهه من صفحة اضافة موظف
-  //  ان ياخذ الاي دي من التخزين المحلي و يجلب بياناته و يجعله جاهز للتعديل
-  if (localStorage.getItem('createdEmpID')) {
-    this.getEmployeeDetails(localStorage.getItem('createdEmpID')!)
+  isNewEmployee() {
+    // مهمة الفانكشن هي اذا كان هذا موظف جديد اي تم توجيهه من صفحة اضافة موظف
+    //  ان ياخذ الاي دي من التخزين المحلي و يجلب بياناته و يجعله جاهز للتعديل
+    if (localStorage.getItem('createdEmpID')) {
+      this.getEmployeeDetails(localStorage.getItem('createdEmpID')!)
+    }
   }
-}
 
-ngOnDestroy(): void {
-  localStorage.removeItem('createdEmpID')
-}
+  ngOnDestroy(): void {
+    localStorage.removeItem('createdEmpID')
+  }
 }

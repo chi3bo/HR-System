@@ -246,7 +246,10 @@ export class PersonalSectionDataComponent {
     })
   }
 
-
+sayHello(){
+  console.log('helloooooooooooooooooo');
+  return "helloooooo"
+}
 }
 
 

@@ -1,3 +1,9 @@
+/* إعداد الوضع الافتراضي LTR */
+.form-control.is-invalid {
+    padding-right: 2rem;
+    /* لإعطاء مساحة للأيقونة */
+}
+
 .fs-14 {
     font-size: 14px !important;
 }
