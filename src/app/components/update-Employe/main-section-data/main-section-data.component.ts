@@ -95,6 +95,41 @@ export class MainSectionDataComponent {
 
   }
 
+  CalcAgeDirectly() {
+
+    let editedDate = this.mainEmployeeData.get("birthDate")?.value
+    if (editedDate) {
+      console.log('daaaateeee', editedDate);
+      const birthDate = new Date(editedDate);
+      const today = new Date()
+      let age = today.getFullYear() - birthDate.getFullYear()
+      const monthDifference = today.getMonth() - birthDate.getMonth();
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      this.mainEmployeeData.get('age')?.setValue(age)
+    }
+    else {
+      console.log('not value', editedDate);
+
+    }
+
+
+
+    // // تحويل تاريخ الميلاد إلى كائن Date
+    // const birthDate = new Date(this.oneEmployee.birthDate);
+    // // تاريخ اليوم الحالي
+    // const today = new Date();
+    // // حساب العمر بالسنوات
+    // let age = today.getFullYear() - birthDate.getFullYear();
+
+    // // التحقق من ما إذا كان عيد ميلاده لم يأتي بعد هذه السنة
+    // const monthDifference = today.getMonth() - birthDate.getMonth();
+    // if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+    //   age--;
+    // }
+    // this.oneEmployee.age = `${age}`
+  }
 
   calculateAge(): void {
     // تحويل تاريخ الميلاد إلى كائن Date

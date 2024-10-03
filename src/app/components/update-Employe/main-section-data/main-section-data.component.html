@@ -122,7 +122,7 @@
                     [ngClass]="{'fw-semibold  fs-14': currentLang == 'en'}">{{ 'Update.BirthDate' | translate }} :
                 </p>
                 <div class="position-relative ">
-                    <input formControlName="birthDate" type="date" [max]="todayDate" [value]=" oneEmployee.birthDate "
+                    <input (blur)="CalcAgeDirectly()" formControlName="birthDate" type="date" [max]="todayDate" [value]=" oneEmployee.birthDate "
                         class="form-control text-center">
                 </div>
             </td>
