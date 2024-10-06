@@ -6,19 +6,22 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-insurance-section-data',
   templateUrl: './insurance-section-data.component.html',
   styleUrls: ['./insurance-section-data.component.css']
 })
 export class InsuranceSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _spinner: NgxSpinnerService,
     private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
   modifiedEmployee: modifiedEmployee = this._UpdateDataService.newEmpData;
   isFormChanged: boolean = false;
+  mySubscription!: Subscription
 
 
 
@@ -42,12 +45,30 @@ export class InsuranceSectionDataComponent {
   ngOnInit(): void {
     this.getEmpData()
     this.monitorFormChanges()
+    this.isCurrentSection()
+  }
+
+
+  isCurrentSection() {
+    this.mySubscription = this._UpdateDataService.sendDataNow.subscribe(value => {
+      if (value) {
+        console.log('send insurance-section data');
+        this.sendUpdates()
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
   }
 
   monitorFormChanges() {
     this.InsuranceFormData.valueChanges.subscribe(() => {
       // تحقق إذا تم تعديل النموذج
-      this.isFormChanged = this.InsuranceFormData.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+      this._UpdateDataService.isFormChanged.next(this.InsuranceFormData.dirty)
+      // dirty تتحقق مما إذا كان هناك أي تعديل
     });
   }
 
@@ -60,6 +81,8 @@ export class InsuranceSectionDataComponent {
         // يوجد في البيانات بعض التواريخ مسجلة كنص كتابي من نوع سترينج علي شكل اندرسكور -___\__\__ عشان كدة لازم نتأكد انه رقم
         this.oneEmployee.insuranceDate && this.oneEmployee.insuranceDate.includes('0') ? this.oneEmployee.insuranceDate = new Date(this.oneEmployee.insuranceDate).toISOString().substring(0, 10) : ''
         this.oneEmployee.insuranceDateE && this.oneEmployee.insuranceDateE.includes('0') ? this.oneEmployee.insuranceDateE = new Date(this.oneEmployee.insuranceDateE).toISOString().substring(0, 10) : ''
+        this._UpdateDataService.isFormChanged.next(false)
+
       }
     )
 
@@ -123,7 +146,7 @@ export class InsuranceSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
-
+    this._spinner.show("spinner2")
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
       next: (res) => {
         if (res.isSuccess == true) {
@@ -134,10 +157,12 @@ export class InsuranceSectionDataComponent {
           this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
         }
         console.log(res)
+        this._spinner.hide("spinner2")
       },
       error: (err) => {
         this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
         console.log(err)
+        this._spinner.hide("spinner2")
       }
     })
   }
@@ -157,9 +182,11 @@ export class InsuranceSectionDataComponent {
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
+        this._UpdateDataService.isFormChanged.next(false)
         this.isFormChanged = false
         this.oneEmployee.insuranceDate && this.oneEmployee.insuranceDate.includes('0') ? this.oneEmployee.insuranceDate = new Date(this.oneEmployee.insuranceDate).toISOString().substring(0, 10) : ''
         this.oneEmployee.insuranceDateE && this.oneEmployee.insuranceDateE.includes('0') ? this.oneEmployee.insuranceDateE = new Date(this.oneEmployee.insuranceDateE).toISOString().substring(0, 10) : ''
+        this._UpdateDataService.isFormChanged.next(false)
 
       },
       error: (err) => {

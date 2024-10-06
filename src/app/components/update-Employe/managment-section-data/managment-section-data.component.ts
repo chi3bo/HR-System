@@ -2,8 +2,9 @@ import { Component, HostListener, Renderer2 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { debounceTime } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
@@ -14,7 +15,7 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./managment-section-data.component.css']
 })
 export class ManagmentSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _spinner: NgxSpinnerService,
     private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
@@ -27,6 +28,7 @@ export class ManagmentSectionDataComponent {
   isFormChanged: boolean = false;
   categoryList: branch[] = []
   inValidMsg: boolean = false
+  mySubscription!: Subscription
 
   ManagementFormData: FormGroup = this._FormBuilder.group({
     // معلومات الفروع والإدارة
@@ -55,12 +57,31 @@ export class ManagmentSectionDataComponent {
     this.getEmpData()
     this.monitorFormChanges()
     this.getAllCategory()
+    this.isCurrentSection()
+  }
+
+
+  isCurrentSection() {
+    this.mySubscription = this._UpdateDataService.sendDataNow.subscribe(value => {
+      if (value) {
+        console.log('send management-section data');
+        this.sendUpdates()
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
   }
 
   monitorFormChanges() {
     this.ManagementFormData.valueChanges.subscribe(() => {
       // تحقق إذا تم تعديل النموذج
       this.isFormChanged = this.ManagementFormData.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+      this._UpdateDataService.isFormChanged.next(this.ManagementFormData.dirty)
+
     });
   }
 
@@ -70,6 +91,7 @@ export class ManagmentSectionDataComponent {
         console.log(value);
         this.oneEmployee = value
         this.ManagementFormData.patchValue(this.oneEmployee)
+        this._UpdateDataService.isFormChanged.next(false)
 
       }
     )
@@ -189,6 +211,7 @@ export class ManagmentSectionDataComponent {
     console.log(this.modifiedEmployee);
     console.log(this.ManagementFormData.valid, 'is it valid?');
     if (this.ManagementFormData.valid) {
+      this._spinner.show("spinner2")
       this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
         next: (res) => {
           if (res.isSuccess == true) {
@@ -198,11 +221,13 @@ export class ManagmentSectionDataComponent {
           else {
             this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
           }
+          this._spinner.hide("spinner2")
           console.log(res)
         },
         error: (err) => {
           this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
           console.log(err)
+          this._spinner.hide("spinner2")
         }
       })
     }
@@ -217,6 +242,8 @@ export class ManagmentSectionDataComponent {
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
         this.isFormChanged = false
+        this._UpdateDataService.isFormChanged.next(false)
+
 
       },
       error: (err) => {

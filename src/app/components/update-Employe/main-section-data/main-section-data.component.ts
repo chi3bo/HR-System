@@ -5,9 +5,10 @@ import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 import { modifiedEmployee } from './../../../shared/interfaces/update-data';
 import { oneEmployee } from 'src/app/shared/interfaces/update-data';
-import { debounceTime } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-main-section-data',
@@ -16,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MainSectionDataComponent {
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
-    private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService) { }
+    private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService, private _spinner: NgxSpinnerService) { }
   oneEmployee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
   enableEdit: boolean = false
@@ -29,6 +30,8 @@ export class MainSectionDataComponent {
   isFormChanged: boolean = false;
   inValidMsg: boolean = false
   todayDate: any = new Date().toISOString().split('T')[0]
+  mySubscription!: Subscription
+  sendingData: boolean = false
 
   mainEmployeeData: FormGroup = this._FormBuilder.group({
     employeeNameAr: [null],
@@ -63,12 +66,30 @@ export class MainSectionDataComponent {
   ngOnInit(): void {
     this.getEmpData()
     this.monitorFormChanges()
+    this.isCurrentSection()
   }
 
+
+  isCurrentSection() {
+    this.mySubscription = this._UpdateDataService.sendDataNow.subscribe(value => {
+      if (value) {
+        console.log('send main-section date');
+        this.sendUpdates()
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
   monitorFormChanges() {
     this.mainEmployeeData.valueChanges.subscribe(() => {
       // تحقق إذا تم تعديل النموذج
       this.isFormChanged = this.mainEmployeeData.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+      this._UpdateDataService.isFormChanged.next(this.mainEmployeeData.dirty)
+
     });
   }
 
@@ -90,16 +111,17 @@ export class MainSectionDataComponent {
         this.oneEmployee.birthDate ? this.oneEmployee.birthDate = new Date(this.oneEmployee.birthDate).toISOString().substring(0, 10) : ''
         this.oneEmployee.employeePersonExpireDate ? this.oneEmployee.employeePersonExpireDate = new Date(this.oneEmployee.employeePersonExpireDate).toISOString().substring(0, 10) : ''
         this.oneEmployee.birthDate ? this.calculateAge() : ''
+        this._UpdateDataService.isFormChanged.next(false)
+
       }
     )
 
   }
 
   CalcAgeDirectly() {
-
+    // this func is using for change age directly when user change birthDate after leaving the input
     let editedDate = this.mainEmployeeData.get("birthDate")?.value
     if (editedDate) {
-      console.log('daaaateeee', editedDate);
       const birthDate = new Date(editedDate);
       const today = new Date()
       let age = today.getFullYear() - birthDate.getFullYear()
@@ -109,26 +131,6 @@ export class MainSectionDataComponent {
       }
       this.mainEmployeeData.get('age')?.setValue(age)
     }
-    else {
-      console.log('not value', editedDate);
-
-    }
-
-
-
-    // // تحويل تاريخ الميلاد إلى كائن Date
-    // const birthDate = new Date(this.oneEmployee.birthDate);
-    // // تاريخ اليوم الحالي
-    // const today = new Date();
-    // // حساب العمر بالسنوات
-    // let age = today.getFullYear() - birthDate.getFullYear();
-
-    // // التحقق من ما إذا كان عيد ميلاده لم يأتي بعد هذه السنة
-    // const monthDifference = today.getMonth() - birthDate.getMonth();
-    // if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
-    //   age--;
-    // }
-    // this.oneEmployee.age = `${age}`
   }
 
   calculateAge(): void {
@@ -193,10 +195,6 @@ export class MainSectionDataComponent {
     this.enableEditName = ''
     this.inValidMsg = false
 
-    // this.closeEdittingInput(thisControl, target, '', 'save')
-
-    console.log(item);
-
   }
 
 
@@ -224,6 +222,7 @@ export class MainSectionDataComponent {
     console.log(this.modifiedEmployee);
     console.log(this.mainEmployeeData.valid, 'is it valid?');
     if (this.mainEmployeeData.valid) {
+      this._spinner.show("spinner2")
       this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
         next: (res) => {
           if (res.isSuccess == true) {
@@ -233,11 +232,13 @@ export class MainSectionDataComponent {
           else {
             this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
           }
+          this._spinner.hide("spinner2")
           console.log(res)
         },
         error: (err) => {
           this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
           console.log(err)
+          this._spinner.hide("spinner2")
         }
       })
     }
@@ -262,6 +263,8 @@ export class MainSectionDataComponent {
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
         this.isFormChanged = false
+        this._UpdateDataService.isFormChanged.next(false)
+
       },
       error: (err) => {
         console.log(err);

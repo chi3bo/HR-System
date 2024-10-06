@@ -2,8 +2,9 @@ import { Component, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { debounceTime } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { branch, empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { modifiedEmployee } from 'src/app/shared/interfaces/update-data';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
@@ -14,8 +15,8 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./personal-section-data.component.css']
 })
 export class PersonalSectionDataComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
-      private _Router: Router,  private _toaster: ToastrService , private _TranslateService: TranslateService) { }
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _spinner: NgxSpinnerService,
+    private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService) { }
   oneEmpolyee: empFullDetails = {} as empFullDetails
   itemsList: any[] = []
   enableEdit: boolean = false
@@ -27,6 +28,8 @@ export class PersonalSectionDataComponent {
   enableEditName: string = ''
   branchChosen: boolean = true
   isFormChanged: boolean = false;
+  ibnList: any[] = ['1', 2, 3, 4, 5]
+  mySubscription!: Subscription
 
 
   personalDataForm: FormGroup = this._FormBuilder.group({
@@ -94,12 +97,38 @@ export class PersonalSectionDataComponent {
     this.getEmpData()
     this.getAllNations()
     this.monitorFormChanges()
+
+    this.isCurrentSection()
   }
+
+  isCurrentSection() {
+    this.mySubscription = this._UpdateDataService.sendDataNow.subscribe(value => {
+      if (value) {
+        console.log('send personal-section data');
+        this.sendUpdates()
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
+
+
+  sayHello() {
+    console.log('helloooooooooooooooooo');
+    return "helloooooo"
+  }
+
 
   monitorFormChanges() {
     this.personalDataForm.valueChanges.subscribe(() => {
       // تحقق إذا تم تعديل النموذج
       this.isFormChanged = this.personalDataForm.dirty; // dirty تتحقق مما إذا كان هناك أي تعديل
+      this._UpdateDataService.isFormChanged.next(this.personalDataForm.dirty)
+
     });
   }
 
@@ -109,6 +138,8 @@ export class PersonalSectionDataComponent {
         console.log(value);
         this.oneEmpolyee = value
         this.personalDataForm.patchValue(this.oneEmpolyee)
+        this._UpdateDataService.isFormChanged.next(false)
+
       }
     )
 
@@ -196,7 +227,7 @@ export class PersonalSectionDataComponent {
   setUpdates() {
     this.equalizeData()
     this.modifiedEmployee.mobile = this.ifValueSetString(this.personalDataForm.get('mobile')?.value)
-    this.modifiedEmployee.mobileEmergency =  this.ifValueSetString( this.personalDataForm.get('mobileEmergency')?.value )
+    this.modifiedEmployee.mobileEmergency = this.ifValueSetString(this.personalDataForm.get('mobileEmergency')?.value)
     this.modifiedEmployee.nationId = this.personalDataForm.get('nationId')?.value
     this.modifiedEmployee.state = this.personalDataForm.get('state')?.value
     this.modifiedEmployee.blood = this.personalDataForm.get('blood')?.value
@@ -205,29 +236,32 @@ export class PersonalSectionDataComponent {
   sendUpdates() {
     this.setUpdates()
     console.log(this.modifiedEmployee);
-
+    this._spinner.show("spinner2")
     this._UpdateDataService.AddOrUpdateEmployee(this.modifiedEmployee).subscribe({
       next: (res) => {
         if (res.isSuccess == true) {
           this.getEmployeeDetails(this.modifiedEmployee.employeeId)
-          this._toaster.success('تم تحديث بيانات الموظف بنجاح' , "تم التعديل", {positionClass: 'toast-bottom-right'})
+          this._toaster.success('تم تحديث بيانات الموظف بنجاح', "تم التعديل", { positionClass: 'toast-bottom-right' })
         }
-        else{
-          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
+        else {
+          this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً', "فشل التعديل", { positionClass: 'toast-bottom-right' })
         }
+        this._spinner.hide("spinner2")
         console.log(res)
       },
-      error: (err) => { 
-        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ' , "فشل التعديل" ,  {positionClass: 'toast-bottom-right'})
-        console.log(err) }
+      error: (err) => {
+        this._spinner.hide("spinner2")
+        this._toaster.error('لم يتم تحديث بيانات الموظف .. حاول لاحقاً ', "فشل التعديل", { positionClass: 'toast-bottom-right' })
+        console.log(err)
+      }
     })
   }
 
   ifValueSetString(value: any) {
     if (value) {
-     return String(value)
+      return String(value)
     }
-    else{
+    else {
       return value
     }
   }
@@ -238,7 +272,7 @@ export class PersonalSectionDataComponent {
       next: (data) => {
         this._UpdateDataService.employeeData.next(data)
         this.isFormChanged = false
-
+        this._UpdateDataService.isFormChanged.next(false)
       },
       error: (err) => {
         console.log(err);
@@ -246,10 +280,7 @@ export class PersonalSectionDataComponent {
     })
   }
 
-sayHello(){
-  console.log('helloooooooooooooooooo');
-  return "helloooooo"
-}
+
 }
 
 

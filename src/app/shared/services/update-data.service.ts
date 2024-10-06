@@ -59,6 +59,8 @@ export class UpdateDataService {
     cardPlace: '',
     cardExpired: ''
   }
+  sendDataNow:BehaviorSubject<any> = new BehaviorSubject(false)// connction between parent and children to send updateds to api
+  isFormChanged:BehaviorSubject<any> = new BehaviorSubject(false)// connction between parent and children to hide and show buttons
   
 
   setHeadrs(): any {

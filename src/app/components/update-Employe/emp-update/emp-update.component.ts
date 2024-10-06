@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router, Event } from '@angular/router';
-import { debounceTime } from 'rxjs';
+import { BehaviorSubject, debounceTime, Subscription } from 'rxjs';
 import { empFullDetails } from 'src/app/shared/interfaces/dashboard';
 import { oneEmployee } from 'src/app/shared/interfaces/update-data';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 import { PersonalSectionDataComponent } from './../personal-section-data/personal-section-data.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-emp-update',
@@ -13,11 +14,14 @@ import { PersonalSectionDataComponent } from './../personal-section-data/persona
   styleUrls: ['./emp-update.component.css']
 })
 export class EmpUpdateComponent implements OnInit, OnDestroy {
-  @ViewChild(PersonalSectionDataComponent) myIbn! : PersonalSectionDataComponent
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _Router: Router, private _Renderer2: Renderer2) { }
+  @ViewChild(PersonalSectionDataComponent) myIbn!: PersonalSectionDataComponent
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _toaster: ToastrService,
+    private _Router: Router, private _Renderer2: Renderer2) { }
   searchingForm: FormGroup = this._FormBuilder.group({
     searchInput: [null]
   })
+
+
 
   employeeData: FormGroup = this._FormBuilder.group({
     empName: [{ value: null, disabled: true }],
@@ -33,12 +37,29 @@ export class EmpUpdateComponent implements OnInit, OnDestroy {
   oneEmplyee: empFullDetails = {} as empFullDetails
   enableEdit: boolean = false
   showData: boolean = false
+  sendingData: boolean = false
+  isFormChanged: boolean = false
+  statusSubscribtion!: Subscription
 
+  sendData() {
+    this._UpdateDataService.sendDataNow.next(true)
+    this._UpdateDataService.sendDataNow.next(false)
+  }
 
-  // test(){
-  //  let x = this.myIbn.sayHello()
-  //  console.log(x);
-  // }
+  forgetChanges() {
+    this._UpdateDataService.employeeData.next(this._UpdateDataService.employeeData.value)
+    this._UpdateDataService.isFormChanged.next(false)
+    this._toaster.warning('تم اهمال التعديلات الحالية', " اهمال ", { positionClass: 'toast-bottom-right' })
+
+  }
+
+  getFormStatus() {
+    this.statusSubscribtion = this._UpdateDataService.isFormChanged.subscribe(vlaue => {
+      this.isFormChanged = vlaue
+      console.log(vlaue);
+
+    })
+  }
 
   ngOnInit(): void {
     this.searchingForm.get('searchInput')?.valueChanges.pipe(debounceTime(300)).subscribe(value => {
@@ -57,7 +78,7 @@ export class EmpUpdateComponent implements OnInit, OnDestroy {
     })
 
     this.isNewEmployee()
-
+    this.getFormStatus()
   }
 
 
@@ -78,6 +99,7 @@ export class EmpUpdateComponent implements OnInit, OnDestroy {
       next: (data) => {
         console.log(data);
         this._UpdateDataService.employeeData.next(data)
+        console.log(data , 'daaataaa -empupdate');
         this.oneEmplyee = data
         this.showList = false
         this.showData = true
@@ -130,5 +152,6 @@ export class EmpUpdateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     localStorage.removeItem('createdEmpID')
+    this.statusSubscribtion.unsubscribe()
   }
 }

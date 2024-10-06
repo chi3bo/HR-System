@@ -26,11 +26,17 @@
     <div class="w-100  row mx-0 ">
         <div class="w-100 bg-primary text-white sections mx-0">
             <!-- <div class="fakeHeight"></div> -->
-            
-            
-            <div class="py-3">
 
-            <!-- <button (click)="test()" class="btn-outline-light btn"> حفظ التعديلات </button> -->
+
+            <div *ngIf="showData" class="py-3 arabicList text-start">
+
+                <button [ngClass]="{'original-btn': isFormChanged}" (click)="sendData()"
+                    class="btn-light send-btn btn mt-4-mobile font-14-mobile mx-1 arabicList">
+                    حفظ <i class="fa-solid fa-floppy-disk px-1"></i>
+                </button>
+                <button [ngClass]="{'original-btn': isFormChanged}" (click)="forgetChanges()" class="btn-light forget-btn btn mt-4-mobile font-14-mobile mx-1 arabicList">
+                    اهمال <i class="fa-solid fa-ban px-1 "></i>
+                </button>
             </div>
 
 
@@ -60,7 +66,8 @@
         </div>
         <!-- <div class="col-md-2 fake-col"></div> -->
         <div class="w-100 rounded-2">
-            <div *ngIf="!showData" class="p-5 text-dark d-flex justify-content-center align-items-center {{ 'direction' | translate }} ">
+            <div *ngIf="!showData"
+                class="p-5 text-dark d-flex justify-content-center align-items-center {{ 'direction' | translate }} ">
                 <p class="my-0 fs-3 you-can-search">
                     {{"يمكنك_البحث" | translate }} </p>
                 <i class="fa-solid fa-magnifying-glass fa-2x px-2"></i>
