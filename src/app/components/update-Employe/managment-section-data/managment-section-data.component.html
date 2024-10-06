@@ -422,7 +422,5 @@
     <p *ngIf="inValidMsg" class="text-danger small my-2">
         قم بملئ المدخلات بطريقة صحيحة (اختر عنصر او اتركها فارغة)
     </p>
-    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">
-        {{ 'save_send' | translate }}
-    </button>
+
 </div>

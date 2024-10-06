@@ -1,4 +1,4 @@
-<table class=" w-100 {{ 'direction' | translate }}" [formGroup]="InsuranceFormData">
+<table class=" w-100 mb-4 {{ 'direction' | translate }}" [formGroup]="InsuranceFormData">
     <tbody>
 
         <!-- ===========================================      START insurance     ========================================= -->
@@ -166,8 +166,3 @@
     </tbody>
 </table>
 
-<div class="w-100 text-center margin-50">
-    <button [disabled]="!isFormChanged" (click)="sendUpdates()" class="btn btn-success px-5 py-2 mx-auto">
-        {{ 'save_send' | translate }}
-    </button>
-</div>
