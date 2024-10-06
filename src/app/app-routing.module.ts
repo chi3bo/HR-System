@@ -45,6 +45,7 @@ import { InsuranceSectionDataComponent } from './components/update-Employe/insur
 import { ManagmentSectionDataComponent } from './components/update-Employe/managment-section-data/managment-section-data.component';
 import { HomeDashboardComponent } from './components/home-dashboard/home-dashboard.component';
 import { AddEmployeeComponent } from './components/update-Employe/add-employee/add-employee.component';
+import { DefinitionsComponent } from './components/definitions/definitions.component';
 
 const routes: Routes = [
 
@@ -99,6 +100,7 @@ const routes: Routes = [
       { path: 'admin-permissions', component: AdminLeaveComponent, title: 'permissions orders' },
       { path: 'admin-worktask', component: AdminWorkTaskComponent, title: 'work Task orders' },
       { path: 'admin-blank', component: BlankComponent, title: 'my orders' },
+      { path: 'admin-defination', component: DefinitionsComponent, title: 'definations' },
       { path: 'new-emp', component: AddEmployeeComponent, title: 'add new employee' },
       { path: 'employee-update', component: EmpUpdateComponent, title: 'employee Update', children: [
           { path: '', redirectTo:'main' ,pathMatch:'full' },

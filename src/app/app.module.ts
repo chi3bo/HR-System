@@ -68,6 +68,7 @@ import { DocsSectionDataComponent } from './components/update-Employe/docs-secti
 import { InsuranceSectionDataComponent } from './components/update-Employe/insurance-section-data/insurance-section-data.component';
 import { HomeDashboardComponent } from './components/home-dashboard/home-dashboard.component';
 import { AddEmployeeComponent } from './components/update-Employe/add-employee/add-employee.component';
+import { DefinitionsComponent } from './components/definitions/definitions.component';
 
 
 
@@ -133,7 +134,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DocsSectionDataComponent,
     InsuranceSectionDataComponent,
     HomeDashboardComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    DefinitionsComponent
   ],
   imports: [
     BrowserModule,

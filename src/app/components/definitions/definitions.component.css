@@ -1,0 +1,14 @@
+.item {
+    height: auto !important;
+    background:#fff ;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.item:hover {
+    /* background-image: linear-gradient(90deg, #3077a1, #3fb674) !important; */
+    background: linear-gradient(90deg, #3fb674, #3077a1) !important;
+    ;
+    color: #fff;
+    scale: 1.05;
+}
