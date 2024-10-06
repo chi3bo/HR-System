@@ -82,7 +82,6 @@ export class InsuranceSectionDataComponent {
         this.oneEmployee.insuranceDate && this.oneEmployee.insuranceDate.includes('0') ? this.oneEmployee.insuranceDate = new Date(this.oneEmployee.insuranceDate).toISOString().substring(0, 10) : ''
         this.oneEmployee.insuranceDateE && this.oneEmployee.insuranceDateE.includes('0') ? this.oneEmployee.insuranceDateE = new Date(this.oneEmployee.insuranceDateE).toISOString().substring(0, 10) : ''
         this._UpdateDataService.isFormChanged.next(false)
-
       }
     )
 

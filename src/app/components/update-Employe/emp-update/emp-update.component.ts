@@ -7,6 +7,7 @@ import { oneEmployee } from 'src/app/shared/interfaces/update-data';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 import { PersonalSectionDataComponent } from './../personal-section-data/personal-section-data.component';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-emp-update',
@@ -16,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EmpUpdateComponent implements OnInit, OnDestroy {
   @ViewChild(PersonalSectionDataComponent) myIbn!: PersonalSectionDataComponent
   constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _toaster: ToastrService,
-    private _Router: Router, private _Renderer2: Renderer2) { }
+    private _Router: Router, private _Renderer2: Renderer2, private _spinner: NgxSpinnerService) { }
   searchingForm: FormGroup = this._FormBuilder.group({
     searchInput: [null]
   })
@@ -95,18 +96,22 @@ export class EmpUpdateComponent implements OnInit, OnDestroy {
   }
 
   getEmployeeDetails(empID: string) {
+    this._spinner.show('spinner3')
     this._UpdateDataService.getEmpFullData(empID).subscribe({
       next: (data) => {
         console.log(data);
         this._UpdateDataService.employeeData.next(data)
-        console.log(data , 'daaataaa -empupdate');
+        console.log(data, 'daaataaa -empupdate');
         this.oneEmplyee = data
         this.showList = false
         this.showData = true
+        this._spinner.hide('spinner3')
 
       },
       error: (err) => {
         console.log(err);
+        this._spinner.hide('spinner3')
+
       }
     })
   }

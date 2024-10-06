@@ -87,6 +87,8 @@ export class DashboardComponent {
     this.searching()
   }
 
+
+
   // =======================  start filtering function   =======================
   listOfHeaders() {
     this.JobList = new Set(this.employeeList.map(item => { return item.jobNameAr }))
@@ -474,19 +476,24 @@ export class DashboardComponent {
   getEmpDetails(empID: any) {
     this.employeeFullData = {} as empFullDetails
     let id = empID
-    this._DashboardService.getEmpFullData(id).subscribe({
+    localStorage.setItem('createdEmpID', empID)
 
-      next: (data) => {
-        this.employeeFullData = data
-        console.log(data);
-        this.openEmpModal()
-      },
+    this._Router.navigate(['./employee-update'])
 
-      error: (err) => {
-        console.log(err);
-      }
 
-    })
+    // this._DashboardService.getEmpFullData(id).subscribe({
+
+    //   next: (data) => {
+    //     this.employeeFullData = data
+    //     console.log(data);
+    //     this.openEmpModal()
+    //   },
+
+    //   error: (err) => {
+    //     console.log(err);
+    //   }
+
+    // })
 
 
   }
