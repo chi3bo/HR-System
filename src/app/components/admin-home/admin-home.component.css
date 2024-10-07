@@ -1,8 +1,7 @@
 section {
-    background-image: url(/assets/images/compressed-images/jpg/bg-grey.jpg) !important;
+    background-image: url('/HR-System/assets/images/compressed-images/jpg/bg-grey.jpg') !important;
     background-size: cover;
     background-position: center;
-
 }
 
 
@@ -76,6 +75,7 @@ section {
         width: 20%;
     }
 }
+
 @media screen and (max-width:768px) {
     .the-Col {
         width: 25%;
@@ -102,11 +102,12 @@ section {
         font-size: 25px;
 
     }
+
     .my-icon-img img {
         width: 50px;
         height: 50px;
     }
-    
+
     .icon-box {
         width: 70px;
         height: 70px;
