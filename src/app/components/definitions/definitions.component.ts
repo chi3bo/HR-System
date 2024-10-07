@@ -47,9 +47,7 @@ export class DefinitionsComponent {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.getAllItems('branch')
+    this.getAllItems('company')
     this.searchingItems()
 
   }
