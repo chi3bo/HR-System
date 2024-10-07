@@ -69,6 +69,7 @@ import { InsuranceSectionDataComponent } from './components/update-Employe/insur
 import { HomeDashboardComponent } from './components/home-dashboard/home-dashboard.component';
 import { AddEmployeeComponent } from './components/update-Employe/add-employee/add-employee.component';
 import { DefinitionsComponent } from './components/definitions/definitions.component';
+import { HomeIconsComponent } from './components/home-icons/home-icons.component';
 
 
 
@@ -135,7 +136,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     InsuranceSectionDataComponent,
     HomeDashboardComponent,
     AddEmployeeComponent,
-    DefinitionsComponent
+    DefinitionsComponent,
+    HomeIconsComponent
   ],
   imports: [
     BrowserModule,
