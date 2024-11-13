@@ -119,8 +119,9 @@ export class DisplayTimesheetComponent implements OnInit {
   getNameByid(id: any) {
     this._TimesheetService.getNamebyId(id).subscribe({
       next: (Response) => {
-        console.log(Response);
         this.empName = Response
+        console.log(this.empName , 'empppppaaaaaameeee');
+        // this.settingSheet.get('empName')?.setValue(Response)
         this.noId = false
 
       },

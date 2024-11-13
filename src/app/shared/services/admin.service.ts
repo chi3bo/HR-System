@@ -15,21 +15,21 @@ export class AdminService {
 
 
   getAllRequestLoan(userId: any = ''): Observable<any> {
-    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingAdvancePayments?Search=${userId}`, this.setHeadrs())
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingAdvancePayments?Search=${userId}`)
   }
 
   getAllRequestVacation(userId: any = ''): Observable<any> {
-    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestVacations?Search=${userId}`, this.setHeadrs())
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestVacations?Search=${userId}`)
   }
 
   getAllAssets(userId: any = ''): Observable<any> {
-    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestCustodies?Search=${userId}`, this.setHeadrs())
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestCustodies?Search=${userId}`)
   }
   getAllLetters(userId: any = ''): Observable<any> {
-    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestLetters?Search=${userId}`, this.setHeadrs())
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestLetters?Search=${userId}`)
   }
   getAllPermissions(userId: any = ''): Observable<any> {
-    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestPermissions?Search=${userId}`, this.setHeadrs())
+    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Admin/GetPindingRequestPermissions?Search=${userId}`)
   }
 
   LoanAction(orderId: number, Action: boolean): Observable<any> {
@@ -38,7 +38,7 @@ export class AdminService {
         "id": orderId,
         "accepted": Action
       },
-      this.setHeadrs())
+      )
   }
 
   vacationAction(orderId: number, action: boolean, details: string): Observable<any> {
@@ -47,8 +47,7 @@ export class AdminService {
         id: orderId,
         accepted: action,
         note: details
-      },
-      this.setHeadrs()
+      }
     )
   }
 
@@ -58,8 +57,7 @@ export class AdminService {
         id: orderId,
         accepted: action,
         note: details
-      },
-      this.setHeadrs()
+      }
     )
   }
 
@@ -69,8 +67,7 @@ export class AdminService {
         id: orderId,
         accepted: action,
         note: details
-      },
-      this.setHeadrs()
+      }
     )
   }
 
@@ -80,8 +77,7 @@ export class AdminService {
         id: orderId,
         accepted: action,
         note: details
-      },
-      this.setHeadrs()
+      }
     )
   }
 

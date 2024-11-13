@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime } from 'rxjs';
 import { branch } from 'src/app/shared/interfaces/dashboard';
+import { ConfigurationService } from 'src/app/shared/services/configuration.service';
 import { UpdateDataService } from 'src/app/shared/services/update-data.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { UpdateDataService } from 'src/app/shared/services/update-data.service';
   styleUrls: ['./definitions.component.css']
 })
 export class DefinitionsComponent {
-  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService,
+  constructor(private _FormBuilder: FormBuilder, private _UpdateDataService: UpdateDataService, private _ConfigurationService: ConfigurationService,
     private _Router: Router, private _toaster: ToastrService, private _TranslateService: TranslateService, private _spinner: NgxSpinnerService) { }
 
   itemsList: branch[] = []
@@ -71,6 +72,58 @@ export class DefinitionsComponent {
         }
       })
   }
+
+
+
+ // =============== main actions =================
+  addNew(myBody: any) {
+    this._ConfigurationService.addNewConfig(myBody).subscribe({
+
+      next: (response) => {
+        console.log(response);
+      },
+
+      error: (response) => {
+        console.log(response);
+      }
+
+    })
+  }
+
+
+  editConfig(myBody: any) {
+    this._ConfigurationService.editConfig(myBody).subscribe({
+
+      next: (response) => {
+        console.log(response);
+      },
+
+      error: (response) => {
+        console.log(response);
+      }
+
+    })
+  }
+
+
+  deleteConfic(myBody: any) {
+    this._ConfigurationService.deleteConfig(myBody).subscribe({
+
+      next: (response) => {
+        console.log(response);
+      },
+
+      error: (response) => {
+        console.log(response);
+      }
+
+    })
+  }
+
+
+
+
+
 }
 
 

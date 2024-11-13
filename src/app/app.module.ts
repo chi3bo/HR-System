@@ -14,7 +14,7 @@ import { LoanComponent } from './components/loan/loan.component';
 import { VacationComponent } from './components/vacation/vacation.component';
 import { TerminationComponent } from './components/termination/termination.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HelpComponent } from './components/help/help.component';
 import { AllOrdersComponent } from './components/all-orders/all-orders.component';
 import { OrderVacComponent } from './components/order-vac/order-vac.component';
@@ -70,6 +70,7 @@ import { HomeDashboardComponent } from './components/home-dashboard/home-dashboa
 import { AddEmployeeComponent } from './components/update-Employe/add-employee/add-employee.component';
 import { DefinitionsComponent } from './components/definitions/definitions.component';
 import { HomeIconsComponent } from './components/home-icons/home-icons.component';
+import { HeadersInterceptor } from "./shared/core/headers.interceptor";
 
 
 
@@ -164,7 +165,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

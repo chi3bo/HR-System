@@ -22,15 +22,15 @@ export class LoanService {
     if (localStorage.getItem('userToken') == null ){
       this._Router.navigate(['login'])
     }
-    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetBasicAdvancePaymentInfo', this.setHeadrs())
+    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetBasicAdvancePaymentInfo')
   }
 
   getAllLoan(): Observable<any> {
-    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeeAdvancePayments', this.setHeadrs())
+    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeeAdvancePayments')
   }
 
   requestLoan(body:any): Observable<any> {
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/RequestAdvancePayment', body, this.setHeadrs())
+    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/RequestAdvancePayment', body)
   }
 
 }
