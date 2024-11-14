@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { empFullDetails } from '../interfaces/dashboard';
 import { modifiedEmployee } from '../interfaces/update-data';
-
+import  {environment} from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -68,20 +68,20 @@ export class UpdateDataService {
   }
 
   searchEmployee(searchKey: string): Observable<any> {
-    return this._HttpClient.get(`https://hrapp.runasp.net/Api/Employee/GetSearch?searchKey=${searchKey}`, this.setHeadrs())
+    return this._HttpClient.get(`${environment.apiUrl}/Api/Employee/GetSearch?searchKey=${searchKey}`, this.setHeadrs())
   }
 
   getEmpFullData(id: any): Observable<any> {
-    return this._HttpClient.post(`https://hrapp.runasp.net/Api/Dashboard/GetEmployeeTreeById?employeeId=${id}`, '', this.setHeadrs())
+    return this._HttpClient.post(`${environment.apiUrl}/Api/Dashboard/GetEmployeeTreeById?employeeId=${id}`, '', this.setHeadrs())
   }
 
   getAllGroubOf(groubName: string): Observable<any> {
-    return this._HttpClient.post(`https://hrapp.runasp.net/Api/${groubName}/GetAll`, '', this.setHeadrs())
+    return this._HttpClient.post(`${environment.apiUrl}/Api/${groubName}/GetAll`, '', this.setHeadrs())
   }
 
 
   AddOrUpdateEmployee(body: any): Observable<any> {
-    return this._HttpClient.post(`https://hrapp.runasp.net/Api/Dashboard/AddOrUpdateEmployee`, body , this.setHeadrs())
+    return this._HttpClient.post(`${environment.apiUrl}/Api/Dashboard/AddOrUpdateEmployee`, body , this.setHeadrs())
   }
 
   

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import  {environment} from '../../../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
@@ -14,16 +15,16 @@ export class NewOrderService {
 
 
   requestpermission(body:any): Observable<any> {
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/RequestPermission', body, this.setHeadrs())
+    return this._HttpClient.post(`${environment.apiUrl}/Api/Employee/RequestPermission`, body, this.setHeadrs())
   }
 
 
   requestletter(body:any): Observable<any> {
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/RequestLetter', body, this.setHeadrs())
+    return this._HttpClient.post(`${environment.apiUrl}/Api/Employee/RequestLetter`, body, this.setHeadrs())
   }
 
   requestasset(body:any): Observable<any> {
-    return this._HttpClient.post('https://hrapp.runasp.net/Api/Employee/RequestCustody', body, this.setHeadrs())
+    return this._HttpClient.post(`${environment.apiUrl}/Api/Employee/RequestCustody`, body, this.setHeadrs())
   }
 
 }

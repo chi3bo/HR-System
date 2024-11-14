@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import  {environment} from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -20,19 +20,19 @@ export class GetOrdersService {
 
 
   getAssetsOrders(): Observable<any> {
-    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeeCustodies',  this.setHeadrs())
+    return this._HttpClient.get(`${environment.apiUrl}/Api/Employee/GetEmployeeCustodies`,  this.setHeadrs())
   }
 
   getLettersOrders(): Observable<any> {
-    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeeLetter', this.setHeadrs())
+    return this._HttpClient.get(`${environment.apiUrl}/Api/Employee/GetEmployeeLetter`, this.setHeadrs())
   }
 
   getPermissionsOrders(): Observable<any> {
-    return this._HttpClient.get('https://hrapp.runasp.net/Api/Employee/GetEmployeePermissions', this.setHeadrs())
+    return this._HttpClient.get(`${environment.apiUrl}/Api/Employee/GetEmployeePermissions`, this.setHeadrs())
   }
 
   downloadFile(fileId: string): Observable<any> {
-    return this._HttpClient.get(`https://hrapp.runasp.net/Api/File/GetFile/${fileId}`, this.setHeadrsFile())
+    return this._HttpClient.get(`${environment.apiUrl}/Api/File/GetFile/${fileId}`, this.setHeadrsFile())
   }
 
 
