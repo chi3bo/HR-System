@@ -1,9 +1,9 @@
 <section class="hide-on-mobile  admin-nav">
-    <nav class="navbar navbar-expand-lg  shadow z-3 py-1">
+    <nav class="navbar navbar-expand-lg  shadow z-3 py-0">
         <div class="container">
             <a class="navbar-brand" routerLink="/admin-home">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png"
-                    alt="saudia formica logo" class="w-75">
+                <img src="./assets/company-Logo/logo_white.png"
+                    alt="saudia formica logo" class="w-100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -32,12 +32,18 @@
                         </span>
                         <ul class="dropdown-menu text-center">
 
-                            <li><a class="dropdown-item " routerLink="admin-vacation">{{ 'admin_nav.طلبات_الاجازات' | translate }}</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-loan">{{ 'admin_nav.طلبات_السلفة' | translate }}</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-assets">{{ 'admin_nav.طلبات_العهدة' | translate }}</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-permissions">{{ 'admin_nav.طلبات_الاذن' | translate }}</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-letters"> {{ 'admin_nav.الخطابات' | translate }}</a></li>
-                            <li><a class="dropdown-item" routerLink="admin-worktask">{{ 'admin_nav.مهمة_عمل' | translate }}</a></li>
+                            <li><a class="dropdown-item " routerLink="admin-vacation">{{ 'admin_nav.طلبات_الاجازات' |
+                                    translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-loan">{{ 'admin_nav.طلبات_السلفة' | translate
+                                    }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-assets">{{ 'admin_nav.طلبات_العهدة' |
+                                    translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-permissions">{{ 'admin_nav.طلبات_الاذن' |
+                                    translate }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-letters"> {{ 'admin_nav.الخطابات' | translate
+                                    }}</a></li>
+                            <li><a class="dropdown-item" routerLink="admin-worktask">{{ 'admin_nav.مهمة_عمل' | translate
+                                    }}</a></li>
                         </ul>
                     </li>
 
@@ -132,8 +138,7 @@
     <div class="left" [ngClass]="{'shadow-now': opened}">
         <div class="w-100">
             <div class="navbar-brand w-75 mx-auto mb-3" routerLink="home">
-                <img src="./assets/images/compressed-images/wepb/saudia_formica_logo_white.png" alt="dashboard logo"
-                    class="w-100">
+                <img src="./assets/company-Logo/logo_white.png" alt="dashboard logo" class="w-100">
             </div>
 
             <div class="nav-link w-100 text-end px-3  d-flex justify-content-between {{ 'direction' | translate}}">
@@ -161,13 +166,19 @@
                         <i class="fa-solid fa-chevron-down fa-2xs px-1"></i>
                     </span>
                     <ul class="dropdown-menu sidedown text-center">
-                            <li class="text-centerw-100 px-0"><span class="dropdown-item px-5" routerLink="admin-vacation">{{ 'admin_nav.طلبات_الاجازات' | translate }}</span></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-loan">{{ 'admin_nav.طلبات_السلفة' | translate }}</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-assets">{{ 'admin_nav.طلبات_العهدة' | translate }}</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-permissions">{{ 'admin_nav.طلبات_الاذن' | translate }}</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-letters"> {{ 'admin_nav.الخطابات' | translate }}</a></li>
-                            <li class="text-centerw-100 px-0" ><a class="dropdown-item px-5" routerLink="admin-worktask">{{ 'admin_nav.مهمة_عمل' | translate }}</a></li>
-                        </ul>
+                        <li class="text-centerw-100 px-0"><span class="dropdown-item px-5"
+                                routerLink="admin-vacation">{{ 'admin_nav.طلبات_الاجازات' | translate }}</span></li>
+                        <li class="text-centerw-100 px-0"><a class="dropdown-item px-5" routerLink="admin-loan">{{
+                                'admin_nav.طلبات_السلفة' | translate }}</a></li>
+                        <li class="text-centerw-100 px-0"><a class="dropdown-item px-5" routerLink="admin-assets">{{
+                                'admin_nav.طلبات_العهدة' | translate }}</a></li>
+                        <li class="text-centerw-100 px-0"><a class="dropdown-item px-5"
+                                routerLink="admin-permissions">{{ 'admin_nav.طلبات_الاذن' | translate }}</a></li>
+                        <li class="text-centerw-100 px-0"><a class="dropdown-item px-5" routerLink="admin-letters"> {{
+                                'admin_nav.الخطابات' | translate }}</a></li>
+                        <li class="text-centerw-100 px-0"><a class="dropdown-item px-5" routerLink="admin-worktask">{{
+                                'admin_nav.مهمة_عمل' | translate }}</a></li>
+                    </ul>
                 </li>
 
 
@@ -237,9 +248,9 @@
     </div>
 
     <div class="right">
-        <div class="d-flex justify-content-between align-items-center flex-column d-none">
+        <!-- <div class="d-flex justify-content-between align-items-center flex-column d-none">
             <img src="./assets/images/saudia_formica_logo.png" alt="logo" class="w-75 logo py-2">
-        </div>
+        </div> -->
 
         <div>
             <span (click)="openNav()" *ngIf="closed" class="w-100">

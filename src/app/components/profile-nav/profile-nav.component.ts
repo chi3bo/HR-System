@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoanService } from 'src/app/shared/services/loan.service';
 
+
 @Component({
   selector: 'app-profile-nav',
   templateUrl: './profile-nav.component.html',
@@ -18,10 +19,11 @@ export class ProfileNavComponent implements OnInit {
   closed: boolean = true
   isAdmin: boolean = false
 
+
   ngOnInit(): void {
-    if (localStorage.getItem('userToken') == (null || undefined)) {
-      this._Router.navigate(['login'])
-    }
+    // if (localStorage.getItem('userToken') == (null || undefined)) {
+    //   this._Router.navigate(['login'])
+    // }
 
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {

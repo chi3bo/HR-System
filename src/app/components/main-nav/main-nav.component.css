@@ -14,8 +14,16 @@
 }
 
 .navbar-brand {
-    width: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 150px !important;
+    max-height: 87px !important;
     cursor: pointer;
+}
+.navbar-brand img {
+    width: 100% !important;
+    max-height: 77px !important;
 }
 
 .nav-item ::after {
@@ -194,6 +202,20 @@ color: rgb(0, 62, 77);
         opacity: 1 !important;
         filter: drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.418));
     }
+
+
+    .navbar-brand {
+        width: 170px !important;
+        cursor: pointer;
+        max-width: unset !important;
+        max-height: unset !important;
+    }
+    .navbar-brand img {
+        width: 100% !important;
+        max-height: unset !important;
+    }
+
+
 
 
 }

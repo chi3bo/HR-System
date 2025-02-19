@@ -18,9 +18,7 @@ export class MainNavComponent implements OnInit {
   closed: boolean = true
 
   ngOnInit(): void {
-    if (localStorage.getItem('userToken') == (null || undefined)) {
-      this._Router.navigate(['login'])
-    }
+
     this._LoanService.basicLoanData().subscribe({
       next: (Response) => {
         this.employeeNameAR = Response.nameAr.split(' ', 1)

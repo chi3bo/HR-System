@@ -15,6 +15,12 @@ body {
     /* background-position: center; */
 }
 
+.admin-home-section {
+    background-image: url('assets/images/compressed-images/jpg/bg-grey.jpg') !important;
+    background-size: cover;
+    background-position: center;
+}
+
 .full-flex {
     display: flex;
     justify-content: center;
